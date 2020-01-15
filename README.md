@@ -1,12 +1,12 @@
-# my-new-package
+# @artdeco/nodetools
 
-{{ description }}
+The NodeTools Stack Website.
 
-A new website made with [Splendid][1]: {{ URL }}.
+A new website made with [Splendid][1]: https://art-deco.github.io/nodetools/.
 
 ## Copyright
 
-(c) [{{ trademark }}][2] {{ year }}
+(c) [Art Deco™][2] 2020
 
 [1]: https://www.npmjs.com/package/splendid
-[2]: {{ website }}
+[2]: https://www.artd.eco
