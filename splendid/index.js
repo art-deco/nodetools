@@ -19,6 +19,7 @@ const config = {
   potracePath: '~/.splendid/potrace',
   links: {
     gitter: 'https://gitter.im/node_tools/community',
+    'open-collective': 'https://opencollective.com/nodetools',
   },
 }
 

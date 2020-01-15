@@ -1,3 +1,19 @@
+.NPMBadge .a {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+}
+.NPMBadge .b {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+}
+.GitHubBadge .a {
+  -webkit-border-radius: 2px 0 0 2px;
+  -moz-border-radius: 2px 0 0 2px;
+}
+.GitHubBadge .b {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+}
 * {
   -webkit-box-sizing: border-box;
 }
@@ -41,6 +57,8 @@
 .flex-shrink-0 {
   -webkit-flex-shrink: 0 !important;
 }
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+}
 @media print {
   * {
     -webkit-box-shadow: none !important;
@@ -57,22 +75,6 @@
 }
 .right-column {
   -moz-hyphens: auto;
-}
-.GitHubBadge .a {
-  -webkit-border-radius: 2px 0 0 2px;
-  -moz-border-radius: 2px 0 0 2px;
-}
-.GitHubBadge .b {
-  -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
-}
-.NPMBadge .a {
-  -webkit-border-radius: 2px 0 0 2px;
-  -moz-border-radius: 2px 0 0 2px;
-}
-.NPMBadge .b {
-  -webkit-border-radius: 0 2px 2px 0;
-  -moz-border-radius: 0 2px 2px 0;
 }
 .inner-circles-loader:not(:required) {
   -webkit-transform: translate3d(0,0,0);

@@ -1,4 +1,20 @@
 /*# A debug pretty version for visual diffs */
+.NPMBadge {
+  text-decoration: none;
+  display: inline-block !important;
+  color: white !important;
+}
+.NPMBadge span {
+  padding: 0 .2em;
+}
+.NPMBadge .a {
+  background-color: #545454;
+  border-radius: 2px 0 0 2px;
+}
+.NPMBadge .b {
+  background-color: #c12127;
+  border-radius: 0 2px 2px 0;
+}
 @keyframes _fadeIn {
   0% {
     opacity: 0;
@@ -30,6 +46,22 @@
   to {
     opacity: 0;
   }
+}
+.GitHubBadge {
+  text-decoration: none;
+  display: inline-block !important;
+  color: white !important;
+}
+.GitHubBadge span {
+  background-color: #545454;
+  padding: 0 .2em;
+}
+.GitHubBadge .a {
+  border-radius: 2px 0 0 2px;
+}
+.GitHubBadge .b {
+  background-color: #434343;
+  border-radius: 0 2px 2px 0;
 }
 * {
   box-sizing: border-box;
@@ -174,6 +206,14 @@ h3 {
   -ms-flex-negative: 0 !important;
   flex-shrink: 0 !important;
 }
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+  .sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+}
 .h-100 {
   height: 100% !important;
 }
@@ -256,38 +296,6 @@ footer {
   padding: 1em;
   border-top: 1px dashed;
 }
-.GitHubBadge {
-  text-decoration: none;
-  display: inline-block !important;
-  color: white !important;
-}
-.GitHubBadge span {
-  background-color: #545454;
-  padding: 0 .2em;
-}
-.GitHubBadge .a {
-  border-radius: 2px 0 0 2px;
-}
-.GitHubBadge .b {
-  background-color: #434343;
-  border-radius: 0 2px 2px 0;
-}
-.NPMBadge {
-  text-decoration: none;
-  display: inline-block !important;
-  color: white !important;
-}
-.NPMBadge span {
-  padding: 0 .2em;
-}
-.NPMBadge .a {
-  background-color: #545454;
-  border-radius: 2px 0 0 2px;
-}
-.NPMBadge .b {
-  background-color: #c12127;
-  border-radius: 0 2px 2px 0;
-}
 .inner-circles-loader:not(:required) {
   transform: translate3d(0,0,0);
   position: relative;
@@ -342,4 +350,23 @@ footer {
   to {
     transform: rotate(0deg);
   }
+}
+.SideBarMenu {
+  max-height: 100vh;
+  overflow: auto;
+}
+.SideBarMenu #ShowMenu {
+  display: block;
+}
+.SideBarMenu #HideMenu, .SideBarMenu.sidebarshowing #ShowMenu {
+  display: none;
+}
+.SideBarMenu.sidebarshowing #HideMenu {
+  display: block;
+}
+.SideBarMenu .SideBarContent {
+  display: none;
+}
+.SideBarMenu.sidebarshowing .SideBarContent {
+  display: block;
 }

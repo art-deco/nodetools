@@ -17,7 +17,7 @@ const io = makeIo()
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
   key: 'github-badge',
-  id: 'cacd9,cacd9',
+  id: 'cacd9',
   props: {
     owner: 'art-deco',
     name: 'nodetools',
@@ -25,9 +25,9 @@ const meta = [{
 },
 {
   key: 'social-buttons',
-  id: 'c15d5',
+  id: 'c5763',
   props: {
-    url: 'https://art-deco.github.io/nodetools/',
+    url: 'https://art-deco.github.io/nodetools/tutorial-trapcss.html',
     meta: true,
     className: 'b-xq b-Hk',
   },
