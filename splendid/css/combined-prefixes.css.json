@@ -1,0 +1,38 @@
+{
+  "border-radius": [
+    "50%"
+  ],
+  "box-shadow": [
+    "none"
+  ],
+  "flex|-ms-flex": [
+    "0 0 25%"
+  ],
+  "transform": [
+    "rotate(0deg)"
+  ],
+  "display": [
+    "flex|-ms-flexbox"
+  ],
+  "hyphens|-webkit-hyphens|-ms-hyphens": [
+    "auto"
+  ],
+  "flex-shrink|-ms-flex-negative": [
+    "0"
+  ],
+  "transform-origin": [
+    "0 50%"
+  ],
+  "flex-wrap|-ms-flex-wrap": [
+    "wrap"
+  ],
+  "box-sizing": [
+    "border-box"
+  ],
+  "flex-direction|-ms-flex-direction": [
+    "column"
+  ],
+  "animation": [
+    "inner-circles-loader 3s infinite"
+  ]
+}

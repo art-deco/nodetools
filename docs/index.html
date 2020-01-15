@@ -1,13 +1,150 @@
 <!doctype html>
-<html>
+<html class="no-js b-Op" lang="en">
   <head>
-    <title>@artdeco/nodetools</title>
+    <meta charset="utf-8">
+    <title>Nodetools</title>
+    <meta content="The 150-160 characters search engine meta:description" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link sizes="57x57" rel="apple-touch-icon" href="/nodetools/img/favicon-57.png">
+  <link sizes="76x76" rel="apple-touch-icon" href="/nodetools/img/favicon-76.png">
+  <link sizes="120x120" rel="apple-touch-icon" href="/nodetools/img/favicon-120.png">
+  <link sizes="152x152" rel="apple-touch-icon" href="/nodetools/img/favicon-152.png">
+  <link sizes="167x167" rel="apple-touch-icon" href="/nodetools/img/favicon-167.png">
+  <link sizes="180x180" rel="apple-touch-icon" href="/nodetools/img/favicon-180.png">
+  <link sizes="192x192" rel="icon" href="/nodetools/img/favicon-192.png">
+  <link sizes="128x128" rel="icon" href="/nodetools/img/favicon-128.png">
+  <link sizes="32x32" rel="icon" href="/nodetools/img/favicon-32.png">
+  <link
+    href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland" rel="preload" as="fetch" crossOrigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin>
+    <link href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro" rel="preload" as="style">
+    <script>
+      (function (b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro')
+    </script>
+    <style id="cpt">
+      h1 { font-family: 'Mr De Haviland' }
+      @font-face {
+        font-family: 'Mr De Haviland';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Mr De Haviland Regular'), local('MrDeHaviland-Regular'), url('data:application/font-woff2;base64,d09GMgABAAAAAAWYAA4AAAAACYAAAAVGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbgQAcKgZgAFQRCAqHdIZQCxIAATYCJAMgBCAFhE4HIBvTB8jE52H39beeG+gN3IhuppXeAKz9rjXQnj7s/v97VTOm4CQJWMzy/37nZq6N0QAGLDQ6Fw2qaAW8HcYuTKAWBABzMG4SBAk68zUABV9Eg8zNL2Vg2Tq7tx1YoC5CvxUVLabuduhdQveqQQpID8G2lBbWeyAQ4UjN0UKvBjqba/sRRxDQgoQKKnhDDXdoe/Vrlf/71vRHoNhpRDlN4gdiCTQAeYEUoG6BXUG8h2j8nUXjMAcEIENJ+Jaa2lwGmaC9bVUt/+eDnKqFOEfPQwa8RYYBXRXXuSpkpIGgvWpkrhjo59FdDhNa0YHeMXnLMS/E6blCOa5sUtYoq5TlLdJKNQFCUWCFQG/qrCkpweqPljCqS+J9kmv0G1U57gZDoDPlbKundfpgnW4uJ8ohISs5o0QJvMyyxhXzVgj8/uuyLBM8JUgSOFGOWS1ykiRRAsHLsmwmgnuTYVazX2SIOznjm+wazkw8LYI7QwkE7ygJBC+zsmwmrgX35lS+gfOMLM/jzER2c8QNiSVx6tSeHZTgsGo3L0hgLLu5bi5MkSsCVnLGB5LA+7E40ShJiSu4lWsHaW1Y19z9l2WZ3UNRex5QAp+ziuCfk1/JNBMDVotc3WqRM54JPBh3meD3CWc4+/3Mmg4uyjjFXqAE3nF3yKoBHOFSV6xYYVy5134vbBF4OWHVua134APneYe6kP08JVzgpoosdYZhZRGcL/OAGaG5hKX+fXsSJUrY5eDAy+wJgeDn8pTAmD1nBOOKI8bHHU6UV43/L78Q5i+9OjXOJXr4r7Su1M6H762+98LO1lXHrM98I3ZjdE0hc25633BY/KE1jf/kaZ0jMotyWqJiJooDy03Dk3elVUyfXdFvkTwjeUbUZJNbdq6u2dzv+yc4OL053UVnqSHN19oHJ1poK/Jq3UOWcVn6xN5d98P0S/Re1wwbXfVamxkdDQecCqbNXvt00wYrG9ey4ocOZg0NSJiV6uK5kElyt6Xki6TW6LDINmxmutHKR/sTNSfNwTmLy3KrDCHMX8oZyzTl4HBYVNaCn09cibVzDV5wcevOS55m7i+8amb2RyB/1ph7jol912zylr700sRevJP3cZD5oVsOnpU7kq19rrmnZYfWmNPt3pSuvjVLa9g9nlh9ry3QUY4Y9gz8wbfoby9ba9eB20ht/cdCrfce/bfE0jsvzcnCeSJ27QHv3DUDtdlVkZPjqkJus4ajFwIS9tJpHpPXb7LQ2kR6wr4oNwvNrwdYWkXmFZSghPRW2y05r7MoiC4ZDXNMUSrDCfOXfqutDAwxztQ5ek/dkl7zUx1l516vUTuWN0aP1kyityz4aVIcbgmhn226VvjzTKvU3/Rmqi+TEvf+dLxod/3/6P989SrVyK0zkDXI23+QWvP/o/9uqFfdVLwU5/C3SIPSS9gpH+FT5SNcVb7HY+Uf3FS+wW3l69JFPVZDN4aJikeP+jvsUhsA4dZrgvtuAm40CVUkLPGxSoU6/KhSI5TIV2ngQnSrtAgkFvycJWKJE8hBBzoxhG40oQGN6AWNQMxFEGhEIxKRiKfeloVWmNCM2WjHPHSjAzQqRW8fWsuiHlQ5D71oQucbth2Zsc+EYy460IYghMICA2hCLxpBoxomnDahG/0YzUMoH0H7GMrLMRttMOG0N8rQDSE3hAphvh9NaB3LHDl469Awyl2z0T0LmkLJcOY2NtH0avLqLKwO1M3U24OmOWZpRCG8BX4kTk2k1IXhO3RxLzqRjAhEoAdzdw51Uvga460+3IpwdKAbDYhABfJR+hNh7D7lJKKhAA==') format('woff2');
+      }
+      
+    </style>
+    <script>
+      (function (){var b=/url\('([\s\S]+?)'\)/.exec(document.head.querySelector("#cpt").textContent);if(b){var a=document.createElement("link");a.rel="preload";a.as="font";a.href=b[1];document.head.appendChild(a)}})()
+    </script>
+    <script>(function (h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
+a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"border-radius":["50%"],"box-shadow":["none"],"flex|-ms-flex":["0 0 25%"],"transform":["rotate(0deg)"],"display":["flex|-ms-flexbox"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"flex-shrink|-ms-flex-negative":["0"],"transform-origin":["0 50%"],"flex-wrap|-ms-flex-wrap":["wrap"],"box-sizing":["border-box"],"flex-direction|-ms-flex-direction":["column"],"animation":["inner-circles-loader 3s infinite"]}, '/nodetools/css/combined-prefixes.css')</script>
+    <script>
+      (function(q,k){function x(a){for(var f=/url\((.+?)\).*?;\s+unicode-range: (.+?);/g,b={},d=[],h;h=f.exec(a);){var r=h[2];d.push({url:h[1],a:r});b[r]=1}b=Object.keys(b).reduce(function(c,e){var g=e.split(/,\s/).map(function(l){return l.replace("U+","\\u").replace("-","-\\u")}).join("").toLowerCase();c[e]=new RegExp("["+g+"]");return c},{});var t=document.body?document.body.textContent:"",y=t?Object.keys(b).reduce(function(c,e){b[e].test(t)&&(c[e]=!0);return c},{}):Object.keys(b).reduce(function(c,
+      e){e in k&&(c[e]=!0);return c},{});m=d.filter(function(c){return c.a in y}).map(function(c){return c.url});if(!m.length)return u();var v=document.createDocumentFragment();m.forEach(function(c,e){var g=document.createElement("link");g.href=c;g.rel="preload";g.as="font";var l=e+1;;g.onload=function(){return u(l)};g.setAttribute("crossorigin",!0);v.appendChild(g)});document.head.appendChild(v)}k=void 0===k?{}:k;var n=document.createElement("link");if(function(a,
+      f){if(!a||!a.supports)return!1;try{return a.supports(f)}catch(b){return!1}}(n.relList,"preload")){var z=function(a,f,b){b=void 0===b?"":b;;var d=new XMLHttpRequest;d.onreadystatechange=function(){4==d.readyState&&(200==d.status?(f(d.responseText)):console.error("Error loading webfont: server responded with code %s at %s",d.status,a))};d.open("GET",a);try{d.send(null)}catch(h){console.error(h)}};
+      ;var p;(function(a,f){z(a.href,function(b){p=b;x(p)},"-"+(void 0===f?"link":f))})({href:q},"js");var m=[],w=0,u=function(a){w++;w>=m.length&&(a=document.createElement("style"),a.innerHTML=p,document.head.appendChild(a))}}else n.rel="stylesheet",n.href=q,document.head.appendChild(n)})('https://fonts.googleapis.com/css?display=swap&family=Ruda%3A400%2C700%7CMr%20De%20Haviland', {"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD":true})
+    </script>
+    <link rel="stylesheet" href="/nodetools/css/combined.css">
+    <style>
+      .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
+    </style>
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?display=swap&amp;family=Mr%20De%20Haviland&amp;text=Nodetools">
+      <link rel="stylesheet" href="/nodetools/css/combined-prefixes.css">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro">
+    </noscript>
+    <script defer src="/nodetools/js/polyfill/intersection-observer.js"></script>
+    <script defer src="/nodetools/js/images.js"></script>
+    <script defer src="/nodetools/js/ajax-loader.js"></script>
+    <script crossorigin data-src="/nodetools/preact/dist/preact.min.js"></script>
+    <script crossorigin data-src="/nodetools/comps/index.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function(){window.AjaxLoader({ root: '/nodetools' })})
+    </script>
+    <script>
+      document.documentElement.classList.remove("no-js")
+    </script>
   </head>
-  <body>
-    <h1>GitHub Docs Placeholder</h1>
-
-    <p>
-      The NodeTools Stack Website.
-    </p>
+  <body class="b-Mk b-Ol b-Op">
+    <span class="inner-circles-loader" style="display:none;" id="SplendidLoader">Loading...</span>
+    <main class="b-Xl" role="main">
+      <div class="b-z">
+        <div class="b-B">
+          <div class="left-column b-hb">
+            <div class="b-kC">
+            
+                <img class="ImageHolder b-t b-vk" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" alt="@artdeco/nodetools logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'/%3E">
+                <noscript>
+                  <picture>
+                    <source srcset="img/splash-576.webp 576w,img/splash-319.webp 319w,img/splash-600.webp 600w"
+                      sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" type="image/webp">
+                    <img class="b-t b-vk" onLoad="webploaded(this)" alt="@artdeco/nodetools logo" src="/nodetools/img/splash-576.jpg" srcset="img/splash-576.jpg 576w,img/splash-319.jpg 319w,img/splash-600.jpg 600w" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px">
+                  </picture>
+                </noscript>
+              </div>
+              <div class="b-kC">
+                <a title="The NodeTools Stack Website." id="cacd9" class="GitHubBadge"
+                  href="https://github.com/art-deco/nodetools">
+                  <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a>
+                
+                
+                <a
+                  title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.10</span></a>
+              </div>
+              <h3 id="pages">Pages</h3>
+            <ul class="AjaxNav"><li class="Active"><a data-file="index" href="/nodetools/">Nodetools</a></li></ul>
+            <ul></ul>
+            <span class="b-xq b-Hk" id="c15d5"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+          </div>
+          
+          <div class="right-column b-nb" id="Content">
+            
+            
+            <h1 id="nodetools">Nodetools</h1>
+            
+            <p>This is the main page. Hello world!</p>
+            
+            <p>The NodeTools Stack Website.</p>
+            
+            <span id="ceb55">
+              Please bear one moment while I add the content
+            </span>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='15'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/0.svg"></noscript></a>
+            </p>
+            
+            <h2 id="introduction">Introduction</h2>
+            
+            <p>My affection for my guest increases every day. He excites at once my admiration and my pity to an astonishing degree. How can I see so noble a creature destroyed by misery without feeling the most poignant grief?</p>
+            
+            <p>He is so gentle, yet so wise; his mind is so cultivated, and when he speaks, although his words are culled with the choicest art, yet they flow with rapidity and  <a href="https://www.gutenberg.org/files/84/84-h/84-h.htm">unparalleled eloquence</a>.</p>
+            
+            <p>Such <strong>words</strong>, you may imagine, strongly excited my curiosity;</p>
+            but the <em>paroxysm</em> of grief that had seized the stranger overcame
+            his weakened powers, and many hours of repose and tranquil
+            <span class="tm">conversation</span> were necessary to restore his <span class="tm2">composure</span>.
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/1.svg"></noscript></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="b-ns">
+      &copy; <a href="https://www.artd.eco">Art Deco™</a>, 2020
+    </footer>
+    <script>(function (){function b(){if(0<c.length){var a=c.shift();a.src=a.getAttribute("data-src");a.removeAttribute("data-src");a.onload=b;a.onerror=function(){console.warn("Could not load script %s",a.src)}}}var c=Array.prototype.slice.call(document.querySelectorAll("script[data-src]"));b()})()</script>
   </body>
 </html>

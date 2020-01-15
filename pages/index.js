@@ -16,4 +16,4 @@ export const index = {
  * A subdirectory with more pages should be exported as a
  * string constant.
  */
-export const help = '~/help'
+// export const help = '~/help'
