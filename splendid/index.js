@@ -17,6 +17,9 @@ const config = {
   // required when pages are at org.github.io/pages-name
   mount: '/nodetools/',
   potracePath: '~/.splendid/potrace',
+  links: {
+    gitter: 'https://gitter.im/node_tools/community',
+  },
 }
 
 export default config
