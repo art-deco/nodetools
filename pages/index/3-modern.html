@@ -1,0 +1,9 @@
+##! Modern JavaScript
+
+JavaScript is a well-developed, feature-rich expressive language that allows for rapid prototyping, as well as full-scale development process. The Node.JS runtime supports all modern features required to run well-written programs, and the only missing link is support for modules and JSX, so that packages need transpilation. NodeTools respect you as developer and does not dictate how your output code should look like. Instead, we'll simply rename imports into require calls without adding anything else to the output.
+
+Furthermore, transpilation can have another advantage: after your package's source code is built, you want to make sure that it works correctly, by running tests against the build directory instead of the source directory. This is also possible with our transpiler when an environment variable is set to `test-build`. Each import will be seamlessly renamed to point to the correct file in the `build` dir, so that you can be confident that there will be no errors when installing your package. Similarly, this works for `test-compile` as well (see about *compilation* below).
+
+<npm-badge package="alamode">_ÀLaMode_</npm-badge>
+
+<section-break />

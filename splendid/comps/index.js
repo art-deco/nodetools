@@ -1,7 +1,9 @@
-import __initPages from './__init/pages'
+import __initOnThisPage from './__init/on-this-page'
+import __initSidebar from './__init/sidebar'
+import __renameMap0 from './__rename-maps/styles/sidebar'
 import makeClassGetter from './__mcg'
-const renameMaps = {  }
-__initPages()
+const renameMaps = { 'styles/sidebar.css': __renameMap0 }
+__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import GithubBadge from '../components/github-badge.jsx'
@@ -16,20 +18,20 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
+  key: 'social-buttons',
+  id: 'c3514',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/',
+    meta: true,
+    className: 'mb-3 d-inline-block',
+  },
+},
+{
   key: 'github-badge',
   id: 'cacd9,cacd9',
   props: {
     owner: 'art-deco',
     name: 'nodetools',
-  },
-},
-{
-  key: 'social-buttons',
-  id: 'c15d5',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/',
-    meta: true,
-    className: 'b-xq b-Hk',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

@@ -27,6 +27,17 @@ export const dropcss = {
 }
 
 /**
+ * @type {import('splendid').Page}
+ */
+export const discussion = {
+  title: 'Discussion',
+  seo: 'Leave comments and ask and answer questions about the NodeTools development stack here to receive answers quickly and help grow the knowledge base.',
+  // og: {
+  //   image: '/img/logo.jpg',
+  // },
+}
+
+/**
  * A subdirectory with more pages should be exported as a
  * string constant.
  */

@@ -1,0 +1,11 @@
+##! Documentation
+
+Moreover, the standard approach to documentation is to copy the source code and its output into the `README` file. However, such method is not robust because as the code changes,  examples might become outdated and obsolete. Also it takes a lot of time to tediously re-run examples and manually cope the result they produce. A much better technique is to compile documentation using documentation engine.
+
+This advanced strategy allows to to keep source documentation split by files in a separate directory, and put it together using a single command. It will let you to save examples in separate files, while embedding them into README automatically, as well as forking them and inserting the output automatically also. As a bonus, you will be able to rename your imports, so that instead of saying `import pckg from '../src'`, examples will say `import pckg from 'pckg'` which is ready to be copied by your users.
+
+On top of that, our documentation tool supports watch mode with automatic push to remote repository, so that any change to docs will almost instantly be uploaded online so that you can see how changes look. There's also support for GitHub wiki pages that are now really easy to maintain, as you can create a submodule in your project, and just compile wiki pages into there.
+
+<npm-badge package="documentary">_Documentary_</npm-badge>
+
+<section-break />

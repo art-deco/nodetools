@@ -7,7 +7,7 @@
   /* opacity: 1; */
 }
 
-.SideBarMenu #ShowMenu {
+#ShowMenu {
   display: block;
 }
 .SideBarMenu #HideMenu {

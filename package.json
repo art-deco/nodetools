@@ -28,7 +28,7 @@
   "homepage": "https://art-deco.github.io/nodetools/",
   "devDependencies": {
     "documentary": "^1.35.9",
-    "splendid": "^1.16.10",
+    "splendid": "^1.16.13",
     "zoroaster": "^4.1.2"
   }
 }

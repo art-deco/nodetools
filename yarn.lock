@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@externs/preact/-/preact-1.2.9.tgz#4c7be52ca978a98f8e2a4546cafcfef33416bf9a"
   integrity sha512-txXV8G4pFzZgQXQHqhlpT2c+WHFK3cRZ4eZGI38R9+h57zu/oJXQ8CGlvDlIpWhbh8DU+S4Kf66hX0rxs5+pZA==
 
-"@idio/idio@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@idio/idio/-/idio-1.1.2.tgz#cdc47edd02865937a3f70dabac0e6beff0564c3a"
-  integrity sha512-8UIfIlFRK4Btgv9pSABRUzBbo3fFvnFm6mTGhxdsdrPBerF/5jaCvJ02j2aNZQZ06k6NDsiuGUg/nTMP/z4+hQ==
+"@idio/idio@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@idio/idio/-/idio-1.2.3.tgz#a4ff69648ff95db683ba67660fb7dd36dc34983a"
+  integrity sha512-jYQmoMigAyCxwPvJQ89F1fODL5m9DYn+QFo861E1LBI1d/cWkp4AQur2BIh9tRzrsSAXYurqSFWRNcL+rlCLYA==
   dependencies:
     mime-db "^1.43.0"
     text-decoding "^1.0.0"
@@ -52,12 +52,7 @@
   resolved "https://registry.yarnpkg.com/@zoroaster/mask/-/mask-2.3.0.tgz#57d169417e09e481efafccbffdd93cef919ec5e6"
   integrity sha512-fufal06pS/SYhOKHCmoFQ+PjhQwsCwMr2h0D2xeiVaXstaWHJVEiLg4+BU/KCmOOzLXLKikf81ca4zFXip7ScQ==
 
-alamode@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/alamode/-/alamode-3.2.0.tgz#ee79dcf2483b5e28e9aac8cd0dfdc692aa333ca5"
-  integrity sha512-jDV6kYpIf9jHJUre1OOotW8EM2Qy58S/eOks2MWhjNz2xJQdEfyzFKbcdaZowC8sk5DKxsnapf/mZNE53B3haQ==
-
-alamode@^3.3.0:
+alamode@^3.0.0, alamode@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/alamode/-/alamode-3.3.0.tgz#5a73ebb8eae847934f747d67c2680698061b7bbe"
   integrity sha512-/Xi0rZ0HAyobAIi8DJQMeFF3kRrr15PGuYRwvxmQaOqSO3WJgXOsmhL6sZQuvD/okZztzujMxMA+21WOD2rYyQ==
@@ -70,11 +65,6 @@ clipboard@^2.0.0:
     good-listener "^1.2.2"
     select "^1.1.2"
     tiny-emitter "^2.0.0"
-
-commander@~2.20.3:
-  version "2.20.3"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
-  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 delegate@^3.1.2:
   version "3.2.0"
@@ -113,56 +103,25 @@ good-listener@^1.2.2:
   dependencies:
     delegate "^3.1.2"
 
-handlebars@^4.5.3:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.2.tgz#01127b3840156a0927058779482031afe0e730d7"
-  integrity sha512-4PwqDL2laXtTWZghzzCtunQUTLbo31pcCJrd/B/9JP8XbhVzpS5ZXuKqlOzsd1rtcaLo4KqAn8nl8mkknS4MHw==
-  dependencies:
-    neo-async "^2.6.0"
-    optimist "^0.6.1"
-    source-map "^0.6.1"
-  optionalDependencies:
-    uglify-js "^3.1.4"
-
-highlight.js@9.17.1:
-  version "9.17.1"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.17.1.tgz#14a4eded23fd314b05886758bb906e39dd627f9a"
-  integrity sha512-TA2/doAur5Ol8+iM3Ov7qy3jYcr/QiJ2eDTdRF4dfbjG7AaaB99J5G+zSl11ljbl6cIcahgPY6SKb3sC3EJ0fw==
-  dependencies:
-    handlebars "^4.5.3"
+highlight.js@^9.18.0:
+  version "9.18.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.0.tgz#6b1763cfcd53744313bd3f31f1210f7beb962c79"
+  integrity sha512-A97kI1KAUzKoAiEoaGcf2O9YPS8nbDTCRFokaaeBhnqjQTvbAuAJrQMm21zw8s8xzaMtCQBtgbyGXLGxdxQyqQ==
 
 mime-db@^1.43.0:
   version "1.43.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.43.0.tgz#0a12e0502650e473d735535050e7c8f4eb4fae58"
   integrity sha512-+5dsGEEovYbT8UY9yD7eE4XTc4UwJ1jBYlgaQQF38ENsKR3wj/8q8RFZrF9WIZpB2V1ArTVFUva8sAul1NzRzQ==
 
-minimist@~0.0.1:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
-  integrity sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
-
-neo-async@^2.6.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
-  integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
-
-optimist@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
-  integrity sha1-2j6nRob6IaGaERwybpDrFaAZZoY=
-  dependencies:
-    minimist "~0.0.1"
-    wordwrap "~0.0.2"
-
 preact@8.5.3:
   version "8.5.3"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.5.3.tgz#78c2a5562fcecb1fed1d0055fa4ac1e27bde17c1"
   integrity sha512-O3kKP+1YdgqHOFsZF2a9JVdtqD+RPzCQc3rP+Ualf7V6rmRDchZ9MJbiGTT7LuyqFKZqlHSOyO/oMFmI2lVTsw==
 
-prismjs@1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.18.0.tgz#8f04dd47fa232cbd27d1ca969107580ff43f06e4"
-  integrity sha512-N0r3i/Cto516V8+GKKamhsPVZSFcO0TMUBtIDW6uq6BVqoC3FNtZVZ+cmH16N2XtGQlgRN+sFUTjOdCsEP51qw==
+prismjs@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.19.0.tgz#713afbd45c3baca4b321569f2df39e17e729d4dc"
+  integrity sha512-IVFtbW9mCWm9eOIaEkNyo2Vl4NnEifis2GQ7/MLRG5TQe6t+4Sj9J5QWI9i3v+SS43uZBlCAOn+zYTVYQcPXJw==
   optionalDependencies:
     clipboard "^2.0.0"
 
@@ -171,18 +130,13 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
-source-map@^0.6.1, source-map@~0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
-  integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
-
-splendid@^1.16.10:
-  version "1.16.10"
-  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.10.tgz#9e8d218a9b1a0973eaddf779118f8bccce1a396b"
-  integrity sha512-8CuMsrfk08oeE+Gq8Frl1P8DOlVWFWeXCm7chNRI/sSbMsckmuUIHdS1arb5xaCqmag6o5t+qTIl9KnEbWqxfA==
+splendid@^1.16.13:
+  version "1.16.13"
+  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.13.tgz#4ca35638413f612099044f8723993c8ec131dbb8"
+  integrity sha512-rE3Q8DrlfwNfdDEf8GfLDgCOH0gKOLMww6ShvUrXD1Dlf/Y252GFjA+boQ/QuBwlSvCz9u1u4QMoowQCffwJNw==
   dependencies:
     "@externs/preact" "^1.2.9"
-    "@idio/idio" "^1.1.2"
+    "@idio/idio" "^1.2.3"
     "@idio/websocket" "^1.0.0"
     "@lemuria/absolute-proxy" "^1.0.2"
     "@lemuria/font" "^1.0.4"
@@ -190,9 +144,9 @@ splendid@^1.16.10:
     "@lemuria/popup" "^1.1.1"
     alamode "^3.3.0"
     dropcss zavr-1/dropcss#743bdc8
-    highlight.js "9.17.1"
+    highlight.js "^9.18.0"
     preact "8.5.3"
-    prismjs "1.18.0"
+    prismjs "1.19.0"
 
 text-decoding@^1.0.0:
   version "1.0.0"
@@ -205,22 +159,9 @@ tiny-emitter@^2.0.0:
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
 typal@^1.24.19:
-  version "1.24.20"
-  resolved "https://registry.yarnpkg.com/typal/-/typal-1.24.20.tgz#f530f810c138787cddd417ec959faae42df3f089"
-  integrity sha512-/0ocJ/c5YBdYUT2Dh6l+/dCXHqifKF3QujYCgKLBBh9OC/6UzP2hcmiksGW68XPrjke8q0yhJfc7Jm+Kmpboaw==
-
-uglify-js@^3.1.4:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.7.5.tgz#278c7c24927ac5a32d3336fc68fd4ae1177a486a"
-  integrity sha512-GFZ3EXRptKGvb/C1Sq6nO1iI7AGcjyqmIyOw0DrD0675e+NNbGO72xmMM2iEBdFbxaTLo70NbjM/Wy54uZIlsg==
-  dependencies:
-    commander "~2.20.3"
-    source-map "~0.6.1"
-
-wordwrap@~0.0.2:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
-  integrity sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/typal/-/typal-1.26.0.tgz#72d0a3cb11795fd29397cdbc1aa7cff14e696406"
+  integrity sha512-zmONxk2RvezXI0AKOa74yw9Ac5OvHNItlhThbcUtmi+MErbyi8uHh7mwf8bG2E1mB6MEJ1FQtwf0NBVPe4TVUg==
 
 zoroaster@^4.1.2:
   version "4.1.2"

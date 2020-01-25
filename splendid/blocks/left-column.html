@@ -12,43 +12,42 @@
     <!-- <npm-badge package="splendid">_Splendid_</npm-badge> -->
   </div>
 
-  <stylesheet href="../styles/sidebar.css" />
+  ### Pages
 
-<div sticky-top class="SideBarMenu sidebarshowing">
-  <div class="SideBarContent">
-    ### Pages
+  <pages />
 
-    <pages />
+  ### Stack
 
-    <style>
+  <style>
       .List > a {
         display: block!important;
       }
     </style>
 
-    ### Stack
-
-    <div class="List" font-size="small" text-center>
-      <npm-badge package="mnp">_MNP_</npm-badge>
-      <npm-badge package="zoroaster">_Zoroaster_</npm-badge>
-      <npm-badge package="documentary">_Documentary_</npm-badge>
-      <npm-badge package="typal">_Typal_</npm-badge>
-      <npm-badge package="depack">_Depack_</npm-badge>
-      <npm-badge package="alamode">_ÀLaMode_</npm-badge>
-      <npm-badge package="splendid">_Splendid_</npm-badge>
-    </div>
-
-    ### Misc
-
-    <ul>
-      * [Get Help In Gitter Chat](gitter)
-      * [Fund Us On Open Collective](open-collective)
-    </ul>
-
-    <social-buttons meta mb-3 d-inline-block />
+  <div class="List" font-size="small" text-center>
+    <npm-badge package="mnp">_MNP_</npm-badge>
+    <npm-badge package="typal">_Typal_</npm-badge>
+    <npm-badge package="depack">_Depack_</npm-badge>
+    <npm-badge package="alamode">_ÀLaMode_</npm-badge>
+    <npm-badge package="zoroaster">_Zoroaster_</npm-badge>
+    <npm-badge package="splendid">_Splendid_</npm-badge>
+    <npm-badge package="documentary">_Documentary_</npm-badge>
   </div>
 
-  <a id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
-  <a id="ShowMenu" style="color:grey!important;" href="#">show menu</a>
-</div>
+  ### Misc
+
+  <ul>
+    * [Get Help In Gitter Chat](gitter)
+    * [Fund Us On Open Collective](open-collective)
+  </ul>
+
+  <sidebar pt-3>
+    ### On This Page
+
+    <on-this-page />
+
+    ### Share NodeTools
+
+    <social-buttons meta mb-3 d-inline-block />
+  </sidebar>
 </column>

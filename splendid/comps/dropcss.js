@@ -1,7 +1,9 @@
-import __initPages from './__init/pages'
+import __initOnThisPage from './__init/on-this-page'
+import __initSidebar from './__init/sidebar'
+import __renameMap0 from './__rename-maps/styles/sidebar'
 import makeClassGetter from './__mcg'
-const renameMaps = {  }
-__initPages()
+const renameMaps = { 'styles/sidebar.css': __renameMap0 }
+__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import GithubBadge from '../components/github-badge.jsx'
@@ -25,11 +27,11 @@ const meta = [{
 },
 {
   key: 'social-buttons',
-  id: 'c5763',
+  id: 'caebf',
   props: {
     url: 'https://art-deco.github.io/nodetools/tutorial-trapcss.html',
     meta: true,
-    className: 'b-xq b-Hk',
+    className: 'mb-3 d-inline-block',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

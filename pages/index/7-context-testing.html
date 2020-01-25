@@ -1,0 +1,13 @@
+##! Context Testing
+
+Quality assurance is just as important as the implementation itself. It's not only a process to make sure that code works, but a process that allows for development itself: the tests are the entry point to the program (otherwise, where do you execute the source from?). Therefore, testing must be the area that receive maximum attention from developer tools.
+
+There's a unique approach to testing in _NodeTools_. Your tests will have a context, that is, a collection of test APIs that can be invoked from test cases. This means you can put all testing utilities required to run specs in a separate file, to be able to keep test suite files nice and organised and be able to create as many test suite files are needed, without being contained by the fact that your testing utilities are scoped within `beforeEach` and `afterEach` blocks. Each test will have a test sandbox which is called a context, and its methods are accessed easily via JSDoc. Context testing provides the perfect environment for bespoke developer experience as you can publish your own contexts and reuse them across packages.
+
+<p>
+  <img img-fluid src="./img/z.gif" alt="zoroaster javascript context testing framework" />
+</p>
+
+<npm-badge package="zoroaster">_Zoroaster_</npm-badge>
+
+<section-break/>
