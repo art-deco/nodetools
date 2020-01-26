@@ -42,6 +42,13 @@
     -webkit-flex: 0 0 75%;
   }
 }
+@media (min-width:992px) {
+  .col-lg-6 {
+    -webkit-box-flex: 0 0 50%;
+    -moz-box-flex: 0 0 50%;
+    -webkit-flex: 0 0 50%;
+  }
+}
 .rounded {
   -webkit-border-radius: .25rem !important;
   -moz-border-radius: .25rem !important;
@@ -56,6 +63,9 @@
 }
 .flex-shrink-0 {
   -webkit-flex-shrink: 0 !important;
+}
+.align-items-end {
+  -webkit-align-items: flex-end !important;
 }
 @supports ((position:-webkit-sticky) or (position:sticky)) {
 }

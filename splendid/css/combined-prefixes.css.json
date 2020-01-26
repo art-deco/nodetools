@@ -20,6 +20,9 @@
   "position": [
     "sticky|-webkit-sticky"
   ],
+  "align-items": [
+    "flex-end"
+  ],
   "flex-wrap|-ms-flex-wrap": [
     "wrap"
   ],

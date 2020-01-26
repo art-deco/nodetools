@@ -174,7 +174,7 @@ h3 {
   margin-right: -15px;
   margin-left: -15px;
 }
-.col-md-3, .col-md-9 {
+.col-md-3, .col-md-9, .col-lg-6 {
   position: relative;
   width: 100%;
   padding-right: 15px;
@@ -190,6 +190,13 @@ h3 {
     -ms-flex: 0 0 75%;
     flex: 0 0 75%;
     max-width: 75%;
+  }
+}
+@media (min-width:992px) {
+  .col-lg-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 .rounded {
@@ -209,6 +216,10 @@ h3 {
 .flex-shrink-0 {
   -ms-flex-negative: 0 !important;
   flex-shrink: 0 !important;
+}
+.align-items-end {
+  -ms-flex-align: end !important;
+  align-items: flex-end !important;
 }
 @supports ((position:-webkit-sticky) or (position:sticky)) {
   .sticky-top {
