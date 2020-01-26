@@ -117,6 +117,10 @@ img {
   font: inherit;
   -webkit-appearance: button;
 }
+summary {
+  display: list-item;
+  cursor: pointer;
+}
 h1, h2, h3 {
   margin-bottom: .5rem;
   font-weight: 500;
@@ -298,6 +302,9 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   padding: 1em;
   border-top: 1px dashed;
+}
+#NewsletterDetails h3 {
+  display: inline-block;
 }
 .SideBarMenu {
   max-height: 100vh;

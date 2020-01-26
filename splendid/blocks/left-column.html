@@ -19,19 +19,28 @@
   ### Stack
 
   <style>
+      .List {
+        font-size:small;
+      }
       .List > a {
         display: block!important;
       }
     </style>
 
-  <div class="List" font-size="small" text-center>
+  <div class="List" mb-3 text-center>
     <npm-badge package="mnp">_MNP_</npm-badge>
     <npm-badge package="typal">_Typal_</npm-badge>
     <npm-badge package="depack">_Depack_</npm-badge>
     <npm-badge package="alamode">_ÀLaMode_</npm-badge>
     <npm-badge package="zoroaster">_Zoroaster_</npm-badge>
-    <npm-badge package="splendid">_Splendid_</npm-badge>
     <npm-badge package="documentary">_Documentary_</npm-badge>
+  </div>
+
+  ### Web Software
+
+  <div class="List" mb-3 text-center>
+    <npm-badge package="@idio/idio">_Idio_</npm-badge>
+    <npm-badge package="splendid">_Splendid_</npm-badge>
   </div>
 
   ### Misc
@@ -49,5 +58,14 @@
     ### Share NodeTools
 
     <social-buttons meta mb-3 d-inline-block />
+
+    <details id="NewsletterDetails">
+      <summary>
+
+        ### Newsletter
+      </summary>
+
+      <akashic-emails api-key="akashic" />
+    </details>
   </sidebar>
 </column>

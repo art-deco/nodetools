@@ -6,10 +6,12 @@ const renameMaps = { 'styles/sidebar.css': __renameMap0 }
 __initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
+import AkashicEmails from '../components/akashic-emails.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
+  'akashic-emails': AkashicEmails,
   'github-badge': GithubBadge,
   'social-buttons': SocialButtons,
 }
@@ -18,20 +20,27 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
-  key: 'social-buttons',
-  id: 'c3514',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/',
-    meta: true,
-    className: 'mb-3 d-inline-block',
-  },
-},
-{
   key: 'github-badge',
   id: 'cacd9,cacd9',
   props: {
     owner: 'art-deco',
     name: 'nodetools',
+  },
+},
+{
+  key: 'akashic-emails',
+  id: 'emails-div',
+  props: {
+    'api-key': 'akashic',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'c15d5',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/',
+    meta: true,
+    className: 'b-xq b-Hk',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

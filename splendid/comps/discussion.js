@@ -6,11 +6,13 @@ const renameMaps = { 'styles/sidebar.css': __renameMap0 }
 __initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
+import AkashicComments from '../components/akashic-comments.jsx'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
+  'akashic-comments': AkashicComments,
   'akashic-emails': AkashicEmails,
   'github-badge': GithubBadge,
   'social-buttons': SocialButtons,
@@ -35,10 +37,17 @@ const meta = [{
   },
 },
 {
-  key: 'social-buttons',
-  id: 'c5763',
+  key: 'akashic-comments',
+  id: 'comments-div',
   props: {
-    url: 'https://art-deco.github.io/nodetools/tutorial-trapcss.html',
+    'api-key': 'akashic',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'cb16d',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/discussion.html',
     meta: true,
     className: 'b-xq b-Hk',
   },
