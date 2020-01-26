@@ -26,6 +26,22 @@ export const dropcss = {
   },
 }
 
+
+/**
+ * @type {import('splendid').Page}
+ */
+export const babel = {
+  title: 'Babel: When Open Source Is Not Free',
+  description: 'There is a difference between free and open source software which must be understood. Babel, praising itself on being open source, actually harms users\' freedoms and delivers them right into the hands of the vendor predator — TypeScript.',
+  seo: 'A use case of using NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
+  og: {
+    image: '/img/logo.jpg',
+  },
+  links: {
+    history: 'https://gist.github.com/jkrems/769a8cd8806f7f57903b641c74b5f08a',
+  },
+}
+
 /**
  * @type {import('splendid').Page}
  */

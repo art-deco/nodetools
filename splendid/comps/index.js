@@ -22,6 +22,15 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
+  key: 'social-buttons',
+  id: 'c3514',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/',
+    meta: true,
+    className: 'mb-3 d-inline-block',
+  },
+},
+{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -42,15 +51,6 @@ const meta = [{
   id: 'emails-div',
   props: {
     'api-key': 'akashic',
-  },
-},
-{
-  key: 'social-buttons',
-  id: 'c15d5',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/',
-    meta: true,
-    className: 'b-xq b-Hk',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

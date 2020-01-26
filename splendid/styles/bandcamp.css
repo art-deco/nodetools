@@ -1,0 +1,9 @@
+#BandcampBabylon div {
+  display: none!important;
+}
+#BandcampBabylon div {
+  cursor: pointer;
+}
+#BandcampBabylon:hover div {
+  display: flex!important;
+}

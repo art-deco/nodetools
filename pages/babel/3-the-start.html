@@ -1,0 +1,132 @@
+##! The Start Of Predatory Vendor Lock-In
+
+First of all, if you're using _Babel_ you already know that you don't have freedom. You'd want not to have install a transpiler, when since Node 8 you only use it for modules. As I mentioned earlier, that's entirely Node.JS fault, who should have treated import as require and export as module.export long ago instead of splitting the hair around the specification of how modules should actually work. However, I'm really happy this all happened since every obstacle is an opportunity to create something new which is independent, better, and more unique. But what other negative effect does _Babel_ have on the ecosystem and the development of JavaScript by breaking _JSDoc_?
+
+The answer is that without properly working _JSDoc_, people are tempted to use *TypeScript* &mdash; the grandest evil that you will ever encounter today. I know this because that's how I felt when I struggled with my _JSDoc_, when it wasn't working. I thought, OMG things are just not working, if I just used typings, that would solve all my problems! And I'm sure that's how other developers feel as well. But once you make this decision, there is no road back, you become hostage to the most overrated technology ever, that was made by Microsoft and a) makes you addicted to typing every singe thing b) tells you that apparently that's how you scale up, i.e., fear-mongering that without it your large project will fail, c) basically does what the heading of this section says, that is locks you in TypeScript, because the more code you write in TypeScript, the less likely you will go back to pure JavaScript, and d) turns you into a close-minded zombie ready to defend TypeScript at any price because it's too much psychological pain to admit that you're now hooked on technology, rather than using technology for your own means.
+
+TypeScript is too unnecessary for a duck-typed programming language. Because people learn Java at universities, they will want to use TypeScript, forgetting that JavaScript is basically a functional programming language. ``.Map``, ``.reduce``, ``.filter``, these are the pillars of the web development, not types. Types are just there to make life convenient, it's a tool but TypeScript makes them the aim in itself. You can achieve everything you need with _JSDoc_, but software like _Babel_ makes it impossible, and I have a slight suspicion (any fellow conspiracy theorists?) that Microsoft secretly encourage _Babel_ to keep this awful bug. Although it's just a speculation, it is based on the fact that Microsoft also break _JSDoc_ capabilities and don't want to fix them, openly stating that people should switch to TypeScript, instead of MS fixing bugs. Proof or get out? OK then, here's your proof.
+
+<details>
+<summary>
+_The nature of the bug is such that TypeScript (not language, the service running in background in VSCode for JSDoc) will not read source code files required at level 2+ from the `main` file. E.g., main is <code>index.js</code>, requires <code>lib.js</code> - fine; <code>lib.js</code> requires <code>lib2.js</code> - file not read, types not resolved, JSDoc broken._
+
+```js
+/* 1. Create a new package with src folder with the following structure: */
+// src/index.js - exports a default from lib, the rest doesn't matter.
+export { default as bug } from './lib'
+// CLICK TO SHOW FULL INSTRUCTIONS
+```
+</summary>
+
+```js
+/* 1. Create a new package with src folder with the following structure: */
+// src/index.js - exports a default from lib, the rest doesn't matter.
+export { default as bug } from './lib'
+
+/**
+ * Directly exported method.
+ * @param {string} name The name of the method.
+ */
+export default function (name) {
+  console.log(name)
+}
+
+// src/lib.js - exports a default from other file.
+export { default } from './lib2'
+
+// src/lib2.js - documented method
+/**
+ * The bug in TypeScript.
+ * @param {Config} [config] Options for the program.
+ * @param {boolean} [config.shouldRun=true] A boolean option. Default `true`.
+ * @param {string} config.text A text to return.
+ */
+export default async function typescriptBug(config = {}) {
+  const {
+    shouldRun = true,
+    text,
+  } = config
+  if (!shouldRun) return
+  LOG('@artdeco/typescript-bug called with %s', text)
+  return text
+}
+```
+</details>
+
+<plate alt="typescript bug does not appear in source code" src="img/one-year/alamode/typescript-bug-src.gif">
+  In source code, everything works fine. You don't find out about the bug until you publish your transpiled package and consume it in another place. Together with Babel's bug, it brings total devastation to your _JSDoc_ documentation.
+</plate>
+
+A use case? Say you have an `index.js` file which exports a method from `lib.js`. The method from `lib.js` is a function which returns an instance of a certain class implemented in a separate file, `User.js`. I.e., `index.js` -> `lib.js` -> `User.js`. Once you published package, the return of the method from lib will be unknown. All your documentation will once again be broken. Refer to the GIF below:
+
+<plate alt="typescript bug happens in transpiled code: cannot jump to imported file at level 2" src="img/one-year/alamode/typescript-bug-pub.gif">
+  In published code, can't jump to local level 2+.<br>
+  Interestingly, stuff works when coding via `yarn link` &mdash; another conspiracy<br>
+  to lower your chances of detecting the problem for your package consumers? 🤔
+</plate>
+
+You can easily verify this with the following source code, after doing `yarn add artdecoweb/typescript-bug` (this will install the package from GitHub):
+
+```js
+// hold CMD and click on the package name to jump to source
+import ok, { bug } from '@artdeco/typescript-bug'
+
+ok()
+bug()
+```
+
+OK what's TypeScript's opinion on that (see [the issue I opened](https://github.com/Microsoft/TypeScript/issues/26921) only a month after Babel's one)?
+
+<row class="markdown-body mb-3">
+  <col sm-1>
+    <img alt="mjbvz github avatar" class="img-fluid" src="https://avatars0.githubusercontent.com/u/12821956?s=88&v=4" />
+  </col>
+  <col style="border-radius: 3px; padding-right:0; padding-left:0; margin-right: 15px; border: 1px solid #e1e4e8!important;">
+    <table>
+      <tr>
+        <td class="timeline-comment-header">
+        [mjbvz](https://github.com/mjbvz) commented on 6 Sep 2018
+        </td>
+      </tr>
+      <tr><td style="padding: 15px;">
+      TypeScript powers both VS Code's javascript and typescript intellisense. It is what analyzes jsdocs.
+      <br><br>
+      I recommend that you try writing d.ts typings for zoroaster. Even if this specific issue is fixed, proper typings will provide a much better experience
+      </td></tr>
+    </table>
+  </col>
+</row>
+
+I don't really care what powers _VS Code_, I NEED _JSDoc_ to work. I have the *freedom of expression* of my documentation. And sure, much better experience. Just stop lying, all the experience that I want can be (and has been) easily achieved with _JSDoc_. You just want to convert as many people into _TypeScript_ . Still, people would argue that because _TypeScript_ is Open Source, it's good. Not it isn't and if there's one thing that I want to convey on this page, is that Open Source doesn't mean free, not in a sense that it gives or protects your freedoms. Much otherwise, to be honest, a lot of software take the freedom away by providing low-quality solutions and introducing bugs that are then used against you so that you become a consumer of technology you don't even need. Using _TypeScript_ instead of _JSDoc_ for Node.*JS* programming is like treating a scratch with surgery when you just need to apply a plaster.
+
+Instead of just being a hater of everything and everyone, I went on and implemented a tool called [_Typal_](https://www.npmjs.com/package/typal) that could be used to embed _JSDoc_ documentation into source code automatically from a separate XML file. It is also part of the _NodeTools_ stack and is needed for other requirements, such as making externs compilation as I will show in another article. I then published information about it [on Medium](https://medium.com/@art_deco/how-to-ditch-typescript-for-jsdoc-212ff1978542). The first response that I got gave me an incredible amount of joy:
+
+<!-- (comment redacted to avoid more disruptive content) -->
+<p>
+  <img img-fluid sizes="400px" webp="text" responsive src="./img/IMG-5615.PNG" alt="medium comment protecting typescript" /></p>
+
+I didn't change the article ever since, so you're welcome to find all my amateurish spelling mistakes. I only got a C in my first-language English in my first year in England, after all, I'm not gonna deny I'm a stoopid. I hope Medium does not sue me for not matching the "Supposed level of professionalism that Medium is supposed to represent". O-M-G. And the truth is, if I wrote how much I love _TypeScript_, added a simple tutorial of how I just switched all of my code to it, and then praised Microsoft for liberating us from _JSDoc_, I would have got 10000 claps and Tech Nation Visa would have been in my pocket. Although what gives me hope is that there were people who gave me a few claps also so I know developers are keen on being liberated from this tyrannical OOP ideology and its followers, feeling so free and secure to shame anyone who thinks differently, and that's exactly what my software achieves &mdash; gives actual freedom. You will learn more about types and _Typal_ in one of the next articles.
+
+<section-break />
+
+##! Just To Be Objective
+
+After all, I do use _VS Code_ and it's kind of really good (except for when it lags when I create new files and starts side-bar search as a reaction to typing the intended filename). I don't mind building my own JavaScript Node.JS IDE one day (it will be called _Moderne_ and it would be something like Dreamweaver but with JSX components for easy visual editing as well as more nuanced coding), but I have to admit that _TypeScript_ succeeded and pushed the _JSDoc_ state-of-art forward in two directions:
+
+<ul>
+  * `@type {import('package').Type}` statements. That's brilliant and gets rid of the need to actually import ES6 modules to annotate types, which is sometimes not even possible (think circular dependencies). _Google Closure Compiler_ needs to learn to understand this syntax, and I hope one day I'll have enough time one day to work on that. There's also the same bug as above but regarding importing typedefs at level 2+, therefore all types need to be imported in `index.js`, and only from there in other files.
+  * `@type {TypeA & TypeB}` unions. This is also crucial and important because otherwise there's no way to annotate "extends" functionality.
+</ul>
+
+These annotations can be written in pure JS, without having to write _TypeScript_ since they are just comments. Things that are not possible without _TypeScript_ which should be possible:
+
+<ul>
+  * Annotating types of even listeners, e.g., `on(event: "close", listener: () => void): this;`.
+  * [Overloading of methods](https://github.com/microsoft/TypeScript/issues/30940).
+</ul>
+
+This praise still doesn't mean that keeping bugs that prevent proper working of _JSDoc_ in the IDE, not implementing essential _JSDoc_ features such as overloading, and then openly telling me to switch to _TypeScript_ justifies the "FOSS"-iness of _VS Code_. In the age of capitalism, why would a corporation invest time and labour resources into developing a product? Or you think that apart from monetary gain, there is no secondary rewards such as wiring developers brains on subconscious level for a particular frequency expressed in an attitude towards a company? In case of a programming language, this wiring goes so deep because you literally express yourself using the language, and what's the first thing that comes to mind when you think _TypeScript_, your daily tool that earns you your daily bread? That's right, _Microsoft_. For some people that's fine, but not for all of us. Maybe I'm hypocritical when I don't associate VS Code with Microsoft but oh well you caught me here I just don't like _TypeScript_. Finally, I must admit that I fell into _TypeScript_ trap in my first industry year, and thought "this is how programming should be done" because of a lot of _Java_ coding, but that affair was quickly put to an end by my manager so many kudos to him.
+ <!-- None of [real pros](https://github.com/expressjs/express/blob/master/lib/application.js) do (wow what self-obsessed confidence provoking people to close this tab). -->
+So thank you GNU for putting it so clearly, that free software protects *human freedoms* of users, rather than comes for free.
+
+<section-break />
