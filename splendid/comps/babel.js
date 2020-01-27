@@ -9,6 +9,7 @@ const renameMaps = { 'styles/bandcamp.css': __renameMap0,
 __initBandcampBabylon(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
+import AkashicComments from '../components/akashic-comments.jsx'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
@@ -16,6 +17,7 @@ import Highlightjs from 'splendid/build/components/highlightjs'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
+  'akashic-comments': AkashicComments,
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
@@ -27,6 +29,15 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
+  key: 'social-buttons',
+  id: 'c3dcc',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/babel-when-open-source-is-not-free.html',
+    meta: true,
+    className: 'b-xq b-Hk',
+  },
+},
+{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -57,12 +68,10 @@ const meta = [{
   },
 },
 {
-  key: 'social-buttons',
-  id: 'ce287',
+  key: 'akashic-comments',
+  id: 'comments-div',
   props: {
-    url: 'https://art-deco.github.io/nodetools/babel-when-open-source-is-not-free.html',
-    meta: true,
-    className: 'mb-3 d-inline-block',
+    'api-key': 'akashic',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

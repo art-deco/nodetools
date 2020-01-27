@@ -3,7 +3,7 @@
 <span style="color:grey;">
   _12 August 2019_ | <span text-monospace>Originally published on technation.sucks</span>.
   <br>
-  > This article was written after I was attacked by a malfeasant criminal manager from Tech Nation, so just bear this in mind when you try to understand what's going on with examples.
+  > This article was written after I was attacked by a malfeasant criminal manager from Tech Nation, so just bear this in mind when you try to understand what's going on. Whatever you read in the article, please know I'm not a stuck up person you should just appreciate the amount of stress one goes through when his life is being properly ruined.
 </span>
 
 <tldr>Babel is the most relied upon software in the Node.JS ecosystem, yet it leaves out ridiculous bugs that take away essential user *freedoms* such as an ability to write _JSDoc_, while its owners get paid up to $10k a month for maintenance and attending events. _TypeScript_ also comes for free, but also has bugs of the same nature that make developers switch to the OOP ideology that is characterised by self-righteous "Open Source" community who feel free to lash out on everyone who disagrees with them. My simple software offers solutions to restore the *freedom* of the development process. It's aim is not to become popular and known, but to help people program freely.</tldr>

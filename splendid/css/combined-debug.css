@@ -78,7 +78,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-footer, main {
+figcaption, figure, footer, main {
   display: block;
 }
 body {
@@ -93,9 +93,12 @@ body {
 h1, h2, h3 {
   margin-top: 0;
 }
-p, ul {
+p, ol, ul {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+blockquote {
+  margin: 0 0 1rem;
 }
 strong {
   font-weight: bolder;
@@ -109,9 +112,26 @@ a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
+pre, code {
+  font-family: SFMono-Regular , Menlo , Monaco , Consolas , "Liberation Mono" , "Courier New" , monospace;
+}
+pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+figure {
+  margin: 0 0 1rem;
+}
 img {
   vertical-align: middle;
   border-style: none;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  text-align: inherit;
 }
 ::-webkit-file-upload-button {
   font: inherit;
@@ -135,9 +155,43 @@ h2 {
 h3 {
   font-size: 1.75rem;
 }
+small {
+  font-size: 80%;
+  font-weight: 400;
+}
+.blockquote {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+.figure {
+  display: inline-block;
+}
+.figure-img {
+  margin-bottom: .5rem;
+  line-height: 1;
+}
+.figure-caption {
+  font-size: 90%;
+  color: #6c757d;
+}
+code {
+  font-size: 87.5%;
+  color: #e83e8c;
+  word-break: break-word;
+}
+pre {
+  display: block;
+  font-size: 87.5%;
+  color: #212529;
+}
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
 }
 .container {
   width: 100%;
@@ -174,11 +228,33 @@ h3 {
   margin-right: -15px;
   margin-left: -15px;
 }
-.col-md-3, .col-md-9, .col-lg-6 {
+.col, .col-sm-1, .col-md-3, .col-md-5, .col-md-7, .col-md-9, .col-lg-6 {
   position: relative;
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+}
+.col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.order-1 {
+  -ms-flex-order: 1;
+  order: 1;
+}
+.order-2 {
+  -ms-flex-order: 2;
+  order: 2;
+}
+@media (min-width:576px) {
+  .col-sm-1 {
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+  }
 }
 @media (min-width:768px) {
   .col-md-3 {
@@ -186,10 +262,28 @@ h3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+  .col-md-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+  .col-md-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
   .col-md-9 {
     -ms-flex: 0 0 75%;
     flex: 0 0 75%;
     max-width: 75%;
+  }
+  .order-md-1 {
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .order-md-2 {
+    -ms-flex-order: 2;
+    order: 2;
   }
 }
 @media (min-width:992px) {
@@ -217,9 +311,21 @@ h3 {
   -ms-flex-negative: 0 !important;
   flex-shrink: 0 !important;
 }
+.justify-content-center {
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
 .align-items-end {
   -ms-flex-align: end !important;
   align-items: flex-end !important;
+}
+.align-items-center {
+  -ms-flex-align: center !important;
+  align-items: center !important;
+}
+.align-self-center {
+  -ms-flex-item-align: center !important;
+  align-self: center !important;
 }
 @supports ((position:-webkit-sticky) or (position:sticky)) {
   .sticky-top {
@@ -232,14 +338,26 @@ h3 {
 .h-100 {
   height: 100% !important;
 }
+.mb-0 {
+  margin-bottom: 0 !important;
+}
 .mb-3 {
   margin-bottom: 1rem !important;
+}
+.p-1 {
+  padding: .25rem !important;
+}
+.p-3 {
+  padding: 1rem !important;
 }
 .pt-3 {
   padding-top: 1rem !important;
 }
 .mt-auto {
   margin-top: auto !important;
+}
+.text-monospace {
+  font-family: SFMono-Regular , Menlo , Monaco , Consolas , "Liberation Mono" , "Courier New" , monospace !important;
 }
 .text-center {
   text-align: center !important;
@@ -260,7 +378,16 @@ h3 {
   a:not(.btn) {
     text-decoration: underline;
   }
-  img {
+  pre {
+    white-space: pre-wrap !important;
+    border: 1px solid #adb5bd;
+    page-break-inside: avoid;
+  }
+  blockquote {
+    border: 1px solid #adb5bd;
+    page-break-inside: avoid;
+  }
+  tr, img {
     page-break-inside: avoid;
   }
   p, h2, h3 {
@@ -291,9 +418,6 @@ h3 {
 }
 li.Active {
   font-weight: 700;
-}
-.left-column ul {
-  list-style-type: none;
 }
 .tm, .tm2 {
   font-family: 'Source Code Pro' , monospace;
@@ -335,4 +459,55 @@ footer {
 }
 .SideBarMenu.sidebarshowing .a {
   display: block;
+}
+#BandcampBabylon div {
+  display: none !important;
+  cursor: pointer;
+}
+#BandcampBabylon:hover div {
+  display: flex !important;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: .5em;
+  background: #f0f0f0;
+  color: #444;
+}
+.hljs-subst {
+  color: #444;
+}
+.hljs-comment {
+  color: #888;
+}
+.hljs-keyword, .hljs-attribute, .hljs-selector-tag, .hljs-meta-keyword, .hljs-doctag, .hljs-name {
+  font-weight: bold;
+}
+.hljs-type, .hljs-string, .hljs-number, .hljs-selector-id, .hljs-selector-class, .hljs-quote, .hljs-template-tag, .hljs-deletion {
+  color: #800;
+}
+.hljs-title, .hljs-section {
+  color: #800;
+  font-weight: bold;
+}
+.hljs-regexp, .hljs-symbol, .hljs-variable, .hljs-template-variable, .hljs-link, .hljs-selector-attr, .hljs-selector-pseudo {
+  color: #bc6060;
+}
+.hljs-literal {
+  color: #78a960;
+}
+.hljs-built_in, .hljs-bullet, .hljs-code, .hljs-addition {
+  color: #397300;
+}
+.hljs-meta {
+  color: #1f7199;
+}
+.hljs-meta-string {
+  color: #4d99bf;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
 }
