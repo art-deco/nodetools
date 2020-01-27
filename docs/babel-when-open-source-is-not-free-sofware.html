@@ -451,14 +451,23 @@ const sucks = (resistance = 'Art Deco', willWin = true) =&gt; {
               Incorrect placement of JSDoc comments #8437
             </h2>
             
-            <p>That's <a href="https://github.com/babel/babel/issues/8437">the title and number of the second issue</a> because the first one was removed since it was "insulting". In <strong>BABEL R U UK</strong> I didn't use swear words to call authors names to make it insulting, it was primary "all caps", or what can be considered <em>raising the voice at maintainers</em> for that bug asking them how can they do that to me and others. It just made me really angry, angry because I'm a Senior Software Developer with a BSc/Master degrees in Computer Science yet you don't get no respect for that amongst everyone else who calls themselves developers on the web after taking an online-course, angry because I'm passionate and obsessional about quality, angry because I finally understood why <em>JSDoc</em> was not showing in the editor properly for my own packages. In the end of the day, I got angry because there's nobody else who would tell them off for that offense, there's no Open Source quality assurance commission that would shame an essential piece of <em>Node.JS</em> infrastructure for how they treated me and my work. It finally established my attitude towards so-called "community" where no responsibility is ever taken by anyone and my <strong>freedom</strong> of writing documentation using <em>JSDoc</em> was taken away from me by software that pretty much extorted me into using it because of lack of alternatives and <em>Node.JS</em>'s inability to JUST make ES6 modules happen. Let's have a look at the the first comment from a maintainer on that issue:</p>
+            <p>That's <a href="https://github.com/babel/babel/issues/8437">the title and number of the second issue</a> because the first one was removed since it was "insulting". In <strong>BABEL R U UK</strong> I didn't use swear words to call authors names to make it insulting, it was primary "all caps", or what can be considered <em>raising the voice at maintainers</em> for that bug asking them how can they do that to me and others. It just made me really angry because</p>
+            
+            <ul>
+              <li>I'm a Senior Software Developer with a BSc/Master degrees in Computer Science yet you don't get no respect for that amongst everyone else who calls themselves developers on the web when Computer Science is not even their specialisation;</li>
+              <li>I'm passionate and obsessional about quality;</li>
+              <li>I finally understood why <em>JSDoc</em> was not showing in the editor properly for my own packages;</li>
+              <li>There's nobody who would tell them off for that offense, there's no Open Source quality assurance commission that would shame an essential piece of <em>Node.JS</em> infrastructure for how they treated me and my work. What there is, is Handshake who gave them a $100k cheque simply because they are so known.</li>
+              <li>Follows from the above, what about taking some responsibility instead of only bragging about how many people use the software?</li>
+            </ul>
+            
+            <p>It finally established my attitude towards so-called "community" where no responsibility is ever taken by anyone and my <strong>freedom</strong> of writing documentation using <em>JSDoc</em> was taken away from me by software that pretty much extorted me into using it because of lack of alternatives and <em>Node.JS</em>'s inability to JUST make ES6 modules happen. Let's have a look at the the first comment from a maintainer on that issue:</p>
             
             <div class="markdown-body b-B b-xq">
               <div class="b-R">
                 <img class="b-t" alt="demurgos avatar" data-io>
                 <noscript>
-                  <img class="b-t" alt="demurgos avatar"
-                    src="https://avatars2.githubusercontent.com/u/2262218?s=88&amp;v=4">
+                  <img class="b-t" alt="demurgos avatar" src="https://avatars2.githubusercontent.com/u/2262218?s=88&amp;amp;v=4">
                 </noscript>
               </div>
               <div class="b-D" style="border-radius: 3px; padding-right:0; padding-left:0; margin-right: 15px; border: 1px solid #e1e4e8!important;">
@@ -468,7 +477,7 @@ const sucks = (resistance = 'Art Deco', willWin = true) =&gt; {
                     <a href="https://github.com/demurgos">demurgos</a> commented on 8 Aug 2018 •
                     </td>
                   </tr>
-                  <tr><td style="padding: 15px;">
+                  <tr><td class="b-ir">
                   Your previous issue was closed because its tone was insulting. This one is too: it's not just about avoiding all-caps. Babel is used by thousands of production-grade projects, many of which use doc comments to generate their documentation. With a bit of humility, you may have recognized that maybe you are missing something instead of immediately calling the maintainers incompetent.<br><br>
                   Now, to answer you issue: the output you see is expected behavior (<strong>Edit</strong>: See below, I agree that it's worse than in Babel 6). Output generated by Babel is no longer source code (by definition, it's generated content): it is not intended to act as source code. Comments are emitted on a best effort basis to help readability when debugging the output file. Babel output should be treated similarly to machine code: you do not generate documentation from machine code but from the source.<br><br>
                   The input you pass to your documentation generation tool should be the the source code with ES-next syntax, not the lowered Babel output.
@@ -477,26 +486,23 @@ const sucks = (resistance = 'Art Deco', willWin = true) =&gt; {
               </div>
             </div>
             
-            <p>My reply was that I wasn't calling the <em>maintainers</em> incompetent, but all people who blindly make religion out of Babel without knowing what they are doing. The comment was marked as disruptive and I'm not going into that. You can talk to the person mentioned here and he'll confirm that I reached out to him and personally apologized for overflow of emotions. In the "disruptive" comment I only made it clear that he misunderstood the point that I made regarding <em>JSDoc</em> blocks (hence <strong>edit</strong> in this comment) and that it's not generated documentation that suffered, but actual transpiled code. Mr Samborski continues:</p>
+            <p>My reply was that I wasn't calling the <em>maintainers</em> incompetent, but all people who blindly make religion out of Babel without knowing what they are doing (<em>though it's what I was also doing, but then I stopped, whereas have you?</em>). The comment was marked as disruptive and fair enough. You can talk to the person mentioned here and he'll confirm that I reached out to him and apologized for overflow of emotions. In the "disruptive" comment I only made it clear that he misunderstood the point that I made regarding <em>JSDoc</em> blocks (hence <em>edit</em> in his comment) and that it's not generated documentation that suffered, but actual transpiled code. But he says himself <strong>Babel is used by thousands of production-grade projects, many of which use doc comments to generate their documentation</strong>!!! There's no better words than - What the **** Babel -. <em>demurgos</em> continues:</p>
             
             <blockquote class="b-r" style="background: #fff6c5;">
               I also want to remind you that Babel is supported by a small team of volunteers. If you want to improve things, you can help and send PRs. You are not entitled to free support and insults are not tolerated.
             </blockquote>
             
-            <p><img alt="Babel Open Collective landing: £300.000 yearly budget." class="b-t" data-io>
+            <p><img class="b-t" alt="Babel Open Collective landing: £300.000 yearly budget." data-io>
             <noscript>
-              <img alt="Babel Open Collective landing: £300.000 yearly budget." class="b-t"
-                src="/nodetools/img/one-year/babel.png">
+              <img class="b-t" alt="Babel Open Collective landing: £300.000 yearly budget." src="/nodetools/img/one-year/babel.png">
             </noscript></p>
-            <p><img alt="Babel Maintainer getting paid $15.000 in August" class="b-t" data-io>
+            <p><img class="b-t" alt="Babel Maintainer getting paid $15.000 in August" data-io>
             <noscript>
-              <img alt="Babel Maintainer getting paid $15.000 in August" class="b-t"
-                src="/nodetools/img/one-year/free-support1.png">
+              <img class="b-t" alt="Babel Maintainer getting paid $15.000 in August" src="/nodetools/img/one-year/free-support1.png">
             </noscript></p>
-            <p><img alt="Babel Maintainer getting paid $8.000 in August" class="b-t" data-io>
+            <p><img class="b-t" alt="Babel Maintainer getting paid $8.000 in August" data-io>
             <noscript>
-              <img alt="Babel Maintainer getting paid $8.000 in August" class="b-t"
-                src="/nodetools/img/one-year/free-support2.png">
+              <img class="b-t" alt="Babel Maintainer getting paid $8.000 in August" src="/nodetools/img/one-year/free-support2.png">
             </noscript></p>
             
             
