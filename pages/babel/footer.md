@@ -15,7 +15,7 @@ Moreover, it is the fault of _Node.JS_ who for [5 years](https://2ality.com/2014
 
 Another "free" software, _TypeScript_ is completely proprietary because you cannot go anywhere without `tsserver` binary. More and more code that you write in TypeScript, take you further and further away from pure _JavaScript_. Microsoft does not prioritise fixing bugs that prevent proper functioning of _JSDoc_, such as that types from level 2+ files are not imported which results in poor experience for developers, their confusion and subsequent switch to _TypeScript_ typings. Moreover, instead of admitting the presence of such bugs in _VS Code_ IDE, Microsoft calls for developers to switch to _TypeScript_ to avoid issues. This is not *freedom* &mdash; it's nothing less than vendor lock-in and abuse of trust that developers put in.
 
-I hope that on the other hand, my transpiler, [ÀLaMode](https://www.npmjs.com/package/alamode) can match the criteria of free software because:
+I hope that on the other hand, my transpiler, [ÀLaMode](alamode) can match the criteria of free software because:
 
 <ol>
 * It has 0 dependencies, so that it will not waste developer time for linking of itself and future packages.
@@ -38,9 +38,13 @@ I hope that on the other hand, my transpiler, [ÀLaMode](https://www.npmjs.com/p
 
 There are some limitations to ÀLaMode, such as it currently does not transpile <code>import 'example'</code> or dynamic imports, or that it might choke on `//` inside of template literals. However, it also allows to write `JSX` and can replace the locations of imports from <code>import t from 'package'</code> to <code>import t from '../stdlib/package'</code> to creation of 0-dependency packages. These features are subjects of next articles.
 
-I hope you enjoyed reading this blog post hope you don't get the wrong impression about me some bits are personal and in the end I doubted if I should even talk of these things since not everyone will understand &#91;the place I was in &#93; but oh well it's the work that matters, so see you in next posts. Feel free to share, comment below and don't forget to [add your signature](https://art-deco.github.io/open-source/)! Happy _JSDoc_ing.
+I hope you enjoyed reading this blog post hope you don't get the wrong impression about me some bits are personal and in the end I doubted if I should even talk of these things since not everyone will understand &#91;the place I was in &#93; but oh well it's the work that matters, so see you in next posts. Feel free to share, comment below and don't forget to [add your signature](signature)! Happy _JSDoc_ing.
 
 <!-- end section -->
-</div>
+<section-break />
 
-<akashic-comments api-key="akashic" />
+##! Comments
+
+  <akashic-comments api-key="akashic" />
+
+</div>

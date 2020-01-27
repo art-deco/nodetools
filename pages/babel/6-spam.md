@@ -57,7 +57,7 @@ I only had one thought in my head, it was "it's just packages mate, just package
 
 <!-- Nobility or strive for it means a lot to me, but it's not measured in money at all. I might not have the visa, I might have no money on my account and in a year I might have only bought 1 piece of clothes which is track suite bottoms that I wear almost every day, what I do have is my commitment to quality software, own _Node.JS_ stack and independence. I don't need to be told how to think or how to do things. I never needed any _Tech Nation_ experts to comment on my work, I know that I am the best expert out of all of them put together. So  -->
 
-I'm sorry for reacting like I do now towards the state of _Node.JS_ today, but what am I supposed to be when the most important thing that I have in life, my work, is said to be made using frameworks by corrupt uneducated liars like _Tech Nation_ who pretend to be an endorsing body in the UK? Please [add your signature](https://art-deco.github.io/open-source/) if words "professional", "quality" and "noble" mean something for you too.
+I'm sorry for reacting like I do now towards the state of _Node.JS_ today, but what am I supposed to be when the most important thing that I have in life, my work, is said to be made using frameworks by corrupt uneducated liars like _Tech Nation_ who pretend to be an endorsing body in the UK? Please [add your signature](signature) if words "professional", "quality" and "noble" mean something for you too.
 
 <block-quote>
   <add-file>audio/hive.m4a</add-file>
@@ -66,6 +66,12 @@ I'm sorry for reacting like I do now towards the state of _Node.JS_ today, but w
   </audio>
   [We are unknown](hive), we knowers, ourselves to ourselves: this has its own good reason. We have never searched for ourselves—how should it then come to pass, that we should ever find ourselves? Rightly has it been said: "Where your treasure is, there will your heart be also." Our treasure is there, where stand the hives of our knowledge. It is to those hives that we are always striving; as born creatures of flight, and as the honey-gatherers of the spirit, we care really in our hearts only for one thing—to bring something "home to the hive!" <small>Nietzsche is medicine to soul.</small>
 </block-quote>
+
+<!-- <details open>
+  <summary>
+    View Transcription
+  </summary>
+</details> -->
 
 <!-- <p>When I was 13 and started to learn _ActionScript_, I used to hang out on a forum with other developers, so I know what a community means. Now I don't belong to any community and don't hang out anywhere, it's not a subject at uni like "Being Part Of Developer Community" and due to experiences in life, coding was my means of dealing with stuff, and I don't think it's wrong to dedicate my time to programming instead of hanging out on Twitter or anywhere else doing and thinking the same things everyone else does. When Tech Nation tell me that I have no community profile which wasn't my criteria, and ignore my programming work, it's the biggest insult to a creative person they can make. I love Nietzsche and when his audiobooks come up in my iPod, all the pain is soothed. </p> -->
 
