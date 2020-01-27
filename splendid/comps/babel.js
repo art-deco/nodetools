@@ -1,8 +1,6 @@
 import __initBandcampBabylon from './__init/bandcamp-babylon'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
-import '../../pages/babel/code/babel'
-import '../../pages/babel/code/compiled'
 import __renameMap0 from './__rename-maps/styles/bandcamp'
 import __renameMap1 from './__rename-maps/styles/sidebar'
 import makeClassGetter from './__mcg'

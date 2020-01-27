@@ -39,6 +39,9 @@ export const babel = {
   },
   links: {
     history: 'https://gist.github.com/jkrems/769a8cd8806f7f57903b641c74b5f08a',
+    journey: 'https://drewdevault.com/2019/06/13/My-journey-from-MIT-to-GPL.html',
+    privacy: 'https://en.wikipedia.org/wiki/Article_8_of_the_European_Convention_on_Human_Rights',
+    'data-protection': 'https://gdpr-info.eu/recitals/no-1/',
   },
 }
 

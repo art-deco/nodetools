@@ -3,7 +3,7 @@ export default function BandCamp ({ splendid }) {
 
   return (<div id="BandcampBabylon" style="position:relative; height: 42px; overflow:hidden;">
     <splendid-img alt="bandcamp activation placeholder" src="img/bc.png" className="img-fluid" />
-    <div d-flex align-items-center width="100%" height="42px" style="position:absolute;top:0;left:0; text-align:center;" background="#ffffffc4" justify-content-center>
+    <div d-flex align-items-center height="42px" style="background:#ffffffc4;bottom:1px;right:0;position:absolute;top:1px;left:1px; text-align:center;" justify-content-center>
       <span style="background:white">_BandCamp_ uses cookies on <code>.bandcamp.com</code> domain. Click To Activate.</span>
     </div>
   </div>)
