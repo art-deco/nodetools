@@ -29,15 +29,6 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
-  key: 'social-buttons',
-  id: 'c3dcc',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/babel-when-open-source-is-not-free.html',
-    meta: true,
-    className: 'b-xq b-Hk',
-  },
-},
-{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -58,6 +49,15 @@ const meta = [{
   id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'cef93',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/babel-when-open-source-is-not-free-sofware.html',
+    meta: true,
+    className: 'b-xq b-Hk',
   },
 },
 {
