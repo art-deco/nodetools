@@ -1,0 +1,29 @@
+##! Install MNP
+
+The best way to start using NodeTools, is via <npm-badge package="mnp">MNP</npm-badge> (My New Package) &mdash; a GitHub template-based package bootstrap that allows to generate new repositories from templates and fill them in with preset information. `mnp` has only 3 small dependency and can be installed globally:
+
+```sh
+yarn add global mnp
+npm i -g mnp
+```
+
+After it's first been installed, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other project directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via the terminal (`cd ~`) and call `mnp --init`.
+
+But first, a personal [access token](https://github.com/settings/tokens) needs to be generated for GitHub that will allow to access GitHub API. The `delete_repo`, `repo` are needed to create new repositories and delete them from CLI.
+
+```sh
+GitHub access token: -new-access-token- # generated token
+GitHub organisation: nodetools # either organisation or user login
+npm scope: nodetools # optional scope for packages
+Default Template: [mnpjs/package] # default template in org/name format
+user: [Anton] # the name for package.json, read from git config
+email: [anton@adc.sh] # the email for package.json, read from git config
+Website (for readme): https://www.art-deco.github.io/nodetools # link to website
+Trademark (for readme): NodeTools # name in footer
+Legal name (for license): Art Deco Code Limited # full business name
+Package Manager (yarn/npm): [yarn] # which package manager
+```
+
+These settings will be stored in the `~/.mnprc` file.
+
+<section-break />

@@ -1,0 +1,386 @@
+<!doctype html>
+<html class="no-js b-Op" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Quick Start</title>
+    <meta
+      content="How to start using NodeTools stack for productive, effective and developer-friendly Node.JS development process with Closure Compiler &amp; without TypeScript." name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link sizes="57x57" rel="apple-touch-icon" href="/nodetools/img/fav-57.png">
+    <link sizes="76x76" rel="apple-touch-icon" href="/nodetools/img/fav-76.png">
+    <link sizes="120x120" rel="apple-touch-icon" href="/nodetools/img/fav-120.png">
+    <link sizes="152x152" rel="apple-touch-icon" href="/nodetools/img/fav-152.png">
+    <link sizes="167x167" rel="apple-touch-icon" href="/nodetools/img/fav-167.png">
+    <link sizes="180x180" rel="apple-touch-icon" href="/nodetools/img/fav-180.png">
+    <link sizes="192x192" rel="icon" href="/nodetools/img/fav-192.png">
+    <link sizes="128x128" rel="icon" href="/nodetools/img/fav-128.png">
+    <link sizes="32x32" rel="icon" href="/nodetools/img/fav-32.png">
+    <link
+      href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland" rel="preload" as="fetch" crossOrigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin>
+    <link href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro" rel="preload" as="style">
+    <script>
+      (function(b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro')
+    </script>
+    <script>(function(h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
+a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"flex-direction|-ms-flex-direction":["column"],"border-radius":[".25rem"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
+    <script>
+      (function(q,k){function x(a){for(var f=/url\((.+?)\).*?;\s+unicode-range: (.+?);/g,b={},d=[],h;h=f.exec(a);){var r=h[2];d.push({url:h[1],a:r});b[r]=1}b=Object.keys(b).reduce(function(c,e){var g=e.split(/,\s/).map(function(l){return l.replace("U+","\\u").replace("-","-\\u")}).join("").toLowerCase();c[e]=new RegExp("["+g+"]");return c},{});var t=document.body?document.body.textContent:"",y=t?Object.keys(b).reduce(function(c,e){b[e].test(t)&&(c[e]=!0);return c},{}):Object.keys(b).reduce(function(c,
+      e){e in k&&(c[e]=!0);return c},{});m=d.filter(function(c){return c.a in y}).map(function(c){return c.url});if(!m.length)return u();var v=document.createDocumentFragment();m.forEach(function(c,e){var g=document.createElement("link");g.href=c;g.rel="preload";g.as="font";var l=e+1;;g.onload=function(){return u(l)};g.setAttribute("crossorigin",!0);v.appendChild(g)});document.head.appendChild(v)}k=void 0===k?{}:k;var n=document.createElement("link");if(function(a,
+      f){if(!a||!a.supports)return!1;try{return a.supports(f)}catch(b){return!1}}(n.relList,"preload")){var z=function(a,f,b){b=void 0===b?"":b;;var d=new XMLHttpRequest;d.onreadystatechange=function(){4==d.readyState&&(200==d.status?(f(d.responseText)):console.error("Error loading webfont: server responded with code %s at %s",d.status,a))};d.open("GET",a);try{d.send(null)}catch(h){console.error(h)}};
+      ;var p;(function(a,f){z(a.href,function(b){p=b;x(p)},"-"+(void 0===f?"link":f))})({href:q},"js");var m=[],w=0,u=function(a){w++;w>=m.length&&(a=document.createElement("style"),a.innerHTML=p,document.head.appendChild(a))}}else n.rel="stylesheet",n.href=q,document.head.appendChild(n)})('https://fonts.googleapis.com/css?display=swap&family=Ruda%3A400%2C700%7CMr%20De%20Haviland', {"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD":true})
+    </script>
+    <link rel="stylesheet" href="/nodetools/css/combined.css">
+    <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
+    <style>
+      .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
+      h1,h3,h2{text-decoration:underline}
+      .List {
+                          font-size:small;
+                        }
+                        .List > a {
+                          display: block!important;
+                        }
+    </style>
+    <noscript>
+      <link rel="stylesheet" href="/nodetools/css/combined-prefixes.css">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro">
+    </noscript>
+    <script defer src="/nodetools/js/polyfill/intersection-observer.js"></script>
+    <script defer src="/nodetools/js/images.js"></script>
+    <script crossorigin data-src="/nodetools/preact/dist/preact.min.js"></script>
+    <script crossorigin data-src="/nodetools/comps/common.js"></script>
+    <script crossorigin data-src="/nodetools/comps/quickStart.js"></script>
+    <script>
+      document.documentElement.classList.remove("no-js")
+    </script>
+  </head>
+  <body class="b-Mk b-Ol b-Op">
+    
+    <main class="b-Xl" role="main">
+      <div class="b-z">
+        <div class="b-B">
+          <div class="left-column b-hb">
+            <div class="b-kC">
+            
+                <img class="ImageHolder b-t b-vk" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" alt="@artdeco/nodetools logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'/%3E">
+                <noscript>
+                  <picture>
+                    <source srcset="/nodetools/img/splash-576.webp 576w,/nodetools/img/splash-319.webp 319w,/nodetools/img/splash-600.webp 600w"
+                      sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" type="image/webp">
+                    <img class="b-t b-vk" onLoad="webploaded(this)" alt="@artdeco/nodetools logo" src="/nodetools/img/splash-576.jpg" srcset="/nodetools/img/splash-576.jpg 576w,/nodetools/img/splash-319.jpg 319w,/nodetools/img/splash-600.jpg 600w" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px">
+                  </picture>
+                </noscript>
+              </div>
+              <div class="b-kC">
+                <a title="The NodeTools Stack Website." class="GitHubBadge" id="cacd9"
+                  href="https://github.com/art-deco/nodetools">
+                  <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a>
+                
+                
+                
+              </div>
+              <h3 id="pages">Pages</h3>
+              <ul>
+                <li class><a data-file="index" href="/nodetools/">NodeTools</a></li>
+                <li class><a data-file="dropcss" href="/nodetools/tutorial-trapcss.html">Tutorial: TrapCSS</a></li>
+                <li class="Active"><a data-file="quick-start" href="/nodetools/quick-start.html">Quick Start</a></li>
+                <li class>
+                  <a data-file="babel" href="/nodetools/babel-when-open-source-is-not-free-sofware.html">
+                    Babel: When Open Source Is Not Free Sofware</a>
+                </li>
+                <li class><a data-file="discussion" href="/nodetools/discussion.html">Discussion</a></li>
+              </ul>
+              <h3 id="stack">Stack</h3>
+              <div class="List b-xq b-kC">
+                <a
+                  title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
+                  <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a>
+                <a
+                  title="Organises TypeDefs By Placing Them Into Types.Xml File To Be Embedded Into Source Code Compatible With VSCode And Google Closure Compiler, Generates Externs And Allows To Place Documentation In README Markdown." class="NPMBadge" href="https://www.npmjs.com/package/typal">
+                  <span class="a"><em>Typal</em></span><span class="b">1.26.0</span></a>
+                <a
+                  title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
+                  <span class="a"><em>Depack</em></span><span class="b">1.0.1</span></a>
+                <a
+                  title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a>
+                <a
+                  title="The 2019 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
+                  <span class="a"><em>Zoroaster</em></span><span class="b">4.1.2</span></a>
+                <a
+                  title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
+                  <span class="a"><em>Documentary</em></span><span class="b">1.35.9</span></a>
+              </div>
+              <h3 id="web-software">Web Software</h3>
+              <div class="List b-xq b-kC">
+                <a
+                  title="2-Dependency Koa Web Server Compiled With Closure Compiler And Bundled With Essential Middleware: Static, Compress, Session, Cors, File Upload, Router And JSX Front End." class="NPMBadge" href="https://www.npmjs.com/package/@idio/idio">
+                  <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
+                <a
+                  title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.13</span></a>
+              </div>
+              <h3 id="misc">Misc</h3>
+              <ul>
+                <li><a href="https://gitter.im/node_tools/community">Get Help In Gitter Chat</a></li>
+                <li><a href="https://opencollective.com/nodetools">Fund Us On Open Collective</a></li>
+              </ul>
+              <div class="SideBarMenu sidebarshowing b-jr b-zp">
+                <div class="a">
+                  
+                                  <h3 id="-on-this-page"> On This Page</h3>
+                                  <ul><li data-heading="quick-start"><a href="#quick-start">Quick Start</a></li><li data-heading="install-mnp"><a href="#install-mnp">Install MNP</a></li><li data-heading="configure-org"><a href="#configure-org">Configure Org</a></li><li data-heading="spawn-package"><a href="#spawn-package">Spawn Package</a></li><li data-heading="binary"><a href="#binary">Binary</a></li><li data-heading="comments"><a href="#comments">Comments</a></li></ul>
+                                  <h3 id="share-nodetools">Share NodeTools</h3>
+                                  <span class="b-xq b-Hk" id="ce295"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+                                  
+                                  <div class="b-xq" id="updates-div">Loading web-push...</div>
+                                  <details id="NewsletterDetails">
+                                    <summary>
+                                      <h3 id="newsletter">Newsletter</h3>
+                                    </summary>
+                                    <div id="emails-div">Loading widget...</div>
+                                  </details>
+                                
+                </div>
+                <a id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
+                <a id="ShowMenu" style="color:grey!important;" href="#">show menu</a>
+              </div>
+          </div>
+          
+          <div class="right-column b-xq b-nb" id="Content">
+            <div data-section id="quick-start">
+            <h1 id="nodetools-quick-start">NodeTools Quick Start</h1>
+            
+            <p><em>NodeTools</em> is a full Node.JS stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small and contains tools for essential operation. The packages that it installs provides an up-to-date development environment for local Node.JS development. This guide will show how to start using the stack.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='15'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/0.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="install-mnp">
+            <h2 id="install-mnp">Install MNP</h2>
+            
+            <p>The best way to start using NodeTools, is via <a
+               title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
+               <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a GitHub template-based package bootstrap that allows to generate new repositories from templates and fill them in with preset information. <span class="tm">mnp</span> has only 3 small dependency and can be installed globally:</p>
+            
+            <pre id="c724c2"><code class="shell hljs">yarn add global mnp
+npm i -g mnp</code></pre>
+            
+            <p>After it's first been installed, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other project directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via the terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
+            
+            <p>But first, a personal <a href="https://github.com/settings/tokens">access token</a> needs to be generated for GitHub that will allow to access GitHub API. The <span class="tm">delete_repo</span>, <span class="tm">repo</span> are needed to create new repositories and delete them from CLI.</p>
+            
+            <pre id="c724c"><code class="shell hljs">GitHub access token: -new-access-token- # generated token
+GitHub organisation: nodetools # either organisation or user login
+npm scope: nodetools # optional scope for packages
+Default Template: [mnpjs/package] # default template in org/name format
+user: [Anton] # the name for package.json, read from git config
+email: [anton@adc.sh] # the email for package.json, read from git config
+Website (for readme): https://www.art-deco.github.io/nodetools # link to website
+Trademark (for readme): NodeTools # name in footer
+Legal name (for license): Art Deco Code Limited # full business name
+Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
+            
+            <p>These settings will be stored in the <span class="tm">~/.mnprc</span> file.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/1.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="configure-org">
+            <h2 id="configure-org">Configure Org</h2>
+            
+            <p>Packages should be organised by organisations, which can be created on GitHub in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
+            
+            <pre id="cb288"><code class="undefined hljs">mkdir cool-org
+cd cool-org</code></pre>
+            
+            <p>Here, we can run <span class="tm">mnp --init</span> again to update the settings for that particular org, however all the standard settings will be filled in already from the ones we wrote to the home directory.</p>
+            
+            <pre id="c724c1"><code class="shell hljs">GitHub access token: [8cb0f088cba5929dcd2337f906a9d8eca81d6759] # keep token
+GitHub organisation: [nodetools] cool-org # update org
+npm scope: [nodetools] cool-org # update scope
+Default Template: [mnpjs/package] # keep default
+user: [Anton] # keep
+email: [anton@adc.sh] # keep
+Website (for readme): [https://www.art-deco.github.io/nodetools] https://cool-org.com
+Trademark (for readme): [NodeTools] Cool Org
+Legal name (for license): [Art Deco Code Limited] # keep
+Package Manager (yarn/npm): [yarn] # keep</code></pre>
+            
+            <p>After doing this, another <span class="tm">.mnprc</span> will be created in the <span class="tm">cool-org</span> folder, and these settings will be used for projects created in that organisation.</p>
+            
+            <p>After MNP is configured, we can proceed to creating a new package.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/2.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            
+            <div data-section id="spawn-package">
+            <h2 id="spawn-package">Spawn Package</h2>
+            
+            <p>To create new packages from the NodeTools package template, we'll simply call <span class="tm">mnp</span> in the <span class="tm">cool-org</span> directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.</p>
+            
+            <pre id="cb2881"><code class="undefined hljs">Package name: example-package # enter package name
+# @artdeco/example-package
+Description: An example package created with MNP.
+Generating repository...
+Starring...
+⭐️ Created and starred a new repository
+https://github.com/artdecocode/example-package
+Cloning into '/Users/zavr/cool-org/example-package'...
+With binary [y/n]: [y]
+Build or compile: [compile]
+Choose a license (e.g., agpl-3.0, apache-2.0, bsd-3-clause, gpl-3.0, mit, custom)
+See full list at https://github.com/mnpjs/licenses
+License: [agpl-3.0]
+Init Github Wiki [y/n]: [y]
+Homepage: [https://github.com/artdecocode/example-package#readme]
+Keywords (e.g., artdecocode, example-package): example, mnp
+Please go to https://github.com/artdecocode/example-package/wiki/_new
+to create the first page and press enter when done. (y/n): [y]
+Cloning into '/Users/zavr/cool-org/example-package/wiki.git'...
+Settings topics...
+yarn install v1.13.0
+[1/4] 🔍  Resolving packages...
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+warning " &gt; depack@1.0.1" has unmet peer dependency "google-closure-compiler-java@*".
+[4/4] 🔨  Building fresh packages...
+✨  Done in 2.70s.
+Initialised package structure, pushing...
+Created a new package: @artdeco/example-package.</code></pre>
+            
+            <p><span class="tm">mnp example-package</span> could be called right away from the CLI to fill the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling <span class="tm">mnp example-package -d</span> command that will ask for confirmation before proceeding to remove the repository from <em>GitHub</em>.</p>
+            
+            <p>MNP will also run the package manager init script (such as <span class="tm">yarn</span> or <span class="tm">npm i</span>) in the new project folder. If VSCode was installed on the system, with <span class="tm">code</span> binary <a href="https://code.visualstudio.com/docs/setup/mac">exported to shell</a>, it will be automatically opened. A new tag <span class="tm">v0.0.0-pre</span> will be added to the git tree at this point.</p>
+            
+            <p>So in less than a minute, we're ready to write code, document and test it. Let's discuss some questions asked by MNP.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/3.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="binary">
+            <h2 id="binary">Binary</h2>
+            
+            <p>Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the <span class="tm">src/binary</span> folder and contains a number of files:</p>
+            
+            <h3 id="-indexjs"> index.js</h3>
+            
+            <p>This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename <span class="tm">imports</span> into <span class="tm">require</span> calls. It is also used when testing the package.</p>
+            
+            <pre id="ccdbf"><code class="javascript hljs">#!/usr/bin/env node
+require('alamode')()
+require('./mnp')</code></pre>
+            
+            <p>Additionally, the <span class="tm">package.json</span> will contain a number of records in the <span class="tm">&quot;bin&quot;</span> property:</p>
+            
+            <pre id="cb9de"><code class="json hljs">{
+  "bin": {
+    "example-package": "compile/bin/example-package.js",
+    "example-package-dev": "src/bin/index.js"
+  },
+  "files": [
+    "...files",
+    "src/bin/index.js"
+  ]
+}</code></pre>
+            
+            <p>The <span class="tm">-dev</span> binary record is used to call the binary from the local filesystem, after it's been linked with <span class="tm">yarn link</span> command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the <span class="tm">example-package-dev</span> command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the development process. The <span class="tm">files</span> property will also include the pointer to the <span class="tm">src/bin/index.js</span> otherwise NPM would throw an error when trying to install out package.</p>
+            
+            <h3 id="binexample-packagejs">bin/example-package.js</h3>
+            
+            <p>This is the actual binary logic, that will be executed. Commands can be separated by placing them into the <span class="tm">commands</span> directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with Closure Compiler.</p>
+            
+            <pre id="ccdbf1"><code class="javascript hljs">import { _help, _init, _output, _version, _input, argsConfig } from './get-args'
+import { reduceUsage } from 'argufy'
+import usually from 'usually'
+
+if (_help) {
+  const usage = usually({
+    description: 'An example package created with MNP.',
+    example: 'example-package example.txt -o out.txt',
+    line: 'example-package input [-o output] [-ihv]',
+    usage: reduceUsage(argsConfig),
+  })
+  console.log(usage)
+  process.exit(0)
+} else if (_version) {
+  console.log(require('../../package.json').version)
+  process.exit(0)
+}</code></pre>
+            
+            <h3 id="get-argsjs">get-args.js</h3>
+            
+            <p>The arguments are generated using <span class="tm">argufy</span> package that has been specifically developed to be compatible with Closure Compiler. All flags that are passed to binary via the <span class="tm">process.argv</span> property, will be parsed an made available for export from this file. They are exported with <span class="tm">_</span> (underscore) to avoid errors when passing variables around. The arguments are generated from the <span class="tm">types/arguments.xml</span> file that describes possible flags and their types:</p>
+            
+            <pre id="c16f7"><code class="xml hljs">&lt;arguments&gt;
+  &lt;arg command name="input"&gt;
+    The path to the input file.
+  &lt;/arg&gt;
+  &lt;arg name="output" short="o" default="-"&gt;
+    Where to save the output. By default prints to stdout.
+  &lt;/arg&gt;
+  &lt;arg boolean name="init" short="i"&gt;
+    Initialise in the current folder.
+  &lt;/arg&gt;
+  &lt;arg boolean name="help" short="h"&gt;
+    Print the help information and exit.
+  &lt;/arg&gt;
+  &lt;arg boolean name="version" short="v"&gt;
+    Show the version's number and exit.
+  &lt;/arg&gt;
+&lt;/arguments&gt;</code></pre>
+            
+            <p>When a change is made to the file, the <span class="tm">yarn args</span> command need to be run to update the <span class="tm">get-args</span> file automatically via <span class="tm2">argufy</span>. Moreover, the <span class="tm">reduceUsage</span> command is imported from <span class="tm2">argufy</span> package also to generate help information that can be passed to <span class="tm2">usually</span> package to display usage info to users with <span class="tm">-h</span> option.</p>
+            
+            <p>Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in <a href="https://github.com/artdecocode/expensive/tree/master/types/args">Expensive</a> and <a href="https://github.com/artdecocode/logarithm/tree/master/types/args">Logarithm</a> packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/4.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="comments">
+            <h2 id="comments">Comments</h2>
+            
+            <div id="comments-div">Loading comments...</div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="b-ns">
+      &copy; <a href="https://www.artd.eco">Art Deco™</a>, 2020
+    </footer>
+    <script>(function(){function b(){if(0<c.length){var a=c.shift();a.src=a.getAttribute("data-src");a.removeAttribute("data-src");a.onload=b;a.onerror=function(){console.warn("Could not load script %s",a.src)}}}var c=Array.prototype.slice.call(document.querySelectorAll("script[data-src]"));b()})()</script>
+  </body>
+</html>

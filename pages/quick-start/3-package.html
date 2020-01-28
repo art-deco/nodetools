@@ -1,0 +1,43 @@
+##! Spawn Package
+
+To create new packages from the NodeTools package template, we'll simply call `mnp` in the `cool-org` directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.
+
+```
+Package name: example-package # enter package name
+# @artdeco/example-package
+Description: An example package created with MNP.
+Generating repository...
+Starring...
+⭐️ Created and starred a new repository
+https://github.com/artdecocode/example-package
+Cloning into '/Users/zavr/cool-org/example-package'...
+With binary [y/n]: [y]
+Build or compile: [compile]
+Choose a license (e.g., agpl-3.0, apache-2.0, bsd-3-clause, gpl-3.0, mit, custom)
+See full list at https://github.com/mnpjs/licenses
+License: [agpl-3.0]
+Init Github Wiki [y/n]: [y]
+Homepage: [https://github.com/artdecocode/example-package#readme]
+Keywords (e.g., artdecocode, example-package): example, mnp
+Please go to https://github.com/artdecocode/example-package/wiki/_new
+to create the first page and press enter when done. (y/n): [y]
+Cloning into '/Users/zavr/cool-org/example-package/wiki.git'...
+Settings topics...
+yarn install v1.13.0
+[1/4] 🔍  Resolving packages...
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+warning " > depack@1.0.1" has unmet peer dependency "google-closure-compiler-java@*".
+[4/4] 🔨  Building fresh packages...
+✨  Done in 2.70s.
+Initialised package structure, pushing...
+Created a new package: @artdeco/example-package.
+```
+
+`mnp example-package` could be called right away from the CLI to fill the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling `mnp example-package -d` command that will ask for confirmation before proceeding to remove the repository from _GitHub_.
+
+MNP will also run the package manager init script (such as `yarn` or `npm i`) in the new project folder. If VSCode was installed on the system, with `code` binary [exported to shell](https://code.visualstudio.com/docs/setup/mac), it will be automatically opened. A new tag `v0.0.0-pre` will be added to the git tree at this point.
+
+So in less than a minute, we're ready to write code, document and test it. Let's discuss some questions asked by MNP.
+
+<section-break />

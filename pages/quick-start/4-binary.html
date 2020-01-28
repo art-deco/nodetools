@@ -1,0 +1,84 @@
+##! Binary
+
+Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the `src/binary` folder and contains a number of files:
+
+### index.js
+
+This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename `imports` into `require` calls. It is also used when testing the package.
+
+```js
+#!/usr/bin/env node
+require('alamode')()
+require('./mnp')
+```
+
+Additionally, the `package.json` will contain a number of records in the `"bin"` property:
+
+```json
+{
+  "bin": {
+    "example-package": "compile/bin/example-package.js",
+    "example-package-dev": "src/bin/index.js"
+  },
+  "files": [
+    "...files",
+    "src/bin/index.js"
+  ]
+}
+```
+
+The `-dev` binary record is used to call the binary from the local filesystem, after it's been linked with `yarn link` command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the `example-package-dev` command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the development process. The `files` property will also include the pointer to the `src/bin/index.js` otherwise NPM would throw an error when trying to install out package.
+
+### bin/example-package.js
+
+This is the actual binary logic, that will be executed. Commands can be separated by placing them into the `commands` directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with Closure Compiler.
+
+```js
+import { _help, _init, _output, _version, _input, argsConfig } from './get-args'
+import { reduceUsage } from 'argufy'
+import usually from 'usually'
+
+if (_help) {
+  const usage = usually({
+    description: 'An example package created with MNP.',
+    example: 'example-package example.txt -o out.txt',
+    line: 'example-package input [-o output] [-ihv]',
+    usage: reduceUsage(argsConfig),
+  })
+  console.log(usage)
+  process.exit(0)
+} else if (_version) {
+  console.log(require('../../package.json').version)
+  process.exit(0)
+}
+```
+
+### get-args.js
+
+The arguments are generated using `argufy` package that has been specifically developed to be compatible with Closure Compiler. All flags that are passed to binary via the `process.argv` property, will be parsed an made available for export from this file. They are exported with `_` (underscore) to avoid errors when passing variables around. The arguments are generated from the `types/arguments.xml` file that describes possible flags and their types:
+
+```xml
+<arguments>
+  <arg command name="input">
+    The path to the input file.
+  </arg>
+  <arg name="output" short="o" default="-">
+    Where to save the output. By default prints to stdout.
+  </arg>
+  <arg boolean name="init" short="i">
+    Initialise in the current folder.
+  </arg>
+  <arg boolean name="help" short="h">
+    Print the help information and exit.
+  </arg>
+  <arg boolean name="version" short="v">
+    Show the version's number and exit.
+  </arg>
+</arguments>
+```
+
+When a change is made to the file, the `yarn args` command need to be run to update the `get-args` file automatically via ``argufy``. Moreover, the `reduceUsage` command is imported from ``argufy`` package also to generate help information that can be passed to ``usually`` package to display usage info to users with `-h` option.
+
+Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in [Expensive](https://github.com/artdecocode/expensive/tree/master/types/args) and [Logarithm](https://github.com/artdecocode/logarithm/tree/master/types/args) packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.
+
+<section-break />
