@@ -38,6 +38,20 @@ Created a new package: @artdeco/example-package.
 
 MNP will also run the package manager init script (such as `yarn` or `npm i`) in the new project folder. If VSCode was installed on the system, with `code` binary [exported to shell](https://code.visualstudio.com/docs/setup/mac), it will be automatically opened. A new tag `v0.0.0-pre` will be added to the git tree at this point.
 
-So in less than a minute, we're ready to write code, document and test it. Let's discuss some questions asked by MNP.
+### Google Closure Compiler Java
+
+The `warning " > depack@1.0.1" has unmet peer dependency "google-closure-compiler-java@*".` warning is shown because _Depack_ relies on Closure Compiler which should be installed as a package in the home dir, rather than for each package individually. Unfortunately, neither `yarn` nor `npm` lookup for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (`/Users/user/org/package`, `/Users/user/org`, `/Users/user`, `/Users` and `/`) to find any dependencies there. To skip installing a compiler into each new package, we simply install it in `~`:
+
+```bash
+cd ~
+yarn init # simple init
+yarn add google-closure-compiler-java
+```
+
+The compiler is recommended as it's one of the coolest features of the _NodeTools_ stack.
+
+<hr />
+
+So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by MNP further.
 
 <section-break />

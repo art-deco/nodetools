@@ -2,7 +2,7 @@
 
 Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the `src/binary` folder and contains a number of files:
 
-### index.js
+### bin/index.js
 
 This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename `imports` into `require` calls. It is also used when testing the package.
 
@@ -80,5 +80,7 @@ The arguments are generated using `argufy` package that has been specifically de
 When a change is made to the file, the `yarn args` command need to be run to update the `get-args` file automatically via ``argufy``. Moreover, the `reduceUsage` command is imported from ``argufy`` package also to generate help information that can be passed to ``usually`` package to display usage info to users with `-h` option.
 
 Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in [Expensive](https://github.com/artdecocode/expensive/tree/master/types/args) and [Logarithm](https://github.com/artdecocode/logarithm/tree/master/types/args) packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.
+
+When developing binary locally, it can be executed with the `yarn dev ...arguments` command. It will start a new Node process and run `src/bin/index` that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the `bin` folder using ÀLaMode by simply renaming imports and exports, or into the `compile` folder by executing Closure Compiler via _Depack_. By compiling a binary, the dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.
 
 <section-break />

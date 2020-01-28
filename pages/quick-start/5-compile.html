@@ -1,0 +1,200 @@
+##! Using Compiler
+
+One of the advantages for the stack is the ability to properly compile Node.JS packages with Closure Compiler. Initially, before such option was possible, we used to just transpile packages and put their source code into the `build` folder. This is still possible, however it is now recommended to either compile the full package, or compile its dependencies into stdlib and build the source code. In both cases, the number of dependencies can be reduced to 0 which makes packages more appealing to users.
+
+### Compilation
+
+By default, the compilation method is chosen. Packages that will participate in compilation need to be adapted to the Compiler to avoid warnings, and have externs. An extern is a file that contains information about types in a program, such as its config. Without an extern, the advanced compilation is not possible, since the compiler renames property names on objects, so that our API contract would be broken. This means that we're not only feeding JS files to the compiler, but also maintaining a coherent structure for such process, and it's the purpose of _NodeTools_ to provide tools for that.
+
+Moreover, the compiler removes JSDoc comments by default, but we want to annotate our API so that it's 100% usable for developers who will consume our package. Therefore, there are 2 types of types:
+
+<ul>
+  - API types that describe methods in the package, found in `types/api.xml`, and
+  - Record/interfaces types that describe data structures, found in `types/index.xml` file.
+</ul>
+
+The API contract is used to describe methods in the package using XML:
+
+```xml
+<types namespace="_examplePackage">
+  <method name="examplePackage" async return="string">
+    <arg type="!_examplePackage.Config" name="config">The config.</arg>
+    An example package created with MNP.
+  </method>
+</types>
+```
+
+Using this data from the XML, we will then enrich our template (`compile/template.js`) file that is then used to generate the entry point to the package (`compile/index.js`) using the `yarn template` command.
+
+```js
+const { _examplePackage } = require('./example-package')
+
+/**
+ * @methodType {_examplePackage.examplePackage}
+ */
+function examplePackage(config) {
+  return _examplePackage(config)
+}
+
+module.exports = examplePackage
+
+/* typal types/index.xml namespace */
+
+```
+
+The template imports the `_examplePackage` named export from the `./example-package` which is the actual compiled source code that includes all dependencies. In our example, it's quite simple:
+
+```js
+'use strict';
+const c={black:30,red:31,green:32,yellow:33,blue:34,magenta:35,cyan:36,white:37,grey:90};module.exports={_examplePackage:async function(a={}){const {shouldRun:d=!0,text:b=""}=a;if(!d)return"";a=(a=c.yellow)?`\x1b[${a}m${b}\x1b[0m`:b;console.log("@artdeco/example-package called with %s",a);return b}};
+
+//# sourceMappingURL=example-package.js.map
+```
+
+The entry point that we passed to the compiler was `src/depack`.
+
+```js
+import '../types/externs'
+import examplePackage from './'
+
+module.exports = {
+  '_examplePackage': examplePackage,
+}
+```
+
+As you can see, we imported our externs from types and the API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed to properties like `.a`, `.b`, _etc_. The `src/depack.js` file is used by the compiler only to create the `compile/example-package.js` source code that is required by `compile/index.js` that serves as the entry point to the package. Our template then wraps the imported function with its own function, and annotates it with `@methodType {_examplePackage.examplePackage}`. When we call `yarn template`, _Typal_ will find our method type from types, and place correct JSDoc into the final JS.
+
+```js
+const { _examplePackage } = require('./example-package')
+
+/**
+ * An example package created with MNP.
+ * @param {!_examplePackage.Config} config Options for the program.
+ * @param {boolean} [config.shouldRun=true] A boolean option. Default `true`.
+ * @param {string} [config.text] A text to return.
+ * @return {Promise<string>}
+ */
+function examplePackage(config) {
+  return _examplePackage(config)
+}
+
+module.exports = examplePackage
+
+/* typal types/index.xml namespace */
+/**
+ * @typedef {_examplePackage.Config} Config `＠record` Options for the program.
+ * @typedef {Object} _examplePackage.Config `＠record` Options for the program.
+ * @prop {boolean} [shouldRun=true] A boolean option. Default `true`.
+ * @prop {string} [text] A text to return.
+ */
+
+```
+
+The config type is also added in the entry point so that it's accessible to the _VSCode_ engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then enriched with JSDoc during templating by _Typal_. This allows to move away from _TypeScript_ into pure JSDoc, and maintain types from XML files instead of having to updated them in different places.
+
+This method of the API is also placed in the `types/index.js` which is used for development purposes only.
+
+```js
+export {}
+
+/* typal types/api.xml namespace */
+/**
+ * @typedef {_examplePackage.examplePackage} examplePackage An example package created with MNP.
+ * @typedef {(config: !_examplePackage.Config) => string} _examplePackage.examplePackage An example package created with MNP.
+ */
+
+/**
+ * @typedef {import('..').Config} _examplePackage.Config
+ */
+```
+
+In there, we call `export {}` so that _VSCode_ is able to export types from it. We then use the `typal` marker so that the typedef for the method can be generated. Finally, we manually import the config from the package. What is the purpose of this method type? It is so that we can use it in our source code for development purposes:
+
+```js
+import { c } from 'erte'
+
+/**
+ * @type {_examplePackage.examplePackage}
+ */
+export default async function examplePackage(config = {}) {
+  const {
+    shouldRun = true,
+    text = '',
+  } = config
+  if (!shouldRun) return ''
+  console.log('@artdeco/example-package called with %s', c(text, 'yellow'))
+  return text
+}
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').examplePackage} _examplePackage.examplePackage
+ */
+
+```
+
+See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing it, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to generate types which are then used in templates, as well as during the compilation to check types. The `@suppress` comment is needed as Closure Compiler does not understand the `import` directive in typedefs.
+
+The types are placed in `externs` that were imported by Depack.
+
+```js
+/**
+ * @fileoverview
+ * @externs
+ */
+
+/* typal types/index.xml externs */
+/** @const */
+var _examplePackage = {}
+/**
+ * Options for the program.
+ * @record
+ */
+_examplePackage.Config
+/**
+ * A boolean option. Default `true`.
+ * @type {boolean|undefined}
+ */
+_examplePackage.Config.prototype.shouldRun
+/**
+ * A text to return.
+ * @type {string|undefined}
+ */
+_examplePackage.Config.prototype.text
+
+/* typal types/api.xml externs */
+/**
+ * An example package created with MNP.
+ * @typedef {function(!_examplePackage.Config): !Promise<string>}
+ */
+_examplePackage.examplePackage
+
+```
+
+The types for externs have to be in a different format to standard _VSCode_ JSDoc, because Closure has got its own parser. _Typal_ accounts for that and generates externs in the suitable format. The `@fileoverview`/`@externs` comments at the top are needed so that the externs file can be simply imported from the source code. Otherwise, it would have to be passed on to depack via the `--externs types/externs.js` command, but it's more intuitive to just import them. On top of that, the `exters` file is also published and a record in ``package.json`` points to its location:
+
+```json
+{
+  "files": [
+    "types/externs.js"
+  ],
+  "externs": "types/externs.js"
+}
+```
+
+The `externs` field is looked up by _Depack_ when we incorporate packages in other packages. For example, when our `example-package` is actually consumed by another software, its types need to be preserved for the compiler, therefore we also publish our externs to facilitate integration into other packages. This is the essence of the compilation process. You can read more documentation on the <npm-badge package="depack">Depack</npm-badge> page and its [wiki](https://github.com/dpck/depack/wiki) that also outlines whether you can use modules compiled with _Babel_ and _CommonJS_ modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow the NodeTools conventions, such as providing externs and proper Closure Compiler annotations.
+
+Finally, if it's required to preserve `require` statement, it's possible to add a simple comment before the package name. If a named export is being required, its name should be put in quotes to prevent the renaming of the property like so:
+
+```js
+const { 'a': a } = require(/* dpck */'package')
+console.log(a({ 'configItem': 'test' }))
+```
+
+Adding the comment in `require` will exclude file from being added to Closure's compilation stack, and `require` will be treated as dynamic call, i.e. the dependency will be linked dynamically rather than statically. This is useful when dependencies have not been adapted for use with Closure, however in that case, when passing config properties, they also need to be quoted, otherwise the compiler will rename them.
+
+Overall, just remember that advanced compilation renames property names, therefore we need externs. This is also true for external data such as received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.
+
+Above, we talked about compiling libraries so that they can be required by other packages. The script is called `lib` and can be run using `yarn lib`. To compile a binary, we call `yarn bin` that will generate an executable JS file, add shebang to it, and set executable permissions on it.
+
+<section-break />

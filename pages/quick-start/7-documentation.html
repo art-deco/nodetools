@@ -1,0 +1,136 @@
+##! Automation of Documentation
+
+The core value of _NodeTools_ is automation, especially when it comes to documentation. To be able to embed output of programs together with their source code automatically, without having to copy-paste them by hand, was the initial requirement for the documentation engine called _Documentary_. When types and JSX transpilation were added, it became possible to construct markdown tables for types and use custom JSX components also. The documentation engine is started with the `-d` flag that produces a verbose logging output, otherwise it's not visible what _Documentary_ is doing.
+
+Documentation is placed in the `documentary` folder, where sections are split by files and folders. They are then compiled into the `README.md` file that gets published to _GitHub_ and NPM. There are 2 special cases for files in each folder: `index.md` and `footer.md` which will be compiled first and last in that folder. Other files are read using alpha-numerical order, e.g., `1-example.md`, `2-test.md` and so on. There are certain markers and components that can be used to invoke documentation features, including:
+
+<ul>
+  - ``%NPM example-package%``: the NPM badge
+  - ``%TOC%``: the table of contents
+  - ``%EXAMPLE: example, ../src => @artdeco/example-package%``: the examples, with renaming of source imports
+  - ``%FORK example%``: the output of programs
+  - ``<typedef method="examplePackage">types/api.xml</typedef>``: to generate API method headings
+  - ``<typedef>types/index.xml</typedef>``: to generate types' information (configs, interfaces)
+</ul>
+
+When forking programs, _Documentary_ automatically invokes the ÀLaMode transpiler so that the source code can be forked natively. In addition, cache will be maintained in the `.documentary/cache` folder for forks, so that if a script and its dependency tree didn't get modified, the output is taken from cache to save valuable time. Fork marker can also be changed to a fork component (``<fork>``) that provides a way to pass environment variables. Additional information is available from the [Wiki page](https://github.com/artdecocode/documentary/wiki/Forks).
+
+The power of examples lies in the ability to execute them from documentation, which provides an additional quality assurance mechanics. This means that we don't even have to write tests for simplest use-cases, as when the README is compiled, we'll be able to visually see if the program is working. It's great for making sure that functionality that we advertise actually works. Any time a change to the package is made, it will be reflected in the examples' output so that we know we didn't accidentally break the advertised API contract with new code. Although such regression testing cannot 100% substitute proper unit and integration tests with edge cases, it can help us make sure that the program remains correct through versions.
+
+### JSX Components
+
+Another cool feature is the ability to write our own components that could be invoked in documentation. The template used already has one component in the `.documentary/index.jsx` file, that will construct a footer.
+
+```jsx
+/**
+ * The footer for documentation.
+ */
+export const footer = () => {
+  const alt = 'idiocc'
+  const src = 'https://avatars1.githubusercontent.com/u/40834161?v=4&s=100'
+  const href = 'https://www.artd.eco'
+  const org = 'Art Deco™'
+  const year = new Date().getFullYear()
+  return [
+    (<table>
+      <tr>
+        <td>
+          <img src={src} alt={alt} />
+        </td>
+        <td>
+          © <a href={href}>{org}</a> {year}
+        </td>
+      </tr>
+    </table>),
+  ]
+}
+```
+
+The avatar src and org names should automatically be updated with values that were specified in the MNP settings. This simple component will print a table with the picture of the organisation, its name, and year. This example can be used to create own components. Some more advanced examples include _Splendid_ (static website compiler) component that is used to print how compiled HTML code looks like, by importing the function that generates HTML from the source code, and passing properties and children of the component to it. You can study it from [Splendid's repo](https://github.com/artdecocode/splendid/blob/master/.documentary/index.jsx).
+
+By writing components for our complex software, we can avoid having to run a development server and copying and pasting generated example HTML, which is neither scalable nor reliable since our examples might break. By automating the process of documentation with custom components, we not only save a lot of time, but provide a robust mechanism to keep examples up-to-date and make sure that what we discuss in examples actually works. Therefore when documenting code, you might want to take 5 minutes to write a component that will format the output to your liking, that will in the end save hours of your time.
+
+The components receive properties parsed from HTML when used in markdown/html files as strings, numbers or booleans. There's also the `documentary` property that can be accessed to disable pretty printing. _NodeTools_ uses Preact 8 for its hyperdom functionality, but the components are rendered statically therefore they don't have state. Any component can return strings, JSX nodes or an array of the above (like fragments, but because Preact 8 doesn't support `<>` fragments syntax, you can simply return an array). The following functions are [available](https://github.com/artdecocode/documentary/blob/master/src/lib/components.js) on the `documentary` property:
+
+```jsx
+export const mycomponent = ({ documentary }) => {
+  // disable pretty printing (including new line breaks)
+  documentary.pretty(false)
+  // render inner html that might include new components
+  // 1st argument: doRender, is whether to render children
+  // 2nd argument: recursion, is whether components with the
+  //               same name will render again
+  documentary.renderAgain(true, false)
+  // prints error message with component name
+  documentary.error('message')
+  // if the component doesn't print anything,
+  // this method will return null and remove
+  // the line from the output
+  return documentary.removeLine(false)
+}
+```
+
+### Typedefs
+
+The types are embedded with the `typedef` component. A special case is when `typedef` is called with `method` property, which will print a heading with the description of an API method from types, for example:
+
+```html
+<typedef method="examplePackage" [noArgTypesInToc]>
+  types/api.xml
+</typedef>
+```
+
+will produce a heading and description of the method, and include it in the table of contents (when the `noArgTypesInToc` attribute is set, argument types won't appear in the TOC to make it more readable). The generated HTML will look like the following:
+
+```html
+## <code>async <ins>examplePackage</ins>(</code><sub><br/>&nbsp;&nbsp;`config: !Config,`<br/></sub><code>): <i>string</i></code>
+An example package created with MNP.
+
+ - <kbd><strong>config*</strong></kbd> <em><code><a href="#type-config" title="Options for the program.">!Config</a></code></em>: The config.
+
+```
+
+Such headings can be customised, as discussed in [Wiki](https://github.com/artdecocode/documentary/wiki/Method-Titles). The [default implementation](https://github.com/artdecocode/documentary/blob/master/src/components/method.jsx) can be referred to also. When implementing custom methods' headings, the new component will replace the default one.
+
+To embed types for configs and interfaces, the standard typedef is used:
+
+```html
+<typedef [narrow] [name="TypeName"]>types/index.xml</typedef>
+```
+
+By default, a markdown table is generated which is suitable for simple configs. When dealing with more complex types, that might include tripple-backticked source code, the `narrow` property must be set which will generate a proper HTML table. A type name can be given to only embed a single type instead of all types in the XML file.
+
+### Namespaces
+
+The types are written using namespaces, and the convention is to start the namespace with `_` underscore. Namespaces allow to eliminate conflicts between types in packages. The `doc` script is set to the following: ``doc -o README.md -n _examplePackage -a -d``. The root namespace is thus set to `_examplePackage` so that this namespace will not be shown in the documentation, but if the namespace is different, it will be printed.
+
+Namespaces are not compulsory and might be a new feature that you've not made use of before, however they help in the process greatly. For very simple packages, the namespace can be removed, but that would require to remove the `-u` flag from `typal` jobs, as well as removing the ``namespace`` arg from markers like `/* typal types/index.xml namespace */` in typedefs.
+
+### Annotations
+
+When generating documentation and Wikis, all types that were referenced in the documentation will be accumulated and written in `typedefs.json` file that is published with the package.
+
+```js
+{
+  "_examplePackage.examplePackage": {
+    "link": "https://github.com/idiocc/example-package#async-examplepackageconfig-config-string",
+    "description": "An example package created with MNP."
+  },
+  "_examplePackage.Config": {
+    "link": "https://github.com/idiocc/example-package#type-config",
+    "description": "Options for the program."
+  }
+}
+```
+
+Information from `typedefs.json` file can be used when generating documentation of other packages, but they need to be embedded with `<include-typedefs>example-package</include-typedefs>` component. Documentary will then resolve the `typedefs` field from the ``package.json`` of the referenced package (`"typedefs": "typedefs.json"`) and read the typedefs file. It will store the link and description of the type, and use this fields for links to external pages, and `title` attributes for such links that show up on hover.
+
+### Wikis
+
+If you answered `yes` to the question of whether to generate Wiki pages or not and then created a new Home Page for the new package, you'll be able to compile Wiki pages into the `wiki.git` folder which is automatically installed as git submodule. To add a submodule is the most convenient way to maintain wiki pages in the same project. Your pages from the `wiki` dir will be compiled into the `wiki.git` folder, and you need to push them separately from the main repo.
+
+### Watch Mode
+
+The push process both for wikis and and README can be automated with `-p [commit message]` command that will observe changes to the source documentation files, update them and the output in the git tree, and force push over the same commit with the same message that was specified under the `-p` tag.
+
+<section-break />

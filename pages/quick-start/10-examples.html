@@ -1,0 +1,9 @@
+##! Examples
+
+There are a number of packages that were created using NodeTools stack. For references to actual packages you can explore the following:
+
+- [Idio web server](https://github.com/idiocc/idio), the most advanced usage of NodeTools that generates and references lots of types across `_idio` and `_goa` namespace. Check out its template, and scripts used to generate typedefs. Have a look at all other middleware in the [same namespace](https://github.com/idiocc) that is compiled for individual standalone use, but is also adapted to be compiled into _Idio_ itself.
+- [Goa Router](https://github.com/idiocc/goa-router), a router which is defined using an interface in types, and uses a `@constructor {_goa.Router}` template to generate a proxy to the actual class compiled with Closure.
+- [Temp Context](https://github.com/wrote/temp-context#readme), a context used for testing IO operations using a temporary folder created in `tests/temp` for each test case.
+
+<section-break />

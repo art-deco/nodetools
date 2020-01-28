@@ -35,7 +35,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
     <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
     <style>
       .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
-      h1,h3,h2{text-decoration:underline}
+      h1,h3,h2{text-decoration:underline}.tm,.tm2{hyphens:none;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none}
       .List {
                           font-size:small;
                         }
@@ -133,7 +133,24 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                 <div class="a">
                   
                                   <h3 id="-on-this-page"> On This Page</h3>
-                                  <ul><li data-heading="quick-start"><a href="#quick-start">Quick Start</a></li><li data-heading="install-mnp"><a href="#install-mnp">Install MNP</a></li><li data-heading="configure-org"><a href="#configure-org">Configure Org</a></li><li data-heading="spawn-package"><a href="#spawn-package">Spawn Package</a></li><li data-heading="binary"><a href="#binary">Binary</a></li><li data-heading="comments"><a href="#comments">Comments</a></li></ul>
+                                  <ul>
+                                    <li data-heading="quick-start"><a href="#quick-start">Quick Start</a></li>
+                                    <li data-heading="install-mnp"><a href="#install-mnp">Install MNP</a></li>
+                                    <li data-heading="configure-org"><a href="#configure-org">Configure Org</a></li>
+                                    <li data-heading="spawn-package"><a href="#spawn-package">Spawn Package</a></li>
+                                    <li data-heading="binary"><a href="#binary">Binary</a></li>
+                                    <li data-heading="using-compiler"><a href="#using-compiler">Using Compiler</a></li>
+                                    <li data-heading="building-transpilation">
+                                      <a href="#building-transpilation">Building (Transpilation)</a>
+                                    </li>
+                                    <li data-heading="stdlib"><a href="#stdlib">StdLib</a></li>
+                                    <li data-heading="automation-of-documentation">
+                                      <a href="#automation-of-documentation">Automation of Documentation</a>
+                                    </li>
+                                    <li data-heading="context-testing"><a href="#context-testing">Context Testing</a></li>
+                                    <li data-heading="-examples"><a href="#-examples"> Examples</a></li>
+                                    <li data-heading="comments"><a href="#comments">Comments</a></li>
+                                  </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="ce295"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
                                   
@@ -274,7 +291,19 @@ Created a new package: @artdeco/example-package.</code></pre>
             
             <p>MNP will also run the package manager init script (such as <span class="tm">yarn</span> or <span class="tm">npm i</span>) in the new project folder. If VSCode was installed on the system, with <span class="tm">code</span> binary <a href="https://code.visualstudio.com/docs/setup/mac">exported to shell</a>, it will be automatically opened. A new tag <span class="tm">v0.0.0-pre</span> will be added to the git tree at this point.</p>
             
-            <p>So in less than a minute, we're ready to write code, document and test it. Let's discuss some questions asked by MNP.</p>
+            <h3 id="google-closure-compiler-java">Google Closure Compiler Java</h3>
+            
+            <p>The <span class="tm">warning &quot; &gt; depack@1.0.1&quot; has unmet peer dependency &quot;google-closure-compiler-java@*&quot;.</span> warning is shown because <em>Depack</em> relies on Closure Compiler which should be installed as a package in the home dir, rather than for each package individually. Unfortunately, neither <span class="tm">yarn</span> nor <span class="tm">npm</span> lookup for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (<span class="tm">/Users/user/org/package</span>, <span class="tm">/Users/user/org</span>, <span class="tm">/Users/user</span>, <span class="tm">/Users</span> and <span class="tm">/</span>) to find any dependencies there. To skip installing a compiler into each new package, we simply install it in <span class="tm">~</span>:</p>
+            
+            <pre id="c414d"><code class="bash hljs">cd ~
+yarn init # simple init
+yarn add google-closure-compiler-java</code></pre>
+            
+            <p>The compiler is recommended as it's one of the coolest features of the <em>NodeTools</em> stack.</p>
+            
+            <hr />
+            
+            <p>So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by MNP further.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -289,7 +318,7 @@ Created a new package: @artdeco/example-package.</code></pre>
             
             <p>Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the <span class="tm">src/binary</span> folder and contains a number of files:</p>
             
-            <h3 id="-indexjs"> index.js</h3>
+            <h3 id="-binindexjs"> bin/index.js</h3>
             
             <p>This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename <span class="tm">imports</span> into <span class="tm">require</span> calls. It is also used when testing the package.</p>
             
@@ -360,11 +389,448 @@ if (_help) {
             
             <p>Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in <a href="https://github.com/artdecocode/expensive/tree/master/types/args">Expensive</a> and <a href="https://github.com/artdecocode/logarithm/tree/master/types/args">Logarithm</a> packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.</p>
             
+            <p>When developing binary locally, it can be executed with the <span class="tm">yarn dev ...arguments</span> command. It will start a new Node process and run <span class="tm">src/bin/index</span> that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the <span class="tm">bin</span> folder using ÀLaMode by simply renaming imports and exports, or into the <span class="tm">compile</span> folder by executing Closure Compiler via <em>Depack</em>. By compiling a binary, the dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.</p>
+            
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
                 <img alt="section break"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/4.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="using-compiler">
+            <h2 id="using-compiler">Using Compiler</h2>
+            
+            <p>One of the advantages for the stack is the ability to properly compile Node.JS packages with Closure Compiler. Initially, before such option was possible, we used to just transpile packages and put their source code into the <span class="tm">build</span> folder. This is still possible, however it is now recommended to either compile the full package, or compile its dependencies into stdlib and build the source code. In both cases, the number of dependencies can be reduced to 0 which makes packages more appealing to users.</p>
+            
+            <h3 id="compilation">Compilation</h3>
+            
+            <p>By default, the compilation method is chosen. Packages that will participate in compilation need to be adapted to the Compiler to avoid warnings, and have externs. An extern is a file that contains information about types in a program, such as its config. Without an extern, the advanced compilation is not possible, since the compiler renames property names on objects, so that our API contract would be broken. This means that we're not only feeding JS files to the compiler, but also maintaining a coherent structure for such process, and it's the purpose of <em>NodeTools</em> to provide tools for that.</p>
+            
+            <p>Moreover, the compiler removes JSDoc comments by default, but we want to annotate our API so that it's 100% usable for developers who will consume our package. Therefore, there are 2 types of types:</p>
+            
+            <ul>
+              <li>API types that describe methods in the package, found in <span class="tm">types/api.xml</span>, and</li>
+              <li>Record/interfaces types that describe data structures, found in <span class="tm">types/index.xml</span> file.</li>
+            </ul>
+            
+            <p>The API contract is used to describe methods in the package using XML:</p>
+            
+            <pre id="c16f71"><code class="xml hljs">&lt;types namespace="_examplePackage"&gt;
+  &lt;method name="examplePackage" async return="string"&gt;
+    &lt;arg type="!_examplePackage.Config" name="config"&gt;The config.&lt;/arg&gt;
+    An example package created with MNP.
+  &lt;/method&gt;
+&lt;/types&gt;</code></pre>
+            
+            <p>Using this data from the XML, we will then enrich our template (<span class="tm">compile/template.js</span>) file that is then used to generate the entry point to the package (<span class="tm">compile/index.js</span>) using the <span class="tm">yarn template</span> command.</p>
+            
+            <pre id="ccdbf2"><code class="javascript hljs">const { _examplePackage } = require('./example-package')
+
+/**
+ * @methodType {_examplePackage.examplePackage}
+ */
+function examplePackage(config) {
+  return _examplePackage(config)
+}
+
+module.exports = examplePackage
+
+/* typal types/index.xml namespace */
+</code></pre>
+            
+            <p>The template imports the <span class="tm">_examplePackage</span> named export from the <span class="tm">./example-package</span> which is the actual compiled source code that includes all dependencies. In our example, it's quite simple:</p>
+            
+            <pre id="ccdbf3"><code class="javascript hljs">'use strict';
+const c={black:30,red:31,green:32,yellow:33,blue:34,magenta:35,cyan:36,white:37,grey:90};module.exports={_examplePackage:async function(a={}){const {shouldRun:d=!0,text:b=""}=a;if(!d)return"";a=(a=c.yellow)?`\x1b[${a}m${b}\x1b[0m`:b;console.log("@artdeco/example-package called with %s",a);return b}};
+
+//# sourceMappingURL=example-package.js.map</code></pre>
+            
+            <p>The entry point that we passed to the compiler was <span class="tm">src/depack</span>.</p>
+            
+            <pre id="ccdbf4"><code class="javascript hljs">import '../types/externs'
+import examplePackage from './'
+
+module.exports = {
+  '_examplePackage': examplePackage,
+}</code></pre>
+            
+            <p>As you can see, we imported our externs from types and the API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed to properties like <span class="tm">.a</span>, <span class="tm">.b</span>, <em>etc</em>. The <span class="tm">src/depack.js</span> file is used by the compiler only to create the <span class="tm">compile/example-package.js</span> source code that is required by <span class="tm">compile/index.js</span> that serves as the entry point to the package. Our template then wraps the imported function with its own function, and annotates it with <span class="tm">@methodType {_examplePackage.examplePackage}</span>. When we call <span class="tm">yarn template</span>, <em>Typal</em> will find our method type from types, and place correct JSDoc into the final JS.</p>
+            
+            <pre id="ccdbf5"><code class="javascript hljs">const { _examplePackage } = require('./example-package')
+
+/**
+ * An example package created with MNP.
+ * @param {!_examplePackage.Config} config Options for the program.
+ * @param {boolean} [config.shouldRun=true] A boolean option. Default `true`.
+ * @param {string} [config.text] A text to return.
+ * @return {Promise&lt;string&gt;}
+ */
+function examplePackage(config) {
+  return _examplePackage(config)
+}
+
+module.exports = examplePackage
+
+/* typal types/index.xml namespace */
+/**
+ * @typedef {_examplePackage.Config} Config `＠record` Options for the program.
+ * @typedef {Object} _examplePackage.Config `＠record` Options for the program.
+ * @prop {boolean} [shouldRun=true] A boolean option. Default `true`.
+ * @prop {string} [text] A text to return.
+ */
+</code></pre>
+            
+            <p>The config type is also added in the entry point so that it's accessible to the <em>VSCode</em> engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then enriched with JSDoc during templating by <em>Typal</em>. This allows to move away from <em>TypeScript</em> into pure JSDoc, and maintain types from XML files instead of having to updated them in different places.</p>
+            
+            <p>This method of the API is also placed in the <span class="tm">types/index.js</span> which is used for development purposes only.</p>
+            
+            <pre id="ccdbf6"><code class="javascript hljs">export {}
+
+/* typal types/api.xml namespace */
+/**
+ * @typedef {_examplePackage.examplePackage} examplePackage An example package created with MNP.
+ * @typedef {(config: !_examplePackage.Config) =&gt; string} _examplePackage.examplePackage An example package created with MNP.
+ */
+
+/**
+ * @typedef {import('..').Config} _examplePackage.Config
+ */</code></pre>
+            
+            <p>In there, we call <span class="tm">export {}</span> so that <em>VSCode</em> is able to export types from it. We then use the <span class="tm">typal</span> marker so that the typedef for the method can be generated. Finally, we manually import the config from the package. What is the purpose of this method type? It is so that we can use it in our source code for development purposes:</p>
+            
+            <pre id="ccdbf7"><code class="javascript hljs">import { c } from 'erte'
+
+/**
+ * @type {_examplePackage.examplePackage}
+ */
+export default async function examplePackage(config = {}) {
+  const {
+    shouldRun = true,
+    text = '',
+  } = config
+  if (!shouldRun) return ''
+  console.log('@artdeco/example-package called with %s', c(text, 'yellow'))
+  return text
+}
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').examplePackage} _examplePackage.examplePackage
+ */
+</code></pre>
+            
+            <p>See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing it, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to generate types which are then used in templates, as well as during the compilation to check types. The <span class="tm">@suppress</span> comment is needed as Closure Compiler does not understand the <span class="tm">import</span> directive in typedefs.</p>
+            
+            <p>The types are placed in <span class="tm">externs</span> that were imported by Depack.</p>
+            
+            <pre id="ccdbf8"><code class="javascript hljs">/**
+ * @fileoverview
+ * @externs
+ */
+
+/* typal types/index.xml externs */
+/** @const */
+var _examplePackage = {}
+/**
+ * Options for the program.
+ * @record
+ */
+_examplePackage.Config
+/**
+ * A boolean option. Default `true`.
+ * @type {boolean|undefined}
+ */
+_examplePackage.Config.prototype.shouldRun
+/**
+ * A text to return.
+ * @type {string|undefined}
+ */
+_examplePackage.Config.prototype.text
+
+/* typal types/api.xml externs */
+/**
+ * An example package created with MNP.
+ * @typedef {function(!_examplePackage.Config): !Promise&lt;string&gt;}
+ */
+_examplePackage.examplePackage
+</code></pre>
+            
+            <p>The types for externs have to be in a different format to standard <em>VSCode</em> JSDoc, because Closure has got its own parser. <em>Typal</em> accounts for that and generates externs in the suitable format. The <span class="tm">@fileoverview</span>/<span class="tm">@externs</span> comments at the top are needed so that the externs file can be simply imported from the source code. Otherwise, it would have to be passed on to depack via the <span class="tm">--externs types/externs.js</span> command, but it's more intuitive to just import them. On top of that, the <span class="tm">exters</span> file is also published and a record in <span class="tm2">package.json</span> points to its location:</p>
+            
+            <pre id="cb9de1"><code class="json hljs">{
+  "files": [
+    "types/externs.js"
+  ],
+  "externs": "types/externs.js"
+}</code></pre>
+            
+            <p>The <span class="tm">externs</span> field is looked up by <em>Depack</em> when we incorporate packages in other packages. For example, when our <span class="tm">example-package</span> is actually consumed by another software, its types need to be preserved for the compiler, therefore we also publish our externs to facilitate integration into other packages. This is the essence of the compilation process. You can read more documentation on the <a
+               title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
+               <span class="a"><em>Depack</em></span><span class="b">1.0.1</span></a> page and its <a href="https://github.com/dpck/depack/wiki">wiki</a> that also outlines whether you can use modules compiled with <em>Babel</em> and <em>CommonJS</em> modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow the NodeTools conventions, such as providing externs and proper Closure Compiler annotations.</p>
+            
+            <p>Finally, if it's required to preserve <span class="tm">require</span> statement, it's possible to add a simple comment before the package name. If a named export is being required, its name should be put in quotes to prevent the renaming of the property like so:</p>
+            
+            <pre id="ccdbf9"><code class="javascript hljs">const { 'a': a } = require(/* dpck */'package')
+console.log(a({ 'configItem': 'test' }))</code></pre>
+            
+            <p>Adding the comment in <span class="tm">require</span> will exclude file from being added to Closure's compilation stack, and <span class="tm">require</span> will be treated as dynamic call, i.e. the dependency will be linked dynamically rather than statically. This is useful when dependencies have not been adapted for use with Closure, however in that case, when passing config properties, they also need to be quoted, otherwise the compiler will rename them.</p>
+            
+            <p>Overall, just remember that advanced compilation renames property names, therefore we need externs. This is also true for external data such as received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.</p>
+            
+            <p>Above, we talked about compiling libraries so that they can be required by other packages. The script is called <span class="tm">lib</span> and can be run using <span class="tm">yarn lib</span>. To compile a binary, we call <span class="tm">yarn bin</span> that will generate an executable JS file, add shebang to it, and set executable permissions on it.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            <div data-section id="building-transpilation">
+            <h2 id="building-transpilation">Building (Transpilation)</h2>
+            
+            <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and module.export assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
+               title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
+               <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/6.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="stdlib">
+            <h2 id="stdlib">StdLib</h2>
+            
+            <p>As discussed above, we might not want to compile packages every time. Examples of larger projects that don't compile code are <a href="https://github.com/artdecocode/documentary">Documentary</a> and <a href="https://github.com/artdecocode/splendid">Splendid</a>. Because these pieces of software are finished products in themselves, and will not be used as libraries for incorporation into other packages, they can be built. But to avoid having lots of dependencies that come with them and just form a library for the software product, we can create an <span class="tm">stdlib</span> file that will require all dependencies, and compile them. Then, the source code will be updated to require methods from the <span class="tm">stdlib</span> instead of actual packages.</p>
+            
+            <pre id="ccdbf10"><code class="javascript hljs">// src/stdlib.js
+import { c } from 'erte'
+import argufy, { reduceUsage } from 'argufy'
+import usually from 'usually'
+import indicatrix from 'indicatrix'
+
+module.exports = {
+  'c': c,
+  'reduceUsage': reduceUsage,
+  'argufy': argufy,
+  'usually': usually,
+  'indicatrix': indicatrix,
+}</code></pre>
+            
+            <p>The package's standard library imports methods from dependencies, and exports them using <span class="tm">module.export</span> assignment. The names of named and default imports must be consistent across source files together with <span class="tm">stdlib.js</span> file. The <strong>stdlib</strong> job from <span class="tm2">package.json</span> is then used to put their source code together and produce a singe JS file:</p>
+            
+            <pre id="cb9de2"><code class="json hljs">{
+  "stdlib": "depack src/stdlib.js -o stdlib/index.js -a -c -p --source_map_include_content",
+  "b": "ALAMODE_ENV=build alamode src -o build -i stdlib.js -s"
+}</code></pre>
+            
+            <p>The arguments used for complation are <span class="tm">-a</span> for <em>advanced</em> mode, <span class="tm">-c</span> to indicated we're compiling a Node.JS package rather than producing a web-bundle, which Depack is also capable of doing, and <span class="tm">-p</span> means pretty code. Source map will also be generated and put in the same directory, so that when debugging, we'll see the source code (however we won't be able to hover over variable names as <em>VSCode</em> doesn't <a href="https://github.com/Microsoft/vscode/issues/12066">map symbols</a>). The build command sets the <span class="tm">ALAMODE_ENV</span> variable to <span class="tm">build</span> which is used by <span class="tm">.alamoderc.json</span> file during the build stage:</p>
+            
+            <pre id="cb9de3"><code class="json hljs">{
+  "env": {
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "argufy",
+            "indicatrix",
+            "usually",
+            "erte"
+          ]
+        }
+      }
+    }
+  }
+}</code></pre>
+            
+            <p>Such configuration tells the transpiler when running on <span class="tm">build</span> environment to apply the <span class="tm">stdlib</span> config, such as that the location of the <span class="tm">stdlib</span> is pointing to <span class="tm2">stdlib</span> dir, while 4 dependencies are being renamed. Each new dependency that is added to <span class="tm">stdlib</span> also needs to be specified in the <span class="tm">packages</span> field otherwise it won't be transpiled. When building the package with the <span class="tm2">yarn b</span> command (short for <span class="tm">build</span>), the transpiler will rename symbols to be able to require methods from <span class="tm">stdlib</span>.</p>
+            
+            <pre id="ccdbf11"><code class="javascript hljs">const { reduceUsage } = require('../../stdlib');
+const { usually } = require('../../stdlib');
+const { c } = require('../../stdlib');
+const { indicatrix } = require('../../../stdlib');</code></pre>
+            
+            <p>This strategy is convenient for merging all dependencies suitable for compilation into a single JS file, which is used in a piece of software. However, this is not recommended usage for libraries that can be compiled into other packages, as it does not allow to make sure that the library's own source won't produce any compiler warnings during the compilation.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='53' height='12'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/7.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            <div data-section id="automation-of-documentation">
+            <h2 id="automation-of-documentation">Automation of Documentation</h2>
+            
+            <p>The core value of <em>NodeTools</em> is automation, especially when it comes to documentation. To be able to embed output of programs together with their source code automatically, without having to copy-paste them by hand, was the initial requirement for the documentation engine called <em>Documentary</em>. When types and JSX transpilation were added, it became possible to construct markdown tables for types and use custom JSX components also. The documentation engine is started with the <span class="tm">-d</span> flag that produces a verbose logging output, otherwise it's not visible what <em>Documentary</em> is doing.</p>
+            
+            <p>Documentation is placed in the <span class="tm">documentary</span> folder, where sections are split by files and folders. They are then compiled into the <span class="tm">README.md</span> file that gets published to <em>GitHub</em> and NPM. There are 2 special cases for files in each folder: <span class="tm">index.md</span> and <span class="tm">footer.md</span> which will be compiled first and last in that folder. Other files are read using alpha-numerical order, e.g., <span class="tm">1-example.md</span>, <span class="tm">2-test.md</span> and so on. There are certain markers and components that can be used to invoke documentation features, including:</p>
+            
+            <ul>
+              <li><span class="tm2">%NPM example-package%</span>: the NPM badge</li>
+              <li><span class="tm2">%TOC%</span>: the table of contents</li>
+              <li><span class="tm2">%EXAMPLE: example, ../src =&gt; @artdeco/example-package%</span>: the examples, with renaming of source imports</li>
+              <li><span class="tm2">%FORK example%</span>: the output of programs</li>
+              <li><span class="tm2">&lt;typedef method=&quot;examplePackage&quot;&gt;types/api.xml&lt;/typedef&gt;</span>: to generate API method headings</li>
+              <li><span class="tm2">&lt;typedef&gt;types/index.xml&lt;/typedef&gt;</span>: to generate types' information (configs, interfaces)</li>
+            </ul>
+            
+            <p>When forking programs, <em>Documentary</em> automatically invokes the ÀLaMode transpiler so that the source code can be forked natively. In addition, cache will be maintained in the <span class="tm">.documentary/cache</span> folder for forks, so that if a script and its dependency tree didn't get modified, the output is taken from cache to save valuable time. Fork marker can also be changed to a fork component (<span class="tm2">&lt;fork&gt;</span>) that provides a way to pass environment variables. Additional information is available from the <a href="https://github.com/artdecocode/documentary/wiki/Forks">Wiki page</a>.</p>
+            
+            <p>The power of examples lies in the ability to execute them from documentation, which provides an additional quality assurance mechanics. This means that we don't even have to write tests for simplest use-cases, as when the README is compiled, we'll be able to visually see if the program is working. It's great for making sure that functionality that we advertise actually works. Any time a change to the package is made, it will be reflected in the examples' output so that we know we didn't accidentally break the advertised API contract with new code. Although such regression testing cannot 100% substitute proper unit and integration tests with edge cases, it can help us make sure that the program remains correct through versions.</p>
+            
+            <h3 id="jsx-components">JSX Components</h3>
+            
+            <p>Another cool feature is the ability to write our own components that could be invoked in documentation. The template used already has one component in the <span class="tm">.documentary/index.jsx</span> file, that will construct a footer.</p>
+            
+            <pre id="ccdbf12"><code class="javascript hljs">/**
+ * The footer for documentation.
+ */
+export const footer = () =&gt; {
+  const alt = 'idiocc'
+  const src = 'https://avatars1.githubusercontent.com/u/40834161?v=4&amp;s=100'
+  const href = 'https://www.artd.eco'
+  const org = 'Art Deco™'
+  const year = new Date().getFullYear()
+  return [
+    (&lt;table&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;img src={src} alt={alt} /&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+          © &lt;a href={href}&gt;{org}&lt;/a&gt; {year}
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;),
+  ]
+}</code></pre>
+            
+            <p>The avatar src and org names should automatically be updated with values that were specified in the MNP settings. This simple component will print a table with the picture of the organisation, its name, and year. This example can be used to create own components. Some more advanced examples include <em>Splendid</em> (static website compiler) component that is used to print how compiled HTML code looks like, by importing the function that generates HTML from the source code, and passing properties and children of the component to it. You can study it from <a href="https://github.com/artdecocode/splendid/blob/master/.documentary/index.jsx">Splendid's repo</a>.</p>
+            
+            <p>By writing components for our complex software, we can avoid having to run a development server and copying and pasting generated example HTML, which is neither scalable nor reliable since our examples might break. By automating the process of documentation with custom components, we not only save a lot of time, but provide a robust mechanism to keep examples up-to-date and make sure that what we discuss in examples actually works. Therefore when documenting code, you might want to take 5 minutes to write a component that will format the output to your liking, that will in the end save hours of your time.</p>
+            
+            <p>The components receive properties parsed from HTML when used in markdown/html files as strings, numbers or booleans. There's also the <span class="tm">documentary</span> property that can be accessed to disable pretty printing. <em>NodeTools</em> uses Preact 8 for its hyperdom functionality, but the components are rendered statically therefore they don't have state. Any component can return strings, JSX nodes or an array of the above (like fragments, but because Preact 8 doesn't support <span class="tm">&lt;&gt;</span> fragments syntax, you can simply return an array). The following functions are <a href="https://github.com/artdecocode/documentary/blob/master/src/lib/components.js">available</a> on the <span class="tm">documentary</span> property:</p>
+            
+            <pre id="ccdbf13"><code class="javascript hljs">export const mycomponent = ({ documentary }) =&gt; {
+  // disable pretty printing (including new line breaks)
+  documentary.pretty(false)
+  // render inner html that might include new components
+  // 1st argument: doRender, is whether to render children
+  // 2nd argument: recursion, is whether components with the
+  //               same name will render again
+  documentary.renderAgain(true, false)
+  // prints error message with component name
+  documentary.error('message')
+  // if the component doesn't print anything,
+  // this method will return null and remove
+  // the line from the output
+  return documentary.removeLine(false)
+}</code></pre>
+            
+            <h3 id="typedefs">Typedefs</h3>
+            
+            <p>The types are embedded with the <span class="tm">typedef</span> component. A special case is when <span class="tm">typedef</span> is called with <span class="tm">method</span> property, which will print a heading with the description of an API method from types, for example:</p>
+            
+            <pre id="c16f72"><code class="xml hljs">&lt;typedef method="examplePackage" [noArgTypesInToc]&gt;
+  types/api.xml
+&lt;/typedef&gt;</code></pre>
+            
+            <p>will produce a heading and description of the method, and include it in the table of contents (when the <span class="tm">noArgTypesInToc</span> attribute is set, argument types won't appear in the TOC to make it more readable). The generated HTML will look like the following:</p>
+            
+            <pre id="c16f73"><code class="xml hljs">## &lt;code&gt;async &lt;ins&gt;examplePackage&lt;/ins&gt;(&lt;/code&gt;&lt;sub&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;`config: !Config,`&lt;br/&gt;&lt;/sub&gt;&lt;code&gt;): &lt;i&gt;string&lt;/i&gt;&lt;/code&gt;
+An example package created with MNP.
+
+ - &lt;kbd&gt;&lt;strong&gt;config*&lt;/strong&gt;&lt;/kbd&gt; &lt;em&gt;&lt;code&gt;&lt;a href="#type-config" title="Options for the program."&gt;!Config&lt;/a&gt;&lt;/code&gt;&lt;/em&gt;: The config.
+</code></pre>
+            
+            <p>Such headings can be customised, as discussed in <a href="https://github.com/artdecocode/documentary/wiki/Method-Titles">Wiki</a>. The <a href="https://github.com/artdecocode/documentary/blob/master/src/components/method.jsx">
+              default implementation</a> can be referred to also. When implementing custom methods' headings, the new component will replace the default one.</p>
+            
+            <p>To embed types for configs and interfaces, the standard typedef is used:</p>
+            
+            <pre id="c16f74"><code class="xml hljs">&lt;typedef [narrow] [name="TypeName"]&gt;types/index.xml&lt;/typedef&gt;</code></pre>
+            
+            <p>By default, a markdown table is generated which is suitable for simple configs. When dealing with more complex types, that might include tripple-backticked source code, the <span class="tm">narrow</span> property must be set which will generate a proper HTML table. A type name can be given to only embed a single type instead of all types in the XML file.</p>
+            
+            <h3 id="-namespaces"> Namespaces</h3>
+            
+            <p>The types are written using namespaces, and the convention is to start the namespace with <span class="tm">_</span> underscore. Namespaces allow to eliminate conflicts between types in packages. The <span class="tm">doc</span> script is set to the following: <span class="tm2">doc -o README.md -n _examplePackage -a -d</span>. The root namespace is thus set to <span class="tm">_examplePackage</span> so that this namespace will not be shown in the documentation, but if the namespace is different, it will be printed.</p>
+            
+            <p>Namespaces are not compulsory and might be a new feature that you've not made use of before, however they help in the process greatly. For very simple packages, the namespace can be removed, but that would require to remove the <span class="tm">-u</span> flag from <span class="tm">typal</span> jobs, as well as removing the <span class="tm2">namespace</span> arg from markers like <span class="tm">/* typal types/index.xml namespace */</span> in typedefs.</p>
+            
+            <h3 id="annotations">Annotations</h3>
+            
+            <p>When generating documentation and Wikis, all types that were referenced in the documentation will be accumulated and written in <span class="tm">typedefs.json</span> file that is published with the package.</p>
+            
+            <pre id="ccdbf14"><code class="javascript hljs">{
+  "_examplePackage.examplePackage": {
+    "link": "https://github.com/idiocc/example-package#async-examplepackageconfig-config-string",
+    "description": "An example package created with MNP."
+  },
+  "_examplePackage.Config": {
+    "link": "https://github.com/idiocc/example-package#type-config",
+    "description": "Options for the program."
+  }
+}</code></pre>
+            
+            <p>Information from <span class="tm">typedefs.json</span> file can be used when generating documentation of other packages, but they need to be embedded with <span class="tm">&lt;include-typedefs&gt;example-package&lt;/include-typedefs&gt;</span> component. Documentary will then resolve the <span class="tm">typedefs</span> field from the <span class="tm2">package.json</span> of the referenced package (<span class="tm">&quot;typedefs&quot;: &quot;typedefs.json&quot;</span>) and read the typedefs file. It will store the link and description of the type, and use this fields for links to external pages, and <span class="tm">title</span> attributes for such links that show up on hover.</p>
+            
+            <h3 id="wikis">Wikis</h3>
+            
+            <p>If you answered <span class="tm">yes</span> to the question of whether to generate Wiki pages or not and then created a new Home Page for the new package, you'll be able to compile Wiki pages into the <span class="tm">wiki.git</span> folder which is automatically installed as git submodule. To add a submodule is the most convenient way to maintain wiki pages in the same project. Your pages from the <span class="tm">wiki</span> dir will be compiled into the <span class="tm">wiki.git</span> folder, and you need to push them separately from the main repo.</p>
+            
+            <h3 id="watch-mode">Watch Mode</h3>
+            
+            <p>The push process both for wikis and and README can be automated with <span class="tm">-p [commit message]</span> command that will observe changes to the source documentation files, update them and the output in the git tree, and force push over the same commit with the same message that was specified under the <span class="tm">-p</span> tag.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='53' height='12'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/8.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            <div data-section id="context-testing">
+            <h2 id="context-testing">Context Testing</h2>
+            
+            
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='41' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/9.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            <div data-section id="-examples">
+            <h2 id="-examples"> Examples</h2>
+            
+            <p>There are a number of packages that were created using NodeTools stack. For references to actual packages you can explore the following:</p>
+            
+            <li><a href="https://github.com/idiocc/idio">Idio web server</a>, the most advanced usage of NodeTools that generates and references lots of types across <span class="tm">_idio</span> and <span class="tm">_goa</span> namespace. Check out its template, and scripts used to generate typedefs. Have a look at all other middleware in the <a href="https://github.com/idiocc">same namespace</a> that is compiled for individual standalone use, but is also adapted to be compiled into <em>Idio</em> itself.</li>
+            <li><a href="https://github.com/idiocc/goa-router">Goa Router</a>, a router which is defined using an interface in types, and uses a <span class="tm">@constructor {_goa.Router}</span> template to generate a proxy to the actual class compiled with Closure.</li>
+            <li><a href="https://github.com/wrote/temp-context#readme">Temp Context</a>, a context used for testing IO operations using a temporary folder created in <span class="tm">tests/temp</span> for each test case.</li>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='41' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/10.svg"></noscript></a>
             </p>
             </div>
             

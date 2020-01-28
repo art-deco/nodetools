@@ -23,6 +23,9 @@
 *::after {
   -webkit-box-sizing: border-box;
 }
+hr {
+  -webkit-box-sizing: content-box;
+}
 .row {
   display: -webkit-box;
   display: -moz-box;

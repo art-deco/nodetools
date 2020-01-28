@@ -1,0 +1,69 @@
+##! Building (Transpilation)
+
+Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and module.export assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use `__dirname` in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for `import .../ export ...` statements without building ASTs which is faster, but might be less reliable. Refer to <npm-badge package="alamode">ÀLaMode</npm-badge> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.
+
+<section-break />
+
+##! StdLib
+
+As discussed above, we might not want to compile packages every time. Examples of larger projects that don't compile code are [Documentary](https://github.com/artdecocode/documentary) and [Splendid](https://github.com/artdecocode/splendid). Because these pieces of software are finished products in themselves, and will not be used as libraries for incorporation into other packages, they can be built. But to avoid having lots of dependencies that come with them and just form a library for the software product, we can create an `stdlib` file that will require all dependencies, and compile them. Then, the source code will be updated to require methods from the `stdlib` instead of actual packages.
+
+```js
+// src/stdlib.js
+import { c } from 'erte'
+import argufy, { reduceUsage } from 'argufy'
+import usually from 'usually'
+import indicatrix from 'indicatrix'
+
+module.exports = {
+  'c': c,
+  'reduceUsage': reduceUsage,
+  'argufy': argufy,
+  'usually': usually,
+  'indicatrix': indicatrix,
+}
+```
+
+The package's standard library imports methods from dependencies, and exports them using `module.export` assignment. The names of named and default imports must be consistent across source files together with `stdlib.js` file. The *stdlib* job from ``package.json`` is then used to put their source code together and produce a singe JS file:
+
+```json
+{
+  "stdlib": "depack src/stdlib.js -o stdlib/index.js -a -c -p --source_map_include_content",
+  "b": "ALAMODE_ENV=build alamode src -o build -i stdlib.js -s"
+}
+```
+
+The arguments used for complation are `-a` for _advanced_ mode, `-c` to indicated we're compiling a Node.JS package rather than producing a web-bundle, which Depack is also capable of doing, and `-p` means pretty code. Source map will also be generated and put in the same directory, so that when debugging, we'll see the source code (however we won't be able to hover over variable names as _VSCode_ doesn't [map symbols](https://github.com/Microsoft/vscode/issues/12066)). The build command sets the `ALAMODE_ENV` variable to `build` which is used by `.alamoderc.json` file during the build stage:
+
+```json
+{
+  "env": {
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "argufy",
+            "indicatrix",
+            "usually",
+            "erte"
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+Such configuration tells the transpiler when running on `build` environment to apply the `stdlib` config, such as that the location of the `stdlib` is pointing to ``stdlib`` dir, while 4 dependencies are being renamed. Each new dependency that is added to `stdlib` also needs to be specified in the `packages` field otherwise it won't be transpiled. When building the package with the ``yarn b`` command (short for `build`), the transpiler will rename symbols to be able to require methods from `stdlib`.
+
+```js
+const { reduceUsage } = require('../../stdlib');
+const { usually } = require('../../stdlib');
+const { c } = require('../../stdlib');
+const { indicatrix } = require('../../../stdlib');
+```
+
+This strategy is convenient for merging all dependencies suitable for compilation into a single JS file, which is used in a piece of software. However, this is not recommended usage for libraries that can be compiled into other packages, as it does not allow to make sure that the library's own source won't produce any compiler warnings during the compilation.
+
+<section-break />
