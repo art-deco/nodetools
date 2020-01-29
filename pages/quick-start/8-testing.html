@@ -49,7 +49,7 @@ Tests can simply return a string value which will be recorded in a snapshot in t
 ```js
 import erte from '../../src'
 
-/** @type {Object.<string, (c: Context)>} */
+/** @type {TestSuite} */
 const T = {
   async 'returns a string in colour'({ string }) {
     const res = erte(string, 'yellow')
@@ -58,9 +58,21 @@ const T = {
 }
 
 export default T
+
+/**
+ * @typedef {import('../context').TestSuite}
+ */
 ```
 
-If exporting a default test suite, we need to create a variable first and annotate it with type information, and export it as default only after, because _VS Code_ will not be able to assign types to default exports.
+If exporting a default test suite, we need to create a variable first and annotate it with type information, and export it as default only after, because _VS Code_ will not be able to assign types to default exports. We import the _TestSuite_ type from the context, which already created a nested structure that would allow to annotate test suite objects:
+
+```js
+/** @typedef {Object<string, Test & TestSuite0>} TestSuite */
+/** @typedef {Object<string, Test>} TestSuite0 */
+/** @typedef {(c: Context)} Test */
+```
+
+If you're using multiple contexts, you'll need to create your own test suite signatures, but the main idea is that a test suite is of type `Object<string, (c: Context, [c2: Context2, [c3: Context3]])>`. This typedef can be defined in the context and then imported in test suites, or test suites files themselves.
 
 ### Mask Testing
 

@@ -88,8 +88,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <h3 id="pages">Pages</h3>
               <ul>
                 <li class><a data-file="index" href="/nodetools/">NodeTools</a></li>
-                <li class><a data-file="dropcss" href="/nodetools/tutorial-trapcss.html">Tutorial: TrapCSS</a></li>
                 <li class="Active"><a data-file="quick-start" href="/nodetools/quick-start.html">Quick Start</a></li>
+                <li class><a data-file="trapcss" href="/nodetools/tutorial-trapcss.html">Tutorial: TrapCSS</a></li>
                 <li class>
                   <a data-file="babel" href="/nodetools/babel-when-open-source-is-not-free-sofware.html">
                     Babel: When Open Source Is Not Free Sofware</a>
@@ -903,7 +903,7 @@ export default class Context {
             
             <pre id="ccdbf17"><code class="javascript hljs">import erte from '../../src'
 
-/** @type {Object.&lt;string, (c: Context)&gt;} */
+/** @type {TestSuite} */
 const T = {
   async 'returns a string in colour'({ string }) {
     const res = erte(string, 'yellow')
@@ -911,15 +911,25 @@ const T = {
   },
 }
 
-export default T</code></pre>
+export default T
+
+/**
+ * @typedef {import('../context').TestSuite}
+ */</code></pre>
             
-            <p>If exporting a default test suite, we need to create a variable first and annotate it with type information, and export it as default only after, because <em>VS Code</em> will not be able to assign types to default exports.</p>
+            <p>If exporting a default test suite, we need to create a variable first and annotate it with type information, and export it as default only after, because <em>VS Code</em> will not be able to assign types to default exports. We import the <em>TestSuite</em> type from the context, which already created a nested structure that would allow to annotate test suite objects:</p>
+            
+            <pre id="ccdbf18"><code class="javascript hljs">/** @typedef {Object&lt;string, Test &amp; TestSuite0&gt;} TestSuite */
+/** @typedef {Object&lt;string, Test&gt;} TestSuite0 */
+/** @typedef {(c: Context)} Test */</code></pre>
+            
+            <p>If you're using multiple contexts, you'll need to create your own test suite signatures, but the main idea is that a test suite is of type <span class="tm">Object&lt;string, (c: Context, [c2: Context2, [c3: Context3]])&gt;</span>. This typedef can be defined in the context and then imported in test suites, or test suites files themselves.</p>
             
             <h3 id="mask-testing">Mask Testing</h3>
             
             <p>A mask is a test case template that has fixed logic but whose test input and output data is read from a separate file called mask result file. Therefore, we can set up a test case once, but repeatedly run it for multiple inputs that are mapped against outputs, so that we only have to add new mappings in the result file, without having to repeat the JavaScript logic.</p>
             
-            <pre id="ccdbf18"><code class="javascript hljs">// test/mask/default.js
+            <pre id="ccdbf19"><code class="javascript hljs">// test/mask/default.js
 import makeTestSuite from '@zoroaster/mask'
 import Context from '../context'
 import examplePackage from '../../src'
@@ -1025,7 +1035,7 @@ Successfully registered DOMAIN! Charged amount: $9.06.
             
             <p>Of course, contexts can be used for fork-testing too. This is useful, for example, when a CLI program needs to interact with an external web service, so that we can mock an HTTP server that serves responses. The example below will start a server using a context, and pass the url as the first argument to the CLI.</p>
             
-            <pre id="ccdbf19"><code class="javascript hljs">// mask
+            <pre id="ccdbf20"><code class="javascript hljs">// mask
 import clearr from 'clearr'
 
 export default makeTestSuite('test/result/bin', {
@@ -1057,7 +1067,7 @@ export default makeTestSuite('test/result/bin', {
               href="https://github.com/artdecocode/typal/blob/f406f025b5025389e38e7ba2263e6e13d6acef7b/test/mask/bin.js#L5">
               The example</a> below will write data from the mask result into a file using the <span class="tm">write</span> method of a temp context, and pass it as the first argument to the CLI whose job it is then to process this file in-place (the CLI updates the passed file). The spec in <span class="tm">getResults</span> is used to create a snapshot of the updated file using the context. The snapshot is returned for assertion on the <span class="tm">/* expected */</span> property. In other words, we add some JS in the mask result, write it to a temp file, use CLI to update this temp file, then return the snapshot of the temp folder that includes the temp file, and compare it to the expected value. By specifying the context as param to functions, we receive full <em>JSDoc</em> support.</p>
             
-            <pre id="ccdbf20"><code class="javascript hljs">const TS = makeTestSuite('test/result/bin/default', {
+            <pre id="ccdbf21"><code class="javascript hljs">const TS = makeTestSuite('test/result/bin/default', {
   context: TempContext,
   fork: {
     module: Context.BIN,
@@ -1084,7 +1094,7 @@ export default makeTestSuite('test/result/bin', {
             
             <p>In case when a certain long-running process (e.g., a connection to the database) needs to be initialised once per test suite, it's possible to assign it as a persistent context, rather than a one-use context.</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">export const testSuite = {
+            <pre id="ccdbf22"><code class="javascript hljs">export const testSuite = {
   persistentContext: class {
     async _init() {
       // initialised once per test suite
@@ -1154,7 +1164,7 @@ export default makeTestSuite('test/result/bin', {
             
             <p>When we test forks, the renaming doesn't work since we're hard-coding the location of the executable fork file, rather than importing it. Therefore, we need to manually control this path, which is done in Context:</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">class Context {
+            <pre id="ccdbf23"><code class="javascript hljs">class Context {
   static get BIN() {
     return BIN
   }
@@ -1247,7 +1257,7 @@ if (process.env.ALAMODE_ENV == 'test-build') {
             
             <p><em>Context-testing</em> is used for perfect developer experience during quality assurance that allows to reuse testing infrastructure across files easily via destructuring in test cases. Developers now can quickly glance at available testing API methods and access their <em>JSDoc</em> via the context. Destructured methods are already bound to instances of a context so they don't loose their scope like they would under normal circumstances:</p>
             
-            <pre id="ccdbf23"><code class="javascript hljs">class Example {
+            <pre id="ccdbf24"><code class="javascript hljs">class Example {
   constructor() {
     this.hello = 'world'
   }
@@ -1273,7 +1283,7 @@ export const testSutie {
             
             <p>The introduction of the compiler into the Node.JS development methodology via <em>NodeTools</em> is the best feature of the stack that allows to statically link packages and reduce the number of dependencies to 0. However, that requires most consumed dependencies to be compiler-compatible, e.g., characterised by such features as the <strong>externs</strong> field in <span class="tm">package.json</span>. <strong>Externs</strong> is a file that describes types for Closure Compiler in specially formatted <em>JSDoc</em> to prevent property names renaming during advanced compilation. <em>Depack</em> has provided <a href="https://github.com/externs/nodejs">externs</a> for Node 8 built-in modules, such as <span class="tm">fs.readFileSync</span>, <span class="tm">stream.createReadable</span>, <em>etc</em> to enable type checking, however newer APIs might have been added to later versions (10, 12+). At the moment missing methods can be described manually in <span class="tm">types/externs.js</span> files: simply add the missing property or method on the namespace, like so:</p>
             
-            <pre id="ccdbf24"><code class="javascript hljs">/* typal types/index.xml externs */
+            <pre id="ccdbf25"><code class="javascript hljs">/* typal types/index.xml externs */
 // generated externs
 
 /**

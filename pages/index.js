@@ -15,20 +15,6 @@ export const index = {
 /**
  * @type {import('splendid').Page}
  */
-export const dropcss = {
-  title: 'Tutorial: TrapCSS',
-  seo: 'A use case of using NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
-  og: {
-    image: '/img/fav.png',
-  },
-  links: {
-    dropcss: 'https://github.com/leeoniya/dropcss',
-  },
-}
-
-/**
- * @type {import('splendid').Page}
- */
 export const quickStart = {
   title: 'Quick Start',
   file: 'quick-start',
@@ -39,6 +25,20 @@ export const quickStart = {
   links: {
     'node-externs': 'https://github.com/externs/nodejs',
     // dropcss: 'https://github.com/leeoniya/dropcss',
+  },
+}
+
+/**
+ * @type {import('splendid').Page}
+ */
+export const trapcss = {
+  title: 'Tutorial: TrapCSS',
+  seo: 'A use case of using NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
+  og: {
+    image: '/img/fav.png',
+  },
+  links: {
+    dropcss: 'https://github.com/leeoniya/dropcss',
   },
 }
 
