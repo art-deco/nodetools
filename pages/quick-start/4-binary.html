@@ -1,10 +1,12 @@
 ##! Binary
 
-Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the `src/binary` folder and contains a number of files:
+_MNP_ asked us if we want to create a binary. Binaries are great for _DevOps_ to write scripts in Node.JS. Any system that has Node installed will be able to run those binaries. Even if a library was created first without a binary, it can be added later manually (by bootstrapping a new package and copying `src/bin` dir and scripts in *package.json* from there. <small>We're working on the *patch* functionality of _MNP_ that would allow to do that automatically</small>).
+
+Packages created with binaries can be executed from the command line. The source code for executable logic is placed into the `src/bin` folder and contains a number of files:
 
 ### bin/index.js
 
-This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename `imports` into `require` calls. It is also used when testing the package.
+This is the entry file for the development purposes. It's not used when the package is published. It only calls the _ÀLaMode_ handler to transpile source files on the fly, allowing to rename `imports` into `require` calls. It is also used when testing the package.
 
 ```js
 #!/usr/bin/env node
@@ -12,7 +14,7 @@ require('alamode')()
 require('./mnp')
 ```
 
-Additionally, the `package.json` will contain a number of records in the `"bin"` property:
+Additionally, the *package.json* will contain a number of records in the `"bin"` property:
 
 ```json
 {
@@ -27,14 +29,15 @@ Additionally, the `package.json` will contain a number of records in the `"bin"`
 }
 ```
 
-The `-dev` binary record is used to call the binary from the local filesystem, after it's been linked with `yarn link` command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the `example-package-dev` command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the development process. The `files` property will also include the pointer to the `src/bin/index.js` otherwise NPM would throw an error when trying to install out package.
+These aliases can then be called from anywhere on the system, if the package was installed globally, or via ``yarn example-package`` in other local packages that installed the binary. The *example-package-dev* binary record is used to call the binary from the local filesystem after it's been linked with `yarn link` command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the `example-package-dev` command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the local development process while testing code on other packages. The `files` property will also include the pointer to the `src/bin/index.js` otherwise NPM would throw an error when trying to install our package.
 
 ### bin/example-package.js
 
-This is the actual binary logic, that will be executed. Commands can be separated by placing them into the `commands` directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with Closure Compiler.
+This is the actual binary logic that will be executed. Commands can be separated by placing them into the `commands` directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with _Closure Compiler_.
 
 ```js
-import { _help, _init, _output, _version, _input, argsConfig } from './get-args'
+import { _help, _init, _output, _version,
+  _input, argsConfig } from './get-args'
 import { reduceUsage } from 'argufy'
 import usually from 'usually'
 
@@ -55,7 +58,7 @@ if (_help) {
 
 ### get-args.js
 
-The arguments are generated using `argufy` package that has been specifically developed to be compatible with Closure Compiler. All flags that are passed to binary via the `process.argv` property, will be parsed an made available for export from this file. They are exported with `_` (underscore) to avoid errors when passing variables around. The arguments are generated from the `types/arguments.xml` file that describes possible flags and their types:
+The arguments are generated using the ``argufy`` package that has been specifically developed to be compatible with _Closure Compiler_. All flags that are passed to binary via the `process.argv` property will be parsed and made available for export from this file. They are exported with `_` (underscore) to avoid errors when passing variables around. The arguments are generated from the `types/arguments.xml` file that describes possible flags and their types:
 
 ```xml
 <arguments>
@@ -77,10 +80,10 @@ The arguments are generated using `argufy` package that has been specifically de
 </arguments>
 ```
 
-When a change is made to the file, the `yarn args` command need to be run to update the `get-args` file automatically via ``argufy``. Moreover, the `reduceUsage` command is imported from ``argufy`` package also to generate help information that can be passed to ``usually`` package to display usage info to users with `-h` option.
+When a change is made to the file, the `yarn args` command need to be run to update the *get-args* file automatically via ``argufy``. Moreover, the `reduceUsage` command is imported from ``argufy`` package also to generate help information that can be passed to ``usually`` package to display usage info to users with `-h` option.
 
-Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in [Expensive](https://github.com/artdecocode/expensive/tree/master/types/args) and [Logarithm](https://github.com/artdecocode/logarithm/tree/master/types/args) packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.
+Furthermore, it is possible to separate arguments by functionality by creating multiple *arguments.xml* files, like it's been done in [Expensive](https://github.com/artdecocode/expensive/tree/master/types/args) and [Logarithm](https://github.com/artdecocode/logarithm/tree/master/types/args) packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.
 
-When developing binary locally, it can be executed with the `yarn dev ...arguments` command. It will start a new Node process and run `src/bin/index` that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the `bin` folder using ÀLaMode by simply renaming imports and exports, or into the `compile` folder by executing Closure Compiler via _Depack_. By compiling a binary, the dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.
+When developing binary locally, it can be executed with the `yarn dev -arg value -arg2` command. It will start a new Node process and run *src/bin/index* that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the `build` folder using _ÀLaMode_ by simply renaming imports and exports, or into the `compile` folder by executing _Closure Compiler_ via _Depack_. By compiling a binary, its dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.
 
 <section-break />

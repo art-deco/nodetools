@@ -321,17 +321,19 @@ yarn add google-closure-compiler-java</code></pre>
             <div data-section id="binary">
             <h2 id="binary">Binary</h2>
             
-            <p>Some packages can be created with binaries, which means they can be executed from the command line. The source code for executable logic is placed into the <span class="tm">src/binary</span> folder and contains a number of files:</p>
+            <p><em>MNP</em> asked us if we want to create a binary. Binaries are great for <em>DevOps</em> to write scripts in Node.JS. Any system that has Node installed will be able to run those binaries. Even if a library was created first without a binary, it can be added later manually (by bootstrapping a new package and copying <span class="tm">src/bin</span> dir and scripts in <strong>package.json</strong> from there. <small>We're working on the <strong>patch</strong> functionality of <em>MNP</em> that would allow to do that automatically</small>).</p>
+            
+            <p>Packages created with binaries can be executed from the command line. The source code for executable logic is placed into the <span class="tm">src/bin</span> folder and contains a number of files:</p>
             
             <h3 id="-binindexjs"> bin/index.js</h3>
             
-            <p>This is the entry file for the development purposes. It's not used when the package is published. It only calls the ÀLaMode handler to transpile source files on the fly, allowing to rename <span class="tm">imports</span> into <span class="tm">require</span> calls. It is also used when testing the package.</p>
+            <p>This is the entry file for the development purposes. It's not used when the package is published. It only calls the <em>ÀLaMode</em> handler to transpile source files on the fly, allowing to rename <span class="tm">imports</span> into <span class="tm">require</span> calls. It is also used when testing the package.</p>
             
             <pre id="ccdbf"><code class="javascript hljs">#!/usr/bin/env node
 require('alamode')()
 require('./mnp')</code></pre>
             
-            <p>Additionally, the <span class="tm">package.json</span> will contain a number of records in the <span class="tm">&quot;bin&quot;</span> property:</p>
+            <p>Additionally, the <strong>package.json</strong> will contain a number of records in the <span class="tm">&quot;bin&quot;</span> property:</p>
             
             <pre id="cb9de"><code class="json hljs">{
   "bin": {
@@ -344,13 +346,14 @@ require('./mnp')</code></pre>
   ]
 }</code></pre>
             
-            <p>The <span class="tm">-dev</span> binary record is used to call the binary from the local filesystem, after it's been linked with <span class="tm">yarn link</span> command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the <span class="tm">example-package-dev</span> command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the development process. The <span class="tm">files</span> property will also include the pointer to the <span class="tm">src/bin/index.js</span> otherwise NPM would throw an error when trying to install out package.</p>
+            <p>These aliases can then be called from anywhere on the system, if the package was installed globally, or via <span class="tm2">yarn example-package</span> in other local packages that installed the binary. The <strong>example-package-dev</strong> binary record is used to call the binary from the local filesystem after it's been linked with <span class="tm">yarn link</span> command in the project folder. For example, you might want to go to another package folder, and execute binary from there using the <span class="tm">example-package-dev</span> command that will run the binary source code. This eliminates the need to build/compile the binary after each change, during the local development process while testing code on other packages. The <span class="tm">files</span> property will also include the pointer to the <span class="tm">src/bin/index.js</span> otherwise NPM would throw an error when trying to install our package.</p>
             
             <h3 id="binexample-packagejs">bin/example-package.js</h3>
             
-            <p>This is the actual binary logic, that will be executed. Commands can be separated by placing them into the <span class="tm">commands</span> directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with Closure Compiler.</p>
+            <p>This is the actual binary logic that will be executed. Commands can be separated by placing them into the <span class="tm">commands</span> directory, and then importing them from this file. We'll need to import args and the usage library that have been optimised for the use with <em>Closure Compiler</em>.</p>
             
-            <pre id="ccdbf1"><code class="javascript hljs">import { _help, _init, _output, _version, _input, argsConfig } from './get-args'
+            <pre id="ccdbf1"><code class="javascript hljs">import { _help, _init, _output, _version,
+  _input, argsConfig } from './get-args'
 import { reduceUsage } from 'argufy'
 import usually from 'usually'
 
@@ -370,7 +373,7 @@ if (_help) {
             
             <h3 id="get-argsjs">get-args.js</h3>
             
-            <p>The arguments are generated using <span class="tm">argufy</span> package that has been specifically developed to be compatible with Closure Compiler. All flags that are passed to binary via the <span class="tm">process.argv</span> property, will be parsed an made available for export from this file. They are exported with <span class="tm">_</span> (underscore) to avoid errors when passing variables around. The arguments are generated from the <span class="tm">types/arguments.xml</span> file that describes possible flags and their types:</p>
+            <p>The arguments are generated using the <span class="tm2">argufy</span> package that has been specifically developed to be compatible with <em>Closure Compiler</em>. All flags that are passed to binary via the <span class="tm">process.argv</span> property will be parsed and made available for export from this file. They are exported with <span class="tm">_</span> (underscore) to avoid errors when passing variables around. The arguments are generated from the <span class="tm">types/arguments.xml</span> file that describes possible flags and their types:</p>
             
             <pre id="c16f7"><code class="xml hljs">&lt;arguments&gt;
   &lt;arg command name="input"&gt;
@@ -390,11 +393,11 @@ if (_help) {
   &lt;/arg&gt;
 &lt;/arguments&gt;</code></pre>
             
-            <p>When a change is made to the file, the <span class="tm">yarn args</span> command need to be run to update the <span class="tm">get-args</span> file automatically via <span class="tm2">argufy</span>. Moreover, the <span class="tm">reduceUsage</span> command is imported from <span class="tm2">argufy</span> package also to generate help information that can be passed to <span class="tm2">usually</span> package to display usage info to users with <span class="tm">-h</span> option.</p>
+            <p>When a change is made to the file, the <span class="tm">yarn args</span> command need to be run to update the <strong>get-args</strong> file automatically via <span class="tm2">argufy</span>. Moreover, the <span class="tm">reduceUsage</span> command is imported from <span class="tm2">argufy</span> package also to generate help information that can be passed to <span class="tm2">usually</span> package to display usage info to users with <span class="tm">-h</span> option.</p>
             
-            <p>Furthermore, it is possible to separate arguments by functionality by creating multiple arguments.xml files, like it's been done in <a href="https://github.com/artdecocode/expensive/tree/master/types/args">Expensive</a> and <a href="https://github.com/artdecocode/logarithm/tree/master/types/args">Logarithm</a> packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.</p>
+            <p>Furthermore, it is possible to separate arguments by functionality by creating multiple <strong>arguments.xml</strong> files, like it's been done in <a href="https://github.com/artdecocode/expensive/tree/master/types/args">Expensive</a> and <a href="https://github.com/artdecocode/logarithm/tree/master/types/args">Logarithm</a> packages, however the template does not use this method. Refer to the source code of these 2 package to see how their arguments are implemented.</p>
             
-            <p>When developing binary locally, it can be executed with the <span class="tm">yarn dev ...arguments</span> command. It will start a new Node process and run <span class="tm">src/bin/index</span> that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the <span class="tm">bin</span> folder using ÀLaMode by simply renaming imports and exports, or into the <span class="tm">compile</span> folder by executing Closure Compiler via <em>Depack</em>. By compiling a binary, the dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.</p>
+            <p>When developing binary locally, it can be executed with the <span class="tm">yarn dev -arg value -arg2</span> command. It will start a new Node process and run <strong>src/bin/index</strong> that will transpile the source-code on-the-fly. When it comes to compilation, the source code will either be transpiled into the <span class="tm">build</span> folder using <em>ÀLaMode</em> by simply renaming imports and exports, or into the <span class="tm">compile</span> folder by executing <em>Closure Compiler</em> via <em>Depack</em>. By compiling a binary, its dependencies will all be merged into a single JS file, which will reduce the number of prod dependencies to 0. This is discussed next.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -407,13 +410,13 @@ if (_help) {
             <div data-section id="using-compiler">
             <h2 id="using-compiler">Using Compiler</h2>
             
-            <p>One of the advantages for the stack is the ability to properly compile Node.JS packages with Closure Compiler. Initially, before such option was possible, we used to just transpile packages and put their source code into the <span class="tm">build</span> folder. This is still possible, however it is now recommended to either compile the full package, or compile its dependencies into stdlib and build the source code. In both cases, the number of dependencies can be reduced to 0 which makes packages more appealing to users.</p>
+            <p>One of advantages for the stack is its ability to properly compile Node.JS packages with <em>Closure Compiler</em>. Initially, before such option was possible, we used to just transpile packages and put their source code into the <span class="tm">build</span> folder. This is still possible, however it is now recommended to either compile the full package, or compile its dependencies into <em>StdLib</em> and build the source code. In both cases, the number of dependencies can be reduced to 0 which makes packages more appealing to users. This section shows how to use the compiler.</p>
             
             <h3 id="compilation">Compilation</h3>
             
-            <p>By default, the compilation method is chosen. Packages that will participate in compilation need to be adapted to the Compiler to avoid warnings, and have externs. An extern is a file that contains information about types in a program, such as its config. Without an extern, the advanced compilation is not possible, since the compiler renames property names on objects, so that our API contract would be broken. This means that we're not only feeding JS files to the compiler, but also maintaining a coherent structure for such process, and it's the purpose of <em>NodeTools</em> to provide tools for that.</p>
+            <p>Next, <em>MNP</em> asked us if we wanted to build or compile packages. By default, the compilation method is chosen. Packages that will participate in compilation need to be adapted to the Compiler to avoid warnings, and have externs. An extern is a file that contains information about types in a program, such as its config. Without an extern, the advanced compilation is not possible, since the compiler renames property names on objects, so that our API contract would be broken. This means that we're not only feeding JS files to the compiler, but also maintaining a coherent structure for such process, and it's the purpose of <em>NodeTools</em> to provide tools for that.</p>
             
-            <p>Moreover, the compiler removes JSDoc comments by default, but we want to annotate our API so that it's 100% usable for developers who will consume our package. Therefore, there are 2 types of types:</p>
+            <p>Moreover, the compiler removes <em>JSDoc</em> comments by default, but we want to annotate our API so that it's 100% usable for developers who will consume our package. Therefore, there are 2 types of types:</p>
             
             <ul>
               <li>API types that describe methods in the package, found in <span class="tm">types/api.xml</span>, and</li>
@@ -461,7 +464,7 @@ module.exports = {
   '_examplePackage': examplePackage,
 }</code></pre>
             
-            <p>As you can see, we imported our externs from types and the API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed to properties like <strong>.a</strong>, <strong>.b</strong>, <em>etc</em>. The <span class="tm">src/depack.js</span> file is used by the compiler only to create the <span class="tm">compile/example-package.js</span> source code that is required by <span class="tm">compile/index.js</span> that serves as the entry point to the package. Our template then wraps the imported function with its own function, and annotates it with <span class="tm">@methodType {_examplePackage.examplePackage}</span>. When we call <span class="tm2">yarn template</span>, <em>Typal</em> will find our method type from types, and place the correct <em>JSDoc</em> into the final JS.</p>
+            <p>As you can see, we imported our externs from types and an API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed into properties like <span class="tm">.a</span>, <span class="tm">.b</span>, <em>etc</em>. The <strong>src/depack.js</strong> file is only used by the compiler to create the <strong>compile/example-package.js</strong> source code that is then required by <strong>compile/index.js</strong> &mdash; the entry point to the package (<span class="tm">{ &quot;main&quot;: &quot;compile/index.js&quot; }</span> in <strong>package.json</strong>). Our template then wraps the imported function with its own function, and annotates it with <span class="tm">@methodType {_examplePackage.examplePackage}</span>. When we call <span class="tm2">yarn template</span>, <em>Typal</em> will find our method type from types, and place the correct <em>JSDoc</em> into the final JS.</p>
             
             <pre id="ccdbf5"><code class="javascript hljs">const { _examplePackage } = require('./example-package')
 
@@ -487,7 +490,7 @@ module.exports = examplePackage
  */
 </code></pre>
             
-            <p>The config type is also added in the entry point so that it's accessible to the <em>VSCode</em> engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then enriched with JSDoc during templating by <em>Typal</em>. This allows to move away from <em>TypeScript</em> into pure <em>JSDoc</em>, and maintain types from XML files instead of having to updated them in different places.</p>
+            <p>The config type is also added in the entry point so that it's accessible to the <em>VSCode</em> engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then decordated with <em>JSDoc</em> during templating by <em>Typal</em>. This allows to move away from <em>TypeScript</em> to pure <em>JSDoc</em>, and maintain types from XML files instead of having to updated them in different places.</p>
             
             <p>This method of the API is also placed in the <span class="tm">types/index.js</span> which is used for development purposes only.</p>
             
@@ -503,9 +506,10 @@ module.exports = examplePackage
  * @typedef {import('..').Config} _examplePackage.Config
  */</code></pre>
             
-            <p>In there, we call <span class="tm">export {}</span> so that <em>VSCode</em> is able to export types from it. We then use the <span class="tm">typal</span> marker so that the typedef for the method can be generated. Finally, we manually import the config from the package. What is the purpose of this method type? It is so that we can use it in our source code for development purposes:</p>
+            <p>In there, we call <span class="tm">export {}</span> so that <em>VSCode</em> is able to export types from it. We then use the <span class="tm">typal</span> marker so that the typedef for the method can be generated. Finally, we manually import the config from the package's entry. What is the purpose of this method type? It is so that we can use it in our source code for development purposes:</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">import { c } from 'erte'
+            <pre id="ccdbf7"><code class="javascript hljs">// src/index.js
+import { c } from 'erte'
 
 /**
  * @type {_examplePackage.examplePackage}
@@ -526,17 +530,17 @@ export default async function examplePackage(config = {}) {
  */
 </code></pre>
             
-            <p>See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing it, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to:</p>
+            <p>See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing the actual function type, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to:</p>
             
             <ul>
               <li>Enrich functions from templates with automatic <span class="tm">@param</span> annotations;</li>
-              <li>for development to access auto-completions by importing typedefs;</li>
+              <li>for development to access auto-completions by importing methods' typedefs;</li>
               <li>during the compilation for type checking.</li>
             </ul>
             
             <p>The <strong>@suppress</strong> comment is needed as <em>Closure Compiler</em> does not understand the <span class="tm">import</span> directive in typedefs. Each new typedef import needs its own separate block with <strong>@suppress</strong> command.</p>
             
-            <p>The types are placed in <span class="tm">externs</span> that were imported by Depack.</p>
+            <p>The types are placed in <span class="tm">externs</span> that were imported by <strong>src/depack.js</strong>, so that the Compiler will see <span class="tm">@type {_examplePackage.examplePackage}</span> annotation in source, and will be able to match it against the type from extern. Types from <strong>types/index.js</strong> or <strong>compile/index.js</strong> are NOT used in compilation. They are written in a <em>JSDoc</em> format not understood by <em>Closure</em>, but recognised by <em>VSCode</em> (such as arrow functions notation that provide better experience).</p>
             
             <pre id="ccdbf8"><code class="javascript hljs">/**
  * @fileoverview
@@ -594,9 +598,9 @@ const a = example['a']
 // invoke
 console.log(a({ 'configItem': 'test' }))</code></pre>
             
-            <p>Adding the comment in <span class="tm">require</span> will exclude file from being added to Closure's compilation stack, and <span class="tm">require</span> will be treated as dynamic call, i.e. the dependency will be linked dynamically rather than statically. This is useful when dependencies have not been adapted for use with Closure, however in that case, when passing config properties, they also need to be quoted, otherwise the compiler will rename them.</p>
+            <p>Adding a comment in <span class="tm">require</span> will exclude required file from static analysis and from being added to Closure's compilation stack as <span class="tm">require()</span> will be treated as dynamic call, i.e. the dependency will be linked dynamically rather than statically. This is useful when dependencies have not been adapted for use with <em>Closure</em>, however in that case, when passing config properties, they also need to be quoted, otherwise the compiler will rename them.</p>
             
-            <p>Overall, just remember that advanced compilation changes property names, therefore we need externs. This is also true for external data such as received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.</p>
+            <p>Overall, just remember that advanced compilation changes property names, therefore we need externs. This is also true for external data such as JSON data received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.</p>
             
             <p>Above, we talked about compiling libraries so that they can be required by other packages. The script is called <strong>lib</strong> and can be run using <span class="tm">yarn lib</span>. To compile a binary, we call <span class="tm">yarn bin</span> that will generate an executable JS file, add a shebang to it, and set executable permissions on it.</p>
             
