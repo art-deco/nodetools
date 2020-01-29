@@ -1,15 +1,15 @@
 ##! Install MNP
 
-The best way to start using NodeTools, is via <npm-badge package="mnp">MNP</npm-badge> (My New Package) &mdash; a GitHub template-based package bootstrap that allows to generate new repositories from templates and fill them in with preset information. `mnp` has only 3 small dependency and can be installed globally:
+The best way to start using _NodeTools_, is via <npm-badge package="mnp">MNP</npm-badge> (My New Package) &mdash; a _GitHub_ template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. `mnp` has only 3 small dependencies and can be installed globally:
 
 ```sh
 yarn add global mnp
 npm i -g mnp
 ```
 
-After it's first been installed, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other project directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via the terminal (`cd ~`) and call `mnp --init`.
+After it's first been installed on the system, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other organisational directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via terminal (`cd ~`) and call `mnp --init`.
 
-But first, a personal [access token](https://github.com/settings/tokens) needs to be generated for GitHub that will allow to access GitHub API. The `delete_repo`, `repo` are needed to create new repositories and delete them from CLI.
+But first, a personal [access token](https://github.com/settings/tokens) needs to be generated for _GitHub_ that will allow to access _GitHub_ API. The `delete_repo` and `repo` permissions are needed to create new repositories and delete them from the CLI.
 
 ```bash
 GitHub access token: -new-access-token- # generated token
@@ -24,6 +24,6 @@ Legal name (for license): Art Deco Code Limited # full business name
 Package Manager (yarn/npm): [yarn] # which package manager
 ```
 
-These settings will be stored in the `~/.mnprc` file.
+These settings will be stored in the `~/.mnprc` file and read by _MNP_ upon each execution.
 
 <section-break />

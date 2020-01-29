@@ -176,8 +176,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             <div data-section id="quick-start">
             <h1 id="nodetools-quick-start">NodeTools Quick Start</h1>
             
-            <p><em>NodeTools</em> is a full Node.JS stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small and contains tools for essential operation. The packages that it installs provide an up-to-date development environment for local JavaScript development. It was developed by a <a href="https://www.artd.eco">
-              professional Node.JS development company in London</a> to meet the modern requirements for bespoke and agile Node.JS development process. This guide will show how to start using the stack. If you have any questions, please refer to the <a href="/nodetools/#getting-help">Getting Help</a> section. Be sure to subscribe to updates via web-push button on the left, or email newsletter to be notified of new features first.</p>
+            <p><em>NodeTools</em> is a full <em>Node.JS</em> stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small (10 new dirs in TOTAL) and contains tools for essential operation of a package house. Dependencies that it installs provide an up-to-date development environment for local JavaScript development. It was created by a <a href="https://www.artd.eco">
+              professional Node.JS development company in London</a> to meet modern requirements for bespoke and agile <em>Node.JS</em> development process. This guide will show how to start using the stack. If you have any questions, please refer to the <a href="/nodetools/#getting-help">Getting Help</a> section. Be sure to subscribe to updates via the web-push button on the left, or email newsletter to be notified of new features first.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -190,16 +190,16 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             <div data-section id="install-mnp">
             <h2 id="install-mnp">Install MNP</h2>
             
-            <p>The best way to start using NodeTools, is via <a
+            <p>The best way to start using <em>NodeTools</em>, is via <a
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
-               <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a GitHub template-based package bootstrap that allows to generate new repositories from templates and fill them in with preset information. <span class="tm">mnp</span> has only 3 small dependency and can be installed globally:</p>
+               <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
             
             <pre id="c724c1"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
             
-            <p>After it's first been installed, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other project directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via the terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
+            <p>After it's first been installed on the system, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other organisational directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
             
-            <p>But first, a personal <a href="https://github.com/settings/tokens">access token</a> needs to be generated for GitHub that will allow to access GitHub API. The <span class="tm">delete_repo</span>, <span class="tm">repo</span> are needed to create new repositories and delete them from CLI.</p>
+            <p>But first, a personal <a href="https://github.com/settings/tokens">access token</a> needs to be generated for <em>GitHub</em> that will allow to access <em>GitHub</em> API. The <span class="tm">delete_repo</span> and <span class="tm">repo</span> permissions are needed to create new repositories and delete them from the CLI.</p>
             
             <pre id="c414d"><code class="bash hljs">GitHub access token: -new-access-token- # generated token
 GitHub organisation: nodetools # either organisation or user login
@@ -212,7 +212,7 @@ Trademark (for readme): NodeTools # name in footer
 Legal name (for license): Art Deco Code Limited # full business name
 Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
             
-            <p>These settings will be stored in the <span class="tm">~/.mnprc</span> file.</p>
+            <p>These settings will be stored in the <span class="tm">~/.mnprc</span> file and read by <em>MNP</em> upon each execution.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
