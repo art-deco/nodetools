@@ -39,3 +39,9 @@ footer {
 #OnThisPage {
   padding-inline-start: 0;
 }
+h1, h3, h2 {
+  text-decoration: underline;
+}
+.tm, .tm2 {
+  hyphens: none;
+}

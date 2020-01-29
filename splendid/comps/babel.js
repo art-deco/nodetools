@@ -53,11 +53,11 @@ const meta = [{
 },
 {
   key: 'social-buttons',
-  id: 'cef93',
+  id: 'ccf5a',
   props: {
     url: 'https://art-deco.github.io/nodetools/babel-when-open-source-is-not-free-sofware.html',
     meta: true,
-    className: 'b-xq b-Hk',
+    className: 'mb-3 d-inline-block',
   },
 },
 {

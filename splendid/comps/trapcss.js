@@ -9,12 +9,14 @@ import { makeIo, init, start } from './__competent-lib'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
+import Highlightjs from 'splendid/build/components/highlightjs'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
+  'highlightjs': Highlightjs,
   'social-buttons': SocialButtons,
 }
 
@@ -46,11 +48,18 @@ const meta = [{
 },
 {
   key: 'social-buttons',
-  id: 'c5763',
+  id: 'caebf',
   props: {
     url: 'https://art-deco.github.io/nodetools/tutorial-trapcss.html',
     meta: true,
-    className: 'b-xq b-Hk',
+    className: 'mb-3 d-inline-block',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'c1d47',
+  props: {
+    lang: 'css',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

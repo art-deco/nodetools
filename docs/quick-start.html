@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js b-Op" lang="en">
+<html class="no-js h-100" lang="en">
   <head>
     <meta charset="utf-8">
     <title>Quick Start</title>
@@ -24,15 +24,18 @@
     <script>
       (function(b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700')
     </script>
-    <script>(function(h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
-a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"flex-direction|-ms-flex-direction":["column"],"border-radius":[".25rem"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
     <script>
       (function(q,k){function x(a){for(var f=/url\((.+?)\).*?;\s+unicode-range: (.+?);/g,b={},d=[],h;h=f.exec(a);){var r=h[2];d.push({url:h[1],a:r});b[r]=1}b=Object.keys(b).reduce(function(c,e){var g=e.split(/,\s/).map(function(l){return l.replace("U+","\\u").replace("-","-\\u")}).join("").toLowerCase();c[e]=new RegExp("["+g+"]");return c},{});var t=document.body?document.body.textContent:"",y=t?Object.keys(b).reduce(function(c,e){b[e].test(t)&&(c[e]=!0);return c},{}):Object.keys(b).reduce(function(c,
       e){e in k&&(c[e]=!0);return c},{});m=d.filter(function(c){return c.a in y}).map(function(c){return c.url});if(!m.length)return u();var v=document.createDocumentFragment();m.forEach(function(c,e){var g=document.createElement("link");g.href=c;g.rel="preload";g.as="font";var l=e+1;;g.onload=function(){return u(l)};g.setAttribute("crossorigin",!0);v.appendChild(g)});document.head.appendChild(v)}k=void 0===k?{}:k;var n=document.createElement("link");if(function(a,
       f){if(!a||!a.supports)return!1;try{return a.supports(f)}catch(b){return!1}}(n.relList,"preload")){var z=function(a,f,b){b=void 0===b?"":b;;var d=new XMLHttpRequest;d.onreadystatechange=function(){4==d.readyState&&(200==d.status?(f(d.responseText)):console.error("Error loading webfont: server responded with code %s at %s",d.status,a))};d.open("GET",a);try{d.send(null)}catch(h){console.error(h)}};
       ;var p;(function(a,f){z(a.href,function(b){p=b;x(p)},"-"+(void 0===f?"link":f))})({href:q},"js");var m=[],w=0,u=function(a){w++;w>=m.length&&(a=document.createElement("style"),a.innerHTML=p,document.head.appendChild(a))}}else n.rel="stylesheet",n.href=q,document.head.appendChild(n)})('https://fonts.googleapis.com/css?display=swap&family=Ruda%3A400%2C700%7CMr%20De%20Haviland', {"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD":true})
     </script>
-    <link rel="stylesheet" href="/nodetools/css/combined.css">
+    <link ignore-missing1 rel="stylesheet" href="/splendid-internal/bootstrap/bootstrap.css">
+    <link href="/nodetools/css/npm-badge.css" rel="stylesheet">
+    <link href="/nodetools/styles/app.css" rel="stylesheet">
+    <link href="/nodetools/css/github-badge.css" rel="stylesheet">
+    <link href="/nodetools/css/sidebar.css" rel="stylesheet">
+    <link ignore-missing1 rel="stylesheet" href="/splendid-internal/css/img.css">
     <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
     <style>
       .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
@@ -45,7 +48,6 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                         }
     </style>
     <noscript>
-      <link rel="stylesheet" href="/nodetools/css/combined-prefixes.css">
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland">
       <link rel="stylesheet"
@@ -53,31 +55,30 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
     </noscript>
     <script defer src="/nodetools/js/polyfill/intersection-observer.js"></script>
     <script defer src="/nodetools/js/images.js"></script>
-    <script crossorigin data-src="/nodetools/preact/dist/preact.min.js"></script>
-    <script crossorigin data-src="/nodetools/comps/common.js"></script>
-    <script crossorigin data-src="/nodetools/comps/quickStart.js"></script>
+    <script defer src="/nodetools/preact/dist/preact.min.js"></script>
+    <script type="module" crossorigin data-src="/splendid/comps/quickStart.js"></script>
     <script>
       document.documentElement.classList.remove("no-js")
     </script>
   </head>
-  <body class="b-Mk b-Ol b-Op">
+  <body class="d-flex flex-column h-100">
     
-    <main class="b-Xl" role="main">
-      <div class="b-z">
-        <div class="b-B">
-          <div class="left-column b-hb">
-            <div class="b-kC">
+    <main class="flex-shrink-0" role="main">
+      <div class="container">
+        <div class="row">
+          <div class="left-column col-md-3">
+            <div class="text-center">
             
-                <img class="ImageHolder b-t b-vk" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" alt="@artdeco/nodetools logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'/%3E">
+                <img class="ImageHolder img-fluid rounded" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" alt="@artdeco/nodetools logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'/%3E">
                 <noscript>
                   <picture>
                     <source srcset="/nodetools/img/splash-576.webp 576w,/nodetools/img/splash-319.webp 319w,/nodetools/img/splash-600.webp 600w"
                       sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" type="image/webp">
-                    <img class="b-t b-vk" onLoad="webploaded(this)" alt="@artdeco/nodetools logo" src="/nodetools/img/splash-576.jpg" srcset="/nodetools/img/splash-576.jpg 576w,/nodetools/img/splash-319.jpg 319w,/nodetools/img/splash-600.jpg 600w" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px">
+                    <img class="img-fluid rounded" onLoad="webploaded(this)" alt="@artdeco/nodetools logo" src="/nodetools/img/splash-576.jpg" srcset="/nodetools/img/splash-576.jpg 576w,/nodetools/img/splash-319.jpg 319w,/nodetools/img/splash-600.jpg 600w" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px">
                   </picture>
                 </noscript>
               </div>
-              <div class="b-kC">
+              <div class="text-center">
                 <a title="The NodeTools Stack Website." class="GitHubBadge" id="cacd9"
                   href="https://github.com/art-deco/nodetools">
                   <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a>
@@ -97,7 +98,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                 <li class><a data-file="discussion" href="/nodetools/discussion.html">Discussion</a></li>
               </ul>
               <h3 id="stack">Stack</h3>
-              <div class="List b-xq b-kC">
+              <div class="List mb-3 text-center">
                 <a
                   title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
                   <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a>
@@ -118,7 +119,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Documentary</em></span><span class="b">1.35.9</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
-              <div class="List b-xq b-kC">
+              <div class="List mb-3 text-center">
                 <a
                   title="2-Dependency Koa Web Server Compiled With Closure Compiler And Bundled With Essential Middleware: Static, Compress, Session, Cors, File Upload, Router And JSX Front End." class="NPMBadge" href="https://www.npmjs.com/package/@idio/idio">
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
@@ -131,7 +132,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                 <li><a href="https://gitter.im/node_tools/community">Get Help In Gitter Chat</a></li>
                 <li><a href="https://opencollective.com/nodetools">Fund Us On Open Collective</a></li>
               </ul>
-              <div class="SideBarMenu sidebarshowing b-jr b-zp">
+              <div class="SideBarMenu sidebarshowing pt-3 sticky-top">
                 <div class="a">
                   
                                   <h3 id="-on-this-page"> On This Page</h3>
@@ -156,9 +157,9 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     <li data-heading="comments"><a href="#comments">Comments</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
-                                  <span class="b-xq b-Hk" id="ce295"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+                                  <span class="mb-3 d-inline-block" id="c71c3"><span class="d-inline-block" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
                                   
-                                  <div class="b-xq" id="updates-div">Loading web-push...</div>
+                                  <div class="mb-3" id="updates-div">Loading web-push...</div>
                                   <details id="NewsletterDetails">
                                     <summary>
                                       <h3 id="newsletter">Newsletter</h3>
@@ -172,7 +173,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               </div>
           </div>
           
-          <div class="right-column b-xq b-nb" id="Content">
+          <div class="right-column mb-3 col-md-9" id="Content">
             <div data-section id="quick-start">
             <h1 id="nodetools-quick-start">NodeTools Quick Start</h1>
             
@@ -194,7 +195,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
                <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
             
-            <pre id="c724c1"><code class="shell hljs">yarn add global mnp
+            <pre id="c724c"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
             
             <p>After it's first been installed on the system, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other organisational directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
@@ -227,7 +228,7 @@ Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
             
             <p>Packages should be organised by organisations, which can be created for free on <em>GitHub</em> in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
             
-            <pre id="c724c"><code class="shell hljs">mkdir cool-org
+            <pre id="c724c1"><code class="shell hljs">mkdir cool-org
 cd cool-org</code></pre>
             
             <p>Here, we can run <span class="tm">mnp --init</span> again to update the settings for that particular org, however all the standard settings will be filled in already from the ones we wrote to the home directory.</p>
@@ -891,9 +892,9 @@ export default class Context {
             <p>By providing JSDoc for documentation, the methods can be accessed via destructing in tests. Using context testing, we can always see what variables and functions are available to us from the testing context. It also allows to create as many files with test suites as we need without having to repeat ourselves when writing setting up and tearing down routines in <span class="tm">before</span>, <span class="tm">beforeEach</span>, <span class="tm">after</span> and <span class="tm">afterEach</span> blocks.</p>
             
             <p>
-              <img class="b-vk b-bk b-t" alt="test context for example package" data-io>
+              <img class="rounded border img-fluid" alt="test context for example package" data-io>
               <noscript>
-                <img class="b-vk b-bk b-t" alt="test context for example package" src="/nodetools/pages/quick-start/images/context1.gif">
+                <img class="rounded border img-fluid" alt="test context for example package" src="/nodetools/pages/quick-start/images/context1.gif">
               </noscript>
             </p>
             
@@ -1129,9 +1130,9 @@ export default makeTestSuite('test/result/bin', {
             
             
             <p>
-              <img class="b-vk b-bk b-t" alt="interactivity during testing" data-io>
+              <img class="rounded border img-fluid" alt="interactivity during testing" data-io>
               <noscript>
-                <img class="b-vk b-bk b-t" alt="interactivity during testing" src="/nodetools/pages/quick-start/images/interactive.png">
+                <img class="rounded border img-fluid" alt="interactivity during testing" src="/nodetools/pages/quick-start/images/interactive.png">
               </noscript>
             </p>
             
@@ -1236,9 +1237,9 @@ if (process.env.ALAMODE_ENV == 'test-build') {
             <p>Using <em>VS Code</em> interface, we set breakpoints by clicking on the line where we want to stop, either in the source code or in tests/examples. It's also possible to simply write <strong>debugger</strong> statement in code manually. Then we launch the compiler (F5) which will pause at the breakpoint. We can then hover over variable names, and observe their values and call stack on the left. <em>Zoroaster</em> will be started in watch mode, so that every change will rerun tests (you'll need to unpause the debugger first if it paused on a breakpoint) without having to restart the debugger.</p>
             
             <p>
-              <img class="b-vk b-bk b-t" alt="pausing at a breakpoint in zoroaster debugger" data-io>
+              <img class="rounded border img-fluid" alt="pausing at a breakpoint in zoroaster debugger" data-io>
               <noscript>
-                <img class="b-vk b-bk b-t" alt="pausing at a breakpoint in zoroaster debugger" src="/nodetools/pages/quick-start/images/debugging.gif">
+                <img class="rounded border img-fluid" alt="pausing at a breakpoint in zoroaster debugger" src="/nodetools/pages/quick-start/images/debugging.gif">
               </noscript>
             </p>
             
@@ -1335,7 +1336,7 @@ fs.node10Method = function(path) {}</code></pre>
         </div>
       </div>
     </main>
-    <footer class="b-ns">
+    <footer class="mt-auto">
       &copy; <a href="https://www.artd.eco">Art Deco™</a>, 2020
     </footer>
     <script>(function(){function b(){if(0<c.length){var a=c.shift();a.src=a.getAttribute("data-src");a.removeAttribute("data-src");a.onload=b;a.onerror=function(){console.warn("Could not load script %s",a.src)}}}var c=Array.prototype.slice.call(document.querySelectorAll("script[data-src]"));b()})()</script>

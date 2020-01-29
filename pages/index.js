@@ -39,6 +39,7 @@ export const trapcss = {
   },
   links: {
     dropcss: 'https://github.com/leeoniya/dropcss',
+    lighthouse: 'https://developers.google.com/web/tools/lighthouse/audits/unused-css',
   },
 }
 

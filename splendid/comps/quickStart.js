@@ -40,15 +40,6 @@ const meta = [{
   },
 },
 {
-  key: 'social-buttons',
-  id: 'ce295',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/quick-start.html',
-    meta: true,
-    className: 'b-xq b-Hk',
-  },
-},
-{
   key: 'highlightjs',
   id: 'c1953,c19531,c19532',
   props: {
@@ -104,6 +95,15 @@ const meta = [{
   id: 'c414d,c414d1,c414d2,c414d3',
   props: {
     lang: 'bash',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'c71c3',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/quick-start.html',
+    meta: true,
+    className: 'mb-3 d-inline-block',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {
