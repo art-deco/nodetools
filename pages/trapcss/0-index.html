@@ -27,6 +27,6 @@ abbr[data-original-title] {
 
 We needed to annotate Bootstrap with the `/* alternate */` marker so that the CSS compiler doesn't throw an error. A simple proposed solution to prevent stripping such comments was suggested in form of a [PR](https://github.com/leeoniya/dropcss/pull/41) to _DropCSS_ package owner, however was rejected as being too narrow of a use case. Therefore, we decided to fork his project and use its source code to create a professional Node.JS package that would also provide JSDoc annotations, could be tested with context testing, and is ready to be compiled into other packages, such as _Splendid_ itself, so that it's linked statically instead of dynamically as permitted by the original MIT license.
 
-This tutorial walks through the process of upgrading a package to use _NodeTools_ stack with explanation of advantages of using the tools from the stack in creating modern packages.
+This tutorial walks through the process of upgrading a package to use _NodeTools_ stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the [quick guide](quickGuide) first for some details about the standard routine.
 
 <section-break />

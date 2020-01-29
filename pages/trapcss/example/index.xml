@@ -1,0 +1,30 @@
+<types namespace="_trapcss">
+  <record name="Config" desc="Options for the program.">
+    <prop string name="html">
+      The input HTML.
+    </prop>
+    <prop string name="css">
+      The CSS to drop selectors from.
+    </prop>
+    <prop boolean name="keepAlternate" default="false">
+      Whether to keep the `@alternate` comment for
+      Closure Stylesheets.
+    </prop>
+    <fn name="shouldDrop" opt return="boolean">
+      <arg string name="sel">The selector to check.</arg>
+      Whether _TrapCSS_ should remove this selector.
+      The `shouldDrop` hook is called for every CSS selector
+      that could not be matched in the html. Return `false`
+      to retain the selector or `true` to drop it.
+    </fn>
+  </record>
+
+  <type record name="Return" desc="Return Type.">
+    <prop string name="css">
+      The dropped CSS.
+    </prop>
+    <prop type="!Set<string>" name="sels">
+      The used selectors.
+    </prop>
+  </type>
+</types>

@@ -99,11 +99,11 @@ const meta = [{
 },
 {
   key: 'social-buttons',
-  id: 'c71c3',
+  id: 'cc40a',
   props: {
-    url: 'https://art-deco.github.io/nodetools/quick-start.html',
+    url: 'https://art-deco.github.io/nodetools/quick-start-to-nodetools.html',
     meta: true,
-    className: 'mb-3 d-inline-block',
+    className: 'b-xq b-Hk',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

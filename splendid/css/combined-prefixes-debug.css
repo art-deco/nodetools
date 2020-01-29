@@ -142,6 +142,9 @@ hr {
 .right-column {
   -moz-hyphens: auto;
 }
+.tm, .tm2 {
+  -moz-hyphens: none;
+}
 #BandcampBabylon:hover div {
   display: -webkit-box !important;
   display: -moz-box !important;

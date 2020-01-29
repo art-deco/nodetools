@@ -47,19 +47,19 @@ const meta = [{
   },
 },
 {
-  key: 'social-buttons',
-  id: 'cc2e6',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/discussion.html',
-    meta: true,
-    className: 'mb-3 d-inline-block',
-  },
-},
-{
   key: 'akashic-comments',
   id: 'comments-div',
   props: {
     'api-key': 'akashic',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'c8891',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/discussion-for-nodetools.html',
+    meta: true,
+    className: 'b-xq b-Hk',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

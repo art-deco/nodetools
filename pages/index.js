@@ -2,7 +2,7 @@
  * @type {import('splendid').Page}
  */
 export const index = {
-  title: 'NodeTools',
+  title: 'NodeTools: Node.JS Stack',
   seo: 'NodeTools is a small Node.JS development stack meant to help create packages, document, compile and test them in the most developer-friendly way.',
   og: {
     image: '/img/fav.png',
@@ -16,7 +16,7 @@ export const index = {
  * @type {import('splendid').Page}
  */
 export const quickStart = {
-  title: 'Quick Start',
+  title: 'Quick Start To NodeTools',
   file: 'quick-start',
   seo: 'How to start using NodeTools stack for productive, effective and developer-friendly Node.JS development process with Closure Compiler & without TypeScript.',
   og: {
@@ -32,7 +32,7 @@ export const quickStart = {
  * @type {import('splendid').Page}
  */
 export const trapcss = {
-  title: 'Tutorial: TrapCSS',
+  title: 'TrapCSS: NodeTools Tutorial',
   seo: 'A use case of using NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
   og: {
     image: '/img/fav.png',
@@ -68,7 +68,7 @@ export const babel = {
  * @type {import('splendid').Page}
  */
 export const discussion = {
-  title: 'Discussion',
+  title: 'Discussion for NodeTools',
   seo: 'Leave comments and ask and answer questions about the NodeTools development stack here to receive answers quickly and help grow the knowledge base.',
   // og: {
   //   image: '/img/fav.png',

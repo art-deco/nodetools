@@ -458,6 +458,14 @@ footer {
 #OnThisPage {
   padding-inline-start: 0;
 }
+h1, h3, h2 {
+  text-decoration: underline;
+}
+.tm, .tm2 {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
 .SideBarMenu {
   max-height: 100vh;
   overflow: auto;

@@ -1,0 +1,51 @@
+##! MNP
+
+The very first step is to spawn a new package using `mnp`. Instead of forking the repo, I will create a new package so that its structure adheres to _NodeTools_' recommendations. My default organisation is `artdecocode` on _GitHub_ and I keep projects in the `~/adc` folder. Additionally, I've made a number of other orgs, such as `dpck`, `a-la` for scopes of other projects. Organising the home dir by org is a convenient method that allows to maintain different settings for different organisations. For standard Node.JS package, I'll just use `adc`.
+
+```bash
+cd adc
+# mnp --init (if init was not done yet)
+mnp trapcss -n
+```
+
+I've already [configured mnp](quickStart#configure-org) prior to creating a package, therefore all settings are already recorded in the `.mnprc` file. I pass the package name to the binary, together with the `-n` flag, which means `--no-scope`: because settings contain a scope (`@artdeco`), I want to skip it in this particular case. _MNP_ then asks me questions about the new package:
+
+```bash
+# trapcss
+Description: Removes unused selectors from CSS files to achieve maximum optimisation. Can be used as an API function or with CLI.
+Generating repository...
+Starring...
+⭐️ Created and starred a new repository
+https://github.com/artdecocode/trapcss
+Cloning into '/Users/zavr/adc/trapcss'...
+Setting user Anton<anton@adc.sh>...
+With binary [y/n]: [y]
+Build or compile: [compile]
+License: [agpl-3.0]
+Init Github Wiki [y/n]: [y]
+Homepage: [https://github.com/artdecocode/trapcss#readme] https://art-deco.github.io/trapcss
+Keywords (e.g., artdecocode, trapcss): css, minifier, web, browser
+Please go to https://github.com/artdecocode/trapcss/wiki/_new
+to create the first page and press enter when done. (y/n): [y]
+Cloning into '/Users/zavr/adc/trapcss/wiki.git'...
+Setting topics...
+Initialised package structure, pushing...
+yarn install v1.13.0
+✨  Done in 2.67s.
+Created a new package: trapcss.
+```
+
+I've answered questions in the following way:
+
+<ul>
+  - With binary: *true*, because I'll want to create a node executable to run from the CLI to drop selectors from CSS files based on HTML files.
+  - Build or compile: *compile*, because I want to create a library compatible with Closure so that it can be compiled into _Splendid_ later.
+  - License: *agpl-3.0*, my personal preference.
+  - Init Github Wiki: *y*, we'll want to create wiki pages with discussion about certain use cases, such as using multiple HTML files to gather selectors list.
+  - Homepage: *https://art-deco.github.io/trapcss*, I update the default homepage that points to the repo readme on GitHub, because I'll want to create a website for the package with a demo.
+  - Keywords: *css, minifier, web, browser*, some tags for GitHub topics and NPM keywords.
+</ul>
+
+I'm then asked to navigate to GitHub to create the first Home wiki page. This needs to be done manually since GitHub does not provide API routes for automation of this procedure. Moreover, because I've configured _MNP_ to use *yarn* as the package manager, the dependencies are also installed automatically. The template also supports `npm` with *package-lock.json* file instead of *yarn.lock*. After this is done, the repo is cloned into local working dir, called `trapcss` and _MNP_ opens _VSCode_ automatically. A new tag `v0.0.0-pre` is added to the git tree.
+
+<section-break />

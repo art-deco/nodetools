@@ -24,6 +24,29 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
+  key: 'highlightjs',
+  id: 'c724c,c724c1,c724c2',
+  props: {
+    lang: 'shell',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'c16f7,c16f71',
+  props: {
+    lang: 'xml',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'c485b',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/trapcss-nodetools-tutorial.html',
+    meta: true,
+    className: 'b-xq b-Hk',
+  },
+},
+{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -40,6 +63,13 @@ const meta = [{
   },
 },
 {
+  key: 'highlightjs',
+  id: 'ccdbf,ccdbf1,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7',
+  props: {
+    lang: 'javascript',
+  },
+},
+{
   key: 'akashic-emails',
   id: 'emails-div',
   props: {
@@ -47,19 +77,24 @@ const meta = [{
   },
 },
 {
-  key: 'social-buttons',
-  id: 'caebf',
-  props: {
-    url: 'https://art-deco.github.io/nodetools/tutorial-trapcss.html',
-    meta: true,
-    className: 'mb-3 d-inline-block',
-  },
-},
-{
   key: 'highlightjs',
   id: 'c1d47',
   props: {
     lang: 'css',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'c414d,c414d1',
+  props: {
+    lang: 'bash',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'cb288',
+  props: {
+    lang: 'undefined',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

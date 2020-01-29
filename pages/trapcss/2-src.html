@@ -1,0 +1,86 @@
+##! Source Code
+
+As the next step, I'll just download the ZIP archive from _DropCSS_ as the source code, and open finder to copy all files from source into my new package.
+
+The original source is using _CommonJS_ however _NodeTools_ allow to program using ECMA modules with a 0-dependency regex transpiler, so we want to update the source code from `require` into imports.
+
+```js
+"use strict";
+
+const { parse: parseHTML } = require('./html');
+const { parse: parseCSS, generate: generateCSS, SELECTORS, stripEmptyAts } = require('./css');
+const { some, matchesAttr } = require('./find');
+const { postProc } = require('./postproc');
+const { LOGGING } = require('./env');
+```
+
+This can be achieved easily by running the transpiler in `-r` mode:
+
+```console
+MacBook:trapcss zavr$ yarn alamode src -r
+```
+
+It will scan the *src* dir recursively, updating all files in there. By using `yarn <alias>` I can execute binaries from node_modules installed locally.
+
+
+When trying to simply check that all imports are updated correctly by running `yarn alanode src/dropcss` that simply executes all require calls, without actually running the program, I see an error to do with the following:
+
+```js
+// src/find.js
+function some(nodes, m) {
+  return nodes.some(node => find(m, {
+    idx: m.length - 1,
+    node
+  }));
+}
+
+export { matchesAttr };
+
+export const some = (nodes, sel) => {
+  return some(nodes, Array.isArray(sel) ? sel : parseSel(sel));
+};
+```
+
+The error says:
+
+```sh
+MacBook:trapcss zavr$ yarn alanode src/dropcss.js
+/Users/zavr/adc/trapcss/src/find.js:205
+       const some = (nodes, sel) => {
+             ^
+
+SyntaxError: Identifier 'some' has already been declared
+```
+
+This is because after updating to imports, we acquired a name conflict. This is fixed simply by renaming the original function into `_some` and calling it from the export:
+
+```js
+// src/find.js
+function _some(nodes, m) {
+  // ...
+}
+
+export const some = (nodes, sel) => {
+  return _some(nodes, Array.isArray(sel) ? sel : parseSel(sel));
+};
+```
+
+In addition, I don't use semicolons therefore I'll quickly fix that with _ESLint_. _ESLint_ should be installed globally on the system since it's a huge binary and there's no point in installing it for each single package. If you have your own eslint config, you need to fork the template from `mnpjs/package`, define your config in there, and updates the `.mnprc` settings to point to your forked template.
+
+```console
+MacBook:trapcss zavr$ eslint --fix src
+```
+
+As the last step for styling, I want to get rid of all `"use strict"` directives on top of each file, by a simple search and replace in _VSCode_: `"use strict"\n\n` -> "". Finally, I want the entry to the library be located at *src/index.js* instead of *src/dropcss.js*, therefore I copy the typedef from `index.js`, delete the file, and rename `dropcss.js` into `index.js`.
+
+```js
+// copy typedef
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').trapcss} _trapcss.trapcss
+ */
+```
+
+Now I can commit all new source code into git tree, and start testing/documenting the library.
+
+<section-break />
