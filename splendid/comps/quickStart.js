@@ -27,7 +27,7 @@ const io = makeIo()
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
   key: 'highlightjs',
-  id: 'c724c,c724c1,c724c2',
+  id: 'c724c,c724c1',
   props: {
     lang: 'shell',
   },
@@ -49,6 +49,13 @@ const meta = [{
   },
 },
 {
+  key: 'highlightjs',
+  id: 'c1953,c19531,c19532',
+  props: {
+    lang: 'markdown',
+  },
+},
+{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -58,7 +65,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'cb9de,cb9de1,cb9de2,cb9de3',
+  id: 'cb9de,cb9de1,cb9de2,cb9de3,cb9de4,cb9de5,cb9de6',
   props: {
     lang: 'json',
   },
@@ -73,7 +80,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -94,16 +101,9 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c414d',
+  id: 'c414d,c414d1,c414d2,c414d3',
   props: {
     lang: 'bash',
-  },
-},
-{
-  key: 'highlightjs',
-  id: 'cb288,cb2881',
-  props: {
-    lang: 'undefined',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

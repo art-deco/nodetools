@@ -14,7 +14,7 @@ li.Active {
 .left-column ul {
   /* list-style-type: none; */
 }
-.tm, .tm2 {
+.tm, .tm2, .hljs {
   font-family: 'Source Code Pro', monospace;
 }
 .tm {
@@ -35,4 +35,7 @@ footer {
 }
 #NewsletterDetails h3 {
   display: inline-block;
+}
+#OnThisPage {
+  padding-inline-start: 0;
 }

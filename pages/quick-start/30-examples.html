@@ -1,0 +1,11 @@
+##! Examples
+
+There are a number of packages that were created using _NodeTools_ stack. For references to actual packages you can explore the following:
+
+<li>[Idio web server](https://github.com/idiocc/idio), the most advanced usage of _NodeTools_ that generates and references lots of types across `_idio` and `_goa` namespace. Check out its template, and scripts used to generate typedefs. Have a look at all other middleware in the [same namespace](https://github.com/idiocc) that is compiled for individual standalone use, but is also adapted to be compiled into _Idio_ itself.</li>
+<li>[Goa Router](https://github.com/idiocc/goa-router), a router which is defined using an interface in types, and uses a `@constructor {_goa.Router}` template to generate a proxy to the actual class compiled with Closure.</li>
+<li>[Temp Context](https://github.com/wrote/temp-context#readme), a context used for testing IO operations using a temporary folder created in `tests/temp` for each test case.</li>
+<li>[HTTP Context](https://github.com/idiocc/http), a context used for testing of HTTP servers in super-test style, that will create a listener for connections, and provide `.get/post/put/etc` methods on the test object accessed via the context [testing API](https://github.com/idiocc/idio/blob/master/test/spec/middleware/csrf-check.js#L6).</li>
+<li>[Typal](https://github.com/artdecocode/typal/tree/master/test/mask) has got a lot of mask testing setups that can provide some hints.</li>
+
+<section-break />

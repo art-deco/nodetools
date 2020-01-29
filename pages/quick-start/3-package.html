@@ -1,8 +1,8 @@
 ##! Spawn Package
 
-To create new packages from the NodeTools package template, we'll simply call `mnp` in the `cool-org` directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.
+To create new packages from the default advanced _NodeTools_ package template, we'll simply call `mnp` in the `cool-org` directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.
 
-```
+```bash
 Package name: example-package # enter package name
 # @artdeco/example-package
 Description: An example package created with MNP.
@@ -34,13 +34,13 @@ Initialised package structure, pushing...
 Created a new package: @artdeco/example-package.
 ```
 
-`mnp example-package` could be called right away from the CLI to fill the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling `mnp example-package -d` command that will ask for confirmation before proceeding to remove the repository from _GitHub_.
+`mnp example-package` could be called right away from the CLI to fill in the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling `mnp example-package -d` command that will ask for confirmation before proceeding to remove the repository from _GitHub_.
 
-MNP will also run the package manager init script (such as `yarn` or `npm i`) in the new project folder. If VSCode was installed on the system, with `code` binary [exported to shell](https://code.visualstudio.com/docs/setup/mac), it will be automatically opened. A new tag `v0.0.0-pre` will be added to the git tree at this point.
+_MNP_ will also run the package manager init script (such as `yarn` or `npm i`) in the new project folder. If *VSCode* was installed on the system, with the ``code`` binary [exported to shell](https://code.visualstudio.com/docs/setup/mac), it will be automatically opened. A new tag `v0.0.0-pre` will be added to the git tree at this point.
 
 ### Google Closure Compiler Java
 
-The `warning " > depack@1.0.1" has unmet peer dependency "google-closure-compiler-java@*".` warning is shown because _Depack_ relies on Closure Compiler which should be installed as a package in the home dir, rather than for each package individually. Unfortunately, neither `yarn` nor `npm` lookup for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (`/Users/user/org/package`, `/Users/user/org`, `/Users/user`, `/Users` and `/`) to find any dependencies there. To skip installing a compiler into each new package, we simply install it in `~`:
+The `> depack@1.1.0 has unmet peer dependency "google-closure-compiler-java@*".` warning is shown because _Depack_ relies on *Closure Compiler* which should be installed as a package in the home dir, rather than inside of each new package individually. Unfortunately, neither `yarn` nor `npm` look up for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (`/Users/user/org/package`, `/Users/user/org`, `/Users/user`, `/Users` and `/`) to find dependencies there. To skip installing a compiler into each new package, we simply install it in `~`:
 
 ```bash
 cd ~
@@ -52,6 +52,6 @@ The compiler is recommended as it's one of the coolest features of the _NodeTool
 
 <hr />
 
-So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by MNP further.
+So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by _MNP_ further.
 
 <section-break />

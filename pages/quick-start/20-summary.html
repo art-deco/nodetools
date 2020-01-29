@@ -1,0 +1,51 @@
+##! Summary
+
+_NodeTools_ provides a holistic approach to pure Node.JS development and allows to maintain types without being locked in into *TypeScript*. Firstly, we can spawn packages quickly using _GitHub_ templates via _MNP_. Then, by keeping types in XML files, we can generate externs for the compiler and typedefs for development purposes using _Typal_ and also place types' tables and methods' headings in documentation. Examples and their output can also be placed into documentation which is put together by _Documentary_: this method provides an additional quality assurance control.
+
+_Context-testing_ is used for perfect developer experience during quality assurance that allows to reuse testing infrastructure across files easily via destructuring in test cases. Developers now can quickly glance at available testing API methods and access their _JSDoc_ via the context. Destructured methods are already bound to instances of a context so they don't loose their scope like they would under normal circumstances:
+
+```js
+class Example {
+  constructor() {
+    this.hello = 'world'
+  }
+  method() {
+    return this.hello
+  }
+}
+
+const e = new Example()
+const { method } = e
+const res = method() // undefined, not found
+
+export const testSutie {
+  context: Example,
+  async'test case'({ method }) {
+    return method() // 'world', as method is bound
+  }
+}
+```
+
+Additionally, test contexts can be reused across packages, like `temp-context` for system IO testing or `@contexts/http` for HTTP server testing. These are just 2 examples of contexts that were published to be simply required in other packages that need such testing utilities, and any developer can make their own context that will improve productivity of the whole ecosystem. Moreover, _Zoroaster_ testing framework is a simple yet advanced tool that introduces mask testing: a QA method that allows to set up a blueprint for test cases once (a mask), but feed multiple input/output pairs into it from a separate file (called mask result). Since mask results are placed in their own files of arbitrary extension, our dev experience is again improved by proper syntax highlighting. _Zoroaster_ also has a powerful fork-testing built-in feature that makes testing forks a breeze. By using different environments, we are able to test not only the source code but the compiled or built code too.
+
+All of the above use _ÀLaMode_, the simplest regex-based transpiler that only updates imports into common-js modules understood by Node.JS of lower versions. Now we don't need to install thousands of unknown dependencies and relinquish control of our `node_modules` folder to have the essential stack required for productive Node development in 2020 with only 10 new folder in `node_modules`.
+
+The introduction of the compiler into the Node.JS development methodology via _NodeTools_ is the best feature of the stack that allows to statically link packages and reduce the number of dependencies to 0. However, that requires most consumed dependencies to be compiler-compatible, e.g., characterised by such features as the *externs* field in `package.json`. *Externs* is a file that describes types for Closure Compiler in specially formatted _JSDoc_ to prevent property names renaming during advanced compilation. _Depack_ has provided [externs](node-externs) for Node 8 built-in modules, such as `fs.readFileSync`, `stream.createReadable`, _etc_ to enable type checking, however newer APIs might have been added to later versions (10, 12+). At the moment missing methods can be described manually in `types/externs.js` files: simply add the missing property or method on the namespace, like so:
+
+```js
+/* typal types/index.xml externs */
+// generated externs
+
+/**
+ * @param {string} path
+ */
+fs.node10Method = function(path) {}
+```
+
+### Admin
+
+If you want to make any changes to the package structure, you can simply fork the `mnpjs/package` template, and update any part of it (such as eslint config) to your preference. Then simply push it to _GitHub_ and specify it as the default template in the `.mnprc` setting inside of the project or home directory. You can also study the `mnp/index.js` script inside the template to find out how to create your own templates for _MNP_.
+
+The source code for all packages (except for templates which are MIT) is published under the AGPL license, however because the tools are used to facilitate the development process, and packages made with them don't link to them in any way (except if your package calls _ÀLaMode_ require hook from source at runtime which it won't unless you explicitly do that, like _Documentary_ does for JSX support), you don't have to publish the source code of your packages according to AGPL. Only if you build new software upon those packages that this needs to be done, but we don't expect you too. Please file any issues in both target package and [NodeTools](https://github.com/art-deco/nodetools) repo itself.
+
+<section-break />

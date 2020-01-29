@@ -15,7 +15,7 @@ export default function OnThisPage({ splendid }) {
     const a = <a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
     return (<li data-heading={id} key={id}>{a}</li>)
   })
-  return (<ul>{hh}</ul>)
+  return (<ul id="OnThisPage">{hh}</ul>)
 }
 
 export const init = () => {

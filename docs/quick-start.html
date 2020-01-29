@@ -19,9 +19,10 @@
       href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland" rel="preload" as="fetch" crossOrigin>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin>
-    <link href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700" rel="preload"
+      as="style">
     <script>
-      (function(b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro')
+      (function(b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700')
     </script>
     <script>(function(h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
 a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"flex-direction|-ms-flex-direction":["column"],"border-radius":[".25rem"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
@@ -47,7 +48,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
       <link rel="stylesheet" href="/nodetools/css/combined-prefixes.css">
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700">
     </noscript>
     <script defer src="/nodetools/js/polyfill/intersection-observer.js"></script>
     <script defer src="/nodetools/js/images.js"></script>
@@ -104,7 +106,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Typal</em></span><span class="b">1.26.0</span></a>
                 <a
                   title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-                  <span class="a"><em>Depack</em></span><span class="b">1.0.1</span></a>
+                  <span class="a"><em>Depack</em></span><span class="b">1.1.0</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
                   <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a>
@@ -133,7 +135,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                 <div class="a">
                   
                                   <h3 id="-on-this-page"> On This Page</h3>
-                                  <ul>
+                                  <ul id="OnThisPage">
                                     <li data-heading="quick-start"><a href="#quick-start">Quick Start</a></li>
                                     <li data-heading="install-mnp"><a href="#install-mnp">Install MNP</a></li>
                                     <li data-heading="configure-org"><a href="#configure-org">Configure Org</a></li>
@@ -148,7 +150,9 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                       <a href="#automation-of-documentation">Automation of Documentation</a>
                                     </li>
                                     <li data-heading="context-testing"><a href="#context-testing">Context Testing</a></li>
-                                    <li data-heading="-examples"><a href="#-examples"> Examples</a></li>
+                                    <li data-heading="debugging"><a href="#debugging">Debugging</a></li>
+                                    <li data-heading="summary"><a href="#summary">Summary</a></li>
+                                    <li data-heading="examples"><a href="#examples">Examples</a></li>
                                     <li data-heading="comments"><a href="#comments">Comments</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
@@ -172,7 +176,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             <div data-section id="quick-start">
             <h1 id="nodetools-quick-start">NodeTools Quick Start</h1>
             
-            <p><em>NodeTools</em> is a full Node.JS stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small and contains tools for essential operation. The packages that it installs provides an up-to-date development environment for local Node.JS development. This guide will show how to start using the stack.</p>
+            <p><em>NodeTools</em> is a full Node.JS stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small and contains tools for essential operation. The packages that it installs provide an up-to-date development environment for local JavaScript development. It was developed by a <a href="https://www.artd.eco">
+              professional Node.JS development company in London</a> to meet the modern requirements for bespoke and agile Node.JS development process. This guide will show how to start using the stack. If you have any questions, please refer to the <a href="/nodetools/#getting-help">Getting Help</a> section. Be sure to subscribe to updates via web-push button on the left, or email newsletter to be notified of new features first.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -189,14 +194,14 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
                <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a GitHub template-based package bootstrap that allows to generate new repositories from templates and fill them in with preset information. <span class="tm">mnp</span> has only 3 small dependency and can be installed globally:</p>
             
-            <pre id="c724c2"><code class="shell hljs">yarn add global mnp
+            <pre id="c724c1"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
             
             <p>After it's first been installed, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other project directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via the terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
             
             <p>But first, a personal <a href="https://github.com/settings/tokens">access token</a> needs to be generated for GitHub that will allow to access GitHub API. The <span class="tm">delete_repo</span>, <span class="tm">repo</span> are needed to create new repositories and delete them from CLI.</p>
             
-            <pre id="c724c"><code class="shell hljs">GitHub access token: -new-access-token- # generated token
+            <pre id="c414d"><code class="bash hljs">GitHub access token: -new-access-token- # generated token
 GitHub organisation: nodetools # either organisation or user login
 npm scope: nodetools # optional scope for packages
 Default Template: [mnpjs/package] # default template in org/name format
@@ -220,14 +225,14 @@ Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
             <div data-section id="configure-org">
             <h2 id="configure-org">Configure Org</h2>
             
-            <p>Packages should be organised by organisations, which can be created on GitHub in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
+            <p>Packages should be organised by organisations, which can be created for free on <em>GitHub</em> in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
             
-            <pre id="cb288"><code class="undefined hljs">mkdir cool-org
+            <pre id="c724c"><code class="shell hljs">mkdir cool-org
 cd cool-org</code></pre>
             
             <p>Here, we can run <span class="tm">mnp --init</span> again to update the settings for that particular org, however all the standard settings will be filled in already from the ones we wrote to the home directory.</p>
             
-            <pre id="c724c1"><code class="shell hljs">GitHub access token: [8cb0f088cba5929dcd2337f906a9d8eca81d6759] # keep token
+            <pre id="c414d1"><code class="bash hljs">GitHub access token: [8cb0f088cba5929dcd2337f906a9d8eca81d6759] # keep token
 GitHub organisation: [nodetools] cool-org # update org
 npm scope: [nodetools] cool-org # update scope
 Default Template: [mnpjs/package] # keep default
@@ -240,7 +245,7 @@ Package Manager (yarn/npm): [yarn] # keep</code></pre>
             
             <p>After doing this, another <span class="tm">.mnprc</span> will be created in the <span class="tm">cool-org</span> folder, and these settings will be used for projects created in that organisation.</p>
             
-            <p>After MNP is configured, we can proceed to creating a new package.</p>
+            <p>After <em>MNP</em> is configured, we can proceed to creating a new package.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -255,9 +260,9 @@ Package Manager (yarn/npm): [yarn] # keep</code></pre>
             <div data-section id="spawn-package">
             <h2 id="spawn-package">Spawn Package</h2>
             
-            <p>To create new packages from the NodeTools package template, we'll simply call <span class="tm">mnp</span> in the <span class="tm">cool-org</span> directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.</p>
+            <p>To create new packages from the default advanced <em>NodeTools</em> package template, we'll simply call <span class="tm">mnp</span> in the <span class="tm">cool-org</span> directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.</p>
             
-            <pre id="cb2881"><code class="undefined hljs">Package name: example-package # enter package name
+            <pre id="c414d2"><code class="bash hljs">Package name: example-package # enter package name
 # @artdeco/example-package
 Description: An example package created with MNP.
 Generating repository...
@@ -287,15 +292,15 @@ warning " &gt; depack@1.0.1" has unmet peer dependency "google-closure-compiler-
 Initialised package structure, pushing...
 Created a new package: @artdeco/example-package.</code></pre>
             
-            <p><span class="tm">mnp example-package</span> could be called right away from the CLI to fill the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling <span class="tm">mnp example-package -d</span> command that will ask for confirmation before proceeding to remove the repository from <em>GitHub</em>.</p>
+            <p><span class="tm">mnp example-package</span> could be called right away from the CLI to fill in the package name immediately. If there was an error during the process, the remote repo and local folder can be deleted by calling <span class="tm">mnp example-package -d</span> command that will ask for confirmation before proceeding to remove the repository from <em>GitHub</em>.</p>
             
-            <p>MNP will also run the package manager init script (such as <span class="tm">yarn</span> or <span class="tm">npm i</span>) in the new project folder. If VSCode was installed on the system, with <span class="tm">code</span> binary <a href="https://code.visualstudio.com/docs/setup/mac">exported to shell</a>, it will be automatically opened. A new tag <span class="tm">v0.0.0-pre</span> will be added to the git tree at this point.</p>
+            <p><em>MNP</em> will also run the package manager init script (such as <span class="tm">yarn</span> or <span class="tm">npm i</span>) in the new project folder. If <strong>VSCode</strong> was installed on the system, with the <span class="tm2">code</span> binary <a href="https://code.visualstudio.com/docs/setup/mac">exported to shell</a>, it will be automatically opened. A new tag <span class="tm">v0.0.0-pre</span> will be added to the git tree at this point.</p>
             
             <h3 id="google-closure-compiler-java">Google Closure Compiler Java</h3>
             
-            <p>The <span class="tm">warning &quot; &gt; depack@1.0.1&quot; has unmet peer dependency &quot;google-closure-compiler-java@*&quot;.</span> warning is shown because <em>Depack</em> relies on Closure Compiler which should be installed as a package in the home dir, rather than for each package individually. Unfortunately, neither <span class="tm">yarn</span> nor <span class="tm">npm</span> lookup for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (<span class="tm">/Users/user/org/package</span>, <span class="tm">/Users/user/org</span>, <span class="tm">/Users/user</span>, <span class="tm">/Users</span> and <span class="tm">/</span>) to find any dependencies there. To skip installing a compiler into each new package, we simply install it in <span class="tm">~</span>:</p>
+            <p>The <span class="tm">&gt; depack@1.1.0 has unmet peer dependency &quot;google-closure-compiler-java@*&quot;.</span> warning is shown because <em>Depack</em> relies on <strong>Closure Compiler</strong> which should be installed as a package in the home dir, rather than inside of each new package individually. Unfortunately, neither <span class="tm">yarn</span> nor <span class="tm">npm</span> look up for the presence of this dependency locally, despite the fact that Node will traverse all dirs up to root (<span class="tm">/Users/user/org/package</span>, <span class="tm">/Users/user/org</span>, <span class="tm">/Users/user</span>, <span class="tm">/Users</span> and <span class="tm">/</span>) to find dependencies there. To skip installing a compiler into each new package, we simply install it in <span class="tm">~</span>:</p>
             
-            <pre id="c414d"><code class="bash hljs">cd ~
+            <pre id="c414d3"><code class="bash hljs">cd ~
 yarn init # simple init
 yarn add google-closure-compiler-java</code></pre>
             
@@ -303,7 +308,7 @@ yarn add google-closure-compiler-java</code></pre>
             
             <hr />
             
-            <p>So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by MNP further.</p>
+            <p>So in less than a minute, we're ready to write code, document and test our new package. Let's discuss some questions asked by <em>MNP</em> further.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -440,14 +445,14 @@ module.exports = examplePackage
 /* typal types/index.xml namespace */
 </code></pre>
             
-            <p>The template imports the <span class="tm">_examplePackage</span> named export from the <span class="tm">./example-package</span> which is the actual compiled source code that includes all dependencies. In our example, it's quite simple:</p>
+            <p>The template requires the <strong>_examplePackage</strong> named export from the <span class="tm">./example-package</span> file which is the actual compiled source code that includes all dependencies. In our example, it's quite simple:</p>
             
             <pre id="ccdbf3"><code class="javascript hljs">'use strict';
 const c={black:30,red:31,green:32,yellow:33,blue:34,magenta:35,cyan:36,white:37,grey:90};module.exports={_examplePackage:async function(a={}){const {shouldRun:d=!0,text:b=""}=a;if(!d)return"";a=(a=c.yellow)?`\x1b[${a}m${b}\x1b[0m`:b;console.log("@artdeco/example-package called with %s",a);return b}};
 
 //# sourceMappingURL=example-package.js.map</code></pre>
             
-            <p>The entry point that we passed to the compiler was <span class="tm">src/depack</span>.</p>
+            <p>The entry point that we passed to the compiler was <span class="tm">src/depack.js</span>.</p>
             
             <pre id="ccdbf4"><code class="javascript hljs">import '../types/externs'
 import examplePackage from './'
@@ -456,7 +461,7 @@ module.exports = {
   '_examplePackage': examplePackage,
 }</code></pre>
             
-            <p>As you can see, we imported our externs from types and the API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed to properties like <span class="tm">.a</span>, <span class="tm">.b</span>, <em>etc</em>. The <span class="tm">src/depack.js</span> file is used by the compiler only to create the <span class="tm">compile/example-package.js</span> source code that is required by <span class="tm">compile/index.js</span> that serves as the entry point to the package. Our template then wraps the imported function with its own function, and annotates it with <span class="tm">@methodType {_examplePackage.examplePackage}</span>. When we call <span class="tm">yarn template</span>, <em>Typal</em> will find our method type from types, and place correct JSDoc into the final JS.</p>
+            <p>As you can see, we imported our externs from types and the API method from the source code. Importing externs is required to preserve the property names of the config, otherwise anyone who tries to use our package will pass properties from the config, but the program will not do anything as they will be renamed to properties like <strong>.a</strong>, <strong>.b</strong>, <em>etc</em>. The <span class="tm">src/depack.js</span> file is used by the compiler only to create the <span class="tm">compile/example-package.js</span> source code that is required by <span class="tm">compile/index.js</span> that serves as the entry point to the package. Our template then wraps the imported function with its own function, and annotates it with <span class="tm">@methodType {_examplePackage.examplePackage}</span>. When we call <span class="tm2">yarn template</span>, <em>Typal</em> will find our method type from types, and place the correct <em>JSDoc</em> into the final JS.</p>
             
             <pre id="ccdbf5"><code class="javascript hljs">const { _examplePackage } = require('./example-package')
 
@@ -482,7 +487,7 @@ module.exports = examplePackage
  */
 </code></pre>
             
-            <p>The config type is also added in the entry point so that it's accessible to the <em>VSCode</em> engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then enriched with JSDoc during templating by <em>Typal</em>. This allows to move away from <em>TypeScript</em> into pure JSDoc, and maintain types from XML files instead of having to updated them in different places.</p>
+            <p>The config type is also added in the entry point so that it's accessible to the <em>VSCode</em> engine when the package is required, and we get perfect developer experience when consuming this package. Therefore, the purpose of the template file, is to wrap the source code exported by Closure into a developer-friendly function, which is then enriched with JSDoc during templating by <em>Typal</em>. This allows to move away from <em>TypeScript</em> into pure <em>JSDoc</em>, and maintain types from XML files instead of having to updated them in different places.</p>
             
             <p>This method of the API is also placed in the <span class="tm">types/index.js</span> which is used for development purposes only.</p>
             
@@ -521,7 +526,15 @@ export default async function examplePackage(config = {}) {
  */
 </code></pre>
             
-            <p>See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing it, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to generate types which are then used in templates, as well as during the compilation to check types. The <span class="tm">@suppress</span> comment is needed as Closure Compiler does not understand the <span class="tm">import</span> directive in typedefs.</p>
+            <p>See how the method is not annotated with JSDoc itself, but only its type is given. This allows us to receive access to the config type by importing it, and validate types during the compilation process. This point is quite important as it means that we don't annotate code in the source code itself, but in XML files which are used as the single source of truth to:</p>
+            
+            <ul>
+              <li>Enrich functions from templates with automatic <span class="tm">@param</span> annotations;</li>
+              <li>for development to access auto-completions by importing typedefs;</li>
+              <li>during the compilation for type checking.</li>
+            </ul>
+            
+            <p>The <strong>@suppress</strong> comment is needed as <em>Closure Compiler</em> does not understand the <span class="tm">import</span> directive in typedefs. Each new typedef import needs its own separate block with <strong>@suppress</strong> command.</p>
             
             <p>The types are placed in <span class="tm">externs</span> that were imported by Depack.</p>
             
@@ -568,18 +581,24 @@ _examplePackage.examplePackage
             
             <p>The <span class="tm">externs</span> field is looked up by <em>Depack</em> when we incorporate packages in other packages. For example, when our <span class="tm">example-package</span> is actually consumed by another software, its types need to be preserved for the compiler, therefore we also publish our externs to facilitate integration into other packages. This is the essence of the compilation process. You can read more documentation on the <a
                title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-               <span class="a"><em>Depack</em></span><span class="b">1.0.1</span></a> page and its <a href="https://github.com/dpck/depack/wiki">wiki</a> that also outlines whether you can use modules compiled with <em>Babel</em> and <em>CommonJS</em> modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow the NodeTools conventions, such as providing externs and proper Closure Compiler annotations.</p>
+               <span class="a"><em>Depack</em></span><span class="b">1.1.0</span></a> page and its <a href="https://github.com/dpck/depack/wiki">wiki</a> that also outlines whether you can use modules compiled with <em>Babel</em> and <em>CommonJS</em> modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow <em>NodeTools</em> conventions, such as providing externs and proper Closure Compiler annotations.</p>
             
             <p>Finally, if it's required to preserve <span class="tm">require</span> statement, it's possible to add a simple comment before the package name. If a named export is being required, its name should be put in quotes to prevent the renaming of the property like so:</p>
             
             <pre id="ccdbf9"><code class="javascript hljs">const { 'a': a } = require(/* dpck */'package')
+// could ^ use destructuring but there's a bug in
+// Jan 2020 version of the compiler, so:
+const example = require(/* dpck */'package')
+const a = example['a']
+
+// invoke
 console.log(a({ 'configItem': 'test' }))</code></pre>
             
             <p>Adding the comment in <span class="tm">require</span> will exclude file from being added to Closure's compilation stack, and <span class="tm">require</span> will be treated as dynamic call, i.e. the dependency will be linked dynamically rather than statically. This is useful when dependencies have not been adapted for use with Closure, however in that case, when passing config properties, they also need to be quoted, otherwise the compiler will rename them.</p>
             
-            <p>Overall, just remember that advanced compilation renames property names, therefore we need externs. This is also true for external data such as received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.</p>
+            <p>Overall, just remember that advanced compilation changes property names, therefore we need externs. This is also true for external data such as received from HTTP API requests. We need to either provide externs, or quote properties to prevent mangling.</p>
             
-            <p>Above, we talked about compiling libraries so that they can be required by other packages. The script is called <span class="tm">lib</span> and can be run using <span class="tm">yarn lib</span>. To compile a binary, we call <span class="tm">yarn bin</span> that will generate an executable JS file, add shebang to it, and set executable permissions on it.</p>
+            <p>Above, we talked about compiling libraries so that they can be required by other packages. The script is called <strong>lib</strong> and can be run using <span class="tm">yarn lib</span>. To compile a binary, we call <span class="tm">yarn bin</span> that will generate an executable JS file, add a shebang to it, and set executable permissions on it.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -593,9 +612,36 @@ console.log(a({ 'configItem': 'test' }))</code></pre>
             <div data-section id="building-transpilation">
             <h2 id="building-transpilation">Building (Transpilation)</h2>
             
-            <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and module.export assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
+            <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and <strong>module.export</strong> assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
                title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
                <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
+            
+            <h3 id="-lamode-modules"> ÀLaMode Modules</h3>
+            
+            <p>Because of <em>Babel</em> and <em>TypeScript</em>, it's become a standard for transpiled packages to add the <span class="tm">__esModule: true</span> export and export the default function in the <span class="tm">.default</span> property of the <strong>module</strong> object. This is not the case with <span class="tm">ÀLaMode</span>, which simply assigns the default export to <strong>module</strong>, and assigns named exports as its properties. The <span class="tm">__esModule</span> is not used at all:</p>
+            
+            <pre id="ccdbf10"><code class="javascript hljs">import def from 'package'
+// let def = require('package'); if (def &amp;&amp; def.__esModule) def = def.default
+
+export default class Example {}
+// =&gt; module.exports = class Example {}
+export const test = 'hello'
+// =&gt; module.exports.test = 'hello'</code></pre>
+            
+            <p>There's absolutely no change to code apart from imports so that it still looks nice. But because of the <span class="tm">__esModule</span> flag, some packages transpiled with Babel/TypeScript will require the additional check when importing them. When we know that the imported packages can skip this check (if they were also made with <em>NodeTools</em>), we can add them to the <span class="tm">alamodeModules</span> field in the <span class="tm">.alamoderc.json</span> configuration file:</p>
+            
+            <pre id="cb9de2"><code class="json hljs">{
+  "env": {
+    "build": {
+      "import": {
+        "alamodeModules": ["argufy", "indicatrix",
+          "usually", "erte"]
+      }
+    }
+  }
+}</code></pre>
+            
+            <p>This will remove the check when transpiling those packages. We can also set the <span class="tm">alamode</span> field to true on the actual package itself it its <strong>package.json</strong>, so that all other packages that consume it will known that it's an <em>ÀLaMode</em> module that doesn't require the <span class="tm">__esModule</span> check (same works for packages written in <em>CommonJS</em> natively without transpilation step).</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -608,9 +654,9 @@ console.log(a({ 'configItem': 'test' }))</code></pre>
             <div data-section id="stdlib">
             <h2 id="stdlib">StdLib</h2>
             
-            <p>As discussed above, we might not want to compile packages every time. Examples of larger projects that don't compile code are <a href="https://github.com/artdecocode/documentary">Documentary</a> and <a href="https://github.com/artdecocode/splendid">Splendid</a>. Because these pieces of software are finished products in themselves, and will not be used as libraries for incorporation into other packages, they can be built. But to avoid having lots of dependencies that come with them and just form a library for the software product, we can create an <span class="tm">stdlib</span> file that will require all dependencies, and compile them. Then, the source code will be updated to require methods from the <span class="tm">stdlib</span> instead of actual packages.</p>
+            <p>As discussed above, we might not want to compile packages every time. Examples of larger projects that don't compile code are <a href="https://github.com/artdecocode/documentary">Documentary</a> and <a href="https://github.com/artdecocode/splendid">Splendid</a>. Because these pieces of software are finished products in themselves, and will not be used as libraries for incorporation into other packages, they can be built without advanced compilation that would require annotating everything everywhere. But to avoid having lots of dependencies that come with them and just form a library for the software product, we can create an <span class="tm">stdlib</span> file that will require all dependencies, and compile them. Then, the source code will be updated to require methods from the <span class="tm">stdlib</span> instead of actual packages.</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">// src/stdlib.js
+            <pre id="ccdbf11"><code class="javascript hljs">// src/stdlib.js
 import { c } from 'erte'
 import argufy, { reduceUsage } from 'argufy'
 import usually from 'usually'
@@ -626,24 +672,22 @@ module.exports = {
             
             <p>The package's standard library imports methods from dependencies, and exports them using <span class="tm">module.export</span> assignment. The names of named and default imports must be consistent across source files together with <span class="tm">stdlib.js</span> file. The <strong>stdlib</strong> job from <span class="tm2">package.json</span> is then used to put their source code together and produce a singe JS file:</p>
             
-            <pre id="cb9de2"><code class="json hljs">{
+            <pre id="cb9de3"><code class="json hljs">{
   "stdlib": "depack src/stdlib.js -o stdlib/index.js -a -c -p --source_map_include_content",
   "b": "ALAMODE_ENV=build alamode src -o build -i stdlib.js -s"
 }</code></pre>
             
-            <p>The arguments used for complation are <span class="tm">-a</span> for <em>advanced</em> mode, <span class="tm">-c</span> to indicated we're compiling a Node.JS package rather than producing a web-bundle, which Depack is also capable of doing, and <span class="tm">-p</span> means pretty code. Source map will also be generated and put in the same directory, so that when debugging, we'll see the source code (however we won't be able to hover over variable names as <em>VSCode</em> doesn't <a href="https://github.com/Microsoft/vscode/issues/12066">map symbols</a>). The build command sets the <span class="tm">ALAMODE_ENV</span> variable to <span class="tm">build</span> which is used by <span class="tm">.alamoderc.json</span> file during the build stage:</p>
+            <p>The arguments used for complation are <span class="tm">-a</span> for <em>advanced</em> mode, <span class="tm">-c</span> to indicated we're compiling a Node.JS package rather than producing a web-bundle, which <em>Depack</em> is also capable of doing, and <span class="tm">-p</span> means pretty code. Source map will also be generated and put in the same directory, so that when debugging, we'll see the source code (however we won't be able to hover over variable names as <em>VSCode</em> doesn't <a href="https://github.com/Microsoft/vscode/issues/12066">map symbols</a>). The build command sets the <strong>ALAMODE_ENV</strong> environment variable to <span class="tm">build</span> which is used by <span class="tm">.alamoderc.json</span> file during the build stage:</p>
             
-            <pre id="cb9de3"><code class="json hljs">{
+            <pre id="cb9de4"><code class="json hljs">{
   "env": {
     "build": {
       "import": {
         "stdlib": {
           "path": "stdlib",
           "packages": [
-            "argufy",
-            "indicatrix",
-            "usually",
-            "erte"
+            "argufy", "indicatrix",
+            "usually", "erte"
           ]
         }
       }
@@ -651,14 +695,14 @@ module.exports = {
   }
 }</code></pre>
             
-            <p>Such configuration tells the transpiler when running on <span class="tm">build</span> environment to apply the <span class="tm">stdlib</span> config, such as that the location of the <span class="tm">stdlib</span> is pointing to <span class="tm2">stdlib</span> dir, while 4 dependencies are being renamed. Each new dependency that is added to <span class="tm">stdlib</span> also needs to be specified in the <span class="tm">packages</span> field otherwise it won't be transpiled. When building the package with the <span class="tm2">yarn b</span> command (short for <span class="tm">build</span>), the transpiler will rename symbols to be able to require methods from <span class="tm">stdlib</span>.</p>
+            <p>Such configuration tells the transpiler when running on the <strong>build</strong> environment to apply the <span class="tm">stdlib</span> config, such as that the location of the <span class="tm">stdlib</span> is pointing to the <span class="tm2">stdlib</span> dir, while 4 dependencies are being renamed. Each new dependency that is added to the <em>StdLib</em> also needs to be specified in the <strong>packages</strong> field otherwise it won't be transpiled. When building the package with the <span class="tm2">yarn b</span> command (short for <span class="tm">build</span>), the transpiler will rename symbols to require methods from <span class="tm">stdlib</span>. This is why the names must be consistent.</p>
             
-            <pre id="ccdbf11"><code class="javascript hljs">const { reduceUsage } = require('../../stdlib');
+            <pre id="ccdbf12"><code class="javascript hljs">const { reduceUsage } = require('../../stdlib');
 const { usually } = require('../../stdlib');
 const { c } = require('../../stdlib');
 const { indicatrix } = require('../../../stdlib');</code></pre>
             
-            <p>This strategy is convenient for merging all dependencies suitable for compilation into a single JS file, which is used in a piece of software. However, this is not recommended usage for libraries that can be compiled into other packages, as it does not allow to make sure that the library's own source won't produce any compiler warnings during the compilation.</p>
+            <p>This strategy is convenient for merging all dependencies suitable for compilation into a single JS file, which is used in a big piece of software. However, this is not recommended usage for libraries that can be compiled into other packages, as it does not allow to make sure that the library's own source won't produce any compiler warnings and errors during compilation.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -693,7 +737,7 @@ const { indicatrix } = require('../../../stdlib');</code></pre>
             
             <p>Another cool feature is the ability to write our own components that could be invoked in documentation. The template used already has one component in the <span class="tm">.documentary/index.jsx</span> file, that will construct a footer.</p>
             
-            <pre id="ccdbf12"><code class="javascript hljs">/**
+            <pre id="ccdbf13"><code class="javascript hljs">/**
  * The footer for documentation.
  */
 export const footer = () =&gt; {
@@ -722,7 +766,7 @@ export const footer = () =&gt; {
             
             <p>The components receive properties parsed from HTML when used in markdown/html files as strings, numbers or booleans. There's also the <span class="tm">documentary</span> property that can be accessed to disable pretty printing. <em>NodeTools</em> uses Preact 8 for its hyperdom functionality, but the components are rendered statically therefore they don't have state. Any component can return strings, JSX nodes or an array of the above (like fragments, but because Preact 8 doesn't support <span class="tm">&lt;&gt;</span> fragments syntax, you can simply return an array). The following functions are <a href="https://github.com/artdecocode/documentary/blob/master/src/lib/components.js">available</a> on the <span class="tm">documentary</span> property:</p>
             
-            <pre id="ccdbf13"><code class="javascript hljs">export const mycomponent = ({ documentary }) =&gt; {
+            <pre id="ccdbf14"><code class="javascript hljs">export const mycomponent = ({ documentary }) =&gt; {
   // disable pretty printing (including new line breaks)
   documentary.pretty(false)
   // render inner html that might include new components
@@ -773,7 +817,7 @@ An example package created with MNP.
             
             <p>When generating documentation and Wikis, all types that were referenced in the documentation will be accumulated and written in <span class="tm">typedefs.json</span> file that is published with the package.</p>
             
-            <pre id="ccdbf14"><code class="javascript hljs">{
+            <pre id="ccdbf15"><code class="javascript hljs">{
   "_examplePackage.examplePackage": {
     "link": "https://github.com/idiocc/example-package#async-examplepackageconfig-config-string",
     "description": "An example package created with MNP."
@@ -806,7 +850,321 @@ An example package created with MNP.
             <div data-section id="context-testing">
             <h2 id="context-testing">Context Testing</h2>
             
+            <p>A context is a class that can be used across test cases. Its main purpose is to separate testing utilities from test cases: by placing all code that is required to set up tests in a separate files, we can keep test suits clean of the noise, yet access the testing API easily and in the most developer-friendly way.</p>
             
+            <pre id="ccdbf16"><code class="javascript hljs">// test/context/index.js
+/**
+ * A testing context for the package.
+ */
+export default class Context {
+  async _init() {
+    LOG('init context')
+  }
+  /**
+   * Example method.
+   */
+  example() {
+    return 'OK'
+  }
+  /**
+   * A tagged template that returns the relative path to the fixture.
+   * @param {string} file
+   * @example
+   * fixture`input.txt` // -&gt; test/fixture/input.txt
+   */
+  fixture(file) {
+    const f = file.raw[0]
+    return join('test/fixture', f)
+  }
+  async _destroy() {
+    LOG('destroy context')
+  }
+  static get BIN() {
+    return BIN
+  }
+}</code></pre>
+            
+            <p>By providing JSDoc for documentation, the methods can be accessed via destructing in tests. Using context testing, we can always see what variables and functions are available to us from the testing context. It also allows to create as many files with test suites as we need without having to repeat ourselves when writing setting up and tearing down routines in <span class="tm">before</span>, <span class="tm">beforeEach</span>, <span class="tm">after</span> and <span class="tm">afterEach</span> blocks.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="test context for example package" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="test context for example package" src="/nodetools/pages/quick-start/images/context1.gif">
+              </noscript>
+            </p>
+            
+            <h3 id="-snapshots"> Snapshots</h3>
+            
+            <p>Tests can simply return a string value which will be recorded in a snapshot in the <span class="tm">test/snapshot</span> dir. Moreover, a readable stream can also be returned, and <em>Zoroaster</em> will collect all data returned from the stream and then compare it to the snapshot.</p>
+            
+            <pre id="ccdbf17"><code class="javascript hljs">import erte from '../../src'
+
+/** @type {Object.&lt;string, (c: Context)&gt;} */
+const T = {
+  async 'returns a string in colour'({ string }) {
+    const res = erte(string, 'yellow')
+    return res
+  },
+}
+
+export default T</code></pre>
+            
+            <p>If exporting a default test suite, we need to create a variable first and annotate it with type information, and export it as default only after, because <em>VS Code</em> will not be able to assign types to default exports.</p>
+            
+            <h3 id="mask-testing">Mask Testing</h3>
+            
+            <p>A mask is a test case template that has fixed logic but whose test input and output data is read from a separate file called mask result file. Therefore, we can set up a test case once, but repeatedly run it for multiple inputs that are mapped against outputs, so that we only have to add new mappings in the result file, without having to repeat the JavaScript logic.</p>
+            
+            <pre id="ccdbf18"><code class="javascript hljs">// test/mask/default.js
+import makeTestSuite from '@zoroaster/mask'
+import Context from '../context'
+import examplePackage from '../../src'
+
+export default makeTestSuite('test/result/default', {
+  /**
+   * @param {Context} ctx
+   */
+  async getResults({ fixture }) {
+    const text = fixture`test.txt` + `\n${this.input}`
+    const res = await examplePackage({
+      text,
+    })
+    return res
+  },
+  context: Context,
+})</code></pre>
+            
+            <p>We use the <span class="tm">@zoroaster/mask</span> method to create a test suite which is then exported either as default or named export. <em>Zoroaster</em> context testing framework relies on ÀLamode, when <span class="tm">-a</span> flag is passed, so that like <em>Documentary</em>, it supports modules natively. The second argument to the <span class="tm">makeTestSuite</span> function is the configuration object, and we need to implement the <span class="tm">getResults</span> method (possibly asynchronous) that will run the test case and output the result. The result is that automatically compared against the declared one from the test result file. The input is read from the <span class="tm">this.input</span> variable.</p>
+            
+            <p>The results are written in a separate file, in whatever most suitable file extension is, that supports syntax highlighting. <em>Zoroaster</em> supports <span class="tm">.js</span> and <span class="tm">.md</span> extensions from the box, where <span class="tm">## test name</span> is used in markdown to indicate new tests, and <span class="tm">// test name</span> in JS files. The expected output is added in the <span class="tm">/* expected */</span> block. This can be controlled from the <span class="tm">splitRe</span> option.</p>
+            
+            <pre id="c1953"><code class="markdown hljs">## returns the correct output
+test
+
+/* expected */
+test/fixture/test.txt
+test
+/**/
+/* property */
+["additional", "property"]
+/**/
+/* js-property */
+{ hello: 'world' }
+/**/</code></pre>
+            
+            <p>Contexts are also available to be used in masks. Access to the API is made possible via the arguments to the <span class="tm">getResults</span> function, and any number of contexts can be passed. The <span class="tm">makeTestSuite</span> method is quite robust and supports many options, such as:</p>
+            
+            <ul>
+              <li><span class="tm2">getTransform</span>: allows to return a <em>Transform</em> stream to be ended with the input specified in the mask's result.</li>
+              <li><span class="tm2">getReadable</span>: allows to return a <em>Readable</em> stream constructed with the input from the mask.</li>
+              <li><span class="tm2">fork</span>: configuration for fork testing (see below).</li>
+              <li><span class="tm2">mapActual</span>: is the <span class="tm">getResults</span> returned a an object instead of a string, call this method to map which property of the object should be compared to the expected output.</li>
+              <li><span class="tm2">assertResults</span>: additional assertions on results.</li>
+              <li><span class="tm2">jsonProps</span>: properties that should be JSON-parsed (like above, <span class="tm">/* property */</span> denotes a property which is exported in <span class="tm">this.property</span> property of the mask).</li>
+              <li><span class="tm2">js</span>: properties that should be JS-parsed.</li>
+              <li><span class="tm2">splitRe</span>: regular expression to split the result files by. The default is <span class="tm">/^\/\/ /gm</span> for results from all files, and <span class="tm">/^## /gm</span> for results from <span class="tm">.md</span> files.</li>
+              <li><span class="tm2">propStartRe</span>: how to detect start of a property, e.g., in <span class="tm">/⁎ propName ⁎/</span>, the default <span class="tm">/⁎</span> is used.</li>
+              <li><span class="tm2">propEndRe</span>: how to detect end of a property, e.g, in <span class="tm">/⁎ propName ⁎/ some prop value /⁎⁎/</span>, the default <span class="tm">/⁎⁎/</span> is used.</li>
+            </ul>
+            
+            <h3 id="fork-testing">Fork Testing</h3>
+            
+            <p><em>NodeTools</em> appreciates that powerful CLI applications can be written in Node.JS, however testing them has always been a chore. This is why <em>Zoroaster</em> is a powerful framework that provides a way to test forks automatically using mask testing. You can specify arguments to the program as inputs, and provide <span class="tm">/* stdout */</span>, <span class="tm">/* stderr */</span> and <span class="tm">/* code */</span> properties of the mask result file (each one is optional but at least one is required). The fork will be spawned and outputs compared to the ones supplied in the mask result.</p>
+            
+            <pre id="c19531"><code class="markdown hljs">## runs the binary
+test/fixture/test.txt
+
+/* stdout */
+my-new-package called with a test file
+
+a test file
+
+/**/
+
+/* stderr */
+File test/fixture/test.txt successfully processed.
+/**/</code></pre>
+            
+            <p>You can do a lot of cool things like passing inputs to <strong>stdin</strong> by specifying the <span class="tm">inputs</span> property:</p>
+            
+            <pre id="c19532"><code class="markdown hljs">## can register a domain
+com
+
+/* inputs */
+Apply coupon: n
+OK: y
+/**/
+
+/* stdout */
+Apply coupon TLDEALZ01 (y/n)? [y] n
+
+Price            8.88
+Additional Cost  0.18
+-----            --------
+Total            9.06 USD
+
+Registering DOMAIN using:
+┌─────────────────────────────────────┐
+│ John Zoidberg, zoidberg@futurama.bz │
+│  Planet Express                     │
+│  57th Street                        │
+│  New New York                       │
+│  10019, US                          │
+└─────────────────────────────────────┘
+OK (y/n)? [n] y
+Successfully registered DOMAIN! Charged amount: $9.06.
+/**/</code></pre>
+            
+            <p><a href="https://github.com/artdecocode/expensive/blob/master/test/mask">More examples</a> from <em>Expensive</em>.</p>
+            
+            <p>The fork property of the mask constructor can accept a single path to the fork, or additional advanced options known as <a href="https://github.com/contexttesting/fork#type-forkconfig"><em>ForkConfig</em></a> that allow to specify CWD, enable logging and others.</p>
+            
+            <p>Of course, contexts can be used for fork-testing too. This is useful, for example, when a CLI program needs to interact with an external web service, so that we can mock an HTTP server that serves responses. The example below will start a server using a context, and pass the url as the first argument to the CLI.</p>
+            
+            <pre id="ccdbf19"><code class="javascript hljs">// mask
+import clearr from 'clearr'
+
+export default makeTestSuite('test/result/bin', {
+  context: Context,
+  fork: {
+    module: Context.BIN,
+    /**
+     * @param {string[]}
+     * @param {Context} context
+     */
+    async getArgs(args, { start }) {
+      const url = await start({
+        get: (ctx) =&gt; {
+          // assign response from the response
+          // property of the mask result.
+          ctx.body = this.response
+        },
+      })
+      return [url, ...args]
+    },
+    // use clearr package to remove
+    // loading indicator w/ \r
+    preprocess: clearr,
+  },
+  jsonProps: ['response'],
+})</code></pre>
+            
+            <p>Or, we might want to make use of <span class="tm">temp-context</span> to ensure that data is written or read from a file by the CLI. <a
+              href="https://github.com/artdecocode/typal/blob/f406f025b5025389e38e7ba2263e6e13d6acef7b/test/mask/bin.js#L5">
+              The example</a> below will write data from the mask result into a file using the <span class="tm">write</span> method of a temp context, and pass it as the first argument to the CLI whose job it is then to process this file in-place (the CLI updates the passed file). The spec in <span class="tm">getResults</span> is used to create a snapshot of the updated file using the context. The snapshot is returned for assertion on the <span class="tm">/* expected */</span> property. In other words, we add some JS in the mask result, write it to a temp file, use CLI to update this temp file, then return the snapshot of the temp folder that includes the temp file, and compare it to the expected value. By specifying the context as param to functions, we receive full <em>JSDoc</em> support.</p>
+            
+            <pre id="ccdbf20"><code class="javascript hljs">const TS = makeTestSuite('test/result/bin/default', {
+  context: TempContext,
+  fork: {
+    module: Context.BIN,
+    /**
+     * @param {string[]} args
+     * @param {TempContext} t
+     */
+    async getArgs(args, { write }) {
+      const p = await write('program.js', this.program)
+      return [p, ...args]
+    },
+  },
+  /**
+   * @param {TempContext} t
+   */
+  async getResults({ snapshot }) {
+    return snapshot()
+  },
+})</code></pre>
+            
+            <p><a href="https://github.com/artdecocode/logarithm/blob/master/test/mask">More examples</a> from <em>Logarithm</em>.</p>
+            
+            <h3 id="persistent-contexts">Persistent Contexts</h3>
+            
+            <p>In case when a certain long-running process (e.g., a connection to the database) needs to be initialised once per test suite, it's possible to assign it as a persistent context, rather than a one-use context.</p>
+            
+            <pre id="ccdbf21"><code class="javascript hljs">export const testSuite = {
+  persistentContext: class {
+    async _init() {
+      // initialised once per test suite
+      // ...
+      this.client = await client.connect('mongodb://localhost:27017')
+    }
+    async _destroy() {
+      await this.client.close()
+    }
+  },
+  context: [class {
+    _init() {
+      // initialised for each test
+      // ...
+    }
+    async startServer(mongo) {
+      return await start({ mongo })
+    }
+  }],
+  'test case'({ client }, { startServer }) {
+    const server = await startServer(client)
+    const res = await get(server.url)
+    equal(res.status, 200)
+  },
+}</code></pre>
+            
+            <p>Any number of contexts and persistent contexts can be passed, in an array, but persistent contexts will always be passed as arguments first. Read more about contexts on <a href="https://github.com/artdecocode/zoroaster"><em>Zoroaster</em></a> documentation.</p>
+            
+            <h3 id="interactive">Interactive</h3>
+            
+            <p>Whether for masks or snapshot testing, when <em>Zoroaster</em> is run in the interactive mode with the <span class="tm">-i</span> flag, if the output was not what was expected, the testing framework will suggest that it should be updated (or new one recorded it there wasn't one before). This allows to quickly add expected outputs to masks.</p>
+            
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="interactivity during testing" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="interactivity during testing" src="/nodetools/pages/quick-start/images/interactive.png">
+              </noscript>
+            </p>
+            
+            <h3 id="environments">Environments</h3>
+            
+            <p>You might have noticed that there are additional test scripts: <span class="tm">test-build</span> and <span class="tm">test-compile</span> which set the <span class="tm2">ALAMODE_ENV</span> variable. This variable controls the renaming of imports via the <span class="tm">.alamoderc</span> file. It allows to run all test suites against compiled and build code, to make sure that not only source code is tested, but its derivatives prepared for publishing. When using <em>Closure Compiler</em>, it's pretty essential to run tests against the compiled version, because of the complexity of advanced compilation (e.g., it's possible we forgot to add a property to externs which then gets renamed so that the library does not work as expected).</p>
+            
+            <pre id="cb9de5"><code class="json hljs">{
+  "env": {
+    "test-build": {
+      "import": {
+        "replacement": {
+          "from": "^((../)+)src",
+          "to": "$1build"
+        }
+      }
+    },
+    "test-compile": {
+      "import": {
+        "replacement": {
+          "from": "^((../)+)src$",
+          "to": "$1compile"
+        }
+      }
+    }
+  }
+}</code></pre>
+            
+            <p>The renaming is done using simple regexes. When testing compiled folder, we can only test those files exported from the main <span class="tm">src</span> file, i.e. from <span class="tm">../src</span> but not <span class="tm">../src/lib</span> because there's only one compiled file produced. Therefore the renaming is only possible with <span class="tm">src$</span> regex that will rename imports exactly from <span class="tm">src</span>. With the <strong>build</strong> environment this is not the case and we can unit test everything.</p>
+            
+            <p>When we test forks, the renaming doesn't work since we're hard-coding the location of the executable fork file, rather than importing it. Therefore, we need to manually control this path, which is done in Context:</p>
+            
+            <pre id="ccdbf22"><code class="javascript hljs">class Context {
+  static get BIN() {
+    return BIN
+  }
+}
+let BIN = 'src/BIN'
+if (process.env.ALAMODE_ENV == 'test-build') {
+  console.log('Testing build bin...')
+  BIN = 'build/bin/mnp'
+} else if (process.env.ALAMODE_ENV == 'test-compile') {
+  console.log('Testing compile bin...')
+  BIN = 'compile/bin/mnp'
+}</code></pre>
+            
+            <p>By adding a single logging line with the information about the location of the fork, we can make sure that our set up is correct.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -817,20 +1175,139 @@ An example package created with MNP.
             </div>
             
             
-            <div data-section id="-examples">
-            <h2 id="-examples"> Examples</h2>
+            <div data-section id="debugging">
+            <h2 id="debugging">Debugging</h2>
             
-            <p>There are a number of packages that were created using NodeTools stack. For references to actual packages you can explore the following:</p>
+            <p>Debugging is an very important process and must be approached seriously. Professional software engineers always debug their programs with a debugger, rather than by leaving <strong>console.log</strong> statements as it saves a lot of time and allows to set through code line by line observing changes to variables.</p>
             
-            <li><a href="https://github.com/idiocc/idio">Idio web server</a>, the most advanced usage of NodeTools that generates and references lots of types across <span class="tm">_idio</span> and <span class="tm">_goa</span> namespace. Check out its template, and scripts used to generate typedefs. Have a look at all other middleware in the <a href="https://github.com/idiocc">same namespace</a> that is compiled for individual standalone use, but is also adapted to be compiled into <em>Idio</em> itself.</li>
-            <li><a href="https://github.com/idiocc/goa-router">Goa Router</a>, a router which is defined using an interface in types, and uses a <span class="tm">@constructor {_goa.Router}</span> template to generate a proxy to the actual class compiled with Closure.</li>
-            <li><a href="https://github.com/wrote/temp-context#readme">Temp Context</a>, a context used for testing IO operations using a temporary folder created in <span class="tm">tests/temp</span> for each test case.</li>
+            <p>To start debugging, we need an entry point, i.e. a program that is using our written source code. There are 2 candidates for this: either tests, or examples. The best IDE for debugging is <em>VS Code</em> that allows to open file being debugged in write-mode, and make changes on-the-fly. Therefore, we've included the configuration necessary for debugging in <em>VS Code</em> called <strong>launch.json</strong> and it's found in the <span class="tm">.vscode</span> folder. Don't be afraid to create as many records in the configs as you need, and commit them to remote repository. Configs are free and even if you and members of your team don't use same configs, it's better to still have them rather than having to create new ones each time because they were not committed to source control.</p>
+            
+            <pre id="cb9de6"><code class="json hljs">{
+  {
+    "type": "node",
+    "request": "launch",
+    "name": "Launch Zoroaster",
+    "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
+    "env": {
+      // "NODE_DEBUG": "my-new-package",
+    },
+    "console": "integratedTerminal",
+    "args": [
+      "test/spec",
+      "test/mask",
+      "-a", "-w", "-t", "9999999"
+    ],
+    "skipFiles": [
+      "&lt;node_internals&gt;/**/*.js"
+    ]
+  },
+  {
+    "type": "node",
+    "request": "launch",
+    "name": "Launch Example",
+    "program": "${workspaceFolder}/node_modules/.bin/alanode",
+    "console": "integratedTerminal",
+    "args": [
+      "example"
+    ],
+    "skipFiles": [
+      "&lt;node_internals&gt;/**/*.js"
+    ]
+  }
+}
+</code></pre>
+            
+            <p>The configurations will launch either <strong>zoroaster</strong> or <strong>alanode</strong> binaries. By skipping node internals, we won't be jumping into Node's own source code, like <span class="tm">fs.createReadStream('path')</span> or async hooks that are executed after async operations. <em>ÀLaNode</em> is a simple binary that calls the ÀLaMode require hook to enable transpilation of modules. You can also call it directly like <span class="tm">yarn alanode example/src.js</span> to run examples or any scripts that you have.</p>
+            
+            <p>Using <em>VS Code</em> interface, we set breakpoints by clicking on the line where we want to stop, either in the source code or in tests/examples. It's also possible to simply write <strong>debugger</strong> statement in code manually. Then we launch the compiler (F5) which will pause at the breakpoint. We can then hover over variable names, and observe their values and call stack on the left. <em>Zoroaster</em> will be started in watch mode, so that every change will rerun tests (you'll need to unpause the debugger first if it paused on a breakpoint) without having to restart the debugger.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="pausing at a breakpoint in zoroaster debugger" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="pausing at a breakpoint in zoroaster debugger" src="/nodetools/pages/quick-start/images/debugging.gif">
+              </noscript>
+            </p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
                 <img alt="section break"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='41' height='13'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/10.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="summary">
+            <h2 id="summary">Summary</h2>
+            
+            <p><em>NodeTools</em> provides a holistic approach to pure Node.JS development and allows to maintain types without being locked in into <strong>TypeScript</strong>. Firstly, we can spawn packages quickly using <em>GitHub</em> templates via <em>MNP</em>. Then, by keeping types in XML files, we can generate externs for the compiler and typedefs for development purposes using <em>Typal</em> and also place types' tables and methods' headings in documentation. Examples and their output can also be placed into documentation which is put together by <em>Documentary</em>: this method provides an additional quality assurance control.</p>
+            
+            <p><em>Context-testing</em> is used for perfect developer experience during quality assurance that allows to reuse testing infrastructure across files easily via destructuring in test cases. Developers now can quickly glance at available testing API methods and access their <em>JSDoc</em> via the context. Destructured methods are already bound to instances of a context so they don't loose their scope like they would under normal circumstances:</p>
+            
+            <pre id="ccdbf23"><code class="javascript hljs">class Example {
+  constructor() {
+    this.hello = 'world'
+  }
+  method() {
+    return this.hello
+  }
+}
+
+const e = new Example()
+const { method } = e
+const res = method() // undefined, not found
+
+export const testSutie {
+  context: Example,
+  async'test case'({ method }) {
+    return method() // 'world', as method is bound
+  }
+}</code></pre>
+            
+            <p>Additionally, test contexts can be reused across packages, like <span class="tm">temp-context</span> for system IO testing or <span class="tm">@contexts/http</span> for HTTP server testing. These are just 2 examples of contexts that were published to be simply required in other packages that need such testing utilities, and any developer can make their own context that will improve productivity of the whole ecosystem. Moreover, <em>Zoroaster</em> testing framework is a simple yet advanced tool that introduces mask testing: a QA method that allows to set up a blueprint for test cases once (a mask), but feed multiple input/output pairs into it from a separate file (called mask result). Since mask results are placed in their own files of arbitrary extension, our dev experience is again improved by proper syntax highlighting. <em>Zoroaster</em> also has a powerful fork-testing built-in feature that makes testing forks a breeze. By using different environments, we are able to test not only the source code but the compiled or built code too.</p>
+            
+            <p>All of the above use <em>ÀLaMode</em>, the simplest regex-based transpiler that only updates imports into common-js modules understood by Node.JS of lower versions. Now we don't need to install thousands of unknown dependencies and relinquish control of our <span class="tm">node_modules</span> folder to have the essential stack required for productive Node development in 2020 with only 10 new folder in <span class="tm">node_modules</span>.</p>
+            
+            <p>The introduction of the compiler into the Node.JS development methodology via <em>NodeTools</em> is the best feature of the stack that allows to statically link packages and reduce the number of dependencies to 0. However, that requires most consumed dependencies to be compiler-compatible, e.g., characterised by such features as the <strong>externs</strong> field in <span class="tm">package.json</span>. <strong>Externs</strong> is a file that describes types for Closure Compiler in specially formatted <em>JSDoc</em> to prevent property names renaming during advanced compilation. <em>Depack</em> has provided <a href="https://github.com/externs/nodejs">externs</a> for Node 8 built-in modules, such as <span class="tm">fs.readFileSync</span>, <span class="tm">stream.createReadable</span>, <em>etc</em> to enable type checking, however newer APIs might have been added to later versions (10, 12+). At the moment missing methods can be described manually in <span class="tm">types/externs.js</span> files: simply add the missing property or method on the namespace, like so:</p>
+            
+            <pre id="ccdbf24"><code class="javascript hljs">/* typal types/index.xml externs */
+// generated externs
+
+/**
+ * @param {string} path
+ */
+fs.node10Method = function(path) {}</code></pre>
+            
+            <h3 id="-admin"> Admin</h3>
+            
+            <p>If you want to make any changes to the package structure, you can simply fork the <span class="tm">mnpjs/package</span> template, and update any part of it (such as eslint config) to your preference. Then simply push it to <em>GitHub</em> and specify it as the default template in the <span class="tm">.mnprc</span> setting inside of the project or home directory. You can also study the <span class="tm">mnp/index.js</span> script inside the template to find out how to create your own templates for <em>MNP</em>.</p>
+            
+            <p>The source code for all packages (except for templates which are MIT) is published under the AGPL license, however because the tools are used to facilitate the development process, and packages made with them don't link to them in any way (except if your package calls <em>ÀLaMode</em> require hook from source at runtime which it won't unless you explicitly do that, like <em>Documentary</em> does for JSX support), you don't have to publish the source code of your packages according to AGPL. Only if you build new software upon those packages that this needs to be done, but we don't expect you too. Please file any issues in both target package and <a href="https://github.com/art-deco/nodetools">NodeTools</a> repo itself.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/11.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="examples">
+            <h2 id="examples">Examples</h2>
+            
+            <p>There are a number of packages that were created using <em>NodeTools</em> stack. For references to actual packages you can explore the following:</p>
+            
+            <li><a href="https://github.com/idiocc/idio">Idio web server</a>, the most advanced usage of <em>NodeTools</em> that generates and references lots of types across <span class="tm">_idio</span> and <span class="tm">_goa</span> namespace. Check out its template, and scripts used to generate typedefs. Have a look at all other middleware in the <a href="https://github.com/idiocc">same namespace</a> that is compiled for individual standalone use, but is also adapted to be compiled into <em>Idio</em> itself.</li>
+            <li><a href="https://github.com/idiocc/goa-router">Goa Router</a>, a router which is defined using an interface in types, and uses a <span class="tm">@constructor {_goa.Router}</span> template to generate a proxy to the actual class compiled with Closure.</li>
+            <li><a href="https://github.com/wrote/temp-context#readme">Temp Context</a>, a context used for testing IO operations using a temporary folder created in <span class="tm">tests/temp</span> for each test case.</li>
+            <li><a href="https://github.com/idiocc/http">HTTP Context</a>, a context used for testing of HTTP servers in super-test style, that will create a listener for connections, and provide <span class="tm">.get/post/put/etc</span> methods on the test object accessed via the context <a href="https://github.com/idiocc/idio/blob/master/test/spec/middleware/csrf-check.js#L6">
+              testing API</a>.</li>
+            <li><a href="https://github.com/artdecocode/typal/tree/master/test/mask">Typal</a> has got a lot of mask testing setups that can provide some hints.</li>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='29' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/12.svg"></noscript></a>
             </p>
             </div>
             

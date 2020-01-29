@@ -304,6 +304,9 @@ pre code {
     max-width: 50%;
   }
 }
+.border {
+  border: 1px solid #dee2e6 !important;
+}
 .rounded {
   border-radius: .25rem !important;
 }
@@ -430,7 +433,7 @@ pre code {
 li.Active {
   font-weight: 700;
 }
-.tm, .tm2 {
+.tm, .tm2, .hljs {
   font-family: 'Source Code Pro' , monospace;
 }
 .tm {
@@ -451,6 +454,9 @@ footer {
 }
 #NewsletterDetails h3 {
   display: inline-block;
+}
+#OnThisPage {
+  padding-inline-start: 0;
 }
 .SideBarMenu {
   max-height: 100vh;

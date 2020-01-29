@@ -37,6 +37,7 @@ export const quickStart = {
     image: '/img/fav.png',
   },
   links: {
+    'node-externs': 'https://github.com/externs/nodejs',
     // dropcss: 'https://github.com/leeoniya/dropcss',
   },
 }
