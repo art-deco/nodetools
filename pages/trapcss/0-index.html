@@ -1,8 +1,10 @@
-<critical-path-font text="TrapCSS: NodeTools Use Case" family="Mr De Haviland">
+<critical-path-font text="TrapCSS: NodeTools Tutorial" family="Mr De Haviland">
   h1 { font-family: 'Mr De Haviland' }
 </critical-path-font>
 
-#![##TrapCSS] TrapCSS: NodeTools Use Case
+#![##TrapCSS] TrapCSS: NodeTools Tutorial
+
+<!-- <npm-badge package="trapcss" /> -->
 
 There are CSS frameworks such as _Bootstrap_ that allow to create great layouts quickly, however their size might be quite large. This point is worth considering because CSS is loaded in a blocking fashion: the browser will have to wait before all CSS is loaded to render a web site, which slows page render, and affects usability and even search engine ranking negatively. In many cases, a lot of CSS can be "dropped" from frameworks' compiled code, and by leaving only those selectors that are present on a page, or multiple pages. This technique corresponds to the "Defer unused CSS" Lighthouse [warning](lighthouse).
 
@@ -28,5 +30,7 @@ abbr[data-original-title] {
 We needed to annotate Bootstrap with the `/* alternate */` marker so that the CSS compiler doesn't throw an error. A simple proposed solution to prevent stripping such comments was suggested in form of a [PR](https://github.com/leeoniya/dropcss/pull/41) to _DropCSS_ package owner, however was rejected as being too narrow of a use case. Therefore, we decided to fork his project and use its source code to create a professional Node.JS package that would also provide JSDoc annotations, could be tested with context testing, and is ready to be compiled into other packages, such as _Splendid_ itself, so that it's linked statically instead of dynamically as permitted by the original MIT license.
 
 This tutorial walks through the process of upgrading a package to use _NodeTools_ stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the [quick guide](quickGuide) first for some details about the standard routine.
+
+*TrapCSS* on _GitHub_: <github-badge name="trapcss" org="artdecocode" />
 
 <section-break />

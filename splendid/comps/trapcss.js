@@ -25,6 +25,13 @@ const io = makeIo()
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
   key: 'highlightjs',
+  id: 'c10fc',
+  props: {
+    lang: 'md',
+  },
+},
+{
+  key: 'highlightjs',
   id: 'c724c,c724c1,c724c2',
   props: {
     lang: 'shell',
@@ -47,6 +54,21 @@ const meta = [{
   },
 },
 {
+  key: 'github-badge',
+  id: 'c1dbc',
+  props: {
+    owner: 'artdecocode',
+    name: 'trapcss',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'c1953,c19531,c19532,c19533',
+  props: {
+    lang: 'markdown',
+  },
+},
+{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
@@ -64,7 +86,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7',
+  id: 'ccdbf,ccdbf1,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8',
   props: {
     lang: 'javascript',
   },
@@ -85,7 +107,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c414d,c414d1',
+  id: 'c414d,c414d1,c414d2',
   props: {
     lang: 'bash',
   },
