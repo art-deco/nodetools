@@ -164,6 +164,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     <li data-heading="upgrading-source-code"><a href="#upgrading-source-code">Upgrading Source Code</a></li>
                                     <li data-heading="adding-types"><a href="#adding-types">Adding Types</a></li>
                                     <li data-heading="initial-documentation"><a href="#initial-documentation">Initial Documentation</a></li>
+                                    <li data-heading="creating-tests"><a href="#creating-tests">Creating Tests</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="c485b"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
@@ -219,7 +220,7 @@ abbr[data-original-title] {
             
             <p>We needed to annotate Bootstrap with the <span class="tm">/* alternate */</span> marker so that the CSS compiler doesn't throw an error. A simple proposed solution to prevent stripping such comments was suggested in form of a <a href="https://github.com/leeoniya/dropcss/pull/41">PR</a> to <em>DropCSS</em> package owner, however was rejected as being too narrow of a use case. Therefore, we decided to fork his project and use its source code to create a professional Node.JS package that would also provide JSDoc annotations, could be tested with context testing, and is ready to be compiled into other packages, such as <em>Splendid</em> itself, so that it's linked statically instead of dynamically as permitted by the original MIT license.</p>
             
-            <p>This tutorial walks through the process of upgrading a package to use <em>NodeTools</em> stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the <a href="/nodetools/quickGuide">quick guide</a> first for some details about the standard routine.</p>
+            <p>This tutorial walks through the process of upgrading a package to use <em>NodeTools</em> stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the <a href="/nodetools/quick-start-to-nodetools.html">quick start</a> guide first for some details about the standard routine.</p>
             
             <strong>TrapCSS</strong> on <em>GitHub</em>: <a
                title="Removes unused selectors from CSS files to achieve maximum optimisation. Can be used as an API function or with CLI." class="GitHubBadge" id="c1dbc" href="https://github.com/artdecocode/trapcss">
@@ -492,7 +493,7 @@ function dropcss(opts) {
             
             <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="tm">yarn d</span> command. The externs look like the following:</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">/**
+            <pre id="ccdbf8"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -686,7 +687,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf9"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -770,6 +771,322 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
                 <img alt="section break"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/4.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="creating-tests">
+            <h2 id="creating-tests">Creating Tests</h2>
+            
+            <p>Tests for the original packages were written for <em>Mocha</em> testing framework, but we need to update them into <em>Zoroaster</em> context-testing specs and masks. Let's take the first test suite and have a look at its structure:</p>
+            
+            <pre id="ccdbf10"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+const assert = require('assert')
+
+describe('Context-free, unary selector', () =&gt; {
+  let html, css
+
+  describe('*', () =&gt; {
+    it('should retain present', function() {
+      let { css: out } = dropcss({
+        html:	'&lt;div&gt;&lt;/div&gt;',
+        css:	'* {a:b;}',
+      })
+      assert.equal(out, '*{a:b;}')
+    })
+  })
+
+  describe('&lt;tag&gt;', () =&gt; {
+    it('should retain present', function() {
+      let { css: out } = dropcss({
+        html:	'&lt;div&gt;&lt;/div&gt;',
+        css:	'div {a:b;}',
+      })
+      assert.equal(out, 'div{a:b;}')
+    })
+
+    it('should drop absent', function() {
+      let { css: out } = dropcss({
+        html:	'&lt;div&gt;&lt;/div&gt;',
+        css:	'span {a:b;}',
+      })
+      assert.equal(out, '')
+    })
+  })
+
+  describe('#id', () =&gt; {
+    it('should retain present', function() {
+      let { css: out } = dropcss({
+        html:	'&lt;div id="a"&gt;&lt;/div&gt;',
+        css:	'#a {a:b;}',
+      })
+      assert.equal(out, '#a{a:b;}')
+    })
+
+    it('should drop absent', function() {
+      let { css: out } = dropcss({
+        html:	'&lt;div id="a"&gt;&lt;/div&gt;',
+        css:	'#b {a:b;}',
+      })
+      assert.equal(out, '')
+    })
+  })
+})</code></pre>
+            
+            <p>We can see that each time the logic is pretty much the same: we use the <span class="tm">&lt;div&gt;&lt;/div&gt;</span> html as HTML string for first cases, but change it to <span class="tm">&lt;div id=&quot;a&quot;&gt;&lt;/div&gt;</span> for ID selector tests, then manipulate some CSS from test to test and expect the result to be equal to certain values. Tests like that are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result.</p>
+            
+            <p>So what are we controlling? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:</p>
+            
+            <pre id="c19534"><code class="markdown hljs">[Optional preamble to the whole mask]
+
+## test name
+input
+
+/* property */
+some value
+/**/
+/* expected */
+output
+/**/
+
+## test name2
+input
+
+/* property */
+some controlled value
+/**/
+/* expected */
+output 2
+/**/</code></pre>
+            
+            <p>This means we give spec names, can add any number of properties, and pass the expected output for comparison also. The testing framework will then execute the test logic that is written only one, and using string assertion (or deep equal for objects), compare the output to expected. In case of an error, it will be shown in the console and the framework will exit with status code > 0.</p>
+            
+            <p>In this case, we can construct the following mask.</p>
+            
+            <pre id="ccdbf11"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+import trapcss from '../../src'
+
+// todo: test [foo="val"], [foo='val'], :not([attr~=value])
+const contextFreeUnarySel = makeTestSuite(
+  'test/result/0-context-free-unary-sel', {
+    getResults() {
+      let html, css
+      if (!this.preamble) {
+        [html, ...css] = this.input.split('\n')
+        css = css.join('\n')
+      } else {
+        html = this.preamble
+        css = this.input
+      }
+      [,html] = /content: '(.+?)'/.exec(html)
+      return trapcss({ html, css })
+    },
+    mapActual({ css }) {
+      return css
+    },
+  })
+
+export default {
+  'Context-free, unary selector': contextFreeUnarySel,
+}</code></pre>
+            
+            <p>To create a mask, we import the <strong>makeTestSuite</strong> method from <span class="tm2">@zoroaster/mask</span> that comes together with <em>Zoroaster</em>. The first argument to this function is a path to the mask result file, or directory with multiple such files, that will be scanned recursively. The second argument is the actaul config to the mask, and will include either methods like <span class="tm">getResults</span>, <span class="tm">getReadable</span>, <span class="tm">getTransform</span> or <span class="tm">fork</span> configuration. All properties from the mask are available via the <span class="tm">this</span> keyword: <strong>this.preamble</strong>, <strong>this.input</strong>. We'll organise tests by files, so that a preamble in each file can be used as HTML input, whereas input to the test will be the CSS string. When we don't write preamble, we'll split the test input by new line to derive HTML and CSS.</p>
+            
+            <p>We want to extract HTML using the regex: <span class="tm">[,html] = /content: '(.+?)'/.exec(html)</span>, to be able to receive syntax highlighting in mask results, which will be saved as <span class="tm">.scss</span> files. After those inputs are prepared, we simply pass them to <span class="tm2">trapcss</span> and return the results. Using the mapping function <span class="tm">mapActual</span> we then return the css property of the whole result, so that it can be compared against the expected one from the mask result. If we wanted to assert on other properties too using JavaScript, we could implement another method called <span class="tm">assertResults</span> but we're only interested in testing produced CSS here. This is how our mask results look like:</p>
+            
+            <pre id="cf5412"><code class="scss hljs">// *: should retain present
+html { content: '&lt;div&gt;&lt;/div&gt;' }
+* {a:b;}
+
+/* expected */
+*{a:b;}
+/**/</code></pre>
+            
+            <p>This is the default mask result for the very first test, without a preamble, but with HTML followed by CSS in inputs. The tests are separated by the comment <span class="tm">//</span> characters &mdash; a default unless a markdown file is used, in which case it'd be <span class="tm">##</span>. This can also be controlled via the <span class="tm">splitRe</span> setting of the mask config.</p>
+            
+            <pre id="cf5413"><code class="scss hljs">html { content: '&lt;div&gt;&lt;/div&gt;' }
+
+// should retain present
+div {a:b;}
+
+/* expected */
+div{a:b;}
+/**/
+
+// should drop absent
+span {a:b;}
+
+/* expected */
+/**/
+
+// :not - should retain present
+:not(span) {a:b;}
+
+/* expected */
+:not(span){a:b;}
+/**/
+
+// :not - should drop absent
+:not(div) {a:b;}
+
+/* expected */
+/**/</code></pre>
+            
+            <p>This is the mask result for test suite with the tag testing, where HTML is given at the top of the file (called preamble) to be accessed by each test. We can also duplicate this file and change the div tag to self-closing tag in a single place (preamble), to increase test coverage easily. Where the output of the test is expected to be a 0-length string, we just leave the expected property empty.</p>
+            
+            <pre id="cf5414"><code class="scss hljs">html { content: '&lt;div id="a"&gt;&lt;/div&gt;' }
+
+// should retain present
+#a {a:b;}
+
+/* expected */
+#a{a:b;}
+/**/
+
+// should drop absent
+#b {a:b;}
+
+/* expected */
+/**/
+
+// :not - should retain present
+:not(#b) {a:b;}
+
+/* expected */
+:not(#b){a:b;}
+/**/
+
+// :not - should drop absent
+:not(#a) {a:b;}
+
+/* expected */
+/**/</code></pre>
+            
+            <p>These are tests for the ID selector, where we used preamble as HTML input for all tests. We write such html as the <span class="tm">content</span> property of the CSS rule, so that the IDE will provide syntax highlighting for the best pleasant developer experience while testing. There are more tests for attribute selectors which you can <a
+              href="https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
+              study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
+            
+            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="tm">yarn [spec|mask|test]</span> depending on whether we want to run specs (not done yet), masks or all. We'll just run <span class="tm">yarn mask</span> after having constructed our first mask tests.</p>
+            
+            <pre id="c414d3"><code class="bash hljs">yarn run v1.13.0
+$ yarn t test/mask
+$ zoroaster -a test/mask
+ test/mask
+   bin
+   unary
+     Context-free, unary selector
+      ✓  *: should retain present
+       #id
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       .class
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       &lt;tag&gt;
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       &lt;tag⁄&gt;
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       attr
+        ✓  [attr]: should retain present
+        ✓  [attr]: should drop absent
+        ✓  [attr=value]: should retain present
+        ✓  [attr=value]: should drop absent
+        ✓  [attr*=value]: should retain present
+        ✓  [attr*=value]: should drop absent
+        ✓  [attr^=value]: should retain present
+        ✓  [attr^=value]: should drop absent
+        ✓  [attr$=value]: should retain present
+        ✓  [attr$=value]: should drop absent
+        ✓  [attr~=value]: should retain present
+        ✓  [attr~=value]: should retain present (multiple first)
+        ✓  [attr~=value]: should retain present (multiple second)
+        ✓  [attr~=value]: should drop absent
+        ✓  [attr~=value]: should drop absent (reverse)
+         :not
+          ✓  [attr]: should retain present
+          ✓  [attr]: should drop absent
+          ✓  [attr=value]: should retain present
+          ✓  [attr=value]: should drop absent
+          ✓  [attr*=value]: should retain present
+          ✓  [attr*=value]: should drop absent
+          ✓  [attr^=value]: should retain present
+          ✓  [attr^=value]: should drop absent
+          ✓  [attr$=value]: should retain present
+          ✓  [attr$=value]: should drop absent
+
+🦅  Executed 42 tests.
+Done in 1.85s.</code></pre>
+            
+            <h3 id="focus-in-masks">Focus In Masks</h3>
+            
+            <p>To focus on a particular test, we can prepend its name with <span class="tm">!</span> in the mask result like so:</p>
+            
+            <pre id="cf541"><code class="scss hljs">// !should retain present
+#a {a:b;}
+
+/* expected */
+#a{a:b;}
+/**/</code></pre>
+            
+            <p>It's also possible to focus on entire masks, by adding <span class="tm">!</span> to the path of a mask result, or exporting the mask with <span class="tm">$</span> name:</p>
+            
+            <pre id="ccdbf7"><code class="javascript hljs">// use ! in mask result path
+const contextFreeUnarySel = makeTestSuite(
+  '!test/result/0-context-free-unary-sel', {
+    getResults() {},
+    // ...
+  })
+
+// named export with $
+export const $contextFreeUnarySel = makeTestSuite(
+  'test/result/0-context-free-unary-sel', {
+    getResults() {},
+    // ...
+  })
+
+// export with $ in object
+export default {
+  '$Context-free, unary selector': contextFreeUnarySel,
+}</code></pre>
+            
+            <p>In <em>Zoroaster</em>, test suites are nested objects. For better reporting, we exported the default test suite as an object with the <span class="tm">Context-free, unary selector</span> property that contains the test suite generated by the mask. But we could also simply export a variable using a named export, it's just that we won't be able to report the test suite name as a sentence with whitespace and commas.</p>
+            
+            <h3 id="interactive-mode">Interactive Mode</h3>
+            
+            <p>If the test was failing, <em>Zoroaster</em> would use string comparison algorithm to present where the error was in color. Let's imagine we entered our expected value incorrectly:</p>
+            
+            <pre id="cf5411"><code class="scss hljs">// !should retain present
+#a {a:b;}
+
+/* expected */
+.a{a:c;}
+/**/</code></pre>
+            
+            <p>The error will be shown using color highlighting in the CLI. Moreover, it's possible to run <em>Zoroaster</em> in <strong>interactive</strong> mode with the <span class="tm">-i</span> flag that will tell the testing framework that we want to interact with it to update mask results in place if errors were found, as demonstrated below.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" src="/nodetools/pages/trapcss/img/i.gif">
+              </noscript>
+            </p>
+            
+            <p>The default option is to update, but more info can be shown if <span class="tm">d</span> is pressed, or no updates are made if anything else is passed, in which case the test suite will fail. This is a useful method for quickly drafting the inputs with empty outputs, running interactive mode on them, and populating mask files with expected outputs.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
             </p>
             </div>
           </div>

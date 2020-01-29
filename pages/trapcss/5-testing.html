@@ -1,0 +1,179 @@
+##! Creating Tests
+
+Tests for the original packages were written for _Mocha_ testing framework, but we need to update them into _Zoroaster_ context-testing specs and masks. Let's take the first test suite and have a look at its structure:
+
+<highlightjs src="./example/mocha.mjs" />
+
+We can see that each time the logic is pretty much the same: we use the `<div></div>` html as HTML string for first cases, but change it to `<div id="a"></div>` for ID selector tests, then manipulate some CSS from test to test and expect the result to be equal to certain values. Tests like that are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result.
+
+So what are we controlling? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:
+
+```markdown
+[Optional preamble to the whole mask]
+
+## test name
+input
+
+/* property */
+some value
+/**/
+/* expected */
+output
+/**/
+
+## test name2
+input
+
+/* property */
+some controlled value
+/**/
+/* expected */
+output 2
+/**/
+```
+
+This means we give spec names, can add any number of properties, and pass the expected output for comparison also. The testing framework will then execute the test logic that is written only one, and using string assertion (or deep equal for objects), compare the output to expected. In case of an error, it will be shown in the console and the framework will exit with status code > 0.
+
+In this case, we can construct the following mask.
+
+<highlightjs src="./example/unary.mjs" />
+
+To create a mask, we import the *makeTestSuite* method from ``@zoroaster/mask`` that comes together with _Zoroaster_. The first argument to this function is a path to the mask result file, or directory with multiple such files, that will be scanned recursively. The second argument is the actaul config to the mask, and will include either methods like `getResults`, `getReadable`, `getTransform` or `fork` configuration. All properties from the mask are available via the `this` keyword: *this.preamble*, *this.input*. We'll organise tests by files, so that a preamble in each file can be used as HTML input, whereas input to the test will be the CSS string. When we don't write preamble, we'll split the test input by new line to derive HTML and CSS.
+
+We want to extract HTML using the regex: `[,html] = /content: '(.+?)'/.exec(html)`, to be able to receive syntax highlighting in mask results, which will be saved as `.scss` files. After those inputs are prepared, we simply pass them to ``trapcss`` and return the results. Using the mapping function `mapActual` we then return the css property of the whole result, so that it can be compared against the expected one from the mask result. If we wanted to assert on other properties too using JavaScript, we could implement another method called `assertResults` but we're only interested in testing produced CSS here. This is how our mask results look like:
+
+<highlightjs src="./example/default.scss" />
+
+This is the default mask result for the very first test, without a preamble, but with HTML followed by CSS in inputs. The tests are separated by the comment `//` characters &mdash; a default unless a markdown file is used, in which case it'd be `##`. This can also be controlled via the `splitRe` setting of the mask config.
+
+<highlightjs src="./example/tag.scss" />
+
+This is the mask result for test suite with the tag testing, where HTML is given at the top of the file (called preamble) to be accessed by each test. We can also duplicate this file and change the div tag to self-closing tag in a single place (preamble), to increase test coverage easily. Where the output of the test is expected to be a 0-length string, we just leave the expected property empty.
+
+<highlightjs src="./example/#id.scss" />
+
+These are tests for the ID selector, where we used preamble as HTML input for all tests. We write such html as the `content` property of the CSS rule, so that the IDE will provide syntax highlighting for the best pleasant developer experience while testing. There are more tests for attribute selectors which you can [study in the repository](https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr) but they all follow the same logic so we skip talking about them here.
+
+To run our tests, there are a number of *package.json* scripts that can be used: `yarn [spec|mask|test]` depending on whether we want to run specs (not done yet), masks or all. We'll just run `yarn mask` after having constructed our first mask tests.
+
+```bash
+yarn run v1.13.0
+$ yarn t test/mask
+$ zoroaster -a test/mask
+ test/mask
+   bin
+   unary
+     Context-free, unary selector
+      ✓  *: should retain present
+       #id
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       .class
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       <tag>
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       <tag⁄>
+        ✓  should retain present
+        ✓  should drop absent
+        ✓  :not - should retain present
+        ✓  :not - should drop absent
+       attr
+        ✓  [attr]: should retain present
+        ✓  [attr]: should drop absent
+        ✓  [attr=value]: should retain present
+        ✓  [attr=value]: should drop absent
+        ✓  [attr*=value]: should retain present
+        ✓  [attr*=value]: should drop absent
+        ✓  [attr^=value]: should retain present
+        ✓  [attr^=value]: should drop absent
+        ✓  [attr$=value]: should retain present
+        ✓  [attr$=value]: should drop absent
+        ✓  [attr~=value]: should retain present
+        ✓  [attr~=value]: should retain present (multiple first)
+        ✓  [attr~=value]: should retain present (multiple second)
+        ✓  [attr~=value]: should drop absent
+        ✓  [attr~=value]: should drop absent (reverse)
+         :not
+          ✓  [attr]: should retain present
+          ✓  [attr]: should drop absent
+          ✓  [attr=value]: should retain present
+          ✓  [attr=value]: should drop absent
+          ✓  [attr*=value]: should retain present
+          ✓  [attr*=value]: should drop absent
+          ✓  [attr^=value]: should retain present
+          ✓  [attr^=value]: should drop absent
+          ✓  [attr$=value]: should retain present
+          ✓  [attr$=value]: should drop absent
+
+🦅  Executed 42 tests.
+Done in 1.85s.
+```
+
+### Focus In Masks
+
+To focus on a particular test, we can prepend its name with `!` in the mask result like so:
+
+```scss
+// !should retain present
+#a {a:b;}
+
+/* expected */
+#a{a:b;}
+/**/
+```
+
+It's also possible to focus on entire masks, by adding `!` to the path of a mask result, or exporting the mask with `$` name:
+
+```js
+// use ! in mask result path
+const contextFreeUnarySel = makeTestSuite(
+  '!test/result/0-context-free-unary-sel', {
+    getResults() {},
+    // ...
+  })
+
+// named export with $
+export const $contextFreeUnarySel = makeTestSuite(
+  'test/result/0-context-free-unary-sel', {
+    getResults() {},
+    // ...
+  })
+
+// export with $ in object
+export default {
+  '$Context-free, unary selector': contextFreeUnarySel,
+}
+```
+
+In _Zoroaster_, test suites are nested objects. For better reporting, we exported the default test suite as an object with the `Context-free, unary selector` property that contains the test suite generated by the mask. But we could also simply export a variable using a named export, it's just that we won't be able to report the test suite name as a sentence with whitespace and commas.
+
+### Interactive Mode
+
+If the test was failing, _Zoroaster_ would use string comparison algorithm to present where the error was in color. Let's imagine we entered our expected value incorrectly:
+
+```scss
+// !should retain present
+#a {a:b;}
+
+/* expected */
+.a{a:c;}
+/**/
+```
+
+The error will be shown using color highlighting in the CLI. Moreover, it's possible to run _Zoroaster_ in *interactive* mode with the `-i` flag that will tell the testing framework that we want to interact with it to update mask results in place if errors were found, as demonstrated below.
+
+<p>
+  <img rounded border img-fluid src="./img/i.gif" alt="using testing framework zoroaster to update mask results in place" />
+</p>
+
+The default option is to update, but more info can be shown if `d` is pressed, or no updates are made if anything else is passed, in which case the test suite will fail. This is a useful method for quickly drafting the inputs with empty outputs, running interactive mode on them, and populating mask files with expected outputs.
+
+<section-break />

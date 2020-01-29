@@ -63,7 +63,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c1953,c19531,c19532,c19533',
+  id: 'c1953,c19531,c19532,c19533,c19534',
   props: {
     lang: 'markdown',
   },
@@ -86,7 +86,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -107,9 +107,16 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c414d,c414d1,c414d2',
+  id: 'c414d,c414d1,c414d2,c414d3',
   props: {
     lang: 'bash',
+  },
+},
+{
+  key: 'highlightjs',
+  id: 'cf541,cf5411,cf5412,cf5413,cf5414',
+  props: {
+    lang: 'scss',
   },
 },
 {

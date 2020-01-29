@@ -200,7 +200,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
                <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
             
-            <pre id="c724c"><code class="shell hljs">yarn add global mnp
+            <pre id="c724c1"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
             
             <p>After it's first been installed on the system, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other organisational directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
@@ -233,7 +233,7 @@ Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
             
             <p>Packages should be organised by organisations, which can be created for free on <em>GitHub</em> in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
             
-            <pre id="c724c1"><code class="shell hljs">mkdir cool-org
+            <pre id="c724c"><code class="shell hljs">mkdir cool-org
 cd cool-org</code></pre>
             
             <p>Here, we can run <span class="tm">mnp --init</span> again to update the settings for that particular org, however all the standard settings will be filled in already from the ones we wrote to the home directory.</p>
