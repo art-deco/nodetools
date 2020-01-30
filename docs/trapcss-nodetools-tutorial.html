@@ -237,7 +237,7 @@ abbr[data-original-title] {
             <div data-section id="mnp">
             <h2 id="mnp">MNP</h2>
             
-            <p>The very first step is to spawn a new package using <span class="tm">mnp</span>. Instead of forking the repo, I will create a new package so that its structure adheres to <em>NodeTools</em>' recommendations. My default organisation is <span class="tm">artdecocode</span> on <em>GitHub</em> and I keep projects in the <span class="tm">~/adc</span> folder. Additionally, I've made a number of other orgs, such as <span class="tm">dpck</span>, <span class="tm">a-la</span> for scopes of other projects. Organising the home dir by org is a convenient method that allows to maintain different settings for different organisations. For standard Node.JS package, I'll just use <span class="tm">adc</span>.</p>
+            <p>The very first step is to spawn a new package using <span class="tm">mnp</span> binary. Instead of forking the repo, I will create a new package so that its structure adheres to <em>NodeTools</em>' recommendations. My default organisation is <span class="tm">artdecocode</span> on <em>GitHub</em> and I keep projects in the <strong>~/adc</strong> folder. Additionally, I've made a number of other orgs, such as <span class="tm2">dpck</span>, <span class="tm2">a-la</span> for scopes of other projects that are made up of many packages &mdash; organising your <em>GitHub</em> workspace and the home dir by orgs is a convenient method that allows to maintain different settings for different organisations and keep them semantically grouped. When you're ready to grant permissions to other developers to maintain your packages, you can do it on per-org basis. For a standard <em>Node.JS</em> package, I'll just use <span class="tm">adc</span>.</p>
             
             <pre id="c414d"><code class="bash hljs">cd adc
 # mnp --init (if init was not done yet)
@@ -273,13 +273,13 @@ Created a new package: trapcss.</code></pre>
             <ul>
               <li>With binary: <strong>true</strong>, because I'll want to create a node executable to run from the CLI to drop selectors from CSS files based on HTML files.</li>
               <li>Build or compile: <strong>compile</strong>, because I want to create a library compatible with Closure so that it can be compiled into <em>Splendid</em> later.</li>
-              <li>License: <strong>agpl-3.0</strong>, my personal preference.</li>
+              <li>License: <strong>agpl-3.0</strong>, my personal preference that prevents exploitation of my work. We'll keep the original MIT copyright notice in the source code.</li>
               <li>Init Github Wiki: <strong>y</strong>, we'll want to create wiki pages with discussion about certain use cases, such as using multiple HTML files to gather selectors list.</li>
               <li>Homepage: <strong>https://art-deco.github.io/trapcss</strong>, I update the default homepage that points to the repo readme on GitHub, because I'll want to create a website for the package with a demo.</li>
               <li>Keywords: <strong>css, minifier, web, browser</strong>, some tags for GitHub topics and NPM keywords.</li>
             </ul>
             
-            <p>I'm then asked to navigate to GitHub to create the first Home wiki page. This needs to be done manually since GitHub does not provide API routes for automation of this procedure. Moreover, because I've configured <em>MNP</em> to use <strong>yarn</strong> as the package manager, the dependencies are also installed automatically. The template also supports <span class="tm">npm</span> with <strong>package-lock.json</strong> file instead of <strong>yarn.lock</strong>. After this is done, the repo is cloned into local working dir, called <span class="tm">trapcss</span> and <em>MNP</em> opens <em>VSCode</em> automatically. A new tag <span class="tm">v0.0.0-pre</span> is added to the git tree.</p>
+            <p>I'm then asked to navigate to GitHub to create the first Home wiki page. This needs to be done manually since GitHub does not provide API routes for automation of this procedure. Moreover, because I've configured <em>MNP</em> to use <strong>yarn</strong> as the package manager, the dependencies are also installed automatically. The template also supports <span class="tm">npm</span> with <strong>package-lock.json</strong> file instead of <strong>yarn.lock</strong>. After this is done, the repo is cloned into a local working dir, called <span class="tm">trapcss</span> and <em>MNP</em> opens <em>VSCode</em> automatically. A new tag <span class="tm">v0.0.0-pre</span> is added to the git tree at this point.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -292,14 +292,15 @@ Created a new package: trapcss.</code></pre>
             <div data-section id="upgrading-source-code">
             <h2 id="upgrading-source-code">Upgrading Source Code</h2>
             
-            <p>As the next step, I'll just download the ZIP archive from <em>DropCSS</em> as the source code, and open finder to copy all files from source into my new package.</p>
+            <p>As the next step, I'll just download the ZIP archive from <em>DropCSS</em> with the source code, and open finder to copy all files from source into <strong>m</strong>y <strong>n</strong>ew <strong>p</strong>ackage.</p>
             
             <p>The original source is using <em>CommonJS</em> however <em>NodeTools</em> allow to program using ECMA modules with a 0-dependency regex transpiler, so we want to update the source code from <span class="tm">require</span> into imports.</p>
             
             <pre id="ccdbf"><code class="javascript hljs">"use strict";
 
 const { parse: parseHTML } = require('./html');
-const { parse: parseCSS, generate: generateCSS, SELECTORS, stripEmptyAts } = require('./css');
+const { parse: parseCSS, generate: generateCSS,
+  SELECTORS, stripEmptyAts } = require('./css');
 const { some, matchesAttr } = require('./find');
 const { postProc } = require('./postproc');
 const { LOGGING } = require('./env');</code></pre>
@@ -308,10 +309,9 @@ const { LOGGING } = require('./env');</code></pre>
             
             <pre id="c724c"><code class="shell hljs">MacBook:trapcss zavr$ yarn alamode src -r</code></pre>
             
-            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. By using <span class="tm">yarn &lt;alias&gt;</span> I can execute binaries from node_modules installed locally.</p>
+            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. By using <span class="Manager" id="cbabb">yarn bin-alias</span> I can execute binaries from node_modules installed in the project folder.</p>
             
-            
-            <p>When trying to simply check that all imports are updated correctly by running <span class="tm">yarn alanode src/dropcss</span> that simply executes all require calls, without actually running the program, I see an error to do with the following:</p>
+            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager" id="c093b">yarn alanode src/dropcss</span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
             
             <pre id="ccdbf1"><code class="javascript hljs">// src/find.js
 function some(nodes, m) {
@@ -347,19 +347,19 @@ export const some = (nodes, sel) =&gt; {
   return _some(nodes, Array.isArray(sel) ? sel : parseSel(sel));
 };</code></pre>
             
-            <p>In addition, I don't use semicolons therefore I'll quickly fix that with <em>ESLint</em>. <em>ESLint</em> should be installed globally on the system since it's a huge binary and there's no point in installing it for each single package. If you have your own eslint config, you need to fork the template from <span class="tm">mnpjs/package</span>, define your config in there, and updates the <span class="tm">.mnprc</span> settings to point to your forked template.</p>
+            <p>In addition, I don't use semicolons therefore I'll quickly fix that with <em>ESLint</em>. <em>ESLint</em> should be installed globally on the system since it's a huge binary and there's no point in installing it for each single package. If you have your own eslint config, you need to fork the template from <span class="tm">mnpjs/package</span>, define your config in there, and modify the <span class="tm">.mnprc</span> settings file to point to your forked template.</p>
             
             <pre id="c724c2"><code class="shell hljs">MacBook:trapcss zavr$ eslint --fix src</code></pre>
             
             <p>As the last step for styling, I want to get rid of all <span class="tm">&quot;use strict&quot;</span> directives on top of each file, by a simple search and replace in <em>VSCode</em>: <span class="tm">&quot;use strict&quot;\n\n</span> -> "". Finally, I want the entry to the library be located at <strong>src/index.js</strong> instead of <strong>src/dropcss.js</strong>, therefore I copy the typedef from <span class="tm">index.js</span>, delete the file, and rename <span class="tm">dropcss.js</span> into <span class="tm">index.js</span>.</p>
             
-            <pre id="ccdbf3"><code class="javascript hljs">// copy typedef
+            <pre id="ccdbf3"><code class="javascript hljs">// copy typedef as needed for next step
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').trapcss} _trapcss.trapcss
  */</code></pre>
             
-            <p>Now I can commit all new source code into git tree, and start testing/documenting the library.</p>
+            <p>Now I can commit all new source code into the git tree, and start testing/documenting the library.</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -372,7 +372,7 @@ export const some = (nodes, sel) =&gt; {
             <div data-section id="adding-types">
             <h2 id="adding-types">Adding Types</h2>
             
-            <p>After we've copied the typedef, we'll want to make sure that the types are actually correct for our program. The main method accepts a hashmap config, so we'll document its structure in <span class="tm">types/index.xml</span>.</p>
+            <p>After we've copied the typedef, we'll want to write types that are relevant for our program. The main method accepts a hashmap config, so we'll document its structure in <span class="tm">types/index.xml</span>.</p>
             
             <pre id="c16f7"><code class="xml hljs">&lt;types namespace="_trapcss"&gt;
   &lt;record name="Config" desc="Options for the program."&gt;
@@ -405,15 +405,31 @@ export const some = (nodes, sel) =&gt; {
   &lt;/type&gt;
 &lt;/types&gt;</code></pre>
             
-            <p>We're using the <span class="tm">_trapcss</span> namespace to be able to name our config as <span class="tm">_trapcss.Config</span> and distinguish from other packages' configs that can be defined the same name. The namespace is the feature of <em>VSCode</em> that we use to our advantage, and it's not much different from standard typedefs, only that names of types are preceded with the <span class="tm">_ns</span>. We also add <span class="tm">_</span> underscore as the convention for namespaces' titles, otherwise there might be conflicts between the namespace and some functions in the source code.</p>
+            <p>We're using the <span class="tm">_trapcss</span> namespace to be able to name our config as <span class="tm">_trapcss.Config</span> and distinguish it from other packages' configs that can be defined with the same name. The namespace is the feature of <em>VSCode</em> that we use to our advantage, and it's not much different from standard typedefs, only that names of types are preceded with the <span class="tm">_ns</span>. We also use <span class="tm2">_</span> underscore as the convention for namespaces' titles, otherwise there might be conflicts between them and some functions in the source code.</p>
             
-            <p>There are 3 main types of types: records, interfaces and constructors. Most of all, records are used for configs and simple objects passed around program, while interfaces used to describe methods on classes, which are then annotated with <span class="tm">/* @implements {_ns.Type} */</span> in the source code. Unfortunately, <em>VSCode</em> doesn't understand the implements notation and will not allow to "put meat" or grow implementation on the interface defined like that, but this notation is used to enable Closure Compiler type checking. Some examples of <span class="tm">@implements</span> can be found in the <a
+            <p>There are 3 main types of types: records, interfaces and constructors. The key point to remember is that records are used for configs and other simple objects passed between programs, while interfaces are used to describe methods and properties on classes, which are then annotated with <span class="tm">/* @implements {_ns.Type} */</span> in the source code. Unfortunately, <em>VSCode</em> doesn't understand the implements notation and will not allow to "put meat" or grow implementation on the interface defined like that while providing hints during implementation process, but this notation is used to enable Closure Compiler type checking. Some examples of <span class="tm">@implements</span> can be found in the <a
               href="https://github.com/idiocc/goa/blob/4b4534c304870ace80a42245ac0303f85b6eb6d3/src/application.js#L18">
-              Idio web server</a>. The <span class="tm">&lt;type record&gt;...&lt;/type&gt;</span> block can be simplified to <span class="tm">&lt;record&gt;...&lt;/record&gt;</span>.</p>
+              Goa server</a>.</p>
             
-            <p>If a type is defined without record/interface attribute, it's becomes the simplest type in the Closure type system, for example, <span class="tm">{ prop: string, prop2: (number|undefined) }</span>. An object like that is not nullable &mdash; since Closure tries to make JavaScript similar to Java, type nullability is a thing. More complex types, such as records and interfaces are nullable, whereas the <strong>structural interfaces</strong> are not. Here's some more documentation on <a href="https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System">types</a>. Therefore, when we use a record that is not expected to be nullable, we'll want to add <span class="tm">!</span> in front of it, as shown below.</p>
+            <pre id="ccdbf4"><code class="javascript hljs">/**
+ * @implements {_goa.Application}
+ */
+export default class Application extends EventEmitter {
+  /**
+   * Initialize a new `Application`.
+   * @param {!_goa.ApplicationOptions} options
+   */
+  constructor(options = {}) {}
+  // if VSCode understood @implements, we wouldn't have to
+  // specify the type of the argument in @param as it could
+  // be deducted from the interface type ;)
+}</code></pre>
             
-            <p>Not only we document the config type in XML, but also the actual API contract of the library, which is placed in the <strong>types/api.xml</strong> file and describes all available methods that can be imported from our Node.JS library.</p>
+            <p>The <span class="tm">&lt;type record&gt;...&lt;/type&gt;</span> block can be simplified to <span class="tm">&lt;record&gt;...&lt;/record&gt;</span>, same with <em>interface</em>. Constructors are used very rarely.</p>
+            
+            <p>If a type is defined without record/interface attribute, it becomes the simplest type in the <em>Closure</em> type system called a <strong>structural interface</strong>, for example, <span class="tm">{ prop: string, prop2: (number|undefined) }</span>. An object like that is not nullable &mdash; since Closure tries to make JavaScript similar to Java, type nullability is a thing. More complex types, such as records and interfaces are nullable, whereas structural interfaces are not. Here's some more documentation on <a href="https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System">types</a>. Therefore, when we use a record that is not expected to be nullable, we'll want to add <span class="tm">!</span> in front of it, as shown below.</p>
+            
+            <p>Not only do we document config and return types in XML, but also the actual API contract of the library, which is placed in the <strong>types/api.xml</strong> file and describes all available methods that can be imported from our Node.JS library.</p>
             
             <pre id="c16f71"><code class="xml hljs">&lt;types namespace="_trapcss"&gt;
   &lt;method name="trapcss" return="!_trapcss.Return"&gt;
@@ -425,11 +441,11 @@ export const some = (nodes, sel) =&gt; {
   &lt;/method&gt;
 &lt;/types&gt;</code></pre>
             
-            <p>It's the core principle of <em>NodeTools</em> to use XML to store types. You can view it as the design stage that provides a language- and tool-agnostic way to document our software, whereas JS is used for implementation later. We can reuse types for any purpose, such as creating documentation as shown later.</p>
+            <p>It's the core principle of <em>NodeTools</em> to use XML to store types. You can view it as the design stage that provides a language- and tool-agnostic way to document our software, whereas JS is used for implementation later. We can reuse types for any purpose, such as creating documentation as shown later. Because types are not written in a complex proprietary format like .ts (TypeScript typings), anyone can make software that uses a simple XML parser to extract types, and build their own schema upon the existing one.</p>
             
-            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="tm">yarn d</span>. This command will update typedefs in <span class="tm">types/index.js</span>, which are then imported in our source code.</p>
+            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="Manager" id="c651c">yarn d</span>. This command will update typedefs in <span class="tm">types/index.js</span>, which are then imported in our source code. <span class="Manager" id="c651c1">yarn d</span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="tm">yarn-s</span> or <span class="tm">npm-s</span> for serial execution of those commands, but you might want to replace that to <span class="tm">npm-s</span>. We'll fix this in the next version of the template to accound</p>
             
-            <pre id="ccdbf4"><code class="javascript hljs">export {}
+            <pre id="ccdbf5"><code class="javascript hljs">export {}
 
 /* typal types/api.xml namespace */
 /**
@@ -459,7 +475,7 @@ unused selectors. Also removes empty CSS rules.
             
             <p>This <strong>types/index.js</strong> file is only used for development purposes, and it's real aim is to provide an annotated function type that is then imported in the source code. We come back to the source code, find our implementation and annotate it with the type:</p>
             
-            <pre id="ccdbf5"><code class="javascript hljs">// src/index.js
+            <pre id="ccdbf6"><code class="javascript hljs">// src/index.js
 // adding @type
 
 /**
@@ -491,9 +507,9 @@ function dropcss(opts) {
               </noscript>
             </p>
             
-            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="tm">yarn d</span> command. The externs look like the following:</p>
+            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="Manager" id="c651c2">yarn d</span> command. The externs look like the following:</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">/**
+            <pre id="ccdbf9"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -570,7 +586,7 @@ _trapcss.trapcss
             
             <p>So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, so we remove it.</p>
             
-            <pre id="ccdbf6"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
+            <pre id="ccdbf7"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
    const H = parseHTML(html)
 
 // const shouldDrop = opts.shouldDrop || drop =&gt;
@@ -625,7 +641,7 @@ overhead of handling malformed markup or stylesheets, ...
 %EXAMPLE: example, ../src =&gt; trapcss%
 %FORK example%</code></pre>
             
-            <p><em>Documentary</em> uses components and markers. The typedef component allows to place method headings (when <span class="tm">method=</span> attribute is given) and markdown tables with record descriptions.</p>
+            <p><em>Documentary</em> uses components and markers. The typedef component allows to place method headings (when the <span class="tm">method=</span> attribute is given) and markdown tables with record descriptions.</p>
             
             <p>The typedefs will result in the following generated text:</p>
             
@@ -687,7 +703,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf9"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf10"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -762,9 +778,9 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               </noscript>
             </p>
             
-            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="tm">yarn doc -p [commit message]</span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em>.</p>
+            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager" id="cb985">yarn doc -p [commit message]</span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em>.</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or no output at all), we'd realise that by the time our documentation is placed on <em>GitHub</em> (in automatic mode) or in git diffs (when running single <span class="tm">yarn doc</span> command).</p>
+            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or no output at all), we'd realise that by the time our documentation is placed on <em>GitHub</em> (in automatic mode) or in git diffs (when running single <span class="Manager" id="c824f">yarn doc</span> command).</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -779,7 +795,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
             
             <p>Tests for the original packages were written for <em>Mocha</em> testing framework, but we need to update them into <em>Zoroaster</em> context-testing specs and masks. Let's take the first test suite and have a look at its structure:</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+            <pre id="ccdbf11"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
 const assert = require('assert')
 
 describe('Context-free, unary selector', () =&gt; {
@@ -862,7 +878,7 @@ output 2
             
             <p>In this case, we can construct the following mask.</p>
             
-            <pre id="ccdbf11"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf12"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
 
 // todo: test [foo="val"], [foo='val'], :not([attr~=value])
@@ -1039,7 +1055,7 @@ Done in 1.85s.</code></pre>
             
             <p>It's also possible to focus on entire masks, by adding <span class="tm">!</span> to the path of a mask result, or exporting the mask with <span class="tm">$</span> name:</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">// use ! in mask result path
+            <pre id="ccdbf8"><code class="javascript hljs">// use ! in mask result path
 const contextFreeUnarySel = makeTestSuite(
   '!test/result/0-context-free-unary-sel', {
     getResults() {},

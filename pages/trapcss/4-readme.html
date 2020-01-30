@@ -38,7 +38,7 @@ The *api/index.md* also contains essential data for generation of the README fil
 %FORK example%
 ```
 
-_Documentary_ uses components and markers. The typedef component allows to place method headings (when `method=` attribute is given) and markdown tables with record descriptions.
+_Documentary_ uses components and markers. The typedef component allows to place method headings (when the `method=` attribute is given) and markdown tables with record descriptions.
 
 The typedefs will result in the following generated text:
 
@@ -123,8 +123,8 @@ It's possible to fork a single process and then output both stdout and stderr st
   <img rounded webp="text" img-fluid src="./img/trap2.png" alt="example with syntax highlighting on github" />
 </p>
 
-When documenting code, we can keep _Documentary_ running with the `yarn doc -p [commit message]` command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on _GitHub_.
+When documenting code, we can keep _Documentary_ running with the <yarn doc -p>[commit message]</yarn> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on _GitHub_.
 
-At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or no output at all), we'd realise that by the time our documentation is placed on _GitHub_ (in automatic mode) or in git diffs (when running single `yarn doc` command).
+At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or no output at all), we'd realise that by the time our documentation is placed on _GitHub_ (in automatic mode) or in git diffs (when running single <yarn doc/> command).
 
 <section-break />

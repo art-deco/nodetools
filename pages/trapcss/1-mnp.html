@@ -1,6 +1,6 @@
 ##! MNP
 
-The very first step is to spawn a new package using `mnp`. Instead of forking the repo, I will create a new package so that its structure adheres to _NodeTools_' recommendations. My default organisation is `artdecocode` on _GitHub_ and I keep projects in the `~/adc` folder. Additionally, I've made a number of other orgs, such as `dpck`, `a-la` for scopes of other projects. Organising the home dir by org is a convenient method that allows to maintain different settings for different organisations. For standard Node.JS package, I'll just use `adc`.
+The very first step is to spawn a new package using `mnp` binary. Instead of forking the repo, I will create a new package so that its structure adheres to _NodeTools_' recommendations. My default organisation is `artdecocode` on _GitHub_ and I keep projects in the *~/adc* folder. Additionally, I've made a number of other orgs, such as ``dpck``, ``a-la`` for scopes of other projects that are made up of many packages &mdash; organising your _GitHub_ workspace and the home dir by orgs is a convenient method that allows to maintain different settings for different organisations and keep them semantically grouped. When you're ready to grant permissions to other developers to maintain your packages, you can do it on per-org basis. For a standard _Node.JS_ package, I'll just use `adc`.
 
 ```bash
 cd adc
@@ -40,12 +40,12 @@ I've answered questions in the following way:
 <ul>
   - With binary: *true*, because I'll want to create a node executable to run from the CLI to drop selectors from CSS files based on HTML files.
   - Build or compile: *compile*, because I want to create a library compatible with Closure so that it can be compiled into _Splendid_ later.
-  - License: *agpl-3.0*, my personal preference.
+  - License: *agpl-3.0*, my personal preference that prevents exploitation of my work. We'll keep the original MIT copyright notice in the source code.
   - Init Github Wiki: *y*, we'll want to create wiki pages with discussion about certain use cases, such as using multiple HTML files to gather selectors list.
   - Homepage: *https://art-deco.github.io/trapcss*, I update the default homepage that points to the repo readme on GitHub, because I'll want to create a website for the package with a demo.
   - Keywords: *css, minifier, web, browser*, some tags for GitHub topics and NPM keywords.
 </ul>
 
-I'm then asked to navigate to GitHub to create the first Home wiki page. This needs to be done manually since GitHub does not provide API routes for automation of this procedure. Moreover, because I've configured _MNP_ to use *yarn* as the package manager, the dependencies are also installed automatically. The template also supports `npm` with *package-lock.json* file instead of *yarn.lock*. After this is done, the repo is cloned into local working dir, called `trapcss` and _MNP_ opens _VSCode_ automatically. A new tag `v0.0.0-pre` is added to the git tree.
+I'm then asked to navigate to GitHub to create the first Home wiki page. This needs to be done manually since GitHub does not provide API routes for automation of this procedure. Moreover, because I've configured _MNP_ to use *yarn* as the package manager, the dependencies are also installed automatically. The template also supports `npm` with *package-lock.json* file instead of *yarn.lock*. After this is done, the repo is cloned into a local working dir, called `trapcss` and _MNP_ opens _VSCode_ automatically. A new tag `v0.0.0-pre` is added to the git tree at this point.
 
 <section-break />

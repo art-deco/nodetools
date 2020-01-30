@@ -1,0 +1,6 @@
+/* Stylesheets for the package manager commands */
+.Manager {
+  font-family: 'Source Code Pro', monospace;
+  background-color: lightblue;
+  color: darkblue;
+}

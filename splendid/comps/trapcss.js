@@ -1,8 +1,10 @@
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
-import __renameMap0 from './__rename-maps/styles/sidebar'
+import __renameMap0 from './__rename-maps/styles/yarn'
+import __renameMap1 from './__rename-maps/styles/sidebar'
 import makeClassGetter from './__mcg'
-const renameMaps = { 'styles/sidebar.css': __renameMap0 }
+const renameMaps = { 'styles/yarn.css': __renameMap0,
+  'styles/sidebar.css': __renameMap1 }
 __initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
@@ -11,6 +13,7 @@ import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import Highlightjs from 'splendid/build/components/highlightjs'
 import SocialButtons from 'splendid/build/components/social-buttons'
+import Yarn from '../components/yarn.jsx'
 
 const __components = {
   'akashic-emails': AkashicEmails,
@@ -18,6 +21,7 @@ const __components = {
   'github-badge': GithubBadge,
   'highlightjs': Highlightjs,
   'social-buttons': SocialButtons,
+  'yarn': Yarn,
 }
 
 const io = makeIo()
@@ -28,6 +32,13 @@ const meta = [{
   id: 'c10fc',
   props: {
     lang: 'md',
+  },
+},
+{
+  key: 'yarn',
+  id: 'c824f',
+  props: {
+    doc: true,
   },
 },
 {
@@ -54,11 +65,27 @@ const meta = [{
   },
 },
 {
+  key: 'yarn',
+  id: 'cb985',
+  props: {
+    doc: true,
+    '-p': true,
+  },
+  children: ["[commit message]"],
+},
+{
   key: 'github-badge',
   id: 'c1dbc',
   props: {
     owner: 'artdecocode',
     name: 'trapcss',
+  },
+},
+{
+  key: 'yarn',
+  id: 'cbabb',
+  props: {
+    'bin-alias': true,
   },
 },
 {
@@ -86,7 +113,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -96,6 +123,13 @@ const meta = [{
   id: 'emails-div',
   props: {
     'api-key': 'akashic',
+  },
+},
+{
+  key: 'yarn',
+  id: 'c651c,c651c1,c651c2',
+  props: {
+    d: true,
   },
 },
 {
@@ -111,6 +145,14 @@ const meta = [{
   props: {
     lang: 'bash',
   },
+},
+{
+  key: 'yarn',
+  id: 'c093b',
+  props: {
+    alanode: true,
+  },
+  children: ["src/dropcss "],
 },
 {
   key: 'highlightjs',

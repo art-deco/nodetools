@@ -485,6 +485,11 @@ h1, h3, h2 {
 .SideBarMenu.sidebarshowing .a {
   display: block;
 }
+.Manager {
+  font-family: 'Source Code Pro' , monospace;
+  background-color: lightblue;
+  color: darkblue;
+}
 #BandcampBabylon div {
   display: none !important;
   cursor: pointer;

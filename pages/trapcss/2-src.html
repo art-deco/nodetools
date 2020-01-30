@@ -1,6 +1,6 @@
 ##! Upgrading Source Code
 
-As the next step, I'll just download the ZIP archive from _DropCSS_ as the source code, and open finder to copy all files from source into my new package.
+As the next step, I'll just download the ZIP archive from _DropCSS_ with the source code, and open finder to copy all files from source into *m*y *n*ew *p*ackage.
 
 The original source is using _CommonJS_ however _NodeTools_ allow to program using ECMA modules with a 0-dependency regex transpiler, so we want to update the source code from `require` into imports.
 
@@ -8,7 +8,8 @@ The original source is using _CommonJS_ however _NodeTools_ allow to program usi
 "use strict";
 
 const { parse: parseHTML } = require('./html');
-const { parse: parseCSS, generate: generateCSS, SELECTORS, stripEmptyAts } = require('./css');
+const { parse: parseCSS, generate: generateCSS,
+  SELECTORS, stripEmptyAts } = require('./css');
 const { some, matchesAttr } = require('./find');
 const { postProc } = require('./postproc');
 const { LOGGING } = require('./env');
@@ -20,10 +21,9 @@ This can be achieved easily by running the transpiler in `-r` mode:
 MacBook:trapcss zavr$ yarn alamode src -r
 ```
 
-It will scan the *src* dir recursively, updating all files in there. By using `yarn <alias>` I can execute binaries from node_modules installed locally.
+It will scan the *src* dir recursively, updating all files in there. By using <yarn bin-alias /> I can execute binaries from node_modules installed in the project folder.
 
-
-When trying to simply check that all imports are updated correctly by running `yarn alanode src/dropcss` that simply executes all require calls, without actually running the program, I see an error to do with the following:
+When trying to simply check that all imports are updated correctly by running <yarn alanode>src/dropcss </yarn> that only executes all require calls without actually running the program, I see an error to do with the following:
 
 ```js
 // src/find.js
@@ -65,7 +65,7 @@ export const some = (nodes, sel) => {
 };
 ```
 
-In addition, I don't use semicolons therefore I'll quickly fix that with _ESLint_. _ESLint_ should be installed globally on the system since it's a huge binary and there's no point in installing it for each single package. If you have your own eslint config, you need to fork the template from `mnpjs/package`, define your config in there, and updates the `.mnprc` settings to point to your forked template.
+In addition, I don't use semicolons therefore I'll quickly fix that with _ESLint_. _ESLint_ should be installed globally on the system since it's a huge binary and there's no point in installing it for each single package. If you have your own eslint config, you need to fork the template from `mnpjs/package`, define your config in there, and modify the `.mnprc` settings file to point to your forked template.
 
 ```console
 MacBook:trapcss zavr$ eslint --fix src
@@ -74,13 +74,13 @@ MacBook:trapcss zavr$ eslint --fix src
 As the last step for styling, I want to get rid of all `"use strict"` directives on top of each file, by a simple search and replace in _VSCode_: `"use strict"\n\n` -> "". Finally, I want the entry to the library be located at *src/index.js* instead of *src/dropcss.js*, therefore I copy the typedef from `index.js`, delete the file, and rename `dropcss.js` into `index.js`.
 
 ```js
-// copy typedef
+// copy typedef as needed for next step
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').trapcss} _trapcss.trapcss
  */
 ```
 
-Now I can commit all new source code into git tree, and start testing/documenting the library.
+Now I can commit all new source code into the git tree, and start testing/documenting the library.
 
 <section-break />

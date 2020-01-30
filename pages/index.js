@@ -41,6 +41,7 @@ export const trapcss = {
     dropcss: 'https://github.com/leeoniya/dropcss',
     lighthouse: 'https://developers.google.com/web/tools/lighthouse/audits/unused-css',
     'methods': 'https://github.com/artdecocode/documentary/wiki/Custom-Methods',
+    'closure-types': 'https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System',
   },
 }
 
