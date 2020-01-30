@@ -1,0 +1,45 @@
+###! Examples To Outputs
+
+The second most useful feature of _NodeTools_ after the compiler is the ability to automatically place examples into README, and compute their output which is also added to README. We use the `%EXAMPLE%` marker to reference the example file that comes from the *examples* folder. Let's write an example for our program with some HTML and CSS to see if it works.
+
+```markdown
+%EXAMPLE: example, ../src => trapcss%
+```
+
+When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.
+
+<highlightjs src="../example/example.mjs" />
+
+To test example before actually compiling docs, we can call `alanode` which is a simple proxy process to Node with a require hook that transpiles imports.
+
+```bash
+MacBook:trapcss zavr$ alanode example/
+html{background: yellow;background: green;}
+Set { '.card', 'p:hover a:first-child' }
+```
+
+The example is working fine, so we can embed it. We're going to modify the markdown file in the following way:
+
+```markdown
+<!-- was -->
+<!-- %FORK example% -->
+<!-- now: -->
+
+%FORK-css example%
+%FORKERR-js example%
+```
+
+It's possible to fork a single process and then output both stdout and stderr streams into the documentation. The language of the fork is also given after `FORK-{lang}` which means that _stdout_ will be printed as CSS and _stderr_ as JS code block. Forked JS files are also cached so that if the example and/or any of its dependencies changed, the data will be read from cache which saves a lot of time for more complex programs that might call external APIs or system IO. Specifying language enables syntax highlighting on _GitHub_ so that docs will look neat.
+
+<p>
+  <img rounded webp="text" img-fluid src="./img/trap2.png" alt="example with syntax highlighting on github" />
+</p>
+
+When documenting code, we can keep _Documentary_ running with the <yarn doc -p>"commit message"</yarn> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on _GitHub_ (after a page refresh).
+
+At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on _GitHub_ (in automatic mode) or in git diffs (when running a single <yarn doc/> command).
+
+<!-- end examples section -->
+</div>
+
+<section-break />

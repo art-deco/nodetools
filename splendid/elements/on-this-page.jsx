@@ -1,40 +1,71 @@
 /**
  * @type {import('splendid').Element}
  */
-export default function OnThisPage({ splendid }) {
+export default function OnThisPage({ splendid, 'max-level': maxLevel = 2 }) {
   splendid.polyfill('intersection-observer')
-  const headings = splendid.headings
-    .filter(({ level, title }) => {
-      if (level < 2) return false
-      // if (/On This Page/.test(title)) return false
-      // if (/Share This/.test(title)) return false
-      // if (/id="Stories"/.test(title)) return false
-      return true
-    })
-  const hh = headings.map(({ title, id }) => {
-    const a = <a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
-    return (<li data-heading={id} key={id}>{a}</li>)
+  splendid.css('styles/on-this-page.css', '.OnThisPage', {
+    whitelist: 'Active',
   })
-  return (<ul id="OnThisPage">{hh}</ul>)
+  let last = null
+  const headings = splendid.headings
+    .reduce((acc, heading) => {
+      const { level } = heading
+      if (level > maxLevel) return acc
+      const current = { heading, level, children: [] }
+      if (last && last.level < level) {
+        last.children.push(current)
+      }
+      else {
+        last = current
+        acc.push(current)
+      }
+
+      return acc
+    }, [])
+  const hh = headings.map(({ heading: { title, id }, level, children }) => {
+    return (<Li key={id} id={id} title={title} inner={children} level={level}>
+    </Li>)
+  })
+  return (<ul className="OnThisPage">{hh}</ul>)
+}
+
+const Li = ({ id, title, inner = [], level }) => {
+  return (<li data-heading={id}>
+    <a href={`#${id}`} dangerouslySetInnerHTML={{ __html: title }} />
+    {Boolean(inner.length) && (<ul>
+      {inner.map((i) => <Li id={i.heading.id} title={i.heading.title} inner={i.children} />)}
+    </ul>)}
+  </li>)
 }
 
 export const init = () => {
   /* eslint-env browser */
+  /**
+   * @param {Element} li
+   */
+  const findAllLis = (li) => {
+    const all = []
+    while(li.parentElement && li.parentElement.parentElement && li.parentElement.parentElement.getAttribute('data-heading')) {
+      li = li.parentElement.parentElement
+      all.push(li)
+    }
+    return all
+  }
   const ents = [...document.querySelectorAll('div[data-section]')]
 
   if (ents.length) {
-    /** @type {Element} */
-    let active = null
+    /** @type {!Array<!Element>} */
+    let active = []
     const io = new IntersectionObserver((entries) => {
       entries.forEach(({ target, isIntersecting }) => {
-        if (isIntersecting) {
-          const section = target.id
+        const section = target.id
 
-          if (active && active.getAttribute('heading') != section) {
-            active.classList.remove('Active')
-          }
-          active = document.querySelector(`[data-heading="${section}"]`)
-          if (active) active.classList.add('Active')
+        if (isIntersecting) {
+          const li = document.querySelector(`[data-heading="${section}"]`)
+          li.classList.add('Active')
+        } else {
+          const li = document.querySelector(`[data-heading="${section}"]`)
+          li.classList.remove('Active')
         }
       })
     }, {  }) // rootMargin: `${-window.innerHeight + 1}px`

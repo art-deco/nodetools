@@ -8,9 +8,6 @@
   line-height: 1.5rem;
   hyphens: auto;
 }
-li.Active {
-  font-weight: 700;
-}
 .left-column ul {
   /* list-style-type: none; */
 }

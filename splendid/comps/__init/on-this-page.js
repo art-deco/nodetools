@@ -1,20 +1,31 @@
 export default () => {
   /* eslint-env browser */
+  /**
+   * @param {Element} li
+   */
+  const findAllLis = (li) => {
+    const all = []
+    while(li.parentElement && li.parentElement.parentElement && li.parentElement.parentElement.getAttribute('data-heading')) {
+      li = li.parentElement.parentElement
+      all.push(li)
+    }
+    return all
+  }
   const ents = [...document.querySelectorAll('div[data-section]')]
 
   if (ents.length) {
-    /** @type {Element} */
-    let active = null
+    /** @type {!Array<!Element>} */
+    let active = []
     const io = new IntersectionObserver((entries) => {
       entries.forEach(({ target, isIntersecting }) => {
-        if (isIntersecting) {
-          const section = target.id
+        const section = target.id
 
-          if (active && active.getAttribute('heading') != section) {
-            active.classList.remove('Active')
-          }
-          active = document.querySelector(`[data-heading="${section}"]`)
-          if (active) active.classList.add('Active')
+        if (isIntersecting) {
+          const li = document.querySelector(`[data-heading="${section}"]`)
+          li.classList.add('Active')
+        } else {
+          const li = document.querySelector(`[data-heading="${section}"]`)
+          li.classList.remove('Active')
         }
       })
     }, {  }) // rootMargin: `${-window.innerHeight + 1}px`

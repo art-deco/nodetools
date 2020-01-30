@@ -1,0 +1,70 @@
+###! Typedefs
+
+The next thing we want to do is to generate typedefs for _VSCode_ so that we can get working on the source code implementation. The template we used with _MNP_ already has the set up ready for that, we just call <yarn d/>. This command will update typedefs in `types/index.js`, which are then imported in our source code. <yarn d/> actually spawns multiple commands, including `template`, `d1` and `externs`. It will run `yarn-s` or `npm-s` for serial execution of those commands, depending on how your _MNP_ was configured.
+
+```js
+export {}
+
+/* typal types/api.xml namespace */
+/**
+ * @typedef {_trapcss.trapcss} trapcss Parses the supplied HTML and CSS and removes
+unused selectors. Also removes empty CSS rules.
+ * @typedef {(opts: _trapcss.Config) => _trapcss.Return} _trapcss.trapcss Parses the supplied HTML and CSS and removes
+unused selectors. Also removes empty CSS rules.
+ */
+
+/**
+ * @typedef {import('..').Config} _trapcss.Config
+ */
+
+ // 1) add the return import
+/**
+ * @typedef {import('..').Return} _trapcss.Return
+ */
+```
+
+The config is imported from the main JS of the package, which is kept in `compile/index.js`. We'll come back to that later, but we also need to import ``(1)`` the return type manually, as the template's function simply returned a string before. To check that it's been imported correctly, we simply hover over the top declaration.
+
+<p>
+  <img border rounded img-fluid src="./img/trap.gif" alt="trapcss api method type" />
+</p>
+
+This *types/index.js* file is only used for development purposes, and it's real aim is to provide an annotated function type that is then imported in the source code. We come back to the source code, find our implementation and annotate it with the type:
+
+```js
+// src/index.js
+// adding @type
+
+/**
+ * @type {_trapcss.trapcss}
+ */
+function dropcss(opts) {
+  let log, START
+
+  if (LOGGING) {
+    START = +new Date()
+    log = [[0, 'Start']]
+  }
+  // ... implementation
+}
+```
+
+Make sure to remember to copy across that typedef with import:
+
+```
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').trapcss} _trapcss.trapcss
+ */
+```
+
+The *@suppress* is needed because Closure Compiler cannot parse imports in typedefs, so that we skip this warnings. However, this function type is also generated in externs which are fed to the Compiler when compiling packages, so that it will be aware of the type. When using namespaces, we need to be consistent with their namings: if we simply imported `trapcss` instead of `_trapcss.trapcss`, we'd receive access to _VSCode_ _JSDoc_, but the compiler wouldn't know about the `trapcss` type without the namespace.
+
+<p>
+  <img border rounded img-fluid src="./img/trap2.gif" alt="importing the trapcss method in implementation for @type annotation" />
+</p>
+
+The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <yarn d/> command.
+
+<!-- end types/index.xml section -->
+</div>

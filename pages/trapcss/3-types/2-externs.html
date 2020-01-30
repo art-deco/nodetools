@@ -1,0 +1,43 @@
+###! Externs
+
+When compiling packages, we need to learn a new concept called _externs_ &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:
+
+<highlightjs src="../example/externs.mjs" />
+
+The purpose of externs is to provide type information for Closure Compiler. When using advanced compilation, which we are, property names on objects will get renamed, which is not good when we publish the package with declared config type. By generating an extern, we're making sure that its properties are not renamed. *package.json* file also adds the `"externs": "types/externs.js"` field, so that 3rd party packages that want to compile our package into themselves, will receive access to its types for _Closure_. This is how _NodeTools_ infrastructure works.
+
+_Depack_ includes externs for [Node 8 API](https://github.com/externs/nodejs). We haven't upgraded them to newer versions, and some namespaces, like `tls` might still produce warnings during compilation. You can check out the repository by the link, modify externs, and submit a PR. On the other hand, for any additions to Node externs, you can simply type them in the `types/externs.js` file, e.g.,
+
+```js
+/* typal types/index.xml externs */
+// auto-generated externs
+
+// manual externs
+/** @type {string} */
+process.env.MY_ENV_VAR
+/**
+ * @constructor
+ * @param {{ quantumLocation: boson }} options
+ */
+stream.SuperDuplexNode16 = function(options)
+/**
+ * @constructor
+ * @param {!fs.Entanglement} ent
+ */
+stream.SuperDuplexNode16.prototype.open = function(ent)
+```
+
+There are also externs for 3rd party libraries, for example, for [Preact](https://github.com/externs/preact) that we've created. Refer to it as an example for front-end externs. If you want to submit externs for some library, please open [an issue](https://github.com/externs/prs) with a link to your externs and they'll get published on the ``@externs/your-extern`` scope from within the _GitHub_ ``externs`` org. You might want to search online for existing externs first, or send PRs to packages that you use in your projects with generated externs and `externs` field in *package.json*. In other words, there are 2 strategies: to publish externs as separate packages, and import them in code, which looks pretty cool, or simply have them in the same package and import from `types/externs.js` file.
+
+<block-quote>
+  The `/* typal types/index.xml */\n\n` marker always requires 2 new lines after it (even if it's at the end of the file). Please remember that.
+</block-quote>
+
+```js
+/* typal types.xml */
+
+// ^ make sure a new line always follows the typal marker.
+```
+
+<!-- end externs section -->
+</div>

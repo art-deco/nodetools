@@ -2,9 +2,11 @@ import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
 import __renameMap0 from './__rename-maps/styles/yarn'
 import __renameMap1 from './__rename-maps/styles/sidebar'
+import __renameMap2 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'
 const renameMaps = { 'styles/yarn.css': __renameMap0,
-  'styles/sidebar.css': __renameMap1 }
+  'styles/sidebar.css': __renameMap1,
+  'styles/on-this-page.css': __renameMap2 }
 __initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
@@ -28,13 +30,6 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
-  key: 'highlightjs',
-  id: 'c10fc',
-  props: {
-    lang: 'md',
-  },
-},
-{
   key: 'yarn',
   id: 'c824f',
   props: {
@@ -46,6 +41,13 @@ const meta = [{
   id: 'c724c,c724c1,c724c2',
   props: {
     lang: 'shell',
+  },
+},
+{
+  key: 'yarn',
+  id: 'c6a16',
+  props: {
+    mask: true,
   },
 },
 {
@@ -65,15 +67,6 @@ const meta = [{
   },
 },
 {
-  key: 'yarn',
-  id: 'cb985',
-  props: {
-    doc: true,
-    '-p': true,
-  },
-  children: ["[commit message]"],
-},
-{
   key: 'github-badge',
   id: 'c1dbc',
   props: {
@@ -90,7 +83,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c1953,c19531,c19532,c19533,c19534',
+  id: 'c1953,c19531,c19532,c19533,c19534,c19535',
   props: {
     lang: 'markdown',
   },
@@ -113,7 +106,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -133,6 +126,20 @@ const meta = [{
   },
 },
 {
+  key: 'yarn',
+  id: 'cb985',
+  props: {
+    doc: true,
+    '-p': true,
+  },
+  children: ["\"commit message\""],
+},
+{
+  key: 'yarn',
+  id: 'c1b02',
+  children: ["[spec|mask|test]"],
+},
+{
   key: 'highlightjs',
   id: 'c1d47',
   props: {
@@ -141,7 +148,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c414d,c414d1,c414d2,c414d3',
+  id: 'c414d,c414d1,c414d2,c414d3,c414d4,c414d5,c414d6',
   props: {
     lang: 'bash',
   },
@@ -156,7 +163,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'cf541,cf5411,cf5412,cf5413,cf5414',
+  id: 'cf541,cf5411,cf5412,cf5413,cf5414,cf5415,cf5416,cf5417,cf5418,cf5419',
   props: {
     lang: 'scss',
   },

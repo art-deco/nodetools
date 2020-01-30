@@ -102,6 +102,9 @@ p, ol, ul {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+ul ul {
+  margin-bottom: 0;
+}
 blockquote {
   margin: 0 0 1rem;
 }
@@ -430,9 +433,6 @@ pre code {
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
 }
-li.Active {
-  font-weight: 700;
-}
 .tm, .tm2, .hljs {
   font-family: 'Source Code Pro' , monospace;
 }
@@ -484,6 +484,24 @@ h1, h3, h2 {
 }
 .SideBarMenu.sidebarshowing .a {
   display: block;
+}
+.OnThisPage li.Active>a {
+  font-weight: 700;
+}
+.OnThisPage li.Active~li.Active>a {
+  font-weight: normal;
+}
+.OnThisPage li>ul {
+  display: none;
+}
+.OnThisPage li.Active>ul {
+  display: block;
+}
+.OnThisPage li.Active~li.Active>ul {
+  display: none;
+}
+.OnThisPage {
+  -webkit-padding-start: 0;
 }
 .Manager {
   font-family: 'Source Code Pro' , monospace;
