@@ -1,0 +1,93 @@
+###! Error Stacks
+
+Please note that if there was a run-time error in algorithms, the report will only show the location in the mask result where the test failed. Imagine that we made an mistake when creating the mask, by referencing the `.css` mask result property instead of `.input`, which evaluated to undefined, but our source code expected a string:
+
+```scss
+export const alternate = makeTestSuite(
+  'test/result/alternate.scss', {
+    getResults() {
+      const { css } = trapcss({
+        html: '<div/>',
+        css: this.css,
+        keepAlternate: true,
+      })
+      return css
+    },
+  })
+```
+
+We'd get the following error in the CLI:
+
+```bash
+$ zoroaster -a test/mask
+ test/mask
+   alternate
+    ✗  !keeps the alternate comment
+    | Error: Cannot read property 'replace' of undefined
+    |     at !keeps the alternate comment (test/result/alternate.scss:13:1)
+```
+
+The error start has been updated to point to the location of the test in the mask result, for convenience of navigation, but it's not the problem with inputs/outputs, but test logic. To fix this, we need to set `DEBUG=1` env variable when running tests:
+
+```bash
+bash-3.2$ DEBUG=1 yarn mask
+yarn run v1.13.0
+$ yarn t test/mask
+$ zoroaster -a test/mask
+ test/mask
+   alternate
+TypeError: Cannot read property 'replace' of undefined
+    at parse (/Users/zavr/adc/trapcss/src/css.js:178:13)
+    at dropcss (/Users/zavr/adc/trapcss/src/index.js:40:16)
+    at Object.getResults (/Users/zavr/adc/trapcss/test/mask/default.js:53:23)
+    at /Users/zavr/adc/trapcss/node_modules/@zoroaster/mask/compile/depack.js:688:27
+    at t.(anonymous function) (/Users/zavr/adc/trapcss/node_modules/@zoroaster/mask/compile/depack.js:789:15)
+    at bb (/Users/zavr/adc/trapcss/node_modules/zoroaster/depack/bin/zoroaster.js:409:66)
+    at <anonymous>
+    ✗  !keeps the alternate comment
+    | Error: Cannot read property 'replace' of undefined
+    |     at !keeps the alternate comment (test/result/alternate.scss:13:1)
+```
+
+Now we're given the full stack. As a rule of thumb, whenever you encounter an error that you don't understand in _NodeTools_, try rerunning the program with `DEBUG=1` env variable &mdash; our convention is to display full error stacks when the `DEBUG` is set. This can help fix unknown errors.
+
+Overall, when executing new tests, we get the following report:
+
+```bash
+$ zoroaster -a test/mask/default.js
+ test/mask/default.js
+   @keyframes
+    ✓  drops all
+    ✓  drops pulse, nudge
+    ✓  drops bop
+    ✓  retains nudge
+   @font-face
+    ✓  retains if used
+    ✓  retains if used (shorthand)
+    ✓  drop if unused
+    ✓  drops if unused (multiple defs)
+   @font-face (custom props)
+    ✓  drops if unused --font-family: should not be confused with font use
+    ✓  retains if used in font-family
+    ✓  retains if used - deep resolve
+    ✓  drop if unused - deep resolve
+   customProps
+    ✓  does not confuse BEM -- classes with custom props
+   alternate
+div{text-decoration: underline;⏎
+  /* @alternate */⏎
+  text-decoration: underline dotted;}
+    ✗  keeps the alternate comment
+    | Error: 'div{text-decoration: underline;text-decoration: underline dotted;}' == 'div{text-decoration: underline;\n  /* @alternate */\n  text-decoration: underline dotted;}'
+    |     at keeps the alternate comment (test/result/alternate.scss:1:1)
+
+test/mask/default.js > alternate > keeps the alternate comment
+  Error: 'div{text-decoration: underline;text-decoration: underline dotted;}' == 'div{text-decoration: underline;\n  /* @alternate */\n  text-decoration: underline dotted;}'
+      at keeps the alternate comment (test/result/alternate.scss:1:1)
+
+🦅  Executed 14 tests: 1 error.
+```
+
+The last error is due to the fact that the new functionality has not been implemented. But it's OK since it's in spirit of test-driven development: we added a test first, before the source code. With mask testing, the TDD methodology is easily embraced as test cases are very easy to add by simply providing new data. Instead of wasting our time on setting up test routines in JS, we can try to come up with as many use cases via masks.
+
+</div>

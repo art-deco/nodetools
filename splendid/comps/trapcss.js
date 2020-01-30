@@ -14,6 +14,7 @@ import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import Highlightjs from 'splendid/build/components/highlightjs'
+import Mask from '../components/mask.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 import Yarn from '../components/yarn.jsx'
 
@@ -22,6 +23,7 @@ const __components = {
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
   'highlightjs': Highlightjs,
+  'mask': Mask,
   'social-buttons': SocialButtons,
   'yarn': Yarn,
 }
@@ -48,6 +50,13 @@ const meta = [{
   id: 'c6a16',
   props: {
     mask: true,
+  },
+},
+{
+  key: 'mask',
+  id: 'ce1cb',
+  props: {
+    file: 'pages/trapcss/5-testing/img/regression.jpg',
   },
 },
 {
@@ -106,7 +115,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },

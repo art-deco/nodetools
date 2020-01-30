@@ -1,0 +1,44 @@
+.SectionBreak {
+  text-align: center;
+}
+.hljs {
+  font-size: larger;
+}
+.right-column {
+  line-height: 1.5rem;
+  hyphens: auto;
+}
+.left-column ul {
+  /* list-style-type: none; */
+}
+.tm, .tm2, .hljs {
+  font-family: 'Source Code Pro', monospace;
+}
+.tm {
+  background-color: lightgreen;
+}
+.tm2 {
+  background-color: lightcoral;
+}
+body {
+  font-family: 'Ruda', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Mr De Haviland', sans-serif;
+}
+footer {
+  padding: 1em;
+  border-top: 1px dashed;
+}
+#NewsletterDetails h3 {
+  display: inline-block;
+}
+#OnThisPage {
+  padding-inline-start: 0;
+}
+h1, h3, h2 {
+  text-decoration: underline;
+}
+.tm, .tm2 {
+  hyphens: none;
+}

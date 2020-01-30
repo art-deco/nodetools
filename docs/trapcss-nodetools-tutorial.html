@@ -176,7 +176,10 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                         <li data-heading="examples-to-outputs"><a href="#examples-to-outputs">Examples To Outputs</a></li>
                                       </ul>
                                     </li>
-                                    <li data-heading="creating-tests"><a href="#creating-tests">Creating Tests</a></li>
+                                    <li data-heading="creating-tests">
+                                      <a href="#creating-tests">Creating Tests</a>
+                                      <ul><li data-heading="mask-testing"><a href="#mask-testing">Mask Testing</a></li><li data-heading="focus-in-masks"><a href="#focus-in-masks">Focus In Masks</a></li><li data-heading="interactive-mode"><a href="#interactive-mode">Interactive Mode</a></li><li data-heading="more-masks"><a href="#more-masks">More Masks</a></li><li data-heading="error-stacks"><a href="#error-stacks">Error Stacks</a></li></ul>
+                                    </li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="c485b"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
@@ -535,7 +538,7 @@ function dropcss(opts) {
             
             <p>When compiling packages, we need to learn a new concept called <em>externs</em> &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:</p>
             
-            <pre id="ccdbf15"><code class="javascript hljs">/**
+            <pre id="ccdbf16"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -659,6 +662,10 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
    let tokens = parseCSS(css, keepAlternate)</code></pre>
             
             
+            </div>
+            
+            
+            
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
                 <img alt="section break"
@@ -769,7 +776,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf16"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf17"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -866,7 +873,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               href="https://github.com/leeoniya/dropcss/blob/2a883e5107c68c2181d4c0e02b30e15cf4e7736c/test/src/0-context-free-unary-sel.js">
               the first test suite</a> and have a look at its structure:</p>
             
-            <pre id="ccdbf17"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+            <pre id="ccdbf18"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
 const assert = require('assert')
 
 describe('Context-free, unary selector', () =&gt; {
@@ -919,9 +926,48 @@ describe('Context-free, unary selector', () =&gt; {
   })
 })</code></pre>
             
-            <p>We can see that each time the logic is pretty much the same: we use the <span class="tm">&lt;div&gt;&lt;/div&gt;</span> html as HTML string for first cases, but change it to <span class="tm">&lt;div id=&quot;a&quot;&gt;&lt;/div&gt;</span> for ID selector tests, then manipulate some CSS from test to test and expect the result to be equal to certain values. Tests like that are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result.</p>
+            <p>We can see that each time the logic is pretty much the same: we use the <span class="tm">&lt;div&gt;&lt;/div&gt;</span> html as HTML string for first cases, but change it to <span class="tm">&lt;div id=&quot;a&quot;&gt;&lt;/div&gt;</span> for ID selector tests, then manipulate some CSS from test to test and expect the result to be equal to certain values. All tests are written within <strong>describe</strong> and <strong>it</strong> blocks for <em>Mocha</em> which has been in use for testing both back-end and front-end applications for a long time. In contrast, <em>NodeTools</em>, being an entirely new stack for professional web development, includes a brand new testing framework called <em>Zoroaster</em> that is really low-weight, yet contains more features out of the box than its main competitors and introduces new concepts in <em>Quality Assurance</em> such as mask- and context-testing.</p>
             
-            <p>So what are we controlling? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:</p>
+            <p>
+              <img class="ImageHolder b-t" sizes="(max-width: 575.8px) 100vw,(max-width: 991.8px) 540px,(max-width: 1199.8px) 720px,855px" alt="Zoroaster comparison with other testing frameworks table" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='739' height='269'/%3E">
+              <noscript>
+                <picture>
+                  <source
+                    srcset="/nodetools/pages/trapcss/5-testing/img/zoroaster-576.webp 576w,/nodetools/pages/trapcss/5-testing/img/zoroaster-319.webp 319w,/nodetools/pages/trapcss/5-testing/img/zoroaster-739.webp 739w" sizes="(max-width: 575.8px) 100vw,(max-width: 991.8px) 540px,(max-width: 1199.8px) 720px,855px"
+                    type="image/webp">
+                  <img class="b-t" onLoad="webploaded(this)" alt="Zoroaster comparison with other testing frameworks table" src="/nodetools/pages/trapcss/5-testing/img/zoroaster-576.png" srcset="/nodetools/pages/trapcss/5-testing/img/zoroaster-576.png 576w,/nodetools/pages/trapcss/5-testing/img/zoroaster-319.png 319w,/nodetools/pages/trapcss/5-testing/img/zoroaster-739.png 739w" sizes="(max-width: 575.8px) 100vw,(max-width: 991.8px) 540px,(max-width: 1199.8px) 720px,855px">
+                </picture>
+              </noscript>
+            </p>
+            
+            <div data-section id="mask-testing">
+            <h3 id="mask-testing">Mask Testing</h3>
+            
+            <p>Tests like the ones shown above are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result. If you've ever used a loop to call <strong>describe</strong> and <strong>it</strong> methods by hand, you'll be familiar with the concept of dynamic test suite construction. <em>Zoroaster</em> provides an official standard way to do that, and coins the term <em>mask testing</em> to name this process.</p>
+            
+            <p>Each program or method is just a state machine that maps inputs to outputs on a problem space. While testing, we control inputs, and observe outputs, which are then asserted on for correctness of the algorithm. Therefore specs that we write, allow us to mask the problem space using inputs as variables.</p>
+            
+            <p>Consider the example below (move mouse over the black screen to discover the problem space): one way to interpret the graph is as of a function that accepts 2 variables (<strong>x1</strong> and <strong>x2</strong>) and outputs <strong>y</strong> according to inputs (in real life though, these are just data points in a 3D space). To know this Y position, we need to execute the function and see what output it produces. Such machine learning models as a regression model allow to <em>approximate</em> real-world functions using planes, but the point of this example is that a mask is a collection of specs, where each spec is a data point. The mask is that circle you see on a diagram, that envelops a number of crosses, i.e. exact data points (specs) that we collect by running tests. The more specs we generate, the fuller picture we get. Ideally, we want to test all possible inputs including edge cases, but practically we just want to meet our requirements.</p>
+            
+            <div data-loading style="position:relative;" id="ce1cb">
+              <canvas style="max-width:100%;" class="Mask">Your browser doesn't support canvas.</canvas>
+              <a style="display:block;" href="#">Lights on</a>
+            </div>
+            <noscript>
+              <img style="max-width:100%" alt="Mask Testing Problem Space Graph" data-io>
+              <noscript>
+                <img style="max-width:100%" alt="Mask Testing Problem Space Graph"
+                  src="/nodetools/pages/trapcss/5-testing/img/regression.jpg">
+              </noscript>
+            </noscript>
+            
+            <blockquote class="b-r">
+              A spec is a single data point on the algorithm's problem space, whereas a mask is a collection of such points. Mask testing allows to generalise spec creation process and provides a broader strategy for quality assurance.
+            </blockquote>
+            
+            <p>Pure functions will always produce the same result, so we want to program mostly in functional style to avoid side effects in script scopes that make mapping non-deterministic. But no need to worry as it's probably what you've been doing with JS anyway. However with <em>Mocha</em>, it's become almost an anti-pattern to keep certain variables in the <strong>describe</strong> scope, which is error-prone. This is why all such scoped variables that can be used in tests are moved into a context in <em>Zoroaster</em>, and test cases become pure, but more on context-testing later.</p>
+            
+            <p>So what are we controlling with these first <em>TrapCSS</em> tests? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:</p>
             
             <pre id="c19535"><code class="markdown hljs">[Optional preamble to the whole mask]
 
@@ -947,7 +993,7 @@ output 2
             
             <p>In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.</p>
             
-            <pre id="ccdbf18"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf19"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
 
 // todo: test [foo="val"], [foo='val'], :not([attr~=value])
@@ -992,8 +1038,8 @@ html { content: '&lt;div&gt;&lt;/div&gt;' }
               <img class="ImageHolder b-t" sizes="252px" alt="syntax highlighting is broken in VSCode if not using SCSS" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='252' height='132'/%3E">
               <noscript>
                 <picture>
-                  <source srcset="/nodetools/pages/trapcss/img/syntax-252.webp 252w" sizes="252px" type="image/webp">
-                  <img class="b-t" onLoad="webploaded(this)" alt="syntax highlighting is broken in VSCode if not using SCSS" src="/nodetools/pages/trapcss/img/syntax-252.png" srcset="/nodetools/pages/trapcss/img/syntax-252.png 252w" sizes="252px">
+                  <source srcset="/nodetools/pages/trapcss/5-testing/img/syntax-252.webp 252w" sizes="252px" type="image/webp">
+                  <img class="b-t" onLoad="webploaded(this)" alt="syntax highlighting is broken in VSCode if not using SCSS" src="/nodetools/pages/trapcss/5-testing/img/syntax-252.png" srcset="/nodetools/pages/trapcss/5-testing/img/syntax-252.png 252w" sizes="252px">
                 </picture>
               </noscript>
             </p>
@@ -1123,6 +1169,10 @@ $ zoroaster -a test/mask
 🦅  Executed 42 tests.
 Done in 1.85s.</code></pre>
             
+            
+            </div>
+            
+            <div data-section id="focus-in-masks">
             <h3 id="focus-in-masks">Focus In Masks</h3>
             
             <p>To focus on a particular test, we can prepend its name with <span class="tm">!</span> in the mask result like so:</p>
@@ -1134,7 +1184,7 @@ Done in 1.85s.</code></pre>
 #a{a:b;}
 /**/</code></pre>
             
-            <p>It's also possible to focus on entire masks, by adding <span class="tm">!</span> to the path of a mask result, or exporting the mask with <span class="tm">$</span> name:</p>
+            <p>It's also possible to focus on an entire mask, by adding <span class="tm">!</span> to the path of a mask result, or exporting the mask with <span class="tm">$</span> name:</p>
             
             <pre id="ccdbf10"><code class="javascript hljs">// use ! in mask result path
 const contextFreeUnarySel = makeTestSuite(
@@ -1157,6 +1207,10 @@ export default {
             
             <p>In <em>Zoroaster</em>, test suites are nested objects. For better reporting, we exported the default test suite as an object with the <span class="tm">Context-free, unary selector</span> property that contains the test suite generated by the mask. But we could also simply export a variable using a named export, it's just that we won't be able to report the test suite name as a sentence with whitespace and commas.</p>
             
+            
+            </div>
+            
+            <div data-section id="interactive-mode">
             <h3 id="interactive-mode">Interactive Mode</h3>
             
             <p>If the test was failing, <em>Zoroaster</em> would use string comparison algorithm to present where the error was in color. Let's imagine we entered our expected value incorrectly:</p>
@@ -1171,15 +1225,18 @@ export default {
             <p>The error will be shown using color highlighting in the CLI. Moreover, it's possible to run <em>Zoroaster</em> in <strong>interactive</strong> mode with the <span class="tm">-i</span> flag that will tell the testing framework that we want to interact with it to update mask results in place if errors were found, as demonstrated below.</p>
             
             <p>
-              <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" data-io>
+              <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='528'/%3E" data-io>
               <noscript>
-                <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" src="/nodetools/pages/trapcss/img/i.gif">
+                <img class="b-vk b-bk b-t" alt="using testing framework zoroaster to update mask results in place" src="/nodetools/pages/trapcss/5-testing/img/i.gif">
               </noscript>
             </p>
             
-            <p>The default option is to update, but more info can be shown if <span class="tm">d</span> is pressed, or no updates are made if anything else is passed, in which case the test suite will fail. This is a useful method for quickly drafting the inputs with empty outputs, running interactive mode on them, and populating mask files with expected outputs.</p>
+            <p>The default option is to update, but more info can be shown if <span class="tm">d</span> is pressed, or no updates are made if anything else is passed, in which case the test suite will fail. This is a useful method for quickly drafting new inputs with empty outputs, running interactive mode on them, and populating mask files with outputs, that can then be changed manually or kept as is for more robust regression testing.</p>
             
-            <h3 id="-more-masks"> More Masks</h3>
+            </div>
+            
+            <div data-section id="more-masks">
+            <h3 id="more-masks">More Masks</h3>
             
             <p>Let's add some more mask testing.</p>
             
@@ -1199,13 +1256,15 @@ const T = makeTestSuite([
       html: '&lt;div&gt;&lt;/div&gt;',
       css: prepend + css,
     })
-    return out.replace(prepend, '')
+    return out
   },
 })</code></pre>
             
             <p>The <strong>makeTestSuite</strong> method accepts an array of paths in addition to paths to files and paths to directories. When passing an array, an object will be created where basenames of files from the array are test suite names within the exported object. Above, we just created a <span class="tm">T</span> variable, which will be exported as <strong>default</strong> later. When a test suite has the name "default", its properties are merged up with its parent test suite, so that <span class="tm">default</span> test suites' names are never shown during reporting.</p>
             
-            <p>The tests for keyframes and font faces have some page-wide CSS with <span class="tm">@keyframes</span> rules that is placed in the preamble. The test input is a CSS rule that would reference this <span class="tm">@keyframes</span> declaration, so we don't want our library to drop those rules. Therefore, we take the test input and append it to those declarations which are then fed to our <span class="tm2">trapcss</span> method. But when returning the result, we want to replace the global rules with an empty string so we don't clutter the expected output with repeated information.</p>
+            <p>The tests for keyframes and font faces have the same structure: they include some page-wide CSS with <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>) rules that is placed in the preamble. The test input is a CSS rule that would reference this <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>)  declaration, so we don't want our library to drop those rules. Therefore, we take the test input and append it to those declarations which are then fed to our <span class="tm2">trapcss</span> method.</p>
+            
+            
             
             <pre id="cf5412"><code class="scss hljs">div{color: red;}
 @keyframes pulse{0%{width:300%;}100%{width:100%;}}
@@ -1226,10 +1285,10 @@ div{color: red;}
 div{animation-name: bop;}
 
 /* expected */
-div{color: red;}@keyframes bop{0%{width:300%;}100%{width:100%;}}@-webkit-keyframes bop{0%{width:300%;}100%{width: 100%;}}
+div{animation-name: bop;}div{color: red;}@keyframes bop{0%{width:300%;}100%{width:100%;}}@-webkit-keyframes bop{0%{width:300%;}100%{width: 100%;}}
 /**/</code></pre>
             
-            <p>We can skip adding inputs, if we want to feed the test case an empty string. This is illustrated with the <em>drops all</em> test case. The output CSS would actually contain the whole of the preamble, but we cleared it (<span class="tm">.replace(prepend, '')</span>) in the mask so that we can focus our attention on variable results. The font face mask results follow the same logic as keyframes. But we also have a special case for font faces:</p>
+            <p>We can skip adding inputs, if we want to pass an empty string to the test case. This is illustrated with the <em>drops all</em> test case. <em>DropCSS</em> also removes whitespace, therefore our output is placed on a single line. The font face mask results follow the same logic as keyframes. But we also have a special case for font faces:</p>
             
             <pre id="ccdbf12"><code class="javascript hljs">const fontfaceCustomProps = makeTestSuite(
   'test/result/fontface-custom-props.scss', {
@@ -1250,9 +1309,20 @@ T['@font-face (custom props)'] = fontfaceCustomProps
 
 export default T</code></pre>
             
-            <p>Custom properties means that font faces can be declared with variables. Our root CSS is still taken from preamble, but we add a new property called <strong>doPrepend</strong> that controls whether it should actually be added to the CSS from input. It allows to put tests in the same file, but tinker the test logic slightly from test cases themselves (by using properties). Properties could also be written as JSON or JS, in which case we'd need to pass another config item called <span class="tm">js[on]Props: ['doPrepend']</span> that would make the testing framework parse those properties into a JS object. By default, we do prepend the preamble to input CSS, and only when the <strong>doPrepend</strong> property is explicitly set to <span class="tm">false</span>, we don't do it.</p>
+            <p>Custom properties means that font faces can be declared with variables. Our root CSS is still taken from preamble, but we add a new property called <strong>doPrepend</strong> that controls whether it should actually be added to the CSS from input. It allows to put tests in the same result file, but tinker the test logic slightly from test cases themselves (by using properties). Properties could also be written as JSON or JS, in which case we'd need to pass another config item called <span class="tm">js[on]Props: ['doPrepend']</span> that would make the testing framework parse those properties into a JS object. By default, we do prepend the preamble to input CSS, and only when the <strong>doPrepend</strong> property is explicitly set to <span class="tm">false</span>, we don't do it.</p>
             
-            <p>Because all the test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object <span class="tm">T</span> which is then exported.</p>
+            <p>Because all test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object <span class="tm">T</span> which is then exported. It's not proper ECMA modules standard since a named export is assigned to a default export which is a function, but behind the scenes exports are transpiled into simple <strong>module.exports</strong> assignments anyway, so there's no problem with hacks like this.</p>
+            
+            <pre id="ccdbf13"><code class="javascript hljs">// transpilation example
+const T = makeTestSuite()
+T['@font-face (custom props)'] = fontfaceCustomProps
+
+// export default T
+module.exports = T
+// export const keyframes = makeTestSuite()
+module.exports.keyframes = keyframes</code></pre>
+            
+            <p>We run <em>Zoroaster</em> with <span class="tm">-a</span> flag that enables <em>ÀLaMode</em> transpilation. <em>Zoroaster</em> is not yet compatible with Node 13 and <span class="tm2">mjs</span> modules (sorry). We'll provide an <em>MNP</em> template setting for native mjs modules by the time Node 14 (LTS) is out, but the transpiler is a 0-dep package anyway.</p>
             
             <pre id="cf5413"><code class="scss hljs">div{color: red;}:root {--font-family: Foo, 'Bar Baz';}
 @font-face {font-family: Foo}
@@ -1288,7 +1358,7 @@ false
             
             <p>The next test suite is pretty simply, but reads HTML from its own property rather than from the preamble as it will be changed from test to test.</p>
             
-            <pre id="ccdbf13"><code class="javascript hljs">export const customProps = makeTestSuite(
+            <pre id="ccdbf14"><code class="javascript hljs">export const customProps = makeTestSuite(
   'test/result/custom-props.scss', {
     getResults() {
       const [,html] = /content: '(.+?)'/.exec(this.html)
@@ -1315,7 +1385,7 @@ html { content: '&lt;div class="a--b"&gt;&lt;/div&gt;&lt;div class="--c"&gt;&lt;
             
             <p>The final test is for our new functionality that allows to preserve <strong>alternate</strong> comments. We could also write it as a spec, but masks are just as suitable for this task.</p>
             
-            <pre id="ccdbf14"><code class="javascript hljs">export const alternate = makeTestSuite(
+            <pre id="ccdbf15"><code class="javascript hljs">export const alternate = makeTestSuite(
   'test/result/alternate.scss', {
     getResults() {
       const { css } = trapcss({
@@ -1340,6 +1410,11 @@ div{text-decoration: underline;
   /* @alternate */
   text-decoration: underline dotted;}
 /**/</code></pre>
+            
+            </div>
+            
+            <div data-section id="error-stacks">
+            <h3 id="error-stacks">Error Stacks</h3>
             
             <p>Please note that if there was a run-time error in algorithms, the report will only show the location in the mask result where the test failed. Imagine that we made an mistake when creating the mask, by referencing the <span class="tm">.css</span> mask result property instead of <span class="tm">.input</span>, which evaluated to undefined, but our source code expected a string:</p>
             
@@ -1422,6 +1497,8 @@ test/mask/default.js &gt; alternate &gt; keeps the alternate comment
 🦅  Executed 14 tests: 1 error.</code></pre>
             
             <p>The last error is due to the fact that the new functionality has not been implemented. But it's OK since it's in spirit of test-driven development: we added a test first, before the source code. With mask testing, the TDD methodology is easily embraced as test cases are very easy to add by simply providing new data. Instead of wasting our time on setting up test routines in JS, we can try to come up with as many use cases via masks.</p>
+            
+            </div>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">

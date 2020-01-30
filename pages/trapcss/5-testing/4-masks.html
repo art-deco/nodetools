@@ -1,0 +1,194 @@
+###! More Masks
+
+Let's add some more mask testing.
+
+```js
+// test/mask/default.js
+
+import makeTestSuite from '@zoroaster/mask'
+import trapcss from '../../src'
+
+const T = makeTestSuite([
+  'test/result/@keyframes.scss',
+  'test/result/@font-face.scss'], {
+  getResults() {
+    const css = this.preamble
+    const prepend = this.input
+
+    const { css: out } = trapcss({
+      html: '<div></div>',
+      css: prepend + css,
+    })
+    return out
+  },
+})
+```
+
+The *makeTestSuite* method accepts an array of paths in addition to paths to files and paths to directories. When passing an array, an object will be created where basenames of files from the array are test suite names within the exported object. Above, we just created a `T` variable, which will be exported as *default* later. When a test suite has the name "default", its properties are merged up with its parent test suite, so that `default` test suites' names are never shown during reporting.
+
+The tests for keyframes and font faces have the same structure: they include some page-wide CSS with `@keyframes` (or `@font-face`) rules that is placed in the preamble. The test input is a CSS rule that would reference this `@keyframes` (or `@font-face`)  declaration, so we don't want our library to drop those rules. Therefore, we take the test input and append it to those declarations which are then fed to our ``trapcss`` method.
+
+<!-- But when returning the result, we want to replace the global rules with an empty string so we don't clutter the expected output with repeated information. -->
+
+```scss
+div{color: red;}
+@keyframes pulse{0%{width:300%;}100%{width:100%;}}
+@-webkit-keyframes pulse{0%{width:300%;}100%{width:100%;}}
+@keyframes nudge{0%{width:300%;}100%{width:100%;}}
+@-webkit-keyframes nudge{0%{width:300%;}100%{width:100%;}}
+@keyframes bop{0%{width:300%;}100%{width:100%;}}
+@-webkit-keyframes bop{0%{width:300%;}100%{width: 100%;}}
+span{color: black;}
+
+// drops all
+
+/* expected */
+div{color: red;}
+/**/
+
+// drops pulse, nudge
+div{animation-name: bop;}
+
+/* expected */
+div{animation-name: bop;}div{color: red;}@keyframes bop{0%{width:300%;}100%{width:100%;}}@-webkit-keyframes bop{0%{width:300%;}100%{width: 100%;}}
+/**/
+```
+
+We can skip adding inputs, if we want to pass an empty string to the test case. This is illustrated with the _drops all_ test case. _DropCSS_ also removes whitespace, therefore our output is placed on a single line. The font face mask results follow the same logic as keyframes. But we also have a special case for font faces:
+
+```js
+const fontfaceCustomProps = makeTestSuite(
+  'test/result/fontface-custom-props.scss', {
+    getResults() {
+      const prepend = this.preamble
+      const css = this.input
+
+      const { css: out } = trapcss({
+        html: '<div></div>',
+        css: this.doPrepend === false ? css : (prepend + css),
+      })
+      return out.replace(css, '')
+    },
+    jsProps: ['doPrepend'],
+  })
+
+T['@font-face (custom props)'] = fontfaceCustomProps
+
+export default T
+```
+
+Custom properties means that font faces can be declared with variables. Our root CSS is still taken from preamble, but we add a new property called *doPrepend* that controls whether it should actually be added to the CSS from input. It allows to put tests in the same result file, but tinker the test logic slightly from test cases themselves (by using properties). Properties could also be written as JSON or JS, in which case we'd need to pass another config item called `js[on]Props: ['doPrepend']` that would make the testing framework parse those properties into a JS object. By default, we do prepend the preamble to input CSS, and only when the *doPrepend* property is explicitly set to `false`, we don't do it.
+
+Because all test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object `T` which is then exported. It's not proper ECMA modules standard since a named export is assigned to a default export which is a function, but behind the scenes exports are transpiled into simple *module.exports* assignments anyway, so there's no problem with hacks like this.
+
+```js
+// transpilation example
+const T = makeTestSuite()
+T['@font-face (custom props)'] = fontfaceCustomProps
+
+// export default T
+module.exports = T
+// export const keyframes = makeTestSuite()
+module.exports.keyframes = keyframes
+```
+
+We run _Zoroaster_ with `-a` flag that enables _ÀLaMode_ transpilation. _Zoroaster_ is not yet compatible with Node 13 and ``mjs`` modules (sorry). We'll provide an _MNP_ template setting for native mjs modules by the time Node 14 (LTS) is out, but the transpiler is a 0-dep package anyway.
+
+```scss
+div{color: red;}:root {--font-family: Foo, 'Bar Baz';}
+@font-face {font-family: Foo}
+
+// 1) drops if unused --font-family: should not be confused with font use
+div{font-family: 'Open Sans', Fallback, sans-serif;}
+
+/* expected */
+div{color: red;}div{font-family: 'Open Sans', Fallback, sans-serif;}
+/**/
+
+// 2) retains if used in font-family
+div{font-family: var(--font-family);}
+
+/* expected */
+div{color: red;}:root{--font-family: Foo, 'Bar Baz';}@font-face{font-family: Foo}div{font-family: var(--font-family);}
+/**/
+
+// 3) retains if used - deep resolve
+:root {--font: var(--sty) var(--wgt) 1em/var(--lht) var(--fam1), var(--fam2); --sty: italic; --wgt: bold; --lht: var(--hgt)em; --fam1: 'Open Sans'; --fam2: Arial; --hgt: 1.6;}
+@font-face {font-family: var(--fam1);}
+div {font: var(--font);}
+
+/* doPrepend */
+false
+/**/
+
+/* expected */
+:root{--font: var(--sty) var(--wgt) 1em/var(--lht) var(--fam1), var(--fam2); --sty: italic; --wgt: bold; --lht: var(--hgt)em; --fam1: 'Open Sans'; --fam2: Arial; --hgt: 1.6;}@font-face{font-family: var(--fam1);}div{font: var(--font);}
+/**/
+```
+
+In the first test, we checked that if a font-face declared as a variable wasn't used, it's declaration and block with declaration of its variable that became empty were dropped. In the second test we verified that the variable block as well as the rule block that uses this variable are kept. Finally, the third test made sure that when the font property references a variable which in turn references another variable, the CSS is retained.
+
+The next test suite is pretty simply, but reads HTML from its own property rather than from the preamble as it will be changed from test to test.
+
+```js
+export const customProps = makeTestSuite(
+  'test/result/custom-props.scss', {
+    getResults() {
+      const [,html] = /content: '(.+?)'/.exec(this.html)
+      const { css } = trapcss({
+        html,
+        css: this.input,
+      })
+      return css
+    },
+  })
+```
+
+There's actually only one test in this test suite, but the point is that instead of repeating JS logic time and time again, we can simply be adding new test cases by specifying their inputs and outputs. It saves a lot of time and makes us very agile during development &mdash; if a bug needs to be fixed, or a feature added, we can go to the mask result, add the input, keep the output empty, generate current output using interactive mode, adjust it to how it should be, run tests, see them fail, then adjust source code to achieve desired behaviour.
+
+```scss
+// does not confuse BEM -- classes with custom props
+:root{--red: #f00;}.a--b:hover{color: var(--red);}.--c{width: 10px;}
+
+/* html */
+html { content: '<div class="a--b"></div><div class="--c"></div>' }
+/**/
+
+/* expected */
+:root{--red: #f00;}.a--b:hover{color: var(--red);}.--c{width: 10px;}
+/**/
+```
+
+The final test is for our new functionality that allows to preserve *alternate* comments. We could also write it as a spec, but masks are just as suitable for this task.
+
+```js
+export const alternate = makeTestSuite(
+  'test/result/alternate.scss', {
+    getResults() {
+      const { css } = trapcss({
+        html: '<div/>',
+        css: this.input,
+        keepAlternate: true,
+      })
+      return css
+    },
+  })
+```
+
+Original _DropCSS_ also doesn't produce pretty output, which is another reason why I wanted to run it through _Stylesheets_ after its pass. If we were to place output in specs, we'd have to define a string with multiple lines and complex formatting, and assert using string equality, which wouldn't show where strings were different, like masks do with red/green color diffs.
+
+```scss
+// keeps the alternate comment
+div {
+  text-decoration: underline;
+  /* @alternate */
+  text-decoration: underline dotted;
+}
+/* expected */
+div{text-decoration: underline;
+  /* @alternate */
+  text-decoration: underline dotted;}
+/**/
+```
+
+</div>
