@@ -1,5 +1,5 @@
-var Ca={"styles/sidebar.css":D};B();C();var Da={"akashic-comments":X,"akashic-emails":S,"akashic-updates":T,"github-badge":U,"social-buttons":V},Ea=J();
+var Da={"styles/sidebar.css":C,"styles/on-this-page.css":D};A();B();var Ea={"akashic-comments":X,"akashic-emails":S,"akashic-updates":T,"github-badge":U,"social-buttons":V},Fa=J();
 [{key:"akashic-updates",id:"updates-div",props:{m:"mb-3","api-key":"akashic"}},{key:"github-badge",id:"cacd9",props:{i:"art-deco",name:"nodetools"}},{key:"akashic-emails",id:"emails-div",props:{"api-key":"akashic"}},{key:"akashic-comments",id:"comments-div",props:{"api-key":"akashic"}},{key:"social-buttons",id:"c8891",props:{url:"https://art-deco.github.io/nodetools/discussion-for-nodetools.html",b:!0,className:"b-xq b-Hk"}}].forEach(function(a){var b=a.key,c=a.id,d=void 0===a.props?{}:a.props,f=
-void 0===a.children?[]:a.children,e=Da[b],n=e.plain||/^\s*class\s+/.test(e.toString())&&!H.isPrototypeOf(e);d.g={f:"/nodetools/",l:function(g){return E(Ca[g])}};c.split(",").forEach(function(g){var k=I(g,b),m=k.parent,h=k.a;if(h){var l={key:b,id:g,plain:n},p;h.render=function(){return p=L(l,e,p,h,m,d,f)};h.render.b=l;Ea.observe(h)}})});
+void 0===a.children?[]:a.children,e=Ea[b],n=e.plain||/^\s*class\s+/.test(e.toString())&&!H.isPrototypeOf(e);d.g={f:"/nodetools/",l:function(g){return E(Da[g])}};c.split(",").forEach(function(g){var k=I(g,b),m=k.parent,h=k.a;if(h){var l={key:b,id:g,plain:n},p;h.render=function(){return p=L(l,e,p,h,m,d,f)};h.render.b=l;Fa.observe(h)}})});
 
 //# sourceMappingURL=discussion.js.map
