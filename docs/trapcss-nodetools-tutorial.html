@@ -782,7 +782,9 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
               </noscript>
             </p>
             
-            <p>To generate README, we run the <span class="tm">yarn doc</span> command that consists of: <span class="tm">doc [documentary]</span></p>
+            <p>The heading is generated from the first <span class="tm2">typedef</span>, and type tables from the second one. Any types that are referenced on the page will be linked, such as the <em>Config</em> type of <strong>opts</strong> in the function's description. To generate README, we run the <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span>
+             </span> command, and the <strong>doc</strong> script consists of: <span class="tm">doc [documentary] ...</span></p>
             
             <ul>
               <li><strong>-o README.md</strong>: the output file</li>
@@ -791,7 +793,9 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
               <li><strong>-d</strong>: verbose debug logging</li>
             </ul>
             
-            <p>The default location for input is <strong>documentary</strong> but it can be changed. Method headings can also be <a href="https://github.com/artdecocode/documentary/wiki/Custom-Methods">customised</a> using your own <span class="tm">&lt;method&gt;</span> component. Once again, the dev process for documentation is fully automated and provides customisation strategies so you can express your own creativity with custom method headings. Submit <a href="/nodetools/#getting-help">an issue</a> if you run into difficulties during customisation.</p>
+            <p>The default location for input is <strong>documentary</strong> but it can be changed. Method headings can also be <a href="https://github.com/artdecocode/documentary/wiki/Custom-Methods">customised</a> using your own <span class="tm">&lt;method&gt;</span> component put into <strong>.documentary</strong> folder. Once again, the dev process for documentation is fully automated and provides customisation strategies so you can express your own creativity with custom method headings. Custom type tables via JSX components will be supported in future versions also.  Submit <a href="/nodetools/#getting-help">an issue</a> if you run into difficulties during customisation.</p>
+            
+            <p><em>Documentary</em> is not a simple JSDoc to HTML generator. It's an advanced piece of software that allows to compile full, quality documentation from examples, markdown and type information. It's there to make you effective at writing READMEs and automate the process as much as possible, but you're in control of how your docs look like.</p>
             
             
             
@@ -1609,7 +1613,7 @@ function App(options) {
             
             <p>The <em>App</em> function is used by each single test, the test suite file is large because they are all tied to this testing API. There could be a separate file that exported this function, like it's done in Koa (<span class="tm">test/helpers/context.js</span>):</p>
             
-            <pre id="ccdbf26"><code class="javascript hljs">
+            <pre id="ccdbf25"><code class="javascript hljs">
 'use strict';
 
 const Stream = require('stream');
@@ -1635,7 +1639,7 @@ module.exports.response = (req, res, app) =&gt; module.exports(req, res, app).re
               href="https://github.com/koajs/koa/blob/54e8fab3e3d907bbb264caf3e28a24773d0d6fdb/test/response/redirect.js">
               test suites</a>:</p>
             
-            <pre id="ccdbf25"><code class="javascript hljs">const context = require('../helpers/context');
+            <pre id="ccdbf26"><code class="javascript hljs">const context = require('../helpers/context');
 const Koa = require('../..');
 
 describe('ctx.redirect(url)', () =&gt; {

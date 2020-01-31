@@ -75,7 +75,7 @@ which looks like on the screenshot below:
   <img webp="text" border rounded img-fluid src="./img/trap.png" alt="generated method heading and types" />
 </p>
 
-To generate README, we run the `yarn doc` command that consists of: `doc [documentary]`
+The heading is generated from the first ``typedef``, and type tables from the second one. Any types that are referenced on the page will be linked, such as the _Config_ type of *opts* in the function's description. To generate README, we run the <yarn doc/> command, and the *doc* script consists of: `doc [documentary] ...`
 
 <ul>
   - *-o README.md*: the output file
@@ -84,5 +84,7 @@ To generate README, we run the `yarn doc` command that consists of: `doc [docume
   - *-d*: verbose debug logging
 </ul>
 
-The default location for input is *documentary* but it can be changed. Method headings can also be [customised](methods) using your own `<method>` component. Once again, the dev process for documentation is fully automated and provides customisation strategies so you can express your own creativity with custom method headings. Submit [an issue](index#getting-help) if you run into difficulties during customisation.
+The default location for input is *documentary* but it can be changed. Method headings can also be [customised](methods) using your own `<method>` component put into *.documentary* folder. Once again, the dev process for documentation is fully automated and provides customisation strategies so you can express your own creativity with custom method headings. Custom type tables via JSX components will be supported in future versions also.  Submit [an issue](index#getting-help) if you run into difficulties during customisation.
+
+_Documentary_ is not a simple JSDoc to HTML generator. It's an advanced piece of software that allows to compile full, quality documentation from examples, markdown and type information. It's there to make you effective at writing READMEs and automate the process as much as possible, but you're in control of how your docs look like.
 
