@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="22px" viewBox="0 0 17 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hand2" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval" stroke="#979797" cx="7.5" cy="7.5" r="7.5"></circle>
+            <circle id="Oval" stroke="#979797" fill="#D8D8D8" cx="7.5" cy="7.5" r="4.5"></circle>
+            <g transform="translate(2.000000, 6.000000)" id="Shape" stroke="#000000" fill-rule="nonzero" fill="#FFFFFF">
+                <path d="M6.5,7 L6.5,5.5 C6.5,4.948 6.948,4.5 7.5,4.5 L7.5,4.5 C8.052,4.5 8.5,4.948 8.5,5.5 L8.5,7"></path>
+                <path d="M8.5,7 L8.5,5.5 C8.5,4.948 8.948,4.5 9.5,4.5 L9.5,4.5 C10.052,4.5 10.5,4.948 10.5,5.5 L10.5,7"></path>
+                <path d="M10.5,7 L10.5,6.5 C10.5,5.948 10.948,5.5 11.5,5.5 L11.5,5.5 C12.052,5.5 12.5,5.948 12.5,6.5 L12.5,9.502 C12.5,11.711 10.71,13.501 8.502,13.502 L8.501,13.502 C6.957,13.503 5.475,12.889 4.383,11.797 L0.793,8.207 C0.402,7.816 0.402,7.183 0.793,6.793 C1.184,6.402 1.817,6.402 2.207,6.793 L4.503,9.089 L4.5,1.5 C4.5,0.948 4.948,0.5 5.5,0.5 L5.5,0.5 C6.052,0.5 6.5,0.948 6.5,1.5 L6.5,7"></path>
+            </g>
+        </g>
+    </g>
+</svg>

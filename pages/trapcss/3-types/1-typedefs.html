@@ -1,6 +1,18 @@
 ###! Typedefs
 
-The next thing we want to do is to generate typedefs for _VSCode_ so that we can get working on the source code implementation. The template we used with _MNP_ already has the set up ready for that, we just call <yarn d/>. This command will update typedefs in `types/index.js`, which are then imported in our source code. <yarn d/> actually spawns multiple commands, including `template`, `d1` and `externs`. It will run `yarn-s` or `npm-s` for serial execution of those commands, depending on how your _MNP_ was configured.
+<style>
+  .ItWillRunYarn {
+    display: none;
+  }
+  .yarn .ItWillRunYarn {
+    display: inline;
+  }
+  .yarn .ItWillRunNpm {
+    display: none;
+  }
+</style>
+
+The next thing we want to do is to generate typedefs for _VSCode_ so that we can get working on the source code implementation. The template we used with _MNP_ already has the set up ready for that, we just call <yarn d/>. This command will update typedefs in *types/index.js*, which are then imported in our source code via the `@typedef {import('../types')}` _JSDoc_. <yarn d/> actually spawns multiple commands, including `template`, `d1` and `externs`. It will run <span class="ItWillRunYarn">_yarn-s_</span><span class="ItWillRunNpm">_npm-s_</span> for serial execution of all 3 of these commands in series.
 
 ```js
 export {}
@@ -51,7 +63,7 @@ function dropcss(opts) {
 
 Make sure to remember to copy across that typedef with import:
 
-```
+```js
 /**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').trapcss} _trapcss.trapcss

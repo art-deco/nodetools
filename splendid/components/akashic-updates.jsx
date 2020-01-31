@@ -1,18 +1,28 @@
-import { Component } from 'preact'
+// import { Component } from 'preact'
 import { loadStyle } from '@lemuria/load-scripts'
 
-export default class AkashicUpdates extends Component {
+export default class AkashicUpdates {
+  static get 'plain'() {
+    return true
+  }
+  /**
+   * @param {!HTMLDivElement} el
+   */
+  constructor(el) {
+    this.el = el
+  }
   static 'load'(cb) {
     loadStyle('https://static.akashic.page/comments.css', cb)
   }
-  render({ 'api-key': apiKey, host, ...props }) {
+  render({ apiKey, host }) {
     if (!AkashicUpdates.supports()) {
-      return (<div {...props}>Your browser doesn't support web-push.</div>)
+      this.el.innerText = 'Your browser doesn\'t support web-push.'
+      return
     }
     const s = document.createElement('script')
     s.src = 'https://static.akashic.page/akashic.js'
     s.onload = () => {
-      document.getElementById('updates-div').innerText = ''
+      this.el.innerText = ''
       window['Akashic']['updates']({
         'host': host,
         'container': 'updates-div',
@@ -21,7 +31,6 @@ export default class AkashicUpdates extends Component {
       })
     }
     document.body.appendChild(s)
-    return (<div {...props} id="updates-div"/>)
   }
   static supports() {
     if (!('serviceWorker' in navigator)) {
@@ -38,7 +47,7 @@ export default class AkashicUpdates extends Component {
    * @param {Splendid} param0.splendid
    */
   async serverRender({ splendid, 'api-key': apiKey, host, ...props }) {
-    splendid.export()
+    splendid.export({ apiKey, host })
     if (splendid.env != 'prod') {
       splendid.script('node_modules://preact/dist/preact.min.js', false)
       await splendid.addFile('node_modules://preact/dist/preact.min.js.map')

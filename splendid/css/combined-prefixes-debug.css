@@ -95,6 +95,30 @@ hr {
     -webkit-flex: 0 0 50%;
   }
 }
+.btn {
+  -webkit-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -webkit-transition: color .15s ease-in-out , background-color .15s ease-in-out , border-color .15s ease-in-out , box-shadow .15s ease-in-out;
+  -o-transition: color .15s ease-in-out , background-color .15s ease-in-out , border-color .15s ease-in-out , box-shadow .15s ease-in-out;
+}
+@media (prefers-reduced-motion:reduce) {
+  .btn {
+    -webkit-transition: none;
+    -o-transition: none;
+  }
+}
+.btn:focus {
+  -webkit-box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+  -moz-box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+.btn-danger:focus {
+  -webkit-box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+  -moz-box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+}
+.btn-danger:not(:disabled):not(.disabled):active:focus {
+  -webkit-box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+  -moz-box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+}
 .rounded {
   -webkit-border-radius: .25rem !important;
   -moz-border-radius: .25rem !important;
@@ -144,6 +168,11 @@ hr {
 }
 .tm, .tm2 {
   -moz-hyphens: none;
+}
+.Manager>span, .yarnManager>span, .npmManager>span {
+  -moz-hyphens: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
 }
 #BandcampBabylon:hover div {
   display: -webkit-box !important;

@@ -1,4 +1,5 @@
 import __initBandcampBabylon from './__init/bandcamp-babylon'
+import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
 import '../js/main'
@@ -9,7 +10,7 @@ import makeClassGetter from './__mcg'
 const renameMaps = { 'styles/bandcamp.css': __renameMap0,
   'styles/sidebar.css': __renameMap1,
   'styles/on-this-page.css': __renameMap2 }
-__initBandcampBabylon(),__initOnThisPage(),__initSidebar()
+__initBandcampBabylon(),__initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import AkashicComments from '../components/akashic-comments.jsx'
@@ -37,8 +38,7 @@ const meta = [{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
-    class: 'mb-3',
-    'api-key': 'akashic',
+    apiKey: 'akashic',
   },
 },
 {

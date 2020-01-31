@@ -1,3 +1,4 @@
+import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
 import '../js/main'
@@ -6,7 +7,7 @@ import __renameMap1 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'
 const renameMaps = { 'styles/sidebar.css': __renameMap0,
   'styles/on-this-page.css': __renameMap1 }
-__initOnThisPage(),__initSidebar()
+__initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import AkashicComments from '../components/akashic-comments.jsx'
@@ -32,8 +33,7 @@ const meta = [{
   key: 'akashic-updates',
   id: 'updates-div',
   props: {
-    class: 'mb-3',
-    'api-key': 'akashic',
+    apiKey: 'akashic',
   },
 },
 {

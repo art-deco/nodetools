@@ -1,5 +1,7 @@
+import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
+import 'splendid/internal/js/smooth-scroll'
 import '../js/main'
 import __renameMap0 from './__rename-maps/styles/yarn'
 import __renameMap1 from './__rename-maps/styles/sidebar'
@@ -8,51 +10,37 @@ import makeClassGetter from './__mcg'
 const renameMaps = { 'styles/yarn.css': __renameMap0,
   'styles/sidebar.css': __renameMap1,
   'styles/on-this-page.css': __renameMap2 }
-__initOnThisPage(),__initSidebar()
+__initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
+import BackTo from '../components/back-to.js'
 import GithubBadge from '../components/github-badge.jsx'
 import Highlightjs from 'splendid/build/components/highlightjs'
 import Manager from '../components/manager.jsx'
 import Mask from '../components/mask.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
-import Yarn from '../components/yarn.jsx'
 
 const __components = {
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
+  'back-to': BackTo,
   'github-badge': GithubBadge,
   'highlightjs': Highlightjs,
   'manager': Manager,
   'mask': Mask,
   'social-buttons': SocialButtons,
-  'yarn': Yarn,
 }
 
 const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
-  key: 'yarn',
-  id: 'c824f',
-  props: {
-    doc: true,
-  },
-},
-{
   key: 'highlightjs',
   id: 'c724c,c724c1,c724c2',
   props: {
     lang: 'shell',
-  },
-},
-{
-  key: 'yarn',
-  id: 'c6a16',
-  props: {
-    mask: true,
   },
 },
 {
@@ -79,6 +67,13 @@ const meta = [{
   },
 },
 {
+  key: 'akashic-updates',
+  id: 'updates-div',
+  props: {
+    apiKey: 'akashic',
+  },
+},
+{
   key: 'github-badge',
   id: 'c1dbc',
   props: {
@@ -94,14 +89,6 @@ const meta = [{
   },
 },
 {
-  key: 'akashic-updates',
-  id: 'updates-div',
-  props: {
-    class: 'mb-3',
-    'api-key': 'akashic',
-  },
-},
-{
   key: 'github-badge',
   id: 'cacd9',
   props: {
@@ -111,7 +98,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf25,ccdbf26,ccdbf27,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -124,25 +111,11 @@ const meta = [{
   },
 },
 {
-  key: 'yarn',
-  id: 'c651c,c651c1,c651c2',
+  key: 'back-to',
+  id: 'c5823',
   props: {
-    d: true,
+    name: 'spec',
   },
-},
-{
-  key: 'yarn',
-  id: 'cb985',
-  props: {
-    doc: true,
-    '-p': true,
-  },
-  children: ["\"commit message\""],
-},
-{
-  key: 'yarn',
-  id: 'c1b02',
-  children: ["[spec|mask|test]"],
 },
 {
   key: 'highlightjs',
@@ -163,25 +136,10 @@ const meta = [{
   },
 },
 {
-  key: 'yarn',
-  id: 'c093b',
-  props: {
-    alanode: true,
-  },
-  children: ["src/dropcss "],
-},
-{
   key: 'highlightjs',
   id: 'cf541,cf5411,cf5412,cf5413,cf5414,cf5415,cf5416,cf5417,cf5418,cf5419',
   props: {
     lang: 'scss',
-  },
-},
-{
-  key: 'highlightjs',
-  id: 'cb288',
-  props: {
-    lang: 'undefined',
   },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {

@@ -315,6 +315,66 @@ pre code {
     max-width: 50%;
   }
 }
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out , background-color .15s ease-in-out , border-color .15s ease-in-out , box-shadow .15s ease-in-out;
+}
+@media (prefers-reduced-motion:reduce) {
+  .btn {
+    transition: none;
+  }
+}
+.btn:hover {
+  color: #212529;
+  text-decoration: none;
+}
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+}
+.btn:disabled {
+  opacity: .65;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn-danger:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+.btn-danger:focus {
+  box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+}
+.btn-danger:disabled {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+.btn-danger:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #bd2130;
+  border-color: #b21f2d;
+}
+.btn-danger:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 .2rem rgba(225,83,97,.5);
+}
 .border {
   border: 1px solid #dee2e6 !important;
 }
@@ -354,6 +414,12 @@ pre code {
 .align-self-center {
   -ms-flex-item-align: center !important;
   align-self: center !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.position-absolute {
+  position: absolute !important;
 }
 @supports ((position:-webkit-sticky) or (position:sticky)) {
   .sticky-top {
@@ -520,15 +586,66 @@ h1, h3, h2 {
 .OnThisPage {
   -webkit-padding-start: 0;
 }
-.YarnManager {
-  font-family: 'Source Code Pro' , monospace;
-  background-color: lightblue;
-  color: darkblue;
+.yarn .Manager>span, .yarnManager>span {
+  background-color: #3398c2;
+  color: white;
 }
-.NpmManager {
+.yarnManager::before {
+  content: '';
+  cursor: pointer;
+  background-image: url(/nodetools/img/yarn.svg);
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.yarn .Manager::before {
+  content: '';
+  cursor: pointer;
+  background-image: url(/nodetools/img/yarn.svg);
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.npmManager::before {
+  content: '';
+  cursor: pointer;
+  background-image: url(/nodetools/img/box.svg);
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.Manager::before {
+  content: '';
+  cursor: pointer;
+  background-image: url(/nodetools/img/box.svg);
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.Manager>span, .yarnManager>span, .npmManager>span {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  border-radius: 2px;
+  padding: 0 2px;
   font-family: 'Source Code Pro' , monospace;
+}
+.Manager>span, .npmManager>span {
   background-color: #ffcaca;
   color: darkred;
+}
+.yarn-cmd {
+  display: none;
+}
+.yarn .yarn-cmd {
+  display: inline;
+}
+.yarn .npm--, .yarn .npm-run, .yarn .npm-cmd {
+  display: none;
 }
 #BandcampBabylon div {
   display: none !important;

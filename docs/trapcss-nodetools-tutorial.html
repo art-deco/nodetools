@@ -45,7 +45,7 @@
       (function(){var b=/url\('([\s\S]+?)'\)/.exec(document.head.querySelector("#cpt").textContent);if(b){var a=document.createElement("link");a.rel="preload";a.as="font";a.href=b[1];document.head.appendChild(a)}})()
     </script>
     <script>(function(h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
-a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"flex-direction|-ms-flex-direction":["column"],"border-radius":[".25rem"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
+a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"transition":["none"],"flex-direction|-ms-flex-direction":["column"],"border-radius":["2px"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
     <script>
       (function(q,k){function x(a){for(var f=/url\((.+?)\).*?;\s+unicode-range: (.+?);/g,b={},d=[],h;h=f.exec(a);){var r=h[2];d.push({url:h[1],a:r});b[r]=1}b=Object.keys(b).reduce(function(c,e){var g=e.split(/,\s/).map(function(l){return l.replace("U+","\\u").replace("-","-\\u")}).join("").toLowerCase();c[e]=new RegExp("["+g+"]");return c},{});var t=document.body?document.body.textContent:"",y=t?Object.keys(b).reduce(function(c,e){b[e].test(t)&&(c[e]=!0);return c},{}):Object.keys(b).reduce(function(c,
       e){e in k&&(c[e]=!0);return c},{});m=d.filter(function(c){return c.a in y}).map(function(c){return c.url});if(!m.length)return u();var v=document.createDocumentFragment();m.forEach(function(c,e){var g=document.createElement("link");g.href=c;g.rel="preload";g.as="font";var l=e+1;;g.onload=function(){return u(l)};g.setAttribute("crossorigin",!0);v.appendChild(g)});document.head.appendChild(v)}k=void 0===k?{}:k;var n=document.createElement("link");if(function(a,
@@ -56,6 +56,15 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
     <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
     <style>
       .no-js [data-io], .no-js .ImageHolder, .no-js [data-loading] { display: none!important }
+      .ItWillRunYarn {
+          display: none;
+        }
+        .yarn .ItWillRunYarn {
+          display: inline;
+        }
+        .yarn .ItWillRunNpm {
+          display: none;
+        }
       .List {
                           font-size:small;
                         }
@@ -151,7 +160,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.16.13</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.14</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -182,7 +191,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     </li>
                                     <li data-heading="creating-tests">
                                       <a href="#creating-tests">Creating Tests</a>
-                                      <ul><li data-heading="mask-testing"><a href="#mask-testing">Mask Testing</a></li><li data-heading="focus-in-masks"><a href="#focus-in-masks">Focus In Masks</a></li><li data-heading="interactive-mode"><a href="#interactive-mode">Interactive Mode</a></li><li data-heading="more-masks"><a href="#more-masks">More Masks</a></li><li data-heading="error-stacks"><a href="#error-stacks">Error Stacks</a></li></ul>
+                                      <ul><li data-heading="mask-testing"><a href="#mask-testing">Mask Testing</a></li><li data-heading="focus-in-masks"><a href="#focus-in-masks">Focus In Masks</a></li><li data-heading="interactive-mode"><a href="#interactive-mode">Interactive Mode</a></li><li data-heading="more-masks"><a href="#more-masks">More Masks</a></li><li data-heading="error-stacks"><a href="#error-stacks">Error Stacks</a></li><li data-heading="context-testing"><a href="#context-testing">Context Testing</a></li></ul>
                                     </li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
@@ -198,7 +207,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                   <div class="b-jq">
                                     <h3 class="b-Gk">Package Manager</h3>
                                     <form class="b-Gk" id="ca13e">
-                                      <select><option selected value="yarn">yarn</option><option value="npm">npm</option></select>
+                                      <select><option value="yarn">yarn</option><option selected value="npm">npm</option></select>
                                     </form>
                                   </div>
                                 
@@ -334,9 +343,11 @@ const { LOGGING } = require('./env');</code></pre>
             
             <pre id="c724c"><code class="shell hljs">MacBook:trapcss zavr$ yarn alamode src -r</code></pre>
             
-            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node＿modules with <span class="YarnManager">yarn bin-alias</span> to execute aliases installed in the project folder within <strong>node＿modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="NpmManager">npm run alanode</span> too if you want to execute any module that needs transpiling, such as examples.</p>
+            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node＿modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within <strong>node＿modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.</p>
             
-            <p>When trying to simply check that all imports are updated correctly by running <span class="YarnManager" id="c093b"><span data-manager>yarn</span> alanode src/dropcss</span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
+            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode src/dropcss</span></span>
+             </span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
             
             <pre id="ccdbf1"><code class="javascript hljs">// src/find.js
 function some(nodes, m) {
@@ -473,7 +484,12 @@ export default class Application extends EventEmitter {
             <div data-section id="typedefs">
             <h3 id="typedefs">Typedefs</h3>
             
-            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="YarnManager" id="c651c"><span data-manager>yarn</span> d</span>. This command will update typedefs in <span class="tm">types/index.js</span>, which are then imported in our source code. <span class="YarnManager" id="c651c1"><span data-manager>yarn</span> d</span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="tm">yarn-s</span> or <span class="tm">npm-s</span> for serial execution of those commands, depending on how your <em>MNP</em> was configured.</p>
+            
+            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
+             </span>. This command will update typedefs in <strong>types/index.js</strong>, which are then imported in our source code via the <span class="tm">@typedef {import('../types')}</span> <em>JSDoc</em>. <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
+             </span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="ItWillRunYarn"><em>yarn-s</em></span><span class="ItWillRunNpm"><em>npm-s</em></span> for serial execution of all 3 of these commands in series.</p>
             
             <pre id="ccdbf5"><code class="javascript hljs">export {}
 
@@ -523,7 +539,7 @@ function dropcss(opts) {
             
             <p>Make sure to remember to copy across that typedef with import:</p>
             
-            <pre id="cb288"><code class="undefined hljs">/**
+            <pre id="ccdbf7"><code class="javascript hljs">/**
  * @suppress {nonStandardJsDocs}
  * @typedef {import('../types').trapcss} _trapcss.trapcss
  */</code></pre>
@@ -537,7 +553,9 @@ function dropcss(opts) {
               </noscript>
             </p>
             
-            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="YarnManager" id="c651c2"><span data-manager>yarn</span> d</span> command.</p>
+            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
+             </span> command.</p>
             
             
             </div>
@@ -548,7 +566,7 @@ function dropcss(opts) {
             
             <p>When compiling packages, we need to learn a new concept called <em>externs</em> &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:</p>
             
-            <pre id="ccdbf16"><code class="javascript hljs">/**
+            <pre id="ccdbf21"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -614,7 +632,7 @@ _trapcss.trapcss
             
             <p><em>Depack</em> includes externs for <a href="https://github.com/externs/nodejs">Node 8 API</a>. We haven't upgraded them to newer versions, and some namespaces, like <span class="tm">tls</span> might still produce warnings during compilation. You can check out the repository by the link, modify externs, and submit a PR. On the other hand, for any additions to Node externs, you can simply type them in the <span class="tm">types/externs.js</span> file, e.g.,</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">/* typal types/index.xml externs */
+            <pre id="ccdbf8"><code class="javascript hljs">/* typal types/index.xml externs */
 // auto-generated externs
 
 // manual externs
@@ -637,7 +655,7 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
               The <span class="tm">/* typal types/index.xml */\n\n</span> marker always requires 2 new lines after it (even if it's at the end of the file). Please remember that.
             </blockquote>
             
-            <pre id="ccdbf8"><code class="javascript hljs">/* typal types.xml */
+            <pre id="ccdbf9"><code class="javascript hljs">/* typal types.xml */
 
 // ^ make sure a new line always follows the typal marker.</code></pre>
             
@@ -661,7 +679,7 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
             
             <p>So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, so we remove it.</p>
             
-            <pre id="ccdbf9"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
+            <pre id="ccdbf10"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
    const H = parseHTML(html)
 
 // const shouldDrop = opts.shouldDrop || drop =&gt;
@@ -786,7 +804,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf17"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf22"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -861,9 +879,13 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               </noscript>
             </p>
             
-            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="YarnManager" id="cb985"><span data-manager>yarn</span> doc -p &quot;commit message&quot;</span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
+            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm--">--</span> <span>-p "commit message"</span></span>
+             </span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="YarnManager" id="c824f"><span data-manager>yarn</span> doc</span> command).</p>
+            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span>
+             </span> command).</p>
             
             
             </div>
@@ -883,7 +905,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               href="https://github.com/leeoniya/dropcss/blob/2a883e5107c68c2181d4c0e02b30e15cf4e7736c/test/src/0-context-free-unary-sel.js">
               the first test suite</a> and have a look at its structure:</p>
             
-            <pre id="ccdbf18"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+            <pre id="ccdbf23"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
 const assert = require('assert')
 
 describe('Context-free, unary selector', () =&gt; {
@@ -1003,7 +1025,7 @@ output 2
             
             <p>In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.</p>
             
-            <pre id="ccdbf19"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf24"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
 
 // todo: test [foo="val"], [foo='val'], :not([attr~=value])
@@ -1118,7 +1140,11 @@ span {a:b;}
               href="https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
               study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
             
-            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="YarnManager" id="c1b02"><span data-manager>yarn</span> [spec|mask|test]</span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="YarnManager" id="c6a16"><span data-manager>yarn</span> mask</span> after having constructed our first mask tests.</p>
+            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span>
+             </span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span>
+             </span> after having constructed our first mask tests.</p>
             
             <pre id="c414d3"><code class="bash hljs">yarn run v1.13.0
 $ yarn t test/mask
@@ -1196,7 +1222,7 @@ Done in 1.85s.</code></pre>
             
             <p>It's also possible to focus on an entire mask, by adding <span class="tm">!</span> to the path of a mask result, or exporting the mask with <span class="tm">$</span> name:</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">// use ! in mask result path
+            <pre id="ccdbf11"><code class="javascript hljs">// use ! in mask result path
 const contextFreeUnarySel = makeTestSuite(
   '!test/result/0-context-free-unary-sel', {
     getResults() {},
@@ -1250,7 +1276,7 @@ export default {
             
             <p>Let's add some more mask testing.</p>
             
-            <pre id="ccdbf11"><code class="javascript hljs">// test/mask/default.js
+            <pre id="ccdbf12"><code class="javascript hljs">// test/mask/default.js
 
 import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
@@ -1300,7 +1326,7 @@ div{animation-name: bop;}div{color: red;}@keyframes bop{0%{width:300%;}100%{widt
             
             <p>We can skip adding inputs, if we want to pass an empty string to the test case. This is illustrated with the <em>drops all</em> test case. <em>DropCSS</em> also removes whitespace, therefore our output is placed on a single line. The font face mask results follow the same logic as keyframes. But we also have a special case for font faces:</p>
             
-            <pre id="ccdbf12"><code class="javascript hljs">const fontfaceCustomProps = makeTestSuite(
+            <pre id="ccdbf13"><code class="javascript hljs">const fontfaceCustomProps = makeTestSuite(
   'test/result/fontface-custom-props.scss', {
     getResults() {
       const prepend = this.preamble
@@ -1323,7 +1349,7 @@ export default T</code></pre>
             
             <p>Because all test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object <span class="tm">T</span> which is then exported. It's not proper ECMA modules standard since a named export is assigned to a default export which is a function, but behind the scenes exports are transpiled into simple <strong>module.exports</strong> assignments anyway, so there's no problem with hacks like this.</p>
             
-            <pre id="ccdbf13"><code class="javascript hljs">// transpilation example
+            <pre id="ccdbf14"><code class="javascript hljs">// transpilation example
 const T = makeTestSuite()
 T['@font-face (custom props)'] = fontfaceCustomProps
 
@@ -1368,7 +1394,7 @@ false
             
             <p>The next test suite is pretty simply, but reads HTML from its own property rather than from the preamble as it will be changed from test to test.</p>
             
-            <pre id="ccdbf14"><code class="javascript hljs">export const customProps = makeTestSuite(
+            <pre id="ccdbf15"><code class="javascript hljs">export const customProps = makeTestSuite(
   'test/result/custom-props.scss', {
     getResults() {
       const [,html] = /content: '(.+?)'/.exec(this.html)
@@ -1395,7 +1421,7 @@ html { content: '&lt;div class="a--b"&gt;&lt;/div&gt;&lt;div class="--c"&gt;&lt;
             
             <p>The final test is for our new functionality that allows to preserve <strong>alternate</strong> comments. We could also write it as a spec, but masks are just as suitable for this task.</p>
             
-            <pre id="ccdbf15"><code class="javascript hljs">export const alternate = makeTestSuite(
+            <pre id="ccdbf16"><code class="javascript hljs">export const alternate = makeTestSuite(
   'test/result/alternate.scss', {
     getResults() {
       const { css } = trapcss({
@@ -1471,6 +1497,11 @@ TypeError: Cannot read property 'replace' of undefined
             
             <p>Now we're given the full stack. As a rule of thumb, whenever you encounter an error that you don't understand in <em>NodeTools</em>, try rerunning the program with <span class="tm">DEBUG=1</span> env variable &mdash; our convention is to display full error stacks when the <span class="tm">DEBUG</span> is set. This can help fix unknown errors.</p>
             
+            </div>
+            
+            <div data-section id="context-testing">
+            <h3 id="context-testing">Context Testing</h3>
+            
             <p>Overall, when executing new tests, we get the following report:</p>
             
             <pre id="c414d6"><code class="bash hljs">$ zoroaster -a test/mask/default.js
@@ -1507,6 +1538,272 @@ test/mask/default.js &gt; alternate &gt; keeps the alternate comment
 🦅  Executed 14 tests: 1 error.</code></pre>
             
             <p>The last error is due to the fact that the new functionality has not been implemented. But it's OK since it's in spirit of test-driven development: we added a test first, before the source code. With mask testing, the TDD methodology is easily embraced as test cases are very easy to add by simply providing new data. Instead of wasting our time on setting up test routines in JS, we can try to come up with as many use cases via masks.</p>
+            
+            <p><em>DropCSS</em> contains more tests, but for the purposes of the tutorial we don't need to look at them further, except for the integration test.</p>
+            
+            <pre id="ccdbf17"><code class="javascript hljs">describe('Bulma-Bootstrap-Surveillance', () =&gt; {
+  let html, css;
+
+  describe('stress test', () =&gt; {
+    it('should run', function() {
+      let {css: out} = dropcss({
+        html:  fs.readFileSync(__dirname + '/../bench/stress/input/surveillance.html', 'utf8'),
+        css:  fs.readFileSync(__dirname + '/../bench/stress/input/bootstrap.min.css', 'utf8') +
+          fs.readFileSync(__dirname + '/../bench/stress/input/bulma.min.css', 'utf8'),
+      });
+
+      assert.equal(vkbeautify(out), fs.readFileSync(__dirname + '/../bench/stress/output/dropcss.pretty.css', 'utf8'));
+    });
+  });
+});</code></pre>
+            
+            <p>We're going to write it as a spec, that will <strong>return</strong> the result of the call to <span class="tm">trapcss</span> function, since <em>Zoroaster</em> supports snapshots automatically by recording returned values in the <span class="tm">test/snapshot</span> directory, and then comparing all future returned values with the saved one. This is what our spec looks like:</p>
+            
+            <div class="b-tp" id="spec">
+            <pre id="ccdbf18"><code class="javascript hljs">// test/spec/default.js
+
+import ServiceContext from 'zoroaster'
+import Context from '../context'
+import trapcss from '../../src'
+
+/** @type {Object.&lt;string, (c: Context, z: ServiceContext)&gt;} */
+const T = {
+  context: [Context, ServiceContext],
+  'bench stress test'({ bootstrap, readFile, fixture }, { snapshotExtension }) {
+    snapshotExtension('css')
+    const bt = readFile(bootstrap)
+    const bulma = readFile(fixture`bulma.min.css`)
+    const css = bt + bulma
+    const res = trapcss({
+      css,
+      html: readFile(fixture`surveillance.html`),
+    })
+    return res.css
+  },
+}
+
+export default T</code></pre>
+            
+              <div class="b-up" style="opacity: 0; top: 1rem; right: 1rem;" id="c5823">
+                <a class="b-Af b-Lf" href="#">Go Back</a>
+              </div>
+            </div>
+            
+            <p><em>Zoroaster</em> is a <strong>context-testing</strong> framework. <em>Contexts</em> are a way to unload test utilities, such as methods for reading files, from tests suites, by putting them in a single place called a context, and make them accessible via destructuring from each test case. In addition, instances of test contexts can implement <span class="tm">_init</span> and <span class="tm">_destroy</span> methods so it's an alternative to <span class="tm">beforeEach</span> and <span class="tm">afterEach</span> hooks for functional style programming, since each test case is now a pure function that receives testing API from arguments rather than scope. This allows to organise test suites by files instead of cramming them all into the same file because we relied on some complex set up routine that we don't want to copy/paste in each test suite file. In <em>DropCSS</em> we only relied on simple methods like <span class="tm">readFileSync</span> but in more complex software we might have more sophisticated API, e.g., in <a href="https://github.com/koajs/session/blob/master/test/contextstore.test.js">koa/session</a>:</p>
+            
+            <pre id="ccdbf19"><code class="javascript hljs">/* 750 lines of tests */
+
+function App(options) {
+  const app = new Koa();
+  app.keys = [ 'a', 'b' ];
+  options = options || {};
+  options.ContextStore = ContextStore;
+  options.genid = ctx =&gt; {
+    const sid = Date.now() + '_suffix';
+    ctx.state.sid = sid;
+    return sid;
+  };
+  app.use(session(options, app));
+  return app;
+}</code></pre>
+            
+            <p>The <em>App</em> function is used by each single test, the test suite file is large because they are all tied to this testing API. There could be a separate file that exported this function, like it's done in Koa (<span class="tm">test/helpers/context.js</span>):</p>
+            
+            <pre id="ccdbf25"><code class="javascript hljs">
+'use strict';
+
+const Stream = require('stream');
+const Koa = require('../..');
+
+module.exports = (req, res, app) =&gt; {
+  const socket = new Stream.Duplex();
+  req = Object.assign({ headers: {}, socket }, Stream.Readable.prototype, req);
+  res = Object.assign({ _headers: {}, socket }, Stream.Writable.prototype, res);
+  req.socket.remoteAddress = req.socket.remoteAddress || '127.0.0.1';
+  app = app || new Koa();
+  res.getHeader = k =&gt; res._headers[k.toLowerCase()];
+  res.setHeader = (k, v) =&gt; res._headers[k.toLowerCase()] = v;
+  res.removeHeader = (k, v) =&gt; delete res._headers[k.toLowerCase()];
+  return app.createContext(req, res);
+};
+
+module.exports.request = (req, res, app) =&gt; module.exports(req, res, app).request;
+
+module.exports.response = (req, res, app) =&gt; module.exports(req, res, app).response;</code></pre>
+            
+            <p><em>Koa</em> then requires those helpers whenever it needs to in <a
+              href="https://github.com/koajs/koa/blob/54e8fab3e3d907bbb264caf3e28a24773d0d6fdb/test/response/redirect.js">
+              test suites</a>:</p>
+            
+            <pre id="ccdbf26"><code class="javascript hljs">const context = require('../helpers/context');
+const Koa = require('../..');
+
+describe('ctx.redirect(url)', () =&gt; {
+  it('should redirect to the given url', () =&gt; {
+    const ctx = context();
+    ctx.redirect('http://google.com');
+    assert.equal(ctx.response.header.location, 'http://google.com');
+    assert.equal(ctx.status, 302);
+  });
+
+  it('should escape the url', () =&gt; {
+    const ctx = context();
+    let url = '&lt;script&gt;';
+    ctx.header.accept = 'text/html';
+    ctx.redirect(url);
+    url = escape(url);
+    assert.equal(ctx.response.header['content-type'], 'text/html; charset=utf-8');
+    assert.equal(ctx.body, `Redirecting to &lt;a href="${url}"&gt;${url}&lt;/a&gt;.`);
+  });
+})
+
+function escape(html){
+  return String(html)
+    .replace(/&amp;/g, '&amp;amp;')
+    .replace(/"/g, '&amp;quot;')
+    .replace(/&lt;/g, '&amp;lt;')
+    .replace(/&gt;/g, '&amp;gt;');
+}</code></pre>
+            
+            <p>Again, those are the simplest examples when the helpers don't take part in set up routines, for example starting a mock server. If they were, each test would be tied up to the test suite file's scope which would force us to place all test in the same file which is not very convenient for navigation and developer freedom. The previous example also adds the <span class="tm">escape</span> function at the bottom of the file, to be used by specs in there. But what if it was needed in other test suites, too? It would have to be put in the <span class="tm">helpers/context</span>, and that's exactly what <strong>Contexts</strong> are in <em>Zoroaster</em> &mdash; an official place for your testing utilities (we didn't see Koa's code before coming up with the name, it's an accident that their context is called in the same fashion as a testing context).</p>
+            
+            <p>This is a snippet from Goa's (our compiled Koa fork) context:</p>
+            
+            <pre id="ccdbf27"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
+import { Duplex, Readable, Writable } from 'stream'
+import Koa from '../../src'
+
+export default class Context extends Cookies {
+  /**
+   * A mock context.
+   * @param {http.IncomingMessage} [req]
+   * @param {http.ServerResponse} [res]
+   * @param {Koa} [app]
+   */
+  makeContext(req, res, app = new Koa()) {
+    const socket = new Duplex()
+    req = Object.assign({ headers: {}, socket }, Readable.prototype, req)
+    res = Object.assign({ socket }, Writable.prototype, res)
+    const _headers = {}
+    req.socket.remoteAddress = req.socket.remoteAddress || '127.0.0.1'
+    res.getHeader = k =&gt; _headers[k.toLowerCase()]
+    res.getHeaders = () =&gt; _headers
+    res.setHeader = (k, v) =&gt; _headers[k.toLowerCase()] = v
+    res.removeHeader = (k) =&gt; delete _headers[k.toLowerCase()]
+    return app.createContext(req, res)
+  }
+  /**
+   * Returns an instance of a mock context.
+   */
+  get ctx() {
+    return this.makeContext()
+  }
+  /**
+   * Escapes HTML entities for &amp;, ", &lt; and &gt;.
+   * @param {string} html
+   */
+  escape(html){
+    return `${html}`
+      .replace(/&amp;/g, '&amp;amp;')
+      .replace(/"/g, '&amp;quot;')
+      .replace(/&lt;/g, '&amp;lt;')
+      .replace(/&gt;/g, '&amp;gt;')
+  }
+  /**
+   * Pause runtime.
+   * @param {number} time
+   */
+  sleep(time){
+    return new Promise(resolve =&gt; setTimeout(resolve, time))
+  }
+}</code></pre>
+            
+            <p>It is then from the context that specs access the testing utilities, and what is more, we receive full <em>JSDoc</em> support from our context.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="accessing goa context from tests" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='382'/%3E" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="accessing goa context from tests" src="/nodetools/pages/trapcss/5-testing/img/context.gif">
+              </noscript>
+            </p>
+            
+            <blockquote class="b-r">
+              Context-testing decouples test cases from the testing infrastructure and allows to treat each test as a pure function that receives its inputs from arguments instead of file scope.
+            </blockquote>
+            
+            <p>Of course, test cases are not 100% pure as we're still importing src within the test suite, but it's OK since we still want to be practical. It would be possible to import src from context, and make it available for access for test cases, in which cases they <em>will</em> be 100% pure. This could let us to do cool stuff like hosting spec functions completely independently from the source code (e.g., as lambdas for longer integration testing routines that could then be run in parallel to complete a test suite in a matter of seconds), and even plugging in different versions of source code into tests. But these are more advanced concepts from Quality Assurance theory. For now it's enough to say that context-testing from <em>NodeTools</em> formalises the helper pattern and enables <em>JSDoc</em> access to testing API.</p>
+            
+            <p>This is our context for that spec:</p>
+            
+            <pre id="ccdbf20"><code class="javascript hljs">import { join } from 'path'
+import { readFileSync } from 'fs'
+
+/**
+ * A testing context for the package.
+ */
+export default class Context {
+  /**
+   * A tagged template that returns the relative path
+   * to the fixture.
+   * @param {string} file
+   * @example
+   * fixture`input.txt` // -&gt; test/fixture/input.txt
+   */
+  fixture(file) {
+    const f = file.raw[0]
+    return join('test/fixture', f)
+  }
+  /**
+   * Path to bootstrap.
+   */
+  get bootstrap() {
+    return this.fixture`bootstrap.min.css`
+  }
+  /**
+   * Read the file from the fs.
+   * @param {string} path The path to read.
+   */
+  readFile(path) {
+    return readFileSync(path, 'utf8')
+  }
+}</code></pre>
+            
+            <p>The testing interface and its implementation provide a method for synchronously reading files, a method to resolve paths to fixtures from the <strong>fixture</strong> directory, as well as the <strong>bootstrap</strong> property that resolves to the bootstrap path. We'll need to place some fixtures, such as <strong>bulma.min.css</strong> and <strong>surveillance.html</strong> into the <strong>fixtures</strong> folder so that they can be used in test. If we ever wanted to reuse bootstrap fixture, we'd simply destructure its path from the context, and read it if necessary. But if our package could, for example, accept a path to a CSS file instead of CSS as string, we'd already have everything we needed to test such feature. This makes us extremely productive and our QA experience very pleasant.</p>
+            
+            <p>The <a data-smooth href="#spec">
+               spec <img alt="hand cursor" data-io>
+             <noscript><img alt="hand cursor" src="/nodetools/pages/trapcss/img/hand.svg"></noscript></a> will read bulma and bootstrap, put them together, and use HTML from the prepared html file to pass to <em>TrapCSS</em>. The result is returned by the test, and when run for the first time, <em>Zoroaster</em> asks us if we want to save the snapshot. After it was saved, all further executions of the test will compare the output to the recorded one.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="saving snapshot" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='643' height='666'/%3E" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="saving snapshot" src="/nodetools/pages/trapcss/5-testing/img/snapshot.gif">
+              </noscript>
+            </p>
+            
+            <p>We also used a service context from <em>Zoroaster</em> as our second context to change the format of the saved file to CSS. Instead of recording snapshots in JSON files, we write them to files with the extensions of the data format that they contain. This allows us to visually inspect our snapshots with syntax highlighting, which improves our <em>DevX</em> too.</p>
+            
+            <p>
+              <img class="b-vk b-bk b-t" alt="error in snapshot recording" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='643' height='666'/%3E" data-io>
+              <noscript>
+                <img class="b-vk b-bk b-t" alt="error in snapshot recording" src="/nodetools/pages/trapcss/5-testing/img/snapshot-error.gif">
+              </noscript>
+            </p>
+            
+            <p>If at some point we changed our source code, and the output of the program changed, we'd be notified of it by <em>Zoroaster</em> with green/red highlighting on string differences too. We could then run tests in interactive mode as <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span> <span class="npm--">--</span> <span>-i</span></span>
+             </span> (same as forks) to update snapshots from the CLI.</p>
+            
+            <p>In sum, there are following folders found in the <strong>test</strong> dir:</p>
+            
+            <ul>
+              <li><strong>context</strong>: our helper methods implemented as a class for <em>JSDoc</em> access to methods.</li>
+              <li><strong>fixture</strong>: any external files required for testing.</li>
+              <li><strong>mask</strong>: test suites created with <em>makeTestSuite</em> from <span class="tm2">@zoroaster/mask</span> package that are constructed dynamically from input-output pairs.</li>
+              <li><strong>result</strong>: the results of masks, stored in any convenient file format that provides appropriate syntax highlighting.</li>
+              <li><strong>snapshot</strong>: results returned by specs are saved here.</li>
+              <li><strong>spec</strong>: atomic test cases nested within folder and thus organised by tests suites that make use of contexts.</li>
+            </ul>
             
             </div>
             
