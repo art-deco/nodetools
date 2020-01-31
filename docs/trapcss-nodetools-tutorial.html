@@ -195,6 +195,12 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     </summary>
                                     <div id="emails-div">Loading widget...</div>
                                   </details>
+                                  <div class="b-jq">
+                                    <h3 class="b-Gk">Package Manager</h3>
+                                    <form class="b-Gk" id="ca13e">
+                                      <select><option selected value="yarn">yarn</option><option value="npm">npm</option></select>
+                                    </form>
+                                  </div>
                                 
                 </div>
                 <a id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
@@ -328,9 +334,9 @@ const { LOGGING } = require('./env');</code></pre>
             
             <pre id="c724c"><code class="shell hljs">MacBook:trapcss zavr$ yarn alamode src -r</code></pre>
             
-            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. By using <span class="Manager" id="cbabb">yarn bin-alias</span> I can execute binaries from node_modules installed in the project folder.</p>
+            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node＿modules with <span class="YarnManager">yarn bin-alias</span> to execute aliases installed in the project folder within <strong>node＿modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="NpmManager">npm run alanode</span> too if you want to execute any module that needs transpiling, such as examples.</p>
             
-            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager" id="c093b">yarn alanode src/dropcss</span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
+            <p>When trying to simply check that all imports are updated correctly by running <span class="YarnManager" id="c093b"><span data-manager>yarn</span> alanode src/dropcss</span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
             
             <pre id="ccdbf1"><code class="javascript hljs">// src/find.js
 function some(nodes, m) {
@@ -467,7 +473,7 @@ export default class Application extends EventEmitter {
             <div data-section id="typedefs">
             <h3 id="typedefs">Typedefs</h3>
             
-            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="Manager" id="c651c">yarn d</span>. This command will update typedefs in <span class="tm">types/index.js</span>, which are then imported in our source code. <span class="Manager" id="c651c1">yarn d</span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="tm">yarn-s</span> or <span class="tm">npm-s</span> for serial execution of those commands, depending on how your <em>MNP</em> was configured.</p>
+            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="YarnManager" id="c651c"><span data-manager>yarn</span> d</span>. This command will update typedefs in <span class="tm">types/index.js</span>, which are then imported in our source code. <span class="YarnManager" id="c651c1"><span data-manager>yarn</span> d</span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="tm">yarn-s</span> or <span class="tm">npm-s</span> for serial execution of those commands, depending on how your <em>MNP</em> was configured.</p>
             
             <pre id="ccdbf5"><code class="javascript hljs">export {}
 
@@ -531,7 +537,7 @@ function dropcss(opts) {
               </noscript>
             </p>
             
-            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="Manager" id="c651c2">yarn d</span> command.</p>
+            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="YarnManager" id="c651c2"><span data-manager>yarn</span> d</span> command.</p>
             
             
             </div>
@@ -855,9 +861,9 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               </noscript>
             </p>
             
-            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager" id="cb985">yarn doc -p &quot;commit message&quot;</span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
+            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="YarnManager" id="cb985"><span data-manager>yarn</span> doc -p &quot;commit message&quot;</span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager" id="c824f">yarn doc</span> command).</p>
+            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="YarnManager" id="c824f"><span data-manager>yarn</span> doc</span> command).</p>
             
             
             </div>
@@ -1112,7 +1118,7 @@ span {a:b;}
               href="https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
               study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
             
-            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager" id="c1b02">yarn [spec|mask|test]</span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager" id="c6a16">yarn mask</span> after having constructed our first mask tests.</p>
+            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="YarnManager" id="c1b02"><span data-manager>yarn</span> [spec|mask|test]</span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="YarnManager" id="c6a16"><span data-manager>yarn</span> mask</span> after having constructed our first mask tests.</p>
             
             <pre id="c414d3"><code class="bash hljs">yarn run v1.13.0
 $ yarn t test/mask

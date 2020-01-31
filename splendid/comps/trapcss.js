@@ -1,5 +1,6 @@
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
+import '../js/main'
 import __renameMap0 from './__rename-maps/styles/yarn'
 import __renameMap1 from './__rename-maps/styles/sidebar'
 import __renameMap2 from './__rename-maps/styles/on-this-page'
@@ -14,6 +15,7 @@ import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import Highlightjs from 'splendid/build/components/highlightjs'
+import Manager from '../components/manager.jsx'
 import Mask from '../components/mask.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 import Yarn from '../components/yarn.jsx'
@@ -23,6 +25,7 @@ const __components = {
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
   'highlightjs': Highlightjs,
+  'manager': Manager,
   'mask': Mask,
   'social-buttons': SocialButtons,
   'yarn': Yarn,
@@ -81,13 +84,6 @@ const meta = [{
   props: {
     owner: 'artdecocode',
     name: 'trapcss',
-  },
-},
-{
-  key: 'yarn',
-  id: 'cbabb',
-  props: {
-    'bin-alias': true,
   },
 },
 {
@@ -154,6 +150,10 @@ const meta = [{
   props: {
     lang: 'css',
   },
+},
+{
+  key: 'manager',
+  id: 'ca13e',
 },
 {
   key: 'highlightjs',

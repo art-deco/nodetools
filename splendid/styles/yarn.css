@@ -1,6 +1,11 @@
 /* Stylesheets for the package manager commands */
-.Manager {
+.YarnManager {
   font-family: 'Source Code Pro', monospace;
   background-color: lightblue;
   color: darkblue;
+}
+.NpmManager {
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(255, 202, 202);
+  color: darkred;
 }

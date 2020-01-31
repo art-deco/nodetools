@@ -20,7 +20,10 @@
   font-size: 1em;}pre{margin-top: 0;
   margin-bottom: 1rem;
   overflow: auto;}figure{margin: 0 0 1rem;}img{vertical-align: middle;
-  border-style: none;}table{border-collapse: collapse;}th{text-align: inherit;}::-webkit-file-upload-button{font: inherit;
+  border-style: none;}table{border-collapse: collapse;}th{text-align: inherit;}select{margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;}select{text-transform: none;}select{word-wrap: normal;}::-webkit-file-upload-button{font: inherit;
   -webkit-appearance: button;}summary{display: list-item;
   cursor: pointer;}h1,h2,h3{margin-bottom: 0.5rem;
   font-weight: 500;
@@ -70,7 +73,7 @@
     order: 1;}.order-md-2{-ms-flex-order: 2;
     order: 2;}}@media (min-width: 992px){.col-lg-6{-ms-flex: 0 0 50%;
     flex: 0 0 50%;
-    max-width: 50%;}}.border{border: 1px solid #dee2e6 !important;}.rounded{border-radius: 0.25rem !important;}.d-inline-block{display: inline-block !important;}.d-flex{display: -ms-flexbox !important;
+    max-width: 50%;}}.border{border: 1px solid #dee2e6 !important;}.rounded{border-radius: 0.25rem !important;}.d-inline{display: inline !important;}.d-inline-block{display: inline-block !important;}.d-flex{display: -ms-flexbox !important;
   display: flex !important;}.flex-column{-ms-flex-direction: column !important;
   flex-direction: column !important;}.flex-shrink-0{-ms-flex-negative: 0 !important;
   flex-shrink: 0 !important;}.justify-content-center{-ms-flex-pack: center !important;
@@ -81,7 +84,7 @@
     /* @alternate */
     position: sticky;
     top: 0;
-    z-index: 1020;}}.h-100{height: 100% !important;}.mb-0{margin-bottom: 0 !important;}.mb-3{margin-bottom: 1rem !important;}.p-1{padding: 0.25rem !important;}.p-3{padding: 1rem !important;}.pt-3{padding-top: 1rem !important;}.mt-auto{margin-top: auto !important;}.text-monospace{font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;}.text-center{text-align: center !important;}@media print{*,*::before,*::after{text-shadow: none !important;
+    z-index: 1020;}}.h-100{height: 100% !important;}.mb-0{margin-bottom: 0 !important;}.mb-1{margin-bottom: 0.25rem !important;}.mb-3{margin-bottom: 1rem !important;}.p-1{padding: 0.25rem !important;}.p-3{padding: 1rem !important;}.pt-3{padding-top: 1rem !important;}.mt-auto{margin-top: auto !important;}.text-monospace{font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;}.text-center{text-align: center !important;}@media print{*,*::before,*::after{text-shadow: none !important;
     box-shadow: none !important;}a:not(.btn){text-decoration: underline;}pre{white-space: pre-wrap !important;}pre,blockquote{border: 1px solid #adb5bd;
     page-break-inside: avoid;}tr,img{page-break-inside: avoid;}p,h2,h3{orphans: 3;
     widows: 3;}h2,h3{page-break-after: avoid;}@page{size: a3;

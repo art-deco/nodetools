@@ -1,6 +1,7 @@
 import __initBandcampBabylon from './__init/bandcamp-babylon'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
+import '../js/main'
 import __renameMap0 from './__rename-maps/styles/bandcamp'
 import __renameMap1 from './__rename-maps/styles/sidebar'
 import __renameMap2 from './__rename-maps/styles/on-this-page'
@@ -16,6 +17,7 @@ import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
 import Highlightjs from 'splendid/build/components/highlightjs'
+import Manager from '../components/manager.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
@@ -24,6 +26,7 @@ const __components = {
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
   'highlightjs': Highlightjs,
+  'manager': Manager,
   'social-buttons': SocialButtons,
 }
 
@@ -75,6 +78,10 @@ const meta = [{
   props: {
     'api-key': 'akashic',
   },
+},
+{
+  key: 'manager',
+  id: 'ca13e',
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {
   const Comp = __components[key]

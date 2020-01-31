@@ -141,6 +141,14 @@ table {
 th {
   text-align: inherit;
 }
+select {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-transform: none;
+  word-wrap: normal;
+}
 ::-webkit-file-upload-button {
   font: inherit;
   -webkit-appearance: button;
@@ -313,6 +321,9 @@ pre code {
 .rounded {
   border-radius: .25rem !important;
 }
+.d-inline {
+  display: inline !important;
+}
 .d-inline-block {
   display: inline-block !important;
 }
@@ -357,6 +368,9 @@ pre code {
 }
 .mb-0 {
   margin-bottom: 0 !important;
+}
+.mb-1 {
+  margin-bottom: .25rem !important;
 }
 .mb-3 {
   margin-bottom: 1rem !important;
@@ -506,10 +520,15 @@ h1, h3, h2 {
 .OnThisPage {
   -webkit-padding-start: 0;
 }
-.Manager {
+.YarnManager {
   font-family: 'Source Code Pro' , monospace;
   background-color: lightblue;
   color: darkblue;
+}
+.NpmManager {
+  font-family: 'Source Code Pro' , monospace;
+  background-color: #ffcaca;
+  color: darkred;
 }
 #BandcampBabylon div {
   display: none !important;

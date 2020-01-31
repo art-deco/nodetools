@@ -1,5 +1,6 @@
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
+import '../js/main'
 import __renameMap0 from './__rename-maps/styles/sidebar'
 import __renameMap1 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'
@@ -11,12 +12,14 @@ import { makeIo, init, start } from './__competent-lib'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
+import Manager from '../components/manager.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
+  'manager': Manager,
   'social-buttons': SocialButtons,
 }
 
@@ -54,6 +57,10 @@ const meta = [{
     meta: true,
     className: 'b-xq b-Hk',
   },
+},
+{
+  key: 'manager',
+  id: 'ca13e',
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {
   const Comp = __components[key]

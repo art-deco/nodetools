@@ -17,12 +17,20 @@ export default class Mask {
    */
   constructor(el) {
     this.div = el
-    /** @type {!HTMLCanvasElement} */
-    this.canvas = el.firstElementChild
+    this.canvas = /** @type {!HTMLCanvasElement} */ (el.firstElementChild)
     this.ctx = this.canvas.getContext('2d')
     this.ctx.font = '1rem "Ruda"'
     this.ctx.fillText('Problem space is loading...', 10, 50)
     this.a = this.canvas.nextElementSibling
+
+    /** @type {?number} */
+    this.width = null
+    /** @type {?number} */
+    this.height = null
+    /** @type {HTMLImageElement} */
+    this.img = null
+    /** @type {Function} */
+    this.listener = null
   }
   /**
    * @param {{ img: HTMLImageElement }} props
@@ -37,8 +45,8 @@ export default class Mask {
     img.style['max-width'] = '100%'
     img.style.opacity = 0.125
     img.style.position = 'absolute'
-    img.style.top = 0
-    img.style.left = 0
+    img.style.top = '0'
+    img.style.left = '0'
     this.div.insertBefore(img, this.canvas)
 
     this.redraw({ x: -this.width, y: -this.height })
