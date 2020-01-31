@@ -466,6 +466,9 @@ h1, h3, h2 {
   -webkit-hyphens: none;
   -ms-hyphens: none;
 }
+#PagesMenu li.Active {
+  font-weight: 700;
+}
 .SideBarMenu {
   max-height: 100vh;
   overflow: auto;

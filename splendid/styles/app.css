@@ -42,3 +42,6 @@ h1, h3, h2 {
 .tm, .tm2 {
   hyphens: none;
 }
+#PagesMenu li.Active {
+  font-weight: 700;
+}

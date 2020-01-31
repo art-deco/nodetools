@@ -4,7 +4,7 @@
  * @param {string} [dir] Pages from this directory only.
  * @param {boolean} [indexes] Print links that are indexes of dirs only.
  */
-export default function Pages({ splendid, dir, indexes }) {
+export default function Pages({ splendid, dir, indexes, ...props }) {
   const { pages, page: { key } } = splendid
   const menuPages = pages.filter(({ dir: d, index }) => {
     if (indexes) {
@@ -13,7 +13,7 @@ export default function Pages({ splendid, dir, indexes }) {
     if (dir) return d == dir
     if (!d) return true
   })
-  const ajax = (<ul>
+  const ajax = (<ul {...props}>
     {menuPages.map(({
       title, menu = title, url, menuUrl = url, file, key: k,
     }) => {
