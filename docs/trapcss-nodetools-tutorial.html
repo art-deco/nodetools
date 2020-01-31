@@ -802,7 +802,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             <div data-section id="examples-to-outputs">
             <h3 id="examples-to-outputs">Examples To Outputs</h3>
             
-            <p>The second most useful feature of <em>NodeTools</em> after the compiler is the ability to automatically place examples into README, and compute their output which is also added to README. We use the <span class="tm">%EXAMPLE%</span> marker to reference the example file that comes from the <strong>examples</strong> folder. Let's write an example for our program with some HTML and CSS to see if it works.</p>
+            <p>The second most useful feature of <em>NodeTools</em> after the compiler is the ability to automatically place examples into README, and compute their output which is also added to README. We use the <span class="tm">%EXAMPLE%</span> marker to reference the example file that comes from the <strong>examples</strong> folder. All paths will be resolved in Node style conventions, i.e. by looking up the <strong>index.js</strong> file if a directory is passed, so we can simply reference <strong>example</strong> dir. Let's create a sample usage of our program with some HTML and CSS to see if it works.</p>
             
             <pre id="c19533"><code class="markdown hljs">%EXAMPLE: example, ../src =&gt; trapcss%</code></pre>
             
@@ -854,22 +854,25 @@ console.log(cleaned.css)
 
 console.error(dropped)</code></pre>
             
-            <p>To test example before actually compiling docs, we can call <span class="tm">alanode</span> which is a simple proxy process to Node with a require hook that transpiles imports.</p>
+            <p>To test the example before actually compiling docs, we can call <span class="tm">alanode</span> which is a simple proxy process to Node with a require hook that transpiles imports. It's executed via the package manager: <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode example/</span></span>
+             </span>.</p>
             
-            <pre id="c414d2"><code class="bash hljs">MacBook:trapcss zavr$ alanode example/
+            <pre id="c414d2"><code class="bash hljs">MacBook:trapcss zavr$ yarn alanode example/
 html{background: yellow;background: green;}
 Set { '.card', 'p:hover a:first-child' }</code></pre>
             
-            <p>The example is working fine, so we can embed it. We're going to modify the markdown file in the following way:</p>
+            <p>The example is working fine, so we can embed it. If at any point you see blank code blocks in your READMEs, try executing examples with <span class="tm">alanode</span> to check for any errors. We're going to modify the markdown file in the following way:</p>
             
-            <pre id="c19534"><code class="markdown hljs">&lt;!-- was --&gt;
+            <pre id="c19534"><code class="markdown hljs">&lt;!-- was: --&gt;
 &lt;!-- %FORK example% --&gt;
+
 &lt;!-- now: --&gt;
 
 %FORK-css example%
 %FORKERR-js example%</code></pre>
             
-            <p>It's possible to fork a single process and then output both stdout and stderr streams into the documentation. The language of the fork is also given after <span class="tm">FORK-{lang}</span> which means that <em>stdout</em> will be printed as CSS and <em>stderr</em> as JS code block. Forked JS files are also cached so that if the example and/or any of its dependencies changed, the data will be read from cache which saves a lot of time for more complex programs that might call external APIs or system IO. Specifying language enables syntax highlighting on <em>GitHub</em> so that docs will look neat.</p>
+            <p>It's possible to fork a single process and then pipe both stdout and stderr streams into the documentation. The language of the fork is also given within <span class="tm">FORK-{lang}</span> which means that <em>stdout</em> will be printed as CSS and <em>stderr</em> as JS code blocks. Forked JS modules are also cached so that if the example and/or any of its dependencies (src files, or imported packages' versions) changed, data will be read from cache which saves a lot of time for more complex programs that might call external APIs or system IO. Specifying language enables syntax highlighting on <em>GitHub</em> so that docs will look neat.</p>
             
             <p>
               <img class="ImageHolder b-vk b-t" sizes="(max-width: 575.8px) 100vw,(max-width: 991.8px) 540px,(max-width: 1199.8px) 720px,855px" alt="example with syntax highlighting on github" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='808' height='120'/%3E">
@@ -887,7 +890,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
                <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm--">--</span> <span>-p "commit message"</span></span>
              </span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute the example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager">
+            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute an example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager">
                <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span>
              </span> command).</p>
             
