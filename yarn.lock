@@ -48,11 +48,11 @@
   integrity sha512-5C0LDzW8DkiSSCLyYO9ux3R5ru65yEn/GtxH1wh7ukRhLAZ/Svx4+A81YvciXcn35B2VmvCqyiTrhNdxdgusSw==
 
 "@zoroaster/mask@^2.2.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@zoroaster/mask/-/mask-2.3.0.tgz#57d169417e09e481efafccbffdd93cef919ec5e6"
-  integrity sha512-fufal06pS/SYhOKHCmoFQ+PjhQwsCwMr2h0D2xeiVaXstaWHJVEiLg4+BU/KCmOOzLXLKikf81ca4zFXip7ScQ==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@zoroaster/mask/-/mask-2.4.0.tgz#9c5400928f6bb88aeef0971325aa6558a87ce435"
+  integrity sha512-vJ71/qOb7H3YMa0hF7hAapbB/Vk1BlXKRkIsNSuCLBK4fe2wHsj06eVFNCjRz5KpgAyvAXLHrdYAGbGdwzwacw==
 
-alamode@^3.0.0, alamode@^3.3.0:
+alamode@^3.0.0, alamode@^3.3.0, alamode@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/alamode/-/alamode-3.3.1.tgz#b244ac06560bcc4c3b48bb6ea79adb399dbfa9b7"
   integrity sha512-689o0l4C4aaf+7pboTTpLAXQecztn0eqvqISRPWOJEKC+Xe8XGGZxsMTtkc+ZPYYEe+WY7VjdKoK0GZUDNqwOg==
@@ -76,14 +76,14 @@ diff@4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
   integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
-documentary@^1.35.9:
-  version "1.35.9"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.35.9.tgz#f0003b04c4a54325198e1189f81ba88aad87e21a"
-  integrity sha512-NnZvzx+429RfwgehvpSNvTXFEOR3bnrPW09TZpPxwa2QnPOdRybxoKDrluP6QoGDQslOKXrWkzSXO/lesqPsWw==
+documentary@^1.35.10:
+  version "1.35.10"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.35.10.tgz#4c1391882f1bfdc9e3dbfc1536f0b4bbe7dfe530"
+  integrity sha512-XTHj5XYTgiWsw9IVc/37zpjsgztm9OmW3B1a3tmQmoFDswr4CoA7VpoxRCTn4LAtCFp6fSTFclSo5d2uQedWhQ==
   dependencies:
-    alamode "^3.3.0"
+    alamode "^3.3.1"
     preact "8.5.3"
-    typal "^1.24.19"
+    typal "^1.26.0"
 
 dropcss@zavr-1/dropcss#743bdc8:
   version "1.0.16"
@@ -130,10 +130,10 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
-splendid@^1.16.13:
-  version "1.16.13"
-  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.13.tgz#4ca35638413f612099044f8723993c8ec131dbb8"
-  integrity sha512-rE3Q8DrlfwNfdDEf8GfLDgCOH0gKOLMww6ShvUrXD1Dlf/Y252GFjA+boQ/QuBwlSvCz9u1u4QMoowQCffwJNw==
+splendid@^1.16.14:
+  version "1.16.14"
+  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.14.tgz#937d724f7e68b118b52885bd79be7055dfa07a6b"
+  integrity sha512-elnLh1g+d/JG8FX4lb1GQy8uAYgm6KDF3ezYXE+Kb+eb9rKgCsp6BfN9THMsmonBt5TLXYMi6kxOX74SgM9buw==
   dependencies:
     "@externs/preact" "^1.2.9"
     "@idio/idio" "^1.2.3"
@@ -158,7 +158,7 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-typal@^1.24.19:
+typal@^1.26.0:
   version "1.26.0"
   resolved "https://registry.yarnpkg.com/typal/-/typal-1.26.0.tgz#72d0a3cb11795fd29397cdbc1aa7cff14e696406"
   integrity sha512-zmONxk2RvezXI0AKOa74yw9Ac5OvHNItlhThbcUtmi+MErbyi8uHh7mwf8bG2E1mB6MEJ1FQtwf0NBVPe4TVUg==
