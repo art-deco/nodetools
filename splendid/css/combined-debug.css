@@ -98,7 +98,20 @@ hr {
 h1, h2, h3 {
   margin-top: 0;
 }
-p, ol, ul {
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+abbr[title] {
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  cursor: help;
+  border-bottom: 0;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+}
+ol, ul {
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -349,6 +362,32 @@ pre code {
 .btn:disabled {
   opacity: .65;
 }
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.btn-success:focus {
+  box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);
+}
+.btn-success:disabled {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-success:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #1e7e34;
+  border-color: #1c7430;
+}
+.btn-success:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 .2rem rgba(72,180,97,.5);
+}
 .btn-danger {
   color: #fff;
   background-color: #dc3545;
@@ -474,6 +513,9 @@ pre code {
   }
   a:not(.btn) {
     text-decoration: underline;
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
   }
   pre {
     white-space: pre-wrap !important;

@@ -1,24 +1,28 @@
-import { Component } from 'preact'
 import { loadStyle } from '@lemuria/load-scripts'
 
-export default class Comments extends Component {
+export default class Comments {
+  static get 'plain'() {
+    return true
+  }
   static 'load'(cb) {
     loadStyle('https://static.akashic.page/comments.css', cb)
+  }
+  constructor(el) {
+    this.el = el
   }
   render({ 'api-key': apiKey, host }) {
     const s = document.createElement('script')
     s.src = 'https://static.akashic.page/akashic.js'
     s.onload = () => {
-      document.getElementById('comments-div').innerText = ''
+      this.el.innerText = ''
       window['Akashic']['comments']({
         'host': host,
         'api_key': apiKey,
         'scope': '/nodetools/',
-        'container': 'comments-div',
+        'container': this.el.id,
       })
     }
     document.body.appendChild(s)
-    return (<div id="comments-div"/>)
   }
   /**
    *
@@ -32,7 +36,7 @@ export default class Comments extends Component {
       await splendid.addFile('node_modules://preact/dist/preact.min.js.map')
     }
     await splendid.addFile('service-worker.js')
-    return (<div id="comments-div">Loading comments...</div>)
+    return (<div>Loading comments...</div>)
   }
 }
 

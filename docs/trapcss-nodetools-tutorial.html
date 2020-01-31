@@ -125,6 +125,10 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <a data-file="trapcss" href="/nodetools/trapcss-nodetools-tutorial.html">TrapCSS: NodeTools Tutorial</a>
                 </li>
                 <li class>
+                  <a data-file="trapcss2" href="/nodetools/trapcss-2-advanced-nodetools.html">
+                    TrapCSS 2: Advanced NodeTools</a>
+                </li>
+                <li class>
                   <a data-file="babel" href="/nodetools/babel-when-open-source-is-not-free-sofware.html">
                     Babel: When Open Source Is Not Free Sofware</a>
                 </li>
@@ -193,6 +197,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                       <a href="#creating-tests">Creating Tests</a>
                                       <ul><li data-heading="mask-testing"><a href="#mask-testing">Mask Testing</a></li><li data-heading="focus-in-masks"><a href="#focus-in-masks">Focus In Masks</a></li><li data-heading="interactive-mode"><a href="#interactive-mode">Interactive Mode</a></li><li data-heading="more-masks"><a href="#more-masks">More Masks</a></li><li data-heading="error-stacks"><a href="#error-stacks">Error Stacks</a></li><li data-heading="context-testing"><a href="#context-testing">Context Testing</a></li></ul>
                                     </li>
+                                    <li data-heading="advanced-concepts"><a href="#advanced-concepts">Advanced Concepts</a></li>
+                                    <li data-heading="comments"><a href="#comments">Comments</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="c485b"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
@@ -566,7 +572,7 @@ function dropcss(opts) {
             
             <p>When compiling packages, we need to learn a new concept called <em>externs</em> &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">/**
+            <pre id="ccdbf23"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -808,7 +814,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf24"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -912,7 +918,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               href="https://github.com/leeoniya/dropcss/blob/2a883e5107c68c2181d4c0e02b30e15cf4e7736c/test/src/0-context-free-unary-sel.js">
               the first test suite</a> and have a look at its structure:</p>
             
-            <pre id="ccdbf23"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+            <pre id="ccdbf25"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
 const assert = require('assert')
 
 describe('Context-free, unary selector', () =&gt; {
@@ -1032,7 +1038,7 @@ output 2
             
             <p>In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.</p>
             
-            <pre id="ccdbf24"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf26"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
 
 // todo: test [foo="val"], [foo='val'], :not([attr~=value])
@@ -1365,7 +1371,7 @@ module.exports = T
 // export const keyframes = makeTestSuite()
 module.exports.keyframes = keyframes</code></pre>
             
-            <p>We run <em>Zoroaster</em> with <span class="tm">-a</span> flag that enables <em>ÀLaMode</em> transpilation. <em>Zoroaster</em> is not yet compatible with Node 13 and <span class="tm2">mjs</span> modules (sorry). We'll provide an <em>MNP</em> template setting for native mjs modules by the time Node 14 (LTS) is out, but the transpiler is a 0-dep package anyway.</p>
+            <p>We run <em>Zoroaster</em> with <span class="tm">-a</span> flag that enables <em>ÀLaMode</em> transpilation. <em>Zoroaster</em> is not yet compatible with Node 13's <span class="tm2">mjs</span> modules (sorry). We'll provide an <em>MNP</em> template setting for native mjs modules by the time Node 14 (LTS) is out, but the transpiler is a 0-dep package anyway.</p>
             
             <pre id="cf5413"><code class="scss hljs">div{color: red;}:root {--font-family: Foo, 'Bar Baz';}
 @font-face {font-family: Foo}
@@ -1616,7 +1622,7 @@ function App(options) {
             
             <p>The <em>App</em> function is used by each single test, the test suite file is large because they are all tied to this testing API. There could be a separate file that exported this function, like it's done in Koa (<span class="tm">test/helpers/context.js</span>):</p>
             
-            <pre id="ccdbf25"><code class="javascript hljs">
+            <pre id="ccdbf27"><code class="javascript hljs">
 'use strict';
 
 const Stream = require('stream');
@@ -1642,7 +1648,7 @@ module.exports.response = (req, res, app) =&gt; module.exports(req, res, app).re
               href="https://github.com/koajs/koa/blob/54e8fab3e3d907bbb264caf3e28a24773d0d6fdb/test/response/redirect.js">
               test suites</a>:</p>
             
-            <pre id="ccdbf26"><code class="javascript hljs">const context = require('../helpers/context');
+            <pre id="ccdbf28"><code class="javascript hljs">const context = require('../helpers/context');
 const Koa = require('../..');
 
 describe('ctx.redirect(url)', () =&gt; {
@@ -1676,7 +1682,7 @@ function escape(html){
             
             <p>This is a snippet from Goa's (our compiled Koa fork) context:</p>
             
-            <pre id="ccdbf27"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
+            <pre id="ccdbf29"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
 import { Duplex, Readable, Writable } from 'stream'
 import Koa from '../../src'
 
@@ -1807,9 +1813,9 @@ export default class Context {
               <li><strong>context</strong>: our helper methods implemented as a class for <em>JSDoc</em> access to methods.</li>
               <li><strong>fixture</strong>: any external files required for testing.</li>
               <li><strong>mask</strong>: test suites created with <em>makeTestSuite</em> from <span class="tm2">@zoroaster/mask</span> package that are constructed dynamically from input-output pairs.</li>
-              <li><strong>result</strong>: the results of masks, stored in any convenient file format that provides appropriate syntax highlighting.</li>
+              <li><strong>result</strong>: test cases for masks that provide inputs and expected outputs, stored in any convenient file format that provides appropriate syntax highlighting.</li>
               <li><strong>snapshot</strong>: results returned by specs are saved here.</li>
-              <li><strong>spec</strong>: atomic test cases nested within folder and thus organised by tests suites that make use of contexts.</li>
+              <li><strong>spec</strong>: atomic test cases nested within folders and thus organised by tests suites that make use of contexts.</li>
             </ul>
             
             </div>
@@ -1820,6 +1826,55 @@ export default class Context {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
             </p>
+            </div>
+            
+            <div data-section id="advanced-concepts">
+            <h2 id="advanced-concepts">Advanced Concepts</h2>
+            
+            <p>Now that we've transferred the source code rewritten as ECMA modules, documented it with initial examples, designed the API via types in XML, and unit-tested our library with masks and snapshots, we can move on to discussing more serious concepts such as compilation, wikis and binary functionality in the next part of this tutorial. But first, let's <strike>take a selfie</strike> actually implement the logic that we needed for our package, that is, the comment preservation feature.</p>
+            
+            <p>In <em>DropCSS</em> all comments are stripped prior to parsing of the CSS file.</p>
+            
+            <pre id="ccdbf21"><code class="javascript hljs">// src/css.js
+function parse(css) {
+  // strip comments (for now)
+  css = css.replace(COMMENTS, '');
+  return tokenize(css);
+}</code></pre>
+            
+            <p>We make a very simple change that allows to preserve the <strong>keepAlternate</strong> comment. After the change is made, we run <span class="Manager">
+               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span></span>
+             </span> to validate that all tests now pass, since we've already created a test case for <span class="tm">/* @alternate */</span> in masks in <abbr title="Test Driven Development"><em>TDD</em></abbr> fashion.</p>
+            
+            <pre id="ccdbf22"><code class="javascript hljs">export function parse(css, keepAlternate) {
+  // strip comments (for now)
+  css = css.replace(COMMENTS, keepAlternate ? (m) =&gt; {
+    if (/^\s*\/\* @alternate \*\/\s*$/.test(m)) return m
+    return ''
+  } : '')
+  return tokenize(css)
+}</code></pre>
+            
+            <p>Whenever the second new attribute, <span class="tm">keepAlternate</span> is passed, instead of stripping all comments that it finds, our method will test if the comment is the <strong>alternate</strong> block comment using a regex, and keep it if required. Although this could potentially break the parser in places, because we had tests, we don't need to be afraid of side effects introduced by this change. The author of the original package mentioned that he doesn't like the fact that such feature would have negative impact on speed, however there's no impact at all if the second argument is actually not truthy. If my advice can be of any value, please don't concern yourself with micro-optimisations and imaginary split millisecond gains at times when humanity is starting to use quantum computers.</p>
+            
+            <p>If you need a feature, implement it regardless in what way without bothering with performance because our machines are made for computation so give them something to do. A new feature can branch out in unexpected ways and help you explore new ideas. But it's also true for when trying to overcome somebody's resistance to change, or bugs. Keep positive and treat any obstacle as a personal opportunity to create something amazing. Focus on yourself first and foremost, as you're programming for your own pleasure/business goals and don't need anyone else to tell you what is acceptable and not. You're in charge of your programs. <em>NodeTools</em> helps you remain the master of your work.</p>
+            
+            <a class="b-Af b-If" btn-large href="/nodetools/trapcss-2-advanced-nodetools.html">
+              TrapCSS 2: Advanced NodeTools</a>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/6.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="comments">
+            <h2 id="comments">Comments</h2>
+            
+            <div id="c8b27">Loading comments...</div>
+            
             </div>
           </div>
         </div>

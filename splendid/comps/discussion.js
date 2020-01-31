@@ -52,7 +52,7 @@ const meta = [{
 },
 {
   key: 'akashic-comments',
-  id: 'comments-div',
+  id: 'c8b27',
   props: {
     'api-key': 'akashic',
   },

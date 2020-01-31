@@ -50,6 +50,20 @@ export const trapcss = {
 /**
  * @type {import('splendid').Page}
  */
+export const trapcss2 = {
+  title: 'TrapCSS 2: Advanced NodeTools',
+  seo: 'A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and libarary with Closure Copmiler and generate Wiki pages.',
+  og: {
+    image: '../pages/trapcss/img/splash.jpg',
+  },
+  links: {
+
+  },
+}
+
+/**
+ * @type {import('splendid').Page}
+ */
 export const babel = {
   title: 'Babel: When Open Source Is Not Free Sofware',
   description: 'There is a difference between free and open source software which must be understood. Babel, praising itself on being open source, actually harms users\' freedoms and delivers them right into the hands of the vendor predator — TypeScript.',

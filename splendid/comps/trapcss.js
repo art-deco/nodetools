@@ -12,6 +12,7 @@ const renameMaps = { 'styles/yarn.css': __renameMap0,
 __initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
+import AkashicComments from '../components/akashic-comments.jsx'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import BackTo from '../components/back-to.js'
@@ -22,6 +23,7 @@ import Mask from '../components/mask.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
+  'akashic-comments': AkashicComments,
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'back-to': BackTo,
@@ -97,7 +99,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf25,ccdbf26,ccdbf27,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf25,ccdbf26,ccdbf27,ccdbf28,ccdbf29,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -114,6 +116,13 @@ const meta = [{
   id: 'c5823',
   props: {
     name: 'spec',
+  },
+},
+{
+  key: 'akashic-comments',
+  id: 'c8b27',
+  props: {
+    'api-key': 'akashic',
   },
 },
 {

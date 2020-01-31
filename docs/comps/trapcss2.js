@@ -1,0 +1,5 @@
+var Va={"styles/sidebar.css":C,"styles/on-this-page.css":D};z();A();B();var Wa={"akashic-emails":M,"akashic-updates":O,"github-badge":P,manager:Q,"social-buttons":R},Xa=J();
+[{key:"akashic-updates",id:"updates-div",props:{s:"akashic"}},{key:"social-buttons",id:"ce0df",props:{url:"https://art-deco.github.io/nodetools/trapcss-2-advanced-nodetools.html",g:!0,className:"b-xq b-Hk"}},{key:"github-badge",id:"cacd9",props:{o:"art-deco",name:"nodetools"}},{key:"akashic-emails",id:"emails-div",props:{"api-key":"akashic"}},{key:"manager",id:"ca13e"}].forEach(function(a){var b=a.key,c=a.id,d=void 0===a.props?{}:a.props,g=void 0===a.children?[]:a.children,h=Wa[b],f=h.plain||/^\s*class\s+/.test(h.toString())&&
+!H.isPrototypeOf(h);d.m={j:"/nodetools/",w:function(e){return E(Va[e])}};c.split(",").forEach(function(e){var l=I(e,b),m=l.parent,k=l.c;if(k){var n={key:b,id:e,plain:f},p;k.render=function(){return p=K(n,h,p,k,m,d,g)};k.render.g=n;Xa.observe(k)}})});
+
+//# sourceMappingURL=trapcss2.js.map
