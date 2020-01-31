@@ -27,7 +27,7 @@ $ zoroaster -a test/mask
     |     at !keeps the alternate comment (test/result/alternate.scss:13:1)
 ```
 
-The error start has been updated to point to the location of the test in the mask result, for convenience of navigation, but it's not the problem with inputs/outputs, but test logic. To fix this, we need to set `DEBUG=1` env variable when running tests:
+The error stack has been modified to point to the location of the test in the mask result (*alternate.scss:13:1*), for convenience of navigation, but it's not a problem with inputs/outputs, but test logic. To fix this, we need to set `DEBUG=1` env variable when running tests:
 
 ```bash
 bash-3.2$ DEBUG=1 yarn mask
