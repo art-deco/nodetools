@@ -60,9 +60,9 @@
     <social-buttons meta mb-3 d-inline-block />
 
     <!-- host="http://localhost:5000" -->
-    <akashic-updates class="mb-3" api-key="akashic" />
+    <akashic-updates data-loading mb-3 api-key="akashic" />
 
-    <details id="NewsletterDetails">
+    <details id="NewsletterDetails" data-loading>
       <summary>
 
         ### Newsletter
@@ -71,10 +71,9 @@
       <akashic-emails api-key="akashic" />
     </details>
 
-    <div mb-1>
+    <div mb-1 data-loading>
       <h3 d-inline>Package Manager</h3>
       <manager d-inline />
     </div>
-    <script src="js/main.js" combine />
   </sidebar>
 </column>

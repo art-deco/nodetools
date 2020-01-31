@@ -167,6 +167,13 @@ hr {
   -moz-hyphens: auto;
 }
 .tm, .tm2 {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -moz-hyphens: none;
+}
+.hljs {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   -moz-hyphens: none;
 }
 .Manager>span, .yarnManager>span, .npmManager>span {

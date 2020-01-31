@@ -12,8 +12,8 @@ export default function Sidebar({ children, splendid, class: c, ...props }) {
     <div className={$SideBarContent}
       dangerouslySetInnerHTML={{ __html: children }}/>
 
-    <a id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
-    <a id="ShowMenu" style="color:grey!important;" href="#">show menu</a>
+    <a data-loading id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
+    <a data-loading id="ShowMenu" style="color:grey!important;" href="#">show menu</a>
   </div>)
 }
 

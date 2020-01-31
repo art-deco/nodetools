@@ -40,22 +40,17 @@ const Li = ({ id, title, inner = [], level }) => {
 
 export const init = () => {
   /* eslint-env browser */
-  /**
-   * @param {Element} li
-   */
-  const findAllLis = (li) => {
-    const all = []
-    while(li.parentElement && li.parentElement.parentElement && li.parentElement.parentElement.getAttribute('data-heading')) {
-      li = li.parentElement.parentElement
-      all.push(li)
-    }
-    return all
-  }
+  // const findAllLis = (li) => {
+  //   const all = []
+  //   while(li.parentElement && li.parentElement.parentElement && li.parentElement.parentElement.getAttribute('data-heading')) {
+  //     li = li.parentElement.parentElement
+  //     all.push(li)
+  //   }
+  //   return all
+  // }
   const ents = [...document.querySelectorAll('div[data-section]')]
 
   if (ents.length) {
-    /** @type {!Array<!Element>} */
-    let active = []
     const io = new IntersectionObserver((entries) => {
       entries.forEach(({ target, isIntersecting }) => {
         const section = target.id

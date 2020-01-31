@@ -1,7 +1,6 @@
 import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
-import '../js/main'
 import __renameMap0 from './__rename-maps/styles/sidebar'
 import __renameMap1 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'

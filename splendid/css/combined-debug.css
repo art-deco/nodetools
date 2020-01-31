@@ -513,14 +513,46 @@ pre code {
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
 }
-.tm, .tm2, .hljs {
+.tm, .tm2 {
   font-family: 'Source Code Pro' , monospace;
+  padding: 0 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
+.hljs {
+  font-family: 'Source Code Pro' , monospace;
+  border-radius: 2px;
+  cursor: pointer;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
 }
 .tm {
-  background-color: lightgreen;
+  background-color: #cfffd2;
+  border-bottom: 1px solid #90bd93;
+  border-right: 1px solid #90db93;
+  color: darkgreen;
+}
+.tm:active:hover {
+  border-bottom: 0;
+  border-right: 0;
+  border-top: 1px solid #90bd93;
+  border-left: 1px solid #90db93;
 }
 .tm2 {
-  background-color: lightcoral;
+  background-color: #fffad5;
+  color: #a08124;
+  border-right: 1px solid #e0d68e;
+  border-bottom: 1px solid #dace79;
+}
+.tm2:active:hover {
+  border-bottom: 0;
+  border-right: 0;
+  border-top: 1px solid #e0d68e;
+  border-left: 1px solid #dace79;
 }
 body {
   font-family: 'Ruda' , sans-serif;
@@ -540,11 +572,6 @@ footer {
 }
 h1, h3, h2 {
   text-decoration: underline;
-}
-.tm, .tm2 {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
 }
 #PagesMenu li.Active {
   font-weight: 700;
