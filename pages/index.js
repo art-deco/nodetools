@@ -33,9 +33,9 @@ export const quickStart = {
  */
 export const trapcss = {
   title: 'TrapCSS: NodeTools Tutorial',
-  seo: 'A use case of using NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
+  seo: 'A use case of applying NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
   og: {
-    image: '/img/fav.png',
+    image: '../pages/trapcss/img/splash.jpg',
   },
   links: {
     dropcss: 'https://github.com/leeoniya/dropcss',
