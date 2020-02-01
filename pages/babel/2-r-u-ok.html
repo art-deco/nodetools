@@ -1,12 +1,28 @@
 ##! Babel R U OK
 
-That's the title of [an issue that I opened](https://github.com/babel/babel/issues/8432) in _Babel_'s repository after I found out one of the most devastating bugs in the entire _Node.JS_ ecosystem. I already wasn't happy with having to use a dependency with 230+ transient dependencies for every package that I created just because I liked the `import` syntax and believed that it was essential to follow the modern day standard. Although with an SSD and fibre-optics it doesn't take that long to download and link all of those dependencies, in summer I sort of down-shifted from Sky to mobile 3G and became conscious of inbound/outbound data, as well as worked on an older iMac with a standard hard drive. Therefore, each real dependency took a few minutes to install due to all linking that had to be done against babel's dependencies (the `linking N...` number actually grows exponentially). But what I found about in August 2018, really upset me.
+That's the title of [an issue that I opened](r-u-ok) in _Babel_'s repository after I discovered one of the most devastating bugs in the entire _Node.JS_ ecosystem. I already wasn't happy with having to use a transpiler with 265 transient dependencies (via npm, 250 via yarn) for every package that I created just because I liked the `import` syntax and believed that it was essential to follow the modern day standard. Although with an SSD and fibre-optics it doesn't take that long to download and link dependencies and rebuild `fsevents` (still takes about 30s), in summer 2018 I was downshifting from Sky to mobile 3G and became conscious of inbound/outbound data, as well as worked on an older iMac with a standard hard drive. Therefore, every new package I started took a few minutes to initialise due to all linking that had to be done against Babel's bloatware (the `linking N...` number actually grows exponentially). But what I found about this popular transpiler in August that year, really upset me.
 
-<!-- But what I found out in August, my last month in England which I spent at Streatham Hill on really short rent, waiting for my Tech Nation Visa that never came, made me absolutely outraged. -->
+_So let's take an example that uses ES6 modules, i.e., the JS standard [since mid 2015](history):_
 
-_So let's take an example that uses ES6 modules, i.e., the JS standard [since 2015](history):_
+<highlightjs src="./example/babel.mjs" />
 
-<highlight src="splendid/code/babel.js" />
+Above is just an example code with a default export followed by 3 named exports which are functions with _JSDoc_ annotations. _JSDoc_ is just as important as the code itself, especially for complex programs that accept configs, so that developers who consume our package (and more importantly, ourselves), can use it easily, receive access to autocompletion hints and feel secure that they work process is correct. _JSDoc_ is crucial for productivity and developer experience, so we usually pay a lot of attention to documenting our code.
+
+The source however needs to be transpiled since imports and exports are not understood. The convention is to use _Babel_. My setup is minimal required to transpile imports/exports, with `@babel`'s core, cli, and transform plugin (latest versions as of 1 Feb 2020). Just to enable modules, I need to install about 250 dependencies, but that's half the trouble.
+
+```json
+{
+  "name": "shmable",
+  "scripts": {
+    "b": "babel src -d build"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3"
+  }
+}
+```
 
 <details><summary>
 _And see how it is compiled:_
@@ -17,56 +33,26 @@ _And see how it is compiled:_
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.sucks = exports.expert = void 0;
+exports.shmable = exports.transpile = exports.stable = exports.default = void 0;
+
+var _stream = _interopRequireWildcard(require("stream"));
+
 // ˅ ˅ ˅ CLICK TO EXPAND ˅ ˅ ˅
 ```
 </summary>
 
-<highlight src="splendid/code/compiled.js" />
+<highlightjs src="./example/compiled.mjs" />
 </details>
 
-The code looks ugly but since every JS developer trusts Babel so much (why not, the fact that it's got 8m+ downloads per week means it's reliable, doesn't it?), there's no need to ever look into the "build" folder. Can you spot any problems with that code?.. It's OK if not, I couldn't either, and that was partly because I'm using _VS Code_ as my IDE. No issues can be seen when requiring source for testing within the package directory, since _JSDoc_ annotations to functions work fine when importing ES6 source code for testing. Problems only start after publishing the package, installing it in other packages, and requiring the TRANSPILED code in them.
+The code looks ugly but since every JS developer trusts _Babel_ so much (why not, the fact that it's got 50m monthly downloads means it's reliable, doesn't it?), there's no need to ever look into the "build" folder. Can you spot any problems with that code?. It's OK if not, I couldn't either, and that was partly because I'm using _VS Code_ as my IDE. You can't spot any problems during testing, or writing examples because when importing functions from source code, _VSCode_ will statically analyse source code and not transpiled code for your developer experience (notice proper _JSDoc_ description for functions on the demo below).
 
-<details><summary>
-_When importing transpiled published methods from other packages, at first sight there's kind of no problems:_
+<p>
+  <img border rounded img-fluid src="./img/src-jsdoc.gif" alt="no problem within package" placeholder-auto />
+</p>
 
-```js
-import TechNation, { expert } from './compiled'
+The problems start, when we publish the package with transpiled code, and require it from other packages. I call my new bug example package <npm-badge package="shmable">_shmable_</npm-badge>, which you can install yourself.
 
-TechNation()
-expert()
-// ˅ ˅ ˅ CLICK TO SHOW EDITOR HINTS ˅ ˅ ˅
-```
-</summary>
-
-```js
-import TechNation, { expert } from './compiled'
-
-TechNation()
-expert()
-```
-
-<plate alt="default import jsdoc works only when typing arguments" style="background: #f6f8fa;" src="img/one-year/tn1.png">The hints for the default method don't show on hover, but come up when starting to type arguments.</plate>
-<plate style="background: #f6f8fa;" alt="first named import jsdoc works" src="img/one-year/expert.png">The first named method's annotations are OK.</plate>
-</details>
-
-<details><summary>
-_However, when the default import has a different name from the one in the required code, and when we also require the second method we run into trouble:_
-
-```js
-import technation, { sucks } from './compiled'
-
-technation()
-sucks()
-// ˅ ˅ ˅ CLICK TO SHOW EDITOR HINTS ˅ ˅ ˅
-```
-</summary>
-
-<plate alt="VSCode hints for imports are broken" style="background: #f6f8fa;" src="img/one-year/technation-sucks.png">
-  The default method's annotations don't appear neither on hover nor when typing arguments. The second named method's annotations don't even exist (the types shown are inferred from the default values).
-</plate>
-
-</details>
+<!-- No issues can be seen when requiring source for testing within the package directory, since _JSDoc_ annotations to functions work fine when importing ES6 source code for testing. Problems only start after publishing the package, installing it in other packages, and requiring the TRANSPILED code in them. -->
 
 So what's actually happened here? Well, in the first instance, arguments for the default `TechNation` import are shown only because _VS Code_ infers the type using the *NAME* of the variable in the target source, rather than understanding what's actually exported/imported. The fact that it's broken when the name changes proves that. The editor doesn't know what the default import is, it just knows the name of the variable and does the Maths. It's quite difficult to come across this, because typically the name of the default export is also the name of the default import. It was only when I imported a variable using a different name that I noticed it wasn't working. This bug has been fixed since TypeScript 3.2 (October 2018) after my [bug report](https://github.com/microsoft/TypeScript/issues/25854) by TypeScript checking for the assignment of `__esModule` and picking up the `default` export. Nonetheless, the IDE still doesn't show hints for the `sucks` method. Why?
 

@@ -78,7 +78,8 @@ export const babel = {
     'data-protection': 'https://gdpr-info.eu/recitals/no-1/',
     hive: 'https://www.gutenberg.org/files/52319/52319-h/52319-h.htm',
     signature: 'https://art-deco.github.io/open-source/',
-    alamode: 'https://www.npmjs.com/package/alamode,'
+    alamode: 'https://www.npmjs.com/package/alamode',
+    'r-u-ok': 'https://github.com/babel/babel/issues/8432',
   },
 }
 

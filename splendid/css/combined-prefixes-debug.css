@@ -174,12 +174,7 @@ hr {
 .right-column {
   -moz-hyphens: auto;
 }
-.tm, .tm2 {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -moz-hyphens: none;
-}
-.hljs {
+.tm, .tm2, .hljs {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -moz-hyphens: none;

@@ -41,6 +41,13 @@ const meta = [{
   },
 },
 {
+  key: 'highlightjs',
+  id: 'cb9de',
+  props: {
+    lang: 'json',
+  },
+},
+{
   key: 'github-badge',
   id: 'cacd9',
   props: {
@@ -50,7 +57,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
