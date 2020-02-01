@@ -3,12 +3,14 @@ import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
 import __renameMap0 from './__rename-maps/styles/bandcamp'
-import __renameMap1 from './__rename-maps/styles/sidebar'
-import __renameMap2 from './__rename-maps/styles/on-this-page'
+import __renameMap1 from './__rename-maps/styles/yarn'
+import __renameMap2 from './__rename-maps/styles/sidebar'
+import __renameMap3 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'
 const renameMaps = { 'styles/bandcamp.css': __renameMap0,
-  'styles/sidebar.css': __renameMap1,
-  'styles/on-this-page.css': __renameMap2 }
+  'styles/yarn.css': __renameMap1,
+  'styles/sidebar.css': __renameMap2,
+  'styles/on-this-page.css': __renameMap3 }
 __initBandcampBabylon(),__initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
@@ -57,7 +59,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf2,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },

@@ -1,6 +1,6 @@
 ##! Code À La Mode
 
-_Code À La Mode_ is one of company names that I came up when thinking of names for my software company, prior to getting the _Art Deco™_ insight. What I wanted to convey from the very beginning, is that modern code is beautiful, eloquent and practical. ES6 modules, async syntax and destructuring are the best features of JS, because they are so straight to the point as to what their purpose is, and just handsome to look at.
+_Code À La Mode_ is one of company names that I came up when thinking of names for my [software development company](https://www.artd.eco). What I wanted to convey from the very beginning, is that modern code is beautiful, eloquent and practical. ES6 modules, async syntax and destructuring are the best features of JS, because they are so straight to the point as to what their purpose is, and just handsome to look at.
 
 So after the final tipping point with _Babel_ I took some time to write my own transpiler, since that idea had long been in my head prior to that. But building ASTs, traversing them and generating code is too much effort. Programming must be practical, and like the language, solve problems at hand rather than build sand castles around standards and stuff. The second approach to transpilation is to actually use regular expressions, because imports are pretty much requires:
 

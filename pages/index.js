@@ -80,6 +80,7 @@ export const babel = {
     signature: 'https://art-deco.github.io/open-source/',
     alamode: 'https://www.npmjs.com/package/alamode',
     'r-u-ok': 'https://github.com/babel/babel/issues/8432',
+    'incorrect-placement': 'https://github.com/babel/babel/issues/8437',
   },
 }
 
