@@ -488,7 +488,7 @@ const shmable = downloads =&gt; {
               </noscript>
             </p>
             
-            <p>Here you go folks. The most known, popular and industry-standard <em>free</em> software recklessly destroys <em>JSDoc</em> of all <em>Node.JS</em> package makers who are diligently documenting their code to leave those hints behind for themselves and colleagues, hoping to get that autocompletion when it'll be needed the most, but it'll never be there. In other words, I'd been carefully and honestly producing my <em>JSDoc</em> for all methods, just for the tool that I extorted to use by Node.JS itself which couldn't make modules happen since 2015 (while having to tolerate 250 dependencies), to effortlessly destroy all my efforts. It's not an issue with the IDE, it's an issue with the transpiler. <span class="tm2">Babel</span> R U OK?</p>
+            <p>Here you go folks. The most known, popular and industry-standard <em>free</em> software recklessly destroys <em>JSDoc</em> of all <em>Node.JS</em> package makers who are diligently documenting their code to leave those hints behind for themselves and colleagues, hoping to get that autocompletion when it'll be needed the most, but it'll never be there. In other words, I'd been carefully and honestly producing my <em>JSDoc</em> for all methods, just for the tool that I trusted, to take the mick out of all my efforts. It's not an issue with the IDE, it's an issue with the transpiler. <span class="tm2">Babel</span> R U OK?</p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -636,7 +636,7 @@ const shmable = downloads =&gt; {
             <ul>
               <li><strong>Better quality</strong> is not a thing since <em>JSDoc</em> is essential to the development process. You can't not have functions annotated properly (<span class="tm">@param</span>, an occasional <span class="tm">@example</span>) if you publish your package. A transpiler MUST keep <em>JSDoc</em> in the proper place, if it doesn't that means the transpiler is of low-quality since it doesn't even have tests for <em>JSDoc</em>.</li>
               <li><strong>Higher reliability</strong> is a myth because even though the issue was filed, with screenshots and explanations, it was ignored totally for the amount of time equal to one and a half years, even after version 7 went out of beta.</li>
-              <li><strong>Lower cost</strong> is actually higher, because of the time wasted again and again to install 250 dependencies (if <span class="tm">Babel</span> is a compiler, why can't it compile itself into a single dependency?)</li>
+              <li><strong>Lower cost</strong> is actually higher, because of the time developers have to waste to look up the API documentation online since they cannot get access the runtime IDE JSDoc. Also because of the time wasted again and again to install 250 dependencies (if <span class="tm">Babel</span> is a compiler, why can't it compile itself into a single dependency?).</li>
               <li>and finally, perhaps the most unintuitively, <strong>an end to predatory vendor lock-in</strong> becomes...</li>
             </ul>
             
@@ -648,7 +648,7 @@ const shmable = downloads =&gt; {
             
             <p>First of all, if you're using <em>Babel</em> you already know that you don't have freedom. You'd want not to have install a transpiler, when since Node 8 you only use it for modules. As I mentioned earlier, that's entirely Node.JS fault, that should've treated <span class="tm2">import</span> as <span class="tm">require</span> and <span class="tm2">export</span> as <span class="tm">module.export</span> long ago instead of splitting the hair around the specification of how modules should actually work. However, I'm really happy this all happened since every obstacle is an opportunity to create something new which is independent, better, and more unique. But what other negative effect does <em>Babel</em> have on the ecosystem and the development of JavaScript by breaking <em>JSDoc</em>?</p>
             
-            <p>The answer is that without properly working <em>JSDoc</em>, people are tempted to use <strong>TypeScript</strong> &mdash; the biggest evil that you will ever encounter today. I know this because that's how I felt when I struggled with my <em>JSDoc</em>, when it wasn't working. I thought, OMG things are just not working, if I just used typings, that would solve all my problems! And I'm sure that's how other developers feel as well. But once you make this decision, there is no road back, you become hostage to the most overrated technology ever, that was made by Microsoft and</p>
+            <p>The answer is that without properly working <em>JSDoc</em>, people are tempted to use <strong>TypeScript</strong> &mdash; the biggest evil that you will encounter today. I know this because that's how I felt when I struggled with my <em>JSDoc</em>, when it wasn't working. I thought, OMG things are just not working, if I just used typings, that would solve all my problems! And I'm sure that's how other developers feel as well. But once you make this decision, there is no road back, you become hostage to the most overrated technology ever, that was made by Microsoft and</p>
             
             <p>a) makes you addicted to typing every singe thing</p>
             
@@ -659,13 +659,11 @@ const shmable = downloads =&gt; {
             <p>d) turns you into a close-minded zombie ready to defend TypeScript at any price because it's too much psychological pain to admit that you've been trapped into technology <a href="https://dev.to/michaeljota/this-is-why-i-hate-typescript-3da0">you know</a> you don't want.</p>
             
             <p>
-              <img class="b-t" alt="Balmer: Babel Babel Babel TypeScript" data-io>
-              <noscript>
-                <img class="b-t" alt="Balmer: Babel Babel Babel TypeScript" src="/nodetools/pages/babel/img/balmer.gif">
-              </noscript>
+              <video class="b-vk" src="pages/babel/img/balmer.mp4" loop autoPlay muted playsinline></video>
+              
             </p>
             
-            <p><span class="tm">TypeScript</span> is too unnecessary for a duck-typed programming language. Because people learn Java at universities, they will want to use TypeScript, forgetting that JavaScript is basically a functional programming language. <span class="tm2">.Map</span>, <span class="tm2">.reduce</span>, <span class="tm2">.filter</span>, these are the pillars of the web development, not types. Types are just there to make life convenient, it's a tool but TypeScript makes them the aim in itself.</p>
+            <p><span class="tm">TypeScript</span> is too unnecessary for a duck-typed programming language. Because people learn Java at universities, they will want to use TypeScript, forgetting that JavaScript is basically a functional programming language. <span class="tm2">.Map</span>, <span class="tm2">.reduce</span>, <span class="tm2">.filter</span>, these are the pillars of the web development, not types. Types are just there to make life convenient, it's a tool but TypeScript makes them an aim in themselves.</p>
             
             
             
