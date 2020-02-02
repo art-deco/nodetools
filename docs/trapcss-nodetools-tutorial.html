@@ -564,7 +564,7 @@ function dropcss(opts) {
             
             <p>When compiling packages, we need to learn a new concept called <em>externs</em> &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:</p>
             
-            <pre id="ccdbf23"><code class="javascript hljs">/**
+            <pre id="ccdbf24"><code class="javascript hljs">/**
  * @fileoverview
  * @externs
  */
@@ -804,7 +804,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>When placing examples, we can actually rename the local import into the package name so it looks professional to our users who can then just copy and paste the example into their own code.</p>
             
-            <pre id="ccdbf24"><code class="javascript hljs">import trapcss from '../src'
+            <pre id="ccdbf25"><code class="javascript hljs">import trapcss from '../src'
 
 let html = `
     &lt;html&gt;
@@ -902,7 +902,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               href="https://github.com/leeoniya/dropcss/blob/2a883e5107c68c2181d4c0e02b30e15cf4e7736c/test/src/0-context-free-unary-sel.js">
               the first test suite</a> and have a look at its structure:</p>
             
-            <pre id="ccdbf25"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
+            <pre id="ccdbf26"><code class="javascript hljs">const dropcss = require('../../src/dropcss.js')
 const assert = require('assert')
 
 describe('Context-free, unary selector', () =&gt; {
@@ -1022,7 +1022,7 @@ output 2
             
             <p>In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.</p>
             
-            <pre id="ccdbf26"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf27"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
 
 // todo: test [foo="val"], [foo='val'], :not([attr~=value])
@@ -1602,7 +1602,7 @@ function App(options) {
             
             <p>The <em>App</em> function is used by each single test, the test suite file is large because they are all tied to this testing API. There could be a separate file that exported this function, like it's done in Koa (<span class="tm">test/helpers/context.js</span>):</p>
             
-            <pre id="ccdbf27"><code class="javascript hljs">
+            <pre id="ccdbf28"><code class="javascript hljs">
 'use strict';
 
 const Stream = require('stream');
@@ -1628,7 +1628,7 @@ module.exports.response = (req, res, app) =&gt; module.exports(req, res, app).re
               href="https://github.com/koajs/koa/blob/54e8fab3e3d907bbb264caf3e28a24773d0d6fdb/test/response/redirect.js">
               test suites</a>:</p>
             
-            <pre id="ccdbf28"><code class="javascript hljs">const context = require('../helpers/context');
+            <pre id="ccdbf29"><code class="javascript hljs">const context = require('../helpers/context');
 const Koa = require('../..');
 
 describe('ctx.redirect(url)', () =&gt; {
@@ -1662,7 +1662,7 @@ function escape(html){
             
             <p>This is a snippet from Goa's (our compiled Koa fork) context:</p>
             
-            <pre id="ccdbf29"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
+            <pre id="ccdbf30"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
 import { Duplex, Readable, Writable } from 'stream'
 import Koa from '../../src'
 
@@ -1711,7 +1711,22 @@ export default class Context extends Cookies {
   }
 }</code></pre>
             
-            <p>It is then from the context that specs access the testing utilities, and what is more, we receive full <em>JSDoc</em> support from our context.</p>
+            <p>Our context extends the <span class="tm">@contexts/http/cookies</span> class, that initialises a web-server when <span class="tm">startPlain</span> method is called and returns a tester instance for making requests to it, and asserting on the results, <span class="tm">supertest</span> style. There's also a possibility to use <em>PersistentContext</em> that act as global <span class="tm2">before</span> and <span class="tm2">after</span> hooks, but practice shows that it takes only a few ms to start a server therefore it's OK to use a normal context. When <a
+              href="https://github.com/art-deco/akashic.page/blob/3995c1be755de1ff6de665ee5afc7d1b7cce0c53/test/context/index.js#L7">
+              integration-testing</a> larger apps and needing to run <a
+              href="https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/RemoteChrome.js#L4">
+              background processes</a>, like headless Chrome, we would definitely be able to use a persistent context. The persistent contexts are actually the best feature of context-testing, as they allow to move the setup and teardown logic into a separate file, instead of rewriting it over and over again in the <span class="tm">before</span> and <span class="tm">after</span> hooks.</p>
+            
+            <pre id="ccdbf20"><code class="javascript hljs">async 'sets status code'({ app, startPlain }) {
+  app.use((ctx) =&gt; {
+    ctx.status = 204
+  })
+  await startPlain(app.callback())
+    .get('/')
+    .assert(204)
+},</code></pre>
+            
+            <p>The additional advantage lies in the fact that we implement our own testing API on top of existing one. It is then from the context that specs access the testing utilities, and what is more, we receive full <em>JSDoc</em> support from our context.</p>
             
             <p>
               <img class="b-vk b-bk b-t" alt="accessing goa context from tests" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='382'/%3E" data-io>
@@ -1724,11 +1739,11 @@ export default class Context extends Cookies {
               Context-testing decouples test cases from the testing infrastructure and allows to treat each test as a pure function that receives its inputs from arguments instead of file scope.
             </blockquote>
             
-            <p>Of course, test cases are not 100% pure as we're still importing src within the test suite, but it's OK since we still want to be practical. It would be possible to import src from context, and make it available for access for test cases, in which cases they <em>will</em> be 100% pure. This could let us to do cool stuff like hosting spec functions completely independently from the source code (e.g., as lambdas for longer integration testing routines that could then be run in parallel to complete a test suite in a matter of seconds), and even plugging in different versions of source code into tests. But these are more advanced concepts from Quality Assurance theory. For now it's enough to say that context-testing from <em>NodeTools</em> formalises the helper pattern and enables <em>JSDoc</em> access to testing API.</p>
+            <p>Of course, test cases are not 100% pure as we're still importing src within the test suite, but it's OK since we still want to be practical. It would be possible to import src from context, and make it available for access for test cases, in which case they <em>will</em> be 100% pure. This could let us to do cool stuff like hosting spec functions completely independently from the source code (e.g., as lambdas for longer integration testing routines that could then be run in parallel to complete a test suite in a matter of seconds), and even plugging in different versions of source code into tests. But these are more advanced concepts from Quality Assurance theory. For now it's enough to say that context-testing from <em>NodeTools</em> formalises the helper pattern and enables <em>JSDoc</em> access to testing API.</p>
             
             <p>This is our context for that spec:</p>
             
-            <pre id="ccdbf20"><code class="javascript hljs">import { join } from 'path'
+            <pre id="ccdbf21"><code class="javascript hljs">import { join } from 'path'
 import { readFileSync } from 'fs'
 
 /**
@@ -1813,7 +1828,7 @@ export default class Context {
             
             <p>In <em>DropCSS</em> all comments are stripped prior to parsing of the CSS file.</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">// src/css.js
+            <pre id="ccdbf22"><code class="javascript hljs">// src/css.js
 function parse(css) {
   // strip comments (for now)
   css = css.replace(COMMENTS, '');
@@ -1822,7 +1837,7 @@ function parse(css) {
             
             <p>We make a very simple change that allows to preserve the <strong>keepAlternate</strong> comment. After the change is made, we run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span></span></span> to validate that all tests now pass, since we've already created a test case for <span class="tm">/* @alternate */</span> in masks in <abbr title="Test Driven Development"><em>TDD</em></abbr> fashion.</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">export function parse(css, keepAlternate) {
+            <pre id="ccdbf23"><code class="javascript hljs">export function parse(css, keepAlternate) {
   // strip comments (for now)
   css = css.replace(COMMENTS, keepAlternate ? (m) =&gt; {
     if (/^\s*\/\* @alternate \*\/\s*$/.test(m)) return m
