@@ -125,20 +125,23 @@ This is a snippet from Goa's (our compiled Koa fork) context:
 
 <highlightjs src="../example/goa-context.mjs" />
 
-Our context extends the `@contexts/http/cookies` class, that initialises a web-server when `startPlain` method is called and returns a tester instance for making requests to it, and asserting on the results, `supertest` style. There's also a possibility to use _PersistentContext_ that act as global ``before`` and ``after`` hooks, but practice shows that it takes only a few ms to start a server therefore it's OK to use a normal context. When [integration-testing](https://github.com/art-deco/akashic.page/blob/3995c1be755de1ff6de665ee5afc7d1b7cce0c53/test/context/index.js#L7) larger apps and needing to run [background processes](https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/RemoteChrome.js#L4), like headless Chrome, we would definitely be able to use a persistent context. The persistent contexts are actually the best feature of context-testing, as they allow to move the setup and teardown logic into a separate file, instead of rewriting it over and over again in the `before` and `after` hooks.
+Our context extends the `@contexts/http/cookies` class, that initialises a web-server when `startPlain` method is called and returns a tester instance for making requests to it and asserting on the results, `supertest` style. There's also a possibility set _PersistentContexts_ that act as global ``before`` and ``after`` hooks, but practice shows that it takes only a few ms to start a server therefore it's OK to use a normal context. When [integration-testing](https://github.com/art-deco/akashic.page/blob/3995c1be755de1ff6de665ee5afc7d1b7cce0c53/test/context/index.js#L7) larger apps and needing to run [background processes](https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/RemoteChrome.js#L4), like headless Chrome, we would definitely be able to use a persistent context. Persistent contexts are actually the best feature to illustrate advantages of context-testing, as they allow to move the setup and teardown logic into separate files, instead of rewriting it over and over again in the ``before`` and ``after`` hooks, or cramming all test suites in the same file.
 
 ```js
-async 'sets status code'({ app, startPlain }) {
-  app.use((ctx) => {
-    ctx.status = 204
-  })
-  await startPlain(app.callback())
-    .get('/')
-    .assert(204)
-},
+{
+  context: Context,
+  async 'sets status code'({ app, startPlain }) {
+    app.use((ctx) => {
+      ctx.status = 204
+    })
+    await startPlain(app.callback())
+      .get('/')
+      .assert(204)
+  },
+}
 ```
 
-The additional advantage lies in the fact that we implement our own testing API on top of existing one. It is then from the context that specs access the testing utilities, and what is more, we receive full _JSDoc_ support from our context.
+The additional advantage lies in the fact that we implement our own testing API on top of existing one. It is then from the context that specs access testing utilities, and what is more, we receive full _JSDoc_ support for our context's API. Any number of contexts can be passed to test suites.
 
 <p>
   <img rounded border img-fluid src="./img/context.gif" alt="accessing goa context from tests" placeholder-auto />
