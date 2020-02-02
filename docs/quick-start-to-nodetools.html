@@ -138,7 +138,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.16.14</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.15</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -180,7 +180,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     <div id="emails-div">Loading widget...</div>
                                   </details>
                                   <div class="b-jq" data-loading>
-                                    <h3 class="b-Gk">Package Manager</h3>
+                                    <h3 class="b-Gk" id="package-manager">Package Manager</h3>
                                     <form class="b-Gk" id="ca13e">
                                       <select><option value="yarn">yarn</option><option selected value="npm">npm</option></select>
                                     </form>
@@ -194,7 +194,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
           
           <div class="right-column b-xq b-nb" id="Content">
             <div data-section id="quick-start">
-            <h1 id="nodetools-quick-start">NodeTools Quick Start</h1>
+            <h1>NodeTools Quick Start</h1>
             
             <p><em>NodeTools</em> is a full <em>Node.JS</em> stack which includes a number of packages for organising, testing, documenting and typing packages with JSDoc. It's very small (10 new dirs in TOTAL) and contains tools for essential operation of a package house. Dependencies that it installs provide an up-to-date development environment for local JavaScript development. It was created by a <a href="https://www.artd.eco">
               professional Node.JS development company in London</a> to meet modern requirements for bespoke and agile <em>Node.JS</em> development process. This guide will show how to start using the stack. If you have any questions, please refer to the <a href="/nodetools/#getting-help">Getting Help</a> section. Be sure to subscribe to updates via the web-push button on the left, or email newsletter to be notified of new features first.</p>
@@ -208,13 +208,13 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             </div>
             
             <div data-section id="install-mnp">
-            <h2 id="install-mnp">Install MNP</h2>
+            <h2>Install MNP</h2>
             
             <p>The best way to start using <em>NodeTools</em>, is via <a
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
                <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
             
-            <pre id="c724c1"><code class="shell hljs">yarn add global mnp
+            <pre id="c724c"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
             
             <p>After it's first been installed on the system, it needs to be configured with a global settings file in the home directory. Such settings can then be updated for any other organisational directories, but in general most of the properties will stay the same. To begin the configuration process, navigate to the home dir via terminal (<span class="tm">cd ~</span>) and call <span class="tm">mnp --init</span>.</p>
@@ -243,11 +243,11 @@ Package Manager (yarn/npm): [yarn] # which package manager</code></pre>
             </div>
             
             <div data-section id="configure-org">
-            <h2 id="configure-org">Configure Org</h2>
+            <h2>Configure Org</h2>
             
             <p>Packages should be organised by organisations, which can be created for free on <em>GitHub</em> in unlimited number. Using personal repositories is also possible, in which case the name of the organisation is assumed to be the username. We'll create a new org folder in the home dir, and navigate into it:</p>
             
-            <pre id="c724c"><code class="shell hljs">mkdir cool-org
+            <pre id="c724c1"><code class="shell hljs">mkdir cool-org
 cd cool-org</code></pre>
             
             <p>Here, we can run <span class="tm">mnp --init</span> again to update the settings for that particular org, however all the standard settings will be filled in already from the ones we wrote to the home directory.</p>
@@ -278,7 +278,7 @@ Package Manager (yarn/npm): [yarn] # keep</code></pre>
             
             
             <div data-section id="spawn-package">
-            <h2 id="spawn-package">Spawn Package</h2>
+            <h2>Spawn Package</h2>
             
             <p>To create new packages from the default advanced <em>NodeTools</em> package template, we'll simply call <span class="tm">mnp</span> in the <span class="tm">cool-org</span> directory. The package bootstrapper will ask us some questions, after which we'll have a new package folder ready for development.</p>
             
@@ -339,7 +339,7 @@ yarn add google-closure-compiler-java</code></pre>
             </div>
             
             <div data-section id="binary">
-            <h2 id="binary">Binary</h2>
+            <h2>Binary</h2>
             
             <p><em>MNP</em> asked us if we want to create a binary. Binaries are great for <em>DevOps</em> to write scripts in Node.JS. Any system that has Node installed will be able to run those binaries. Even if a library was created first without a binary, it can be added later manually (by bootstrapping a new package and copying <span class="tm">src/bin</span> dir and scripts in <strong>package.json</strong> from there. <small>We're working on the <strong>patch</strong> functionality of <em>MNP</em> that would allow to do that automatically</small>).</p>
             
@@ -428,7 +428,7 @@ if (_help) {
             </div>
             
             <div data-section id="using-compiler">
-            <h2 id="using-compiler">Using Compiler</h2>
+            <h2>Using Compiler</h2>
             
             <p>One of advantages for the stack is its ability to properly compile Node.JS packages with <em>Closure Compiler</em>. Initially, before such option was possible, we used to just transpile packages and put their source code into the <span class="tm">build</span> folder. This is still possible, however it is now recommended to either compile the full package, or compile its dependencies into <em>StdLib</em> and build the source code. In both cases, the number of dependencies can be reduced to 0 which makes packages more appealing to users. This section shows how to use the compiler.</p>
             
@@ -634,7 +634,7 @@ console.log(a({ 'configItem': 'test' }))</code></pre>
             
             
             <div data-section id="building-transpilation">
-            <h2 id="building-transpilation">Building (Transpilation)</h2>
+            <h2>Building (Transpilation)</h2>
             
             <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and <strong>module.export</strong> assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
                title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
@@ -676,7 +676,7 @@ export const test = 'hello'
             </div>
             
             <div data-section id="stdlib">
-            <h2 id="stdlib">StdLib</h2>
+            <h2>StdLib</h2>
             
             <p>As discussed above, we might not want to compile packages every time. Examples of larger projects that don't compile code are <a href="https://github.com/artdecocode/documentary">Documentary</a> and <a href="https://github.com/artdecocode/splendid">Splendid</a>. Because these pieces of software are finished products in themselves, and will not be used as libraries for incorporation into other packages, they can be built without advanced compilation that would require annotating everything everywhere. But to avoid having lots of dependencies that come with them and just form a library for the software product, we can create an <span class="tm">stdlib</span> file that will require all dependencies, and compile them. Then, the source code will be updated to require methods from the <span class="tm">stdlib</span> instead of actual packages.</p>
             
@@ -738,7 +738,7 @@ const { indicatrix } = require('../../../stdlib');</code></pre>
             
             
             <div data-section id="automation-of-documentation">
-            <h2 id="automation-of-documentation">Automation of Documentation</h2>
+            <h2>Automation of Documentation</h2>
             
             <p>The core value of <em>NodeTools</em> is automation, especially when it comes to documentation. To be able to embed output of programs together with their source code automatically, without having to copy-paste them by hand, was the initial requirement for the documentation engine called <em>Documentary</em>. When types and JSX transpilation were added, it became possible to construct markdown tables for types and use custom JSX components also. The documentation engine is started with the <span class="tm">-d</span> flag that produces a verbose logging output, otherwise it's not visible what <em>Documentary</em> is doing.</p>
             
@@ -872,7 +872,7 @@ An example package created with MNP.
             
             
             <div data-section id="context-testing">
-            <h2 id="context-testing">Context Testing</h2>
+            <h2>Context Testing</h2>
             
             <p>A context is a class that can be used across test cases. Its main purpose is to separate testing utilities from test cases: by placing all code that is required to set up tests in a separate files, we can keep test suits clean of the noise, yet access the testing API easily and in the most developer-friendly way.</p>
             
@@ -1210,7 +1210,7 @@ if (process.env.ALAMODE_ENV == 'test-build') {
             
             
             <div data-section id="debugging">
-            <h2 id="debugging">Debugging</h2>
+            <h2>Debugging</h2>
             
             <p>Debugging is an very important process and must be approached seriously. Professional software engineers always debug their programs with a debugger, rather than by leaving <strong>console.log</strong> statements as it saves a lot of time and allows to set through code line by line observing changes to variables.</p>
             
@@ -1271,7 +1271,7 @@ if (process.env.ALAMODE_ENV == 'test-build') {
             </div>
             
             <div data-section id="summary">
-            <h2 id="summary">Summary</h2>
+            <h2>Summary</h2>
             
             <p><em>NodeTools</em> provides a holistic approach to pure Node.JS development and allows to maintain types without being locked in into <strong>TypeScript</strong>. Firstly, we can spawn packages quickly using <em>GitHub</em> templates via <em>MNP</em>. Then, by keeping types in XML files, we can generate externs for the compiler and typedefs for development purposes using <em>Typal</em> and also place types' tables and methods' headings in documentation. Examples and their output can also be placed into documentation which is put together by <em>Documentary</em>: this method provides an additional quality assurance control.</p>
             
@@ -1326,7 +1326,7 @@ fs.node10Method = function(path) {}</code></pre>
             </div>
             
             <div data-section id="examples">
-            <h2 id="examples">Examples</h2>
+            <h2>Examples</h2>
             
             <p>There are a number of packages that were created using <em>NodeTools</em> stack. For references to actual packages you can explore the following:</p>
             
@@ -1346,7 +1346,7 @@ fs.node10Method = function(path) {}</code></pre>
             </div>
             
             <div data-section id="comments">
-            <h2 id="comments">Comments</h2>
+            <h2>Comments</h2>
             
             <div id="c8b27">Loading comments...</div>
             

@@ -1,17 +1,20 @@
 import __initManager from './__init/manager'
 import __initOnThisPage from './__init/on-this-page'
 import __initSidebar from './__init/sidebar'
-import __renameMap0 from './__rename-maps/styles/sidebar'
-import __renameMap1 from './__rename-maps/styles/on-this-page'
+import __renameMap0 from './__rename-maps/styles/yarn'
+import __renameMap1 from './__rename-maps/styles/sidebar'
+import __renameMap2 from './__rename-maps/styles/on-this-page'
 import makeClassGetter from './__mcg'
-const renameMaps = { 'styles/sidebar.css': __renameMap0,
-  'styles/on-this-page.css': __renameMap1 }
+const renameMaps = { 'styles/yarn.css': __renameMap0,
+  'styles/sidebar.css': __renameMap1,
+  'styles/on-this-page.css': __renameMap2 }
 __initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
+import Highlightjs from 'splendid/build/components/highlightjs'
 import Manager from '../components/manager.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
@@ -19,6 +22,7 @@ const __components = {
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
+  'highlightjs': Highlightjs,
   'manager': Manager,
   'social-buttons': SocialButtons,
 }
@@ -51,6 +55,13 @@ const meta = [{
   },
 },
 {
+  key: 'highlightjs',
+  id: 'ccdbf,ccdbf1',
+  props: {
+    lang: 'javascript',
+  },
+},
+{
   key: 'akashic-emails',
   id: 'emails-div',
   props: {
@@ -60,6 +71,13 @@ const meta = [{
 {
   key: 'manager',
   id: 'ca13e',
+},
+{
+  key: 'highlightjs',
+  id: 'c414d',
+  props: {
+    lang: 'bash',
+  },
 }]
 meta.forEach(({ key, id, props = {}, children = [] }) => {
   const Comp = __components[key]

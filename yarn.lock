@@ -104,9 +104,9 @@ good-listener@^1.2.2:
     delegate "^3.1.2"
 
 highlight.js@^9.18.0:
-  version "9.18.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.0.tgz#6b1763cfcd53744313bd3f31f1210f7beb962c79"
-  integrity sha512-A97kI1KAUzKoAiEoaGcf2O9YPS8nbDTCRFokaaeBhnqjQTvbAuAJrQMm21zw8s8xzaMtCQBtgbyGXLGxdxQyqQ==
+  version "9.18.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.1.tgz#ed21aa001fe6252bb10a3d76d47573c6539fe13c"
+  integrity sha512-OrVKYz70LHsnCgmbXctv/bfuvntIKDz177h0Co37DQ5jamGZLVmoCVMtjMtNZY3X9DrCcKfklHPNeA0uPZhSJg==
 
 mime-db@^1.43.0:
   version "1.43.0"
@@ -130,10 +130,10 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
-splendid@^1.16.14:
-  version "1.16.14"
-  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.14.tgz#937d724f7e68b118b52885bd79be7055dfa07a6b"
-  integrity sha512-elnLh1g+d/JG8FX4lb1GQy8uAYgm6KDF3ezYXE+Kb+eb9rKgCsp6BfN9THMsmonBt5TLXYMi6kxOX74SgM9buw==
+splendid@^1.16.15:
+  version "1.16.15"
+  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.15.tgz#92619f6f28acd6bf57edae81d7db406e25632dc4"
+  integrity sha512-UW8T3OTNTaT6Nr88emjqGrUEmioJ+iCv1YJAaACZ137mM6qcO/xYICxtc9IZKR68XZxgqBpabCQfGYQVCBmCKw==
   dependencies:
     "@externs/preact" "^1.2.9"
     "@idio/idio" "^1.2.3"

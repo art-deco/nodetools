@@ -709,7 +709,7 @@ h1, h3, h2 {
 .yarn .yarn-cmd {
   display: inline;
 }
-.yarn .npm--, .yarn .npm-run, .yarn .npm-cmd {
+.yarn .npm-run, .yarn .npm-cmd {
   display: none;
 }
 #BandcampBabylon div {

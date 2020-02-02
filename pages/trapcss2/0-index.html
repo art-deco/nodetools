@@ -1,11 +1,115 @@
 <critical-path-font text="TrapCSS2: Advanced NodeTools" family="Mr De Haviland">
-    h1 { font-family: 'Mr De Haviland' }
-  </critical-path-font>
+  h1 { font-family: 'Mr De Haviland' }
+</critical-path-font>
 
 #![##TrapCSS 2] TrapCSS2: Advanced NodeTools
 
 In the previous part, we looked at the first steps in creating a new package with _NodeTools_ stack. During the initialisation process with `mnp`, we were asked some questions like if we wanted to compile the package, if a binary should be added and whether _GitHub_ wiki should be created. We answered yes to all three questions, so let's get on with the second part of the tutorial.
 
-## Compilation Step
+<p>
+  <img rounded webp="photo" img-fluid src="./img/trapcss2.jpg" alt="trapcss2: advanced nodetools tutorial (car splash)" />
+</p>
 
-Prior to _NodeToos_, the industry standard was to simply transpile source code with _Babel_, or not use module at all and avoid transpilation step together. The first option is not good because _Babel_ is a package with 200+ dependencies that jam our `node_modules`, and also because for years it's been disparaging professional software engineering values that are in core of _NodeTools_, such as respect for _JSDoc_, as can be read in the <a href="babel" /> article.
+<section-break />
+
+##! Welcome Closure
+
+Prior to _NodeTools_, the industry standard was to simply transpile source code with _Babel_, or not use modules at all and avoid transpilation step altogether. The first option is not good because _Babel_ is a package with 250+ dependencies that jam our ``node_modules``, and also because for years it's been disparaging professional software engineering values that are in core of _NodeTools_, such as respect for _JSDoc_, as can be read in the <a href="babel" /> article. The second option is not applicable either as I believe in embracing innovation and keeping up with the newest technological advances to be able to be productive and remain competent and competitive.
+
+Because `NearForm`, the [largest contributor](https://www.nearform.com/community/) to Node.JS with labour resource of over 100 people, extorted back-end engineers into using _Babel_ by not implementing ECMA modules since 2015, the actual state of art of modern package making is pretty sad, although those working on _Babel_ think so highly of themselves due to all that forced downloads count that they call their low-quality product a compiler, which is not true. A compiler is a sophisticated piece of software so there must be something special about a program to be called this name (rather than a transpiler). _Closure Compiler_ is software that will check types and perform advanced passes like peep-hole optimisation and function call folding, therefore it really deserves this title.
+
+Up until _NodeTools_, there were 4 ways to create *Node.JS* packages:
+
+<ol>
+  - *old-school*, by keeping `module.exports` and not taking advantage of modules' syntax which is one of the best features of JavaScript;
+  - *alternative*, that included an additional bundle up step, with such software as rollup and webpack;
+  - *TypeScript*, which is a corporate paradigm that has swept the world due to the lack of professional tools that could compete with it to provide good routines for working with types;
+  - *Babel*, the mass-mentality industry pattern that has no respect for its users, whose authors self-proclaimed themselves leaders of the sector while failing miserably to meet essential requirements for a transpiler.
+</ol>
+
+_NodeTools_ is the new simplest replacement to all this methods that allows to leave them behind and focus on JS coding. We provide the most light-weight, pure _JavaScript_ solution that would allow to develop professional packages and keep independent from 3rd party software that dictates how you should work and what _your_ code should look like. The developer and her freedom is our top priority. For example, there's literally no config for compiling you packages, and all annotations are based on the open JSDoc standard. You can still choose the language output (such as ECMA2015-2019) and control other options like pretty printing via CLI arguments. _NodeTools_ is the only methodology that starts to use _Closure Compiler_ for packages, and it takes Node.JS software development to the next level.
+
+###! Installation
+
+_Closure Compiler_ is developed by Google. It's used for mission-critical internal projects, that are not based on TypeScript. It's a Java program of the size of 10MB that can be installed once on the system, and using advanced optimisations, can put the source code, as well as all liked dependencies into a single executable file. In other words, it provides static linking for libraries into our generated code. Type checking now becomes the final stage of the development process that provides insight into small inaccuracies in our types, instead of forcing us to think in terms of types, like in _TypeScript_.
+
+To use the compiler, you'll need Java on your machine. Then we're going to install `google-closure-compiler-java` into the home folder:
+
+```bash
+cd ~
+yarn|npm init # we want to save deps in package.json
+yarn add google-closure-compiler-java
+```
+
+<p>
+Your distribution will be installed in the *~/node_modules* directory.
+On top of the compiler itself, the actual package that executes the process, is called _Depack_. It's made possible to compile Node.JS package for the first time, since it wasn't possible before as when trying to compile back-end software with Closure, it would throw errors since it couldn't recognise internal Node API, such as `fs`, `stream`, _etc_. _Depack_ fixes this by creating mock folders in your `node_modules`,
+such as *node_modules/fs/index.js*,
+*node_modules/fs/package.json* that simply destructure the global API annotated via externs to enable type checking. We've implemented the externs for Node 8 API, which should also work with later versions.
+</p>
+
+```js
+// node_modules/child_process/index.js
+/* a mock of child process built-in */
+
+export default child_process
+export const {
+  ChildProcess,
+  exec,
+  execFile,
+  execFileSync,
+  execSync,
+  fork,
+  spawn,
+  spawnSync,
+} = child_process
+```
+
+```js
+// node_modules/child_process/package.json
+{
+  "name": "child_process",
+  "main": "index.js"
+}
+```
+
+You can use nightly versions of the compiler, if you want, by looking up the last version with <yarn info google-closure-compiler-java /> and setting the exact version, e.g., <yarn add>google-closure-compiler-java@20200201.0.0-nightly</yarn>. This can help if there are occasional bugs in the compiler, e.g., the January 2020 version has broken destructuring, so you need to use the nightly build like the one I've just mentioned. There's a list of bugs in the compiler in the [_Depack_ wiki](depack-bugs).
+
+_Closure_ is written in Java. You can fork [their project](https://github.com/google/closure-compiler) and study how it works. There's a lot of useful information on the [Wiki](https://github.com/google/closure-compiler/wiki), especially in the types section. It might seem complex at first, but I managed to fix certain issues with PRs by only studying the source code for a few days. A compiler is based on AST passes, where you can manipulate nodes. There's also a JSDoc parser, and an inner project for JS source map consumption/generation. When you make a change, you build the compiler locally. Then you can set the `GOOGLE_CLOSURE_COMPILER` env variable with the path to your target JAR, which will then be used by _NodeTools_.
+
+<!-- end installation -->
+</div>
+
+###! Advantages
+
+Some might say that we're still tied up to the compiler, but it's much better than Babel and TypeScript, because:
+
+<ul>
+  - You don't need to install 250 dependencies just for your modules' syntax via _Babel_.
+  - The bin size is 10mb instead of 50mb of `TypeScript`.
+  - You can statically link packages like in proper software engineering.
+  - Compiler will produce type hints for you that are useful to polish your programs, but don't lock you into a completely different language which TS is.
+  - It's meant for pure JavaScript development which is great.
+  - Its advanced optimisation obfuscates code so that you can send it to your clients with a bit more security for your intellectual property.
+  - You can compile complex back-end applications into a single JS file, for example, we created [Idio](https://github.com/idiocc/idio) which is a Koa server with essential middleware that only has 2 dependencies (`mime-db` and `text-decoding` which are databases for processing encoded data). Without compilation, ``Idio`` would have to download around 130 external dependencies.
+  - It's maintained by _Google_ themselves by top-level software engineers who know compiler theory, so you can rely on compilation results.
+  - You don't have to compile, and simple transpilation is also possible without _Closure_.
+  - You can keep the source code of your larger packages non-compiled, but instead compile only its dependencies into a file called _StdLib_.
+</ul>
+
+Additionally, another reason to learn about compiler and externs, is because the highest paid Software Engineering positions are for ``Clojure`` language, around $140k per year. When you're working on Clojure projects, you'll be writing your front-end in ClojureScript, that produces JavaScript compatible with _Closure Compiler_, so you'll need to understand how externs work. If you learn it via _NodeTools_ today, you'll be able to become one of the highest-paid developers in the world if you decide to specialise in _Clojure_ at some point.
+
+<!-- end advantages -->
+</div>
+
+###! Web Bundling
+
+_NodeTools_ is a holistic package development methodology. The compiler works together with all other tools, such as Typal, that allows to maintain a single source of truth for your types and generate externs for the compiler, Documentary that can embed and interlink such type information in documentation of packages including wikis, and _Zoroaster_ that provides API to test forks as well as letting you test your target compiled code, instead of only source code, which is an absolute must when taking advantage of the advanced compilation mode.
+
+The primary realm of our stack is Node.JS package development, however with _Depack_ you can also develop and compile [web-bundles](https://github.com/art-deco/akashic.page), as there's also support for JSX syntax in _ÀLaMode_. It's based on regexes, but we've managed to create many nice widgets for the web with it. We'll be advertising the web stack features later on. We hope that the tools that we provide in only 10 `node_modules` folders, will really allow to have a breath of fresh air in this stale-air environment where people adapt to paradigms, instead of using such powerful language as JavaScript to their maximum advantage.
+
+<!-- end web -->
+</div>
+
+<section-break />
+<!-- </div> -->

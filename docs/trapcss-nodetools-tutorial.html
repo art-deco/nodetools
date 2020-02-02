@@ -164,7 +164,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.16.14</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.15</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -211,7 +211,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     <div id="emails-div">Loading widget...</div>
                                   </details>
                                   <div class="b-jq" data-loading>
-                                    <h3 class="b-Gk">Package Manager</h3>
+                                    <h3 class="b-Gk" id="package-manager">Package Manager</h3>
                                     <form class="b-Gk" id="ca13e">
                                       <select><option value="yarn">yarn</option><option selected value="npm">npm</option></select>
                                     </form>
@@ -227,7 +227,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             
             <div data-section id="trapcss">
-            <h1 id="trapcss-nodetools-tutorial">TrapCSS: NodeTools Tutorial</h1>
+            <h1>TrapCSS: NodeTools Tutorial</h1>
             
             
             
@@ -275,7 +275,7 @@ abbr[data-original-title] {
             </div>
             
             <div data-section id="mnp">
-            <h2 id="mnp">MNP</h2>
+            <h2>MNP</h2>
             
             <p>The very first step is to spawn a new package using <span class="tm">mnp</span> binary. Instead of forking the repo, I will create a new package so that its structure adheres to <em>NodeTools</em>' recommendations. My default organisation is <span class="tm2">artdecocode</span> on <em>GitHub</em> and I keep projects in the <strong>~/adc</strong> folder. Additionally, I've made a number of other orgs, such as <span class="tm2">dpck</span>, <span class="tm2">a-la</span> for scopes of other projects that are made up of many packages &mdash; organising your <em>GitHub</em> workspace and the home dir by orgs is a convenient method that allows to maintain different settings for different organisations and keep them semantically grouped. When you're ready to grant permissions to other developers to maintain your packages, you can do it on per-org basis. For a standard <em>Node.JS</em> package, I'll just use <strong>adc</strong>.</p>
             
@@ -330,7 +330,7 @@ Created a new package: trapcss.</code></pre>
             </div>
             
             <div data-section id="upgrading-source-code">
-            <h2 id="upgrading-source-code">Upgrading Source Code</h2>
+            <h2>Upgrading Source Code</h2>
             
             <p>As the next step, I'll just download the ZIP archive from <em>DropCSS</em> with the source code, and open finder to copy all files from source into <strong>m</strong>y <strong>n</strong>ew <strong>p</strong>ackage.</p>
             
@@ -351,9 +351,7 @@ const { LOGGING } = require('./env');</code></pre>
             
             <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node＿modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within <strong>node＿modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.</p>
             
-            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode src/dropcss</span></span>
-             </span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
+            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode</span> <span>src/dropcss</span></span></span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
             
             <pre id="ccdbf1"><code class="javascript hljs">// src/find.js
 function some(nodes, m) {
@@ -412,7 +410,7 @@ export const some = (nodes, sel) =&gt; {
             </div>
             
             <div data-section id="adding-types">
-            <h2 id="adding-types">Adding Types</h2>
+            <h2>Adding Types</h2>
             
             <p>After we've copied the typedef, we'll want to write types that are relevant for our program. The main method accepts a hashmap config, so we'll document its structure in <span class="tm">types/index.xml</span>.</p>
             
@@ -488,14 +486,10 @@ export default class Application extends EventEmitter {
             
             
             <div data-section id="typedefs">
-            <h3 id="typedefs">Typedefs</h3>
+            <h3>Typedefs</h3>
             
             
-            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
-             </span>. This command will update typedefs in <strong>types/index.js</strong>, which are then imported in our source code via the <span class="tm">@typedef {import('../types')}</span> <em>JSDoc</em>. <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
-             </span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="ItWillRunYarn"><em>yarn-s</em></span><span class="ItWillRunNpm"><em>npm-s</em></span> for serial execution of all 3 of these commands in series.</p>
+            <p>The next thing we want to do is to generate typedefs for <em>VSCode</em> so that we can get working on the source code implementation. The template we used with <em>MNP</em> already has the set up ready for that, we just call <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span></span>. This command will update typedefs in <strong>types/index.js</strong>, which are then imported in our source code via the <span class="tm">@typedef {import('../types')}</span> <em>JSDoc</em>. <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span></span> actually spawns multiple commands, including <span class="tm">template</span>, <span class="tm">d1</span> and <span class="tm">externs</span>. It will run <span class="ItWillRunYarn"><em>yarn-s</em></span><span class="ItWillRunNpm"><em>npm-s</em></span> for serial execution of all 3 of these commands in series.</p>
             
             <pre id="ccdbf5"><code class="javascript hljs">export {}
 
@@ -559,16 +553,14 @@ function dropcss(opts) {
               </noscript>
             </p>
             
-            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span>
-             </span> command.</p>
+            <p>The advantage of such annotation is that the comments will be lost during compilation anyway, so we don't have to waste time maintaining them in the source code itself. If we need to update the API contract, we go to the XML file, make changes there, and generate new annotations and externs using <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span></span> command.</p>
             
             
             </div>
             
             
             <div data-section id="externs">
-            <h3 id="externs">Externs</h3>
+            <h3>Externs</h3>
             
             <p>When compiling packages, we need to learn a new concept called <em>externs</em> &mdash; a separate JS file that includes typedefs in a special format understood by Closure Compiler that provide type information to it. Externs look like the following:</p>
             
@@ -670,7 +662,7 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
             
             
             <div data-section id="accessing-properties">
-            <h3 id="accessing-properties">Accessing Properties</h3>
+            <h3>Accessing Properties</h3>
             
             <p>Our standard is to use destructuring on the config to extract its properties for use in the program first thing. If the config was not compulsory, we'd also add the default value to the <strong>config</strong> argument: <span class="tm">function (config = {})</span>, but it's not the case here. When doing this, we also receive the type of the property, so that we're able to expand hints if we need to perform operations on these symbols.</p>
             
@@ -709,7 +701,7 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
             </div>
             
             <div data-section id="initial-documentation">
-            <h2 id="initial-documentation">Initial Documentation</h2>
+            <h2>Initial Documentation</h2>
             
             <p>Before we continue to adding actual logic to allow to preserve <em>alternate</em> comments, let's add some documentation to <em>TrapCSS</em>. The docs are kept in the <strong>documentary</strong> folder and are split by files, which are put in order by documentation software. The <strong>index.md</strong> and <strong>footer.md</strong> files in each of the inner dirs always go first and last respectively. The root <strong>index.md</strong> already contains the description which was placed in there by <em>MNP</em>. It also has the installation snippet and table of contents. But we can add some more text from the forked package to describe what the software will do, and some additional links.</p>
             
@@ -788,9 +780,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
               </noscript>
             </p>
             
-            <p>The heading is generated from the first <span class="tm2">typedef</span>, and type tables from the second one. Any types that are referenced on the page will be linked, such as the <em>Config</em> type of <strong>opts</strong> in the function's description. To generate README, we run the <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span>
-             </span> command, and the <strong>doc</strong> script consists of: <span class="tm">doc [documentary] ...</span></p>
+            <p>The heading is generated from the first <span class="tm2">typedef</span>, and type tables from the second one. Any types that are referenced on the page will be linked, such as the <em>Config</em> type of <strong>opts</strong> in the function's description. To generate README, we run the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span></span> command, and the <strong>doc</strong> script consists of: <span class="tm">doc [documentary] ...</span></p>
             
             <ul>
               <li><strong>-o README.md</strong>: the output file</li>
@@ -806,7 +796,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             
             <div data-section id="examples-to-outputs">
-            <h3 id="examples-to-outputs">Examples To Outputs</h3>
+            <h3>Examples To Outputs</h3>
             
             <p>The second most useful feature of <em>NodeTools</em> after the compiler is the ability to automatically place examples into README, and compute their output which is also added to README. We use the <span class="tm">%EXAMPLE%</span> marker to reference the example file that comes from the <strong>examples</strong> folder. All paths will be resolved in Node style conventions, i.e. by looking up the <strong>index.js</strong> file if a directory is passed, so we can simply reference <strong>example</strong> dir. Let's create a sample usage of our program with some HTML and CSS to see if it works.</p>
             
@@ -860,9 +850,7 @@ console.log(cleaned.css)
 
 console.error(dropped)</code></pre>
             
-            <p>To test the example before actually compiling docs, we can call <span class="tm">alanode</span> which is a simple proxy process to Node with a require hook that transpiles imports. It's executed via the package manager: <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode example/</span></span>
-             </span>.</p>
+            <p>To test the example before actually compiling docs, we can call <span class="tm">alanode</span> which is a simple proxy process to Node with a require hook that transpiles imports. It's executed via the package manager: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode</span> <span>example/</span></span></span>.</p>
             
             <pre id="c414d2"><code class="bash hljs">MacBook:trapcss zavr$ yarn alanode example/
 html{background: yellow;background: green;}
@@ -892,13 +880,9 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
               </noscript>
             </p>
             
-            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm--">--</span> <span>-p "commit message"</span></span>
-             </span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
+            <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm-cmd">--</span> <span>-p "commit message"</span></span></span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute an example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span>
-             </span> command).</p>
+            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute an example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span></span> command).</p>
             
             
             </div>
@@ -912,7 +896,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
             </div>
             
             <div data-section id="creating-tests">
-            <h2 id="creating-tests">Creating Tests</h2>
+            <h2>Creating Tests</h2>
             
             <p>Tests for the original packages were written for <em>Mocha</em> testing framework, but we need to update them into <em>Zoroaster</em> context-testing specs and masks. Let's take <a
               href="https://github.com/leeoniya/dropcss/blob/2a883e5107c68c2181d4c0e02b30e15cf4e7736c/test/src/0-context-free-unary-sel.js">
@@ -986,7 +970,7 @@ describe('Context-free, unary selector', () =&gt; {
             </p>
             
             <div data-section id="mask-testing">
-            <h3 id="mask-testing">Mask Testing</h3>
+            <h3>Mask Testing</h3>
             
             <p>Tests like the ones shown above are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result. If you've ever used a loop to call <strong>describe</strong> and <strong>it</strong> methods by hand, you'll be familiar with the concept of dynamic test suite construction. <em>Zoroaster</em> provides an official standard way to do that, and coins the term <em>mask testing</em> to name this process.</p>
             
@@ -1153,11 +1137,7 @@ span {a:b;}
               href="https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
               study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
             
-            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span>
-             </span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span>
-             </span> after having constructed our first mask tests.</p>
+            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span></span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span></span> after having constructed our first mask tests.</p>
             
             <pre id="c414d3"><code class="bash hljs">yarn run v1.13.0
 $ yarn t test/mask
@@ -1222,7 +1202,7 @@ Done in 1.85s.</code></pre>
             </div>
             
             <div data-section id="focus-in-masks">
-            <h3 id="focus-in-masks">Focus In Masks</h3>
+            <h3>Focus In Masks</h3>
             
             <p>To focus on a particular test, we can prepend its name with <span class="tm">!</span> in the mask result like so:</p>
             
@@ -1260,7 +1240,7 @@ export default {
             </div>
             
             <div data-section id="interactive-mode">
-            <h3 id="interactive-mode">Interactive Mode</h3>
+            <h3>Interactive Mode</h3>
             
             <p>If the test was failing, <em>Zoroaster</em> would use string comparison algorithm to present where the error was in color. Let's imagine we entered our expected value incorrectly:</p>
             
@@ -1285,7 +1265,7 @@ export default {
             </div>
             
             <div data-section id="more-masks">
-            <h3 id="more-masks">More Masks</h3>
+            <h3>More Masks</h3>
             
             <p>Let's add some more mask testing.</p>
             
@@ -1463,7 +1443,7 @@ div{text-decoration: underline;
             </div>
             
             <div data-section id="error-stacks">
-            <h3 id="error-stacks">Error Stacks</h3>
+            <h3>Error Stacks</h3>
             
             <p>Please note that if there was a run-time error in algorithms, the report will only show the location in the mask result where the test failed. Imagine that we made an mistake when creating the mask, by referencing the <span class="tm">.css</span> mask result property instead of <span class="tm">.input</span>, which evaluated to undefined, but our source code expected a string:</p>
             
@@ -1513,7 +1493,7 @@ TypeError: Cannot read property 'replace' of undefined
             </div>
             
             <div data-section id="context-testing">
-            <h3 id="context-testing">Context Testing</h3>
+            <h3>Context Testing</h3>
             
             <p>Overall, when executing new tests, we get the following report:</p>
             
@@ -1803,9 +1783,7 @@ export default class Context {
               </noscript>
             </p>
             
-            <p>If at some point we changed our source code, and the output of the program changed, we'd be notified of it by <em>Zoroaster</em> with green/red highlighting on string differences too. We could then run tests in interactive mode as <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span> <span class="npm--">--</span> <span>-i</span></span>
-             </span> (same as forks) to update snapshots from the CLI.</p>
+            <p>If at some point we changed our source code, and the output of the program changed, we'd be notified of it by <em>Zoroaster</em> with green/red highlighting on string differences too. We could then run tests in interactive mode as <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span> <span class="npm-cmd">--</span> <span>-i</span></span></span> (same as forks) to update snapshots from the CLI.</p>
             
             <p>In sum, there are following folders found in the <strong>test</strong> dir:</p>
             
@@ -1829,7 +1807,7 @@ export default class Context {
             </div>
             
             <div data-section id="advanced-concepts">
-            <h2 id="advanced-concepts">Advanced Concepts</h2>
+            <h2>Advanced Concepts</h2>
             
             <p>Now that we've transferred the source code rewritten as ECMA modules, documented it with initial examples, designed the API via types in XML, and unit-tested our library with masks and snapshots, we can move on to discussing more serious concepts such as compilation, wikis and binary functionality in the next part of this tutorial. But first, let's <strike>take a selfie</strike> actually implement the logic that we needed for our package, that is, the comment preservation feature.</p>
             
@@ -1842,9 +1820,7 @@ function parse(css) {
   return tokenize(css);
 }</code></pre>
             
-            <p>We make a very simple change that allows to preserve the <strong>keepAlternate</strong> comment. After the change is made, we run <span class="Manager">
-               <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span></span>
-             </span> to validate that all tests now pass, since we've already created a test case for <span class="tm">/* @alternate */</span> in masks in <abbr title="Test Driven Development"><em>TDD</em></abbr> fashion.</p>
+            <p>We make a very simple change that allows to preserve the <strong>keepAlternate</strong> comment. After the change is made, we run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span></span></span> to validate that all tests now pass, since we've already created a test case for <span class="tm">/* @alternate */</span> in masks in <abbr title="Test Driven Development"><em>TDD</em></abbr> fashion.</p>
             
             <pre id="ccdbf22"><code class="javascript hljs">export function parse(css, keepAlternate) {
   // strip comments (for now)
@@ -1871,7 +1847,7 @@ function parse(css) {
             </div>
             
             <div data-section id="comments">
-            <h2 id="comments">Comments</h2>
+            <h2>Comments</h2>
             
             <div id="c8b27">Loading comments...</div>
             

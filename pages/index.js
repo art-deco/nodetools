@@ -54,10 +54,10 @@ export const trapcss2 = {
   title: 'TrapCSS 2: Advanced NodeTools',
   seo: 'A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and libarary with Closure Copmiler and generate Wiki pages.',
   og: {
-    image: '../pages/trapcss/img/splash.jpg',
+    image: '../pages/trapcss2/img/trapcss2.jpg',
   },
   links: {
-
+    'depack-bugs': 'https://github.com/dpck/depack/wiki/Bugs',
   },
 }
 
@@ -66,10 +66,10 @@ export const trapcss2 = {
  */
 export const babel = {
   title: 'Babel: When Open Source Is Not Free Sofware',
-  description: 'There is a difference between free and open source software which must be understood. Babel, praising itself on being open source, actually harms users\' freedoms and delivers them right into the hands of the vendor predator — TypeScript.',
+  description: 'There is a difference between free and open source software which must be understood. Babel, praising itself on being Open Source, actually harms users\' freedoms and delivers them right into the hands of the vendor predator — TypeScript.',
   seo: 'Babel has been ruining JSDoc documentation of Node.JS packages for years, while its maintainers pay themselves $10k per month for not fixing bugs.',
   og: {
-    image: '/img/fav.png',
+    image: '../pages/babel/img/splash.jpg',
   },
   links: {
     history: 'https://gist.github.com/jkrems/769a8cd8806f7f57903b641c74b5f08a',

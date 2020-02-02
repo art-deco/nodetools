@@ -38,6 +38,6 @@
 .yarn .yarn-cmd {
   display: inline;
 }
-.yarn .npm--, .yarn .npm-run, .yarn .npm-cmd {
+.yarn .npm-run, .yarn .npm-cmd {
   display: none;
 }
