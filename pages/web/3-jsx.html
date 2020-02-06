@@ -1,0 +1,39 @@
+##! JSX Application
+
+The application that we create is very simple. It's just going fetch some data from the server, and display it to the user. Since JSX is the most convenient way for web development, we'll use it for our app. Data bindings and ability to write HTML within JS give such massive advantage over plain JS that it's pretty much essential to be using it. Likely, we don't need _Babel_ or anything else to transpile JSX anymore, since _ÀLaMode_ can do it with a simple transpile based on regexes. Sure, it might fail occasionally for edge cases, but I haven't had any issues with it.
+
+<highlightjs src="../../web/frontend/index.jsx" />
+
+We'll render the app on the `window.app` element (it's available on `window` since we gave the div the ``app`` id). I prefer to make use of `unfetch` package as ``fetch`` API is not supported by older browsers, and _Closure_ doesn't provide a polyfill for it.
+
+As soon as the main component mounts, it will attempt to fetch data from the server. It then can be in 3 states:
+
+<ul>
+  - *loading*, when a request has been sent, but the response not received yet.
+  - *error*, if there was a server error, or an error during the request. We need to check if the caught error is an event, because in the `fetch` library, it could be the case.
+  - *data*, when data is received.
+</ul>
+
+In our render method, we therefore extract the current state, and display the appropriate information. Because we used the `setState` method, the application will be re-rendered automatically whenever the state changes.
+
+We also used an external type, called `_nodetools.ServerResponse`. We used casting since the assignments were made via the destructuring, so we couldn't just annotate it above the function.
+
+```js
+const { error, user } =
+  /** @type {!_nodetools.ServerResponse} */ (await res.json())`
+```
+
+This is when _NodeTools_ with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the `types.xml` file.
+
+<highlightjs src="../../web/types/index.xml" />
+
+We define a generic `ServerResponse` type that contains either an error, or some data, according to the route. Doing it this way, allows to implement a fetch function in a single place, and then access the required property, such as `user` from within any component.
+
+###! CSS Loader
+
+Importing styles is also supported via `frontend` middleware. It will serve the CSS file as a JavaScript function, that adds the style to DOM dynamically.
+
+</div>
+
+<section-break />
+

@@ -1,0 +1,30 @@
+##! Front-End Middleware
+
+Traditionally, you would use complex build tools like _WebPack_ to package your code and run a development server. Since all current browsers are mature enough to support modern JavaScript, including modules, destructuring, _etc_, I don't see the need to transpile your code when developing it. You can just serve it as it is, with only 2 exceptions:
+
+<ul>
+  - When importing from `node_modules`, the imports need to be renamed from ``import { test } from 'example'`` to ``import { test } from '/node_modules/example/src/index.mjs'``.
+  - JSX is not understood by the browser, therefore needs to be modified being being served.
+</ul>
+
+Those are not hard requirements. When a browser requests a file, instead of serving the file from the filesystem, we can modify it by implementing a server middleware, that would adapt the file to meet the two requirements from the above. This middleware is available via the `@idio/frontend` package, and is able to serve `node_modules` and transpile JSX with RegExp. There are some limitations to JSX until _NodeTools 2_ are properly released, e.g.,
+
+<ul>
+  - There are no source maps for debugging.
+  - There's no hot module reload.
+  <li>JSX does not support block comments.
+```jsx
+render(<div>
+  {/* hello world */}
+</div>)
+```
+  </li>
+  - No curly braces in components' attributes are allowed `render(<div title="hello{world}"/>)`.
+  - No `>` sign inside components is permitted.
+</ul>
+
+It's fair enough if those limitations might deter you from using our method. On the other hand, you can literally get going with only 3 new folders in you `node_modules` (_Idio_ web server) so if the simplicity of use outweighs these drawbacks, you can give it a go. The complexity of the project doesn't matter, and it's primarily the hot-module reload that might be the missing link, but we'll make it possible ASAP.
+
+After your JS code is ready, you can compile it into a single file with _Closure Compiler_. If you used JSX, we'll transpile it with _ÀLaMode_, and put the intermediary code in the temp folder. The compiler will also add necessary polyfills for the target language (default is ES5) and update newer constructs such as ``async/await`` and ``{ destructuring }`` so that it can run in older browsers.
+
+<section-break />

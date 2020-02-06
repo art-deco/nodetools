@@ -1,0 +1,18 @@
+<types ns="_nodetools">
+  <record name="ServerResponse">
+    <prop type="!_nodetools.User" name="user" opt>
+      The user object.
+    </prop>
+    <prop string name="error">
+      The server-side error.
+    </prop>
+  </record>
+  <record name="User">
+    <prop string name="name">
+      The name of the user.
+    </prop>
+    <prop string name="login">
+      The unique login of the user.
+    </prop>
+  </record>
+</types>

@@ -1,0 +1,76 @@
+##! Accessing Server
+
+We now can access our app from the browser:
+
+<p>
+  <img placeholder-auto img-fluid border rounded src="./img/chrome.gif" alt="preview of the app" />
+</p>
+
+The component rendered correctly, and displayed the data received from the server. If we check the network requests, we can see how the frontend middleware has transformed the `index.jsx` file:
+
+<p>
+  <img placeholder-auto img-fluid border rounded src="./img/devtools.gif" alt="devtools shows transpilation" />
+</p>
+
+The imports have been updated to point to the `/node_modules/` path, rather than simple `package-name` notation. Moreover, the JSX syntax has been updated to invoke the ``h`` pragma function from _Preact_. _Preact_ is the default choice for frontend, but if you wanted to use _React_, you'd have to specify the *pragma* property in the `frontend` config.
+
+The style has been updated into a JS file that calls `__$styleInject` when imported:
+
+```js
+function __$styleInject(css = '') {
+  const head = document.head
+  const style = document.createElement('style')
+  style.type = 'text/css'
+  if (style.styleSheet){
+    style.styleSheet.cssText = css
+  } else {
+    style.appendChild(document.createTextNode(css))
+  }
+  head.appendChild(style)
+}
+const style = `.Error {
+  color: red;
+}
+.UserName {
+  color: darkcyan;
+}`
+__$styleInject(style)
+```
+
+<section-break />
+
+##! Compilation
+
+After we made sure that the app is working correctly, I want to compile it with _Closure_. _Depack_ supports JSX apps, and will transpile them prior to compilation into the *depack-temp* folder.
+
+I'll call the <yarn web /> script from *package.json* &mdash; ``depack frontend -o docs -a -H -E -i --externs types/externs.js``. The arguments mean:
+
+<ul>
+  - *frontend*, the path to the entry file, short for *frontend/index.jsx*;
+  - *-o docs*, the output path (either full file, or just dir, in which case the basename of the input will be used);
+  - *-a*, advanced compilation, one of the best features of the compiler that minifies the source.
+  - *-H*, tells _Depack_ to add Preact's pragma.
+  - *-E*, instructs _Depack_ to use ``preact`` from externs, treating it as a library that is already given in the scope. During the process, _Depack_ will monkey-patch `node_modules/preact` and restore it at the end. This is needed since some 3rd party packages may reference ``preact`` and we don't transpile those.
+  - *-i*, produces an IIFE function, to prevent polluting and conflicts with the global scope.
+  - *--externs types/externs.js**, those are the generated externs to notify the compiler of the types information.
+</ul>
+
+The bundle and its source maps will be written to the `docs` folder.
+
+<p>
+  <img placeholder-auto img-fluid border rounded src="./img/2.gif" alt="compilation process" />
+</p>
+
+If there were some problems with types that _Closure_ could pick up, they will be shown in the output. We saved our temp files in the `depack-temp`, so it won't be possible to jump to the error since the *temp* folder is deleted by the end of the process (we'll update _Depack_ to point to the real src in the next version). For example, the warning we get here, is that the second argument to fetch is compulsory, which is not true and it's a problem with how ``unfetch`` was annotated rather than our code.
+
+To test whether bundling was successful, we will start the server with <yarn closure /> command that sets the `CLOSURE=1` environment variable, which is then read by the server so that the our app can be served from *docs/index.js* rather than *frontend/index.jsx* which was used only for development.
+
+When we access the server again, we are served with the compiled JS bundle, that also includes our CSS as a string.
+
+<p>
+  <img placeholder-auto img-fluid border rounded src="./img/dev-index.gif" alt="compiled js is served" />
+</p>
+
+That's all folks we just created a simple _Preact_ application using a front-end middleware from _Idio_ and compiled it using _Closure Compiler_. We also typed both front-end and back-end with JSDoc so that we could use pure JavaScript. In addition, types that we produced, could be embedded into documentation of our package using _Documentary_ from _NodeTools_, however I'll skip talking about it here.
+
+<section-break />

@@ -103,6 +103,10 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                     TrapCSS 2: Advanced NodeTools</a>
                 </li>
                 <li class>
+                  <a data-file="web" href="/nodetools/web-development-with-nodetools.html">
+                    Web Development With NodeTools</a>
+                </li>
+                <li class>
                   <a data-file="babel" href="/nodetools/babel-when-open-source-is-not-free-sofware.html">
                     Babel: When Open Source Is Not Free Sofware</a>
                 </li>
@@ -114,22 +118,22 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <div class="List b-xq b-kC">
                 <a
                   title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
-                  <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a>
+                  <span class="a"><em>MNP</em></span><span class="b">1.1.7</span></a>
                 <a
                   title="Organises TypeDefs By Placing Them Into Types.Xml File To Be Embedded Into Source Code Compatible With VSCode And Google Closure Compiler, Generates Externs And Allows To Place Documentation In README Markdown." class="NPMBadge" href="https://www.npmjs.com/package/typal">
-                  <span class="a"><em>Typal</em></span><span class="b">1.26.0</span></a>
+                  <span class="a"><em>Typal</em></span><span class="b">1.26.2</span></a>
                 <a
                   title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-                  <span class="a"><em>Depack</em></span><span class="b">1.1.0</span></a>
+                  <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a>
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a>
                 <a
-                  title="The 2019 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
-                  <span class="a"><em>Zoroaster</em></span><span class="b">4.1.2</span></a>
+                  title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
+                  <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.35.10</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.35.13</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
@@ -142,8 +146,9 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
-                <li><a href="https://gitter.im/node_tools/community">Get Help In Gitter Chat</a></li>
-                <li><a href="https://opencollective.com/nodetools">Fund Us On Open Collective</a></li>
+                <li><a href="https://gitter.im/node_tools/community">Join In Gitter Chat</a></li>
+                <li><a href="https://opencollective.com/nodetools">Fund Via Open Collective</a></li>
+                <li><a href="https://twitter.com/nodetools">Follow On Twitter</a></li>
               </ul>
               <div class="SideBarMenu sidebarshowing b-jr b-zp">
                 <div class="a">
@@ -212,7 +217,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>The best way to start using <em>NodeTools</em>, is via <a
                title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
-               <span class="a"><em>MNP</em></span><span class="b">1.1.0</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
+               <span class="a"><em>MNP</em></span><span class="b">1.1.7</span></a> (My New Package) &mdash; a <em>GitHub</em> template-based package bootstrapper that allows to generate new repositories from templates and fill in the preset information into them. <span class="tm">mnp</span> has only 3 small dependencies and can be installed globally:</p>
             
             <pre id="c724c"><code class="shell hljs">yarn add global mnp
 npm i -g mnp</code></pre>
@@ -605,7 +610,7 @@ _examplePackage.examplePackage
             
             <p>The <span class="tm">externs</span> field is looked up by <em>Depack</em> when we incorporate packages in other packages. For example, when our <span class="tm">example-package</span> is actually consumed by another software, its types need to be preserved for the compiler, therefore we also publish our externs to facilitate integration into other packages. This is the essence of the compilation process. You can read more documentation on the <a
                title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-               <span class="a"><em>Depack</em></span><span class="b">1.1.0</span></a> page and its <a href="https://github.com/dpck/depack/wiki">wiki</a> that also outlines whether you can use modules compiled with <em>Babel</em> and <em>CommonJS</em> modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow <em>NodeTools</em> conventions, such as providing externs and proper Closure Compiler annotations.</p>
+               <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a> page and its <a href="https://github.com/dpck/depack/wiki">wiki</a> that also outlines whether you can use modules compiled with <em>Babel</em> and <em>CommonJS</em> modules in the process, but for the best results, make sure that packages that are imported in compiled software, also follow <em>NodeTools</em> conventions, such as providing externs and proper Closure Compiler annotations.</p>
             
             <p>Finally, if it's required to preserve <span class="tm">require</span> statement, it's possible to add a simple comment before the package name. If a named export is being required, its name should be put in quotes to prevent the renaming of the property like so:</p>
             
@@ -638,7 +643,7 @@ console.log(a({ 'configItem': 'test' }))</code></pre>
             
             <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and <strong>module.export</strong> assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
                title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-               <span class="a"><em>ÀLaMode</em></span><span class="b">3.3.1</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
+               <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
             
             <h3 id="-lamode-modules"> ÀLaMode Modules</h3>
             

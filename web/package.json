@@ -1,0 +1,19 @@
+{
+  "name": "nodetools-web",
+  "scripts": {
+    "start": "alanode index.jsx",
+    "closure": "CLOSURE=1 yarn start",
+    "web": "depack frontend -o docs -a -H -E -i --externs types/externs.js",
+    "d": "yarn-s d1 externs",
+    "d1": "typal types/index.js -u",
+    "externs": "typal types/externs.js -e"
+  },
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "@externs/preact": "^1.2.9",
+    "depack": "^1.1.1",
+    "preact": "8.5.3",
+    "unfetch": "^4.1.0",
+    "yarn-s": "^1.2.3"
+  }
+}

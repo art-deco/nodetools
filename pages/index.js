@@ -64,6 +64,20 @@ export const trapcss2 = {
 /**
  * @type {import('splendid').Page}
  */
+export const web = {
+  title: 'Web Development With NodeTools',
+  seo: 'With NodeTools, you can develop and bundle your browser JavaScript too. We provide a development server, and compiler produces code for older browsers.',
+  og: {
+    // image: '../pages/trapcss2/img/trapcss2.jpg',
+  },
+  links: {
+    // 'depack-bugs': 'https://github.com/dpck/depack/wiki/Bugs',
+  },
+}
+
+/**
+ * @type {import('splendid').Page}
+ */
 export const babel = {
   title: 'Babel: When Open Source Is Not Free Sofware',
   description: 'There is a difference between free and open source software which must be understood. Babel, praising itself on being Open Source, actually harms users\' freedoms and delivers them right into the hands of the vendor predator — TypeScript.',

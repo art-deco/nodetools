@@ -1,0 +1,16 @@
+##! Setting Up
+
+There's a more complex `mnpjs/idio` template that is a template for a web-server. However, it's not the purpose of this article to show how to create a full-stack application. I'll leave it for another time. I just wanted to show how to develop and compile a front-end.
+
+As I mentioned, you'll need the `@idio/idio` server (a Koa fork itself, but completely rewritten for Closure). Let's install it with <yarn add>@idio/idio</yarn>. We'll then want to create a basic configuration to start it:
+
+<highlightjs src="../../web/index.jsx" />
+
+This is a JSX file, meaning that we can render JSX components statically, using `@depack/render` package. It is a fork of `preact-render-to-html-string` with a few improvements, like the ability to add the doctype automatically. _Idio_ is configured from the first argument called _MiddlewareConfig_. It accepts settings for all supported middleware. We'll only want 2 middleware: ``front-end`` for development, and ``static``, when it comes to testing the production bundle of our JS code.
+
+`idio` method returns a URL and a router instance, that we use to set up the index path, and an api path. The index path will simply display a welcome message, and mount our component. Because we're using Preact, we'll want to make sure the library is available on the window scope, by installing it via a CDN. We could compile Preact into our library itself, however it would produce a lot of warnings as its annotations haven't been adapted to _Closure_ in its source code. For development, we'll serve JavaScript as a module from `frontend/index.jsx` file, but after we've built the bundle, we'd want to test if it's working from the `docs` folder.
+
+Our API route from `routes/api` is used for dynamic requests from the front-end application. We'll come back to it in a second.
+
+<section-break />
+

@@ -1,0 +1,1047 @@
+<!doctype html>
+<html class="no-js b-Op" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Development With NodeTools</title>
+    <meta content="https://art-deco.github.io/nodetools/web-development-with-nodetools.html" property="og:url">
+    <meta content="Web Development With NodeTools" property="og:title">
+    <meta content="website" property="og:type">
+    <meta
+      content="With NodeTools, you can develop and bundle your browser JavaScript too. We provide a development server, and compiler produces code for older browsers." name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link sizes="57x57" rel="apple-touch-icon" href="/nodetools/img/fav-57.png">
+    <link sizes="76x76" rel="apple-touch-icon" href="/nodetools/img/fav-76.png">
+    <link sizes="120x120" rel="apple-touch-icon" href="/nodetools/img/fav-120.png">
+    <link sizes="152x152" rel="apple-touch-icon" href="/nodetools/img/fav-152.png">
+    <link sizes="167x167" rel="apple-touch-icon" href="/nodetools/img/fav-167.png">
+    <link sizes="180x180" rel="apple-touch-icon" href="/nodetools/img/fav-180.png">
+    <link sizes="192x192" rel="icon" href="/nodetools/img/fav-192.png">
+    <link sizes="128x128" rel="icon" href="/nodetools/img/fav-128.png">
+    <link sizes="32x32" rel="icon" href="/nodetools/img/fav-32.png">
+    <link
+      href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland" rel="preload" as="fetch" crossOrigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin>
+    <link href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700" rel="preload"
+      as="style">
+    <script>
+      (function(b){var a=document.createElement("link");a.href=b;a.rel="stylesheet";a.crossOrigin="crossorigin";document.head.appendChild(a)})('https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700')
+    </script>
+    <style id="cpt">
+      
+        h1 { font-family: 'Mr De Haviland' }
+    
+      @font-face {
+        font-family: 'Mr De Haviland';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Mr De Haviland Regular'), local('MrDeHaviland-Regular'), url('data:application/font-woff2;base64,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') format('woff2');
+      }
+      
+    </style>
+    <script>
+      (function(){var b=/url\('([\s\S]+?)'\)/.exec(document.head.querySelector("#cpt").textContent);if(b){var a=document.createElement("link");a.rel="preload";a.as="font";a.href=b[1];document.head.appendChild(a)}})()
+    </script>
+    <script>(function(h,r){var a=Object.keys(h),c=!0;"CSS"in window&&"supports"in CSS?(a=a.reduce(function(k,b){var l=h[b];b=b.split("|");for(var m=!1,d={},f=0;f<b.length;d={a:d.a},f++)if(d.a=b[f],l.map(function(n){return function(e){e=e.split("|");for(var p=!1,g=0;g<e.length;g++){var q=e[g];if(CSS.supports(n.a,q)){p=!0;break}else k.push(n.a+": "+q)}return p}}(d)).filter(Boolean).length==l.length){m=!0;break}m||(c=!1);return k},[]),a.length?c&&console.log("\ud83d\udcbf Browser does not support CSS properties: %s",
+a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser supports all modern CSS properties.")):(c=!1,console.log("\ud83d\udce0 Browser does not support CSS checks."));c||(a=document.createElement("link"),a.rel="stylesheet",a.href=r,document.head.appendChild(a))})({"align-self":["center"],"flex-grow|-ms-flex-positive":["1"],"flex|-ms-flex":["0 0 25%"],"display":["flex|-ms-flexbox"],"box-sizing":["border-box"],"order|-ms-flex-order":["1"],"transition":["none"],"flex-direction|-ms-flex-direction":["column"],"border-radius":["2px"],"box-shadow":["none"],"flex-basis|-ms-flex-preferred-size":["0"],"hyphens|-webkit-hyphens|-ms-hyphens":["auto"],"justify-content":["center"],"flex-wrap|-ms-flex-wrap":["wrap"],"flex-shrink|-ms-flex-negative":["0"],"position":["sticky|-webkit-sticky"],"align-items":["center"]}, '/nodetools/css/combined-prefixes.css')</script>
+    <script>
+      (function(q,k){function x(a){for(var f=/url\((.+?)\).*?;\s+unicode-range: (.+?);/g,b={},d=[],h;h=f.exec(a);){var r=h[2];d.push({url:h[1],a:r});b[r]=1}b=Object.keys(b).reduce(function(c,e){var g=e.split(/,\s/).map(function(l){return l.replace("U+","\\u").replace("-","-\\u")}).join("").toLowerCase();c[e]=new RegExp("["+g+"]");return c},{});var t=document.body?document.body.textContent:"",y=t?Object.keys(b).reduce(function(c,e){b[e].test(t)&&(c[e]=!0);return c},{}):Object.keys(b).reduce(function(c,
+      e){e in k&&(c[e]=!0);return c},{});m=d.filter(function(c){return c.a in y}).map(function(c){return c.url});if(!m.length)return u();var v=document.createDocumentFragment();m.forEach(function(c,e){var g=document.createElement("link");g.href=c;g.rel="preload";g.as="font";var l=e+1;;g.onload=function(){return u(l)};g.setAttribute("crossorigin",!0);v.appendChild(g)});document.head.appendChild(v)}k=void 0===k?{}:k;var n=document.createElement("link");if(function(a,
+      f){if(!a||!a.supports)return!1;try{return a.supports(f)}catch(b){return!1}}(n.relList,"preload")){var z=function(a,f,b){b=void 0===b?"":b;;var d=new XMLHttpRequest;d.onreadystatechange=function(){4==d.readyState&&(200==d.status?(f(d.responseText)):console.error("Error loading webfont: server responded with code %s at %s",d.status,a))};d.open("GET",a);try{d.send(null)}catch(h){console.error(h)}};
+      ;var p;(function(a,f){z(a.href,function(b){p=b;x(p)},"-"+(void 0===f?"link":f))})({href:q},"js");var m=[],w=0,u=function(a){w++;w>=m.length&&(a=document.createElement("style"),a.innerHTML=p,document.head.appendChild(a))}}else n.rel="stylesheet",n.href=q,document.head.appendChild(n)})('https://fonts.googleapis.com/css?display=swap&family=Ruda%3A400%2C700%7CMr%20De%20Haviland', {"U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD":true})
+    </script>
+    <link rel="stylesheet" href="/nodetools/css/combined.css">
+    <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
+    <style>
+      .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
+      .List {
+                          font-size:small;
+                        }
+                        .List > a {
+                          display: block!important;
+                        }
+    </style>
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?display=swap&amp;family=Mr%20De%20Haviland&amp;text=Web%20Development%20With%20NodeTools">
+      <link rel="stylesheet" href="/nodetools/css/combined-prefixes.css">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?display=swap&amp;family=Ruda%3A400%2C700%7CMr%20De%20Haviland">
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source%20Code%20Pro%3A400%2C700">
+    </noscript>
+    <script defer src="/nodetools/js/polyfill/intersection-observer.js"></script>
+    <script defer src="/nodetools/js/images.js"></script>
+    <script crossorigin data-src="/nodetools/preact/dist/preact.min.js"></script>
+    <script crossorigin data-src="/nodetools/comps/common.js"></script>
+    <script crossorigin data-src="/nodetools/comps/web.js"></script>
+    <script>
+      document.documentElement.classList.remove("no-js")
+    </script>
+  </head>
+  <body class="b-Mk b-Ol b-Op">
+    
+    <main class="b-Xl" role="main">
+      <div class="b-z">
+        <div class="b-B">
+          <div class="left-column b-hb">
+            <div class="b-kC">
+            
+                <img class="ImageHolder b-t b-vk" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" alt="@artdeco/nodetools logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'/%3E">
+                <noscript>
+                  <picture>
+                    <source srcset="/nodetools/img/splash-576.webp 576w,/nodetools/img/splash-319.webp 319w,/nodetools/img/splash-600.webp 600w"
+                      sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px" type="image/webp">
+                    <img class="b-t b-vk" onLoad="webploaded(this)" alt="@artdeco/nodetools logo" src="/nodetools/img/splash-576.jpg" srcset="/nodetools/img/splash-576.jpg 576w,/nodetools/img/splash-319.jpg 319w,/nodetools/img/splash-600.jpg 600w" sizes="(max-width: 575.8px) 100vw,(max-width: 767.8px) 510px,(max-width: 991.8px) 150px,(max-width: 1199.8px) 210px,255px">
+                  </picture>
+                </noscript>
+              </div>
+              <div class="b-kC">
+                <a title="The NodeTools Stack Website." class="GitHubBadge" id="cacd9"
+                  href="https://github.com/art-deco/nodetools">
+                  <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a>
+                
+                
+                
+              </div>
+              <h3 id="pages">Pages</h3>
+              <ul id="PagesMenu">
+                <li class><a data-file="index" href="/nodetools/">NodeTools: Node.JS Stack</a></li>
+                <li class>
+                  <a data-file="quick-start" href="/nodetools/quick-start-to-nodetools.html">Quick Start To NodeTools</a>
+                </li>
+                <li class>
+                  <a data-file="trapcss" href="/nodetools/trapcss-nodetools-tutorial.html">TrapCSS: NodeTools Tutorial</a>
+                </li>
+                <li class>
+                  <a data-file="trapcss2" href="/nodetools/trapcss-2-advanced-nodetools.html">
+                    TrapCSS 2: Advanced NodeTools</a>
+                </li>
+                <li class="Active">
+                  <a data-file="web" href="/nodetools/web-development-with-nodetools.html">
+                    Web Development With NodeTools</a>
+                </li>
+                <li class>
+                  <a data-file="babel" href="/nodetools/babel-when-open-source-is-not-free-sofware.html">
+                    Babel: When Open Source Is Not Free Sofware</a>
+                </li>
+                <li class>
+                  <a data-file="discussion" href="/nodetools/discussion-for-nodetools.html">Discussion for NodeTools</a>
+                </li>
+              </ul>
+              <h3 id="stack">Stack</h3>
+              <div class="List b-xq b-kC">
+                <a
+                  title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
+                  <span class="a"><em>MNP</em></span><span class="b">1.1.7</span></a>
+                <a
+                  title="Organises TypeDefs By Placing Them Into Types.Xml File To Be Embedded Into Source Code Compatible With VSCode And Google Closure Compiler, Generates Externs And Allows To Place Documentation In README Markdown." class="NPMBadge" href="https://www.npmjs.com/package/typal">
+                  <span class="a"><em>Typal</em></span><span class="b">1.26.2</span></a>
+                <a
+                  title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
+                  <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
+                <a
+                  title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a>
+                <a
+                  title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
+                  <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
+                <a
+                  title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
+                  <span class="a"><em>Documentary</em></span><span class="b">1.35.13</span></a>
+              </div>
+              <h3 id="web-software">Web Software</h3>
+              <div class="List b-xq b-kC">
+                <a
+                  title="2-Dependency Koa Web Server Compiled With Closure Compiler And Bundled With Essential Middleware: Static, Compress, Session, Cors, File Upload, Router And JSX Front End." class="NPMBadge" href="https://www.npmjs.com/package/@idio/idio">
+                  <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
+                <a
+                  title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.15</span></a>
+              </div>
+              <h3 id="misc">Misc</h3>
+              <ul>
+                <li><a href="https://gitter.im/node_tools/community">Join In Gitter Chat</a></li>
+                <li><a href="https://opencollective.com/nodetools">Fund Via Open Collective</a></li>
+                <li><a href="https://twitter.com/nodetools">Follow On Twitter</a></li>
+              </ul>
+              <div class="SideBarMenu sidebarshowing b-jr b-zp">
+                <div class="a">
+                  
+                                  <h3 id="on-this-page">On This Page</h3>
+                                  <ul class="OnThisPage">
+                                    <li data-heading="web-development"><a href="#web-development">Web Development</a></li>
+                                    <li data-heading="front-end-middleware"><a href="#front-end-middleware">Front-End Middleware</a></li>
+                                    <li data-heading="setting-up"><a href="#setting-up">Setting Up</a></li>
+                                    <li data-heading="jsx-application">
+                                      <a href="#jsx-application">JSX Application</a>
+                                      <ul><li data-heading="css-loader"><a href="#css-loader">CSS Loader</a></li></ul>
+                                    </li>
+                                    <li data-heading="universal-types"><a href="#universal-types">Universal Types</a></li>
+                                    <li data-heading="accessing-server"><a href="#accessing-server">Accessing Server</a></li>
+                                    <li data-heading="compilation"><a href="#compilation">Compilation</a></li>
+                                    <li data-heading="additional-points">
+                                      <a href="#additional-points">Additional Points</a>
+                                      <ul><li data-heading="external-jsx"><a href="#external-jsx">External JSX</a></li><li data-heading="ssr-testing"><a href="#ssr-testing">SSR Testing</a></li><li data-heading="headless-chrome"><a href="#headless-chrome">Headless Chrome</a></li></ul>
+                                    </li>
+                                    <li data-heading="comments"><a href="#comments">Comments</a></li>
+                                  </ul>
+                                  <h3 id="share-nodetools">Share NodeTools</h3>
+                                  <span class="b-xq b-Hk" id="c8169"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+                                  
+                                  <div class="b-xq" data-loading id="updates-div">Loading web-push...</div>
+                                  <details id="NewsletterDetails" data-loading>
+                                    <summary>
+                                      <h3 id="newsletter">Newsletter</h3>
+                                    </summary>
+                                    <div id="emails-div">Loading widget...</div>
+                                  </details>
+                                  <div class="b-jq" data-loading>
+                                    <h3 class="b-Gk" id="package-manager">Package Manager</h3>
+                                    <form class="b-Gk" id="ca13e">
+                                      <select><option value="yarn">yarn</option><option selected value="npm">npm</option></select>
+                                    </form>
+                                  </div>
+                                
+                </div>
+                <a data-loading id="HideMenu" style="color:grey!important;" href="#">hide menu</a>
+                <a data-loading id="ShowMenu" style="color:grey!important;" href="#">show menu</a>
+              </div>
+          </div>
+          
+          <div class="right-column b-xq b-nb" id="Content">
+            
+            
+            <div data-section id="web-development">
+            <h1>Web Development With NodeTools</h1>
+            
+            <p>The primary aim of <em>NodeTools</em> is to help package makers with back-end packages. <span class="tm">NodeTools 2</span> will be based on the groundwork from the first version, and facilitate rapid web development, via more advanced tools such as:</p>
+            
+            <ul>
+              <li><strong>Splendid</strong>, a static-website compiler for hybrid HTML + JSX pages that are written as static HTML, and only include dynamic components where they need to. There's also great support for Bootstrap: <p><img alt="bootstrap autocompletion support" data-io>
+            <noscript><img alt="bootstrap autocompletion support" src="/nodetools/pages/web/img/splendid.png"></noscript></p></li>
+              <li><strong>Idio</strong>, a full-scale web-server with all essential middleware that was built with a compiler and has only 2 dependencies and provides a front-end middleware for serving JSX and <span class="tm">node_modules</span>.</li>
+            </ul>
+            
+            <p>We plan to release <strong>Irio</strong> which is the combination of the two of the above to become world's tidiest, most intuitive, professional web-framework. But while the work is in progress, let me just give a few hints of how to develop client-side JS code and compile it with <em>Closure</em>, based on some packages that I've made.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='15'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/0.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            <div data-section id="front-end-middleware">
+            <h2>Front-End Middleware</h2>
+            
+            <p>Traditionally, you would use complex build tools like <em>WebPack</em> to package your code and run a development server. Since all current browsers are mature enough to support modern JavaScript, including modules, destructuring, <em>etc</em>, I don't see the need to transpile your code when developing it. You can just serve it as it is, with only 2 exceptions:</p>
+            
+            <ul>
+              <li>When importing from <span class="tm">node_modules</span>, the imports need to be renamed from <span class="tm2">import { test } from 'example'</span> to <span class="tm2">import { test } from '/node_modules/example/src/index.mjs'</span>.</li>
+              <li>JSX is not understood by the browser, therefore needs to be modified being being served.</li>
+            </ul>
+            
+            <p>Those are not hard requirements. When a browser requests a file, instead of serving the file from the filesystem, we can modify it by implementing a server middleware, that would adapt the file to meet the two requirements from the above. This middleware is available via the <span class="tm">@idio/frontend</span> package, and is able to serve <span class="tm">node_modules</span> and transpile JSX with RegExp. There are some limitations to JSX until <em>NodeTools 2</em> are properly released, e.g.,</p>
+            
+            <ul>
+              <li>There are no source maps for debugging.</li>
+              <li>There's no hot module reload.</li>
+              <li>JSX does not support block comments.
+            <pre id="ccdbf"><code class="javascript hljs">render(&lt;div&gt;
+  {/* hello world */}
+&lt;/div&gt;)</code></pre>
+              </li>
+              <li>No curly braces in components' attributes are allowed <span class="tm">render(&lt;div title=&quot;hello{world}&quot;/&gt;)</span>.</li>
+              <li>No <span class="tm">&gt;</span> sign inside components is permitted.</li>
+            </ul>
+            
+            <p>It's fair enough if those limitations might deter you from using our method. On the other hand, you can literally get going with only 3 new folders in you <span class="tm">node_modules</span> (<em>Idio</em> web server) so if the simplicity of use outweighs these drawbacks, you can give it a go. The complexity of the project doesn't matter, and it's primarily the hot-module reload that might be the missing link, but we'll make it possible ASAP.</p>
+            
+            <p>After your JS code is ready, you can compile it into a single file with <em>Closure Compiler</em>. If you used JSX, we'll transpile it with <em>ÀLaMode</em>, and put the intermediary code in the temp folder. The compiler will also add necessary polyfills for the target language (default is ES5) and update newer constructs such as <span class="tm2">async/await</span> and <span class="tm2">{ destructuring }</span> so that it can run in older browsers.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/1.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="setting-up">
+            <h2>Setting Up</h2>
+            
+            <p>There's a more complex <span class="tm">mnpjs/idio</span> template that is a template for a web-server. However, it's not the purpose of this article to show how to create a full-stack application. I'll leave it for another time. I just wanted to show how to develop and compile a front-end.</p>
+            
+            <p>As I mentioned, you'll need the <span class="tm">@idio/idio</span> server (a Koa fork itself, but completely rewritten for Closure). Let's install it with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-cmd">i</span><span class="yarn-cmd">add</span> <span>@idio/idio</span></span></span>. We'll then want to create a basic configuration to start it:</p>
+            
+            <pre id="ccdbf11"><code class="javascript hljs">import idio from '@idio/idio'
+import render from '@depack/render'
+import api from './routes/api'
+
+(async () =&gt; {
+  const PROD = process.env.CLOSURE
+  const { app, url, router } = await idio({
+    static: {
+      root: 'docs',
+      use: PROD,
+    },
+    frontend: {
+      directory: 'frontend',
+      use: !PROD,
+    },
+  })
+  router.get('/', (ctx) =&gt; {
+    const script = PROD ?
+      &lt;script src="index.js"/&gt; :
+      &lt;script type="module" src="frontend/"/&gt;
+    ctx.body = render(&lt;div&gt;
+      &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;div id="app" /&gt;
+      &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/preact/8.5.3/preact.umd.js"/&gt;
+      {script}
+    &lt;/div&gt;, {
+      addDoctype: true,
+    })
+  })
+  router.get('/api', api)
+  app.use(router.routes())
+  console.log(url)
+})()</code></pre>
+            
+            <p>This is a JSX file, meaning that we can render JSX components statically, using <span class="tm">@depack/render</span> package. It is a fork of <span class="tm">preact-render-to-html-string</span> with a few improvements, like the ability to add the doctype automatically. <em>Idio</em> is configured from the first argument called <em>MiddlewareConfig</em>. It accepts settings for all supported middleware. We'll only want 2 middleware: <span class="tm2">front-end</span> for development, and <span class="tm2">static</span>, when it comes to testing the production bundle of our JS code.</p>
+            
+            <p><span class="tm">idio</span> method returns a URL and a router instance, that we use to set up the index path, and an api path. The index path will simply display a welcome message, and mount our component. Because we're using Preact, we'll want to make sure the library is available on the window scope, by installing it via a CDN. We could compile Preact into our library itself, however it would produce a lot of warnings as its annotations haven't been adapted to <em>Closure</em> in its source code. For development, we'll serve JavaScript as a module from <span class="tm">frontend/index.jsx</span> file, but after we've built the bundle, we'd want to test if it's working from the <span class="tm">docs</span> folder.</p>
+            
+            <p>Our API route from <span class="tm">routes/api</span> is used for dynamic requests from the front-end application. We'll come back to it in a second.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/2.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            
+            <div data-section id="jsx-application">
+            <h2>JSX Application</h2>
+            
+            <p>The application that we create is very simple. It's just going fetch some data from the server, and display it to the user. Since JSX is the most convenient way for web development, we'll use it for our app. Data bindings and ability to write HTML within JS give such massive advantage over plain JS that it's pretty much essential to be using it. Likely, we don't need <em>Babel</em> or anything else to transpile JSX anymore, since <em>ÀLaMode</em> can do it with a simple transpile based on regexes. Sure, it might fail occasionally for edge cases, but I haven't had any issues with it.</p>
+            
+            <pre id="ccdbf12"><code class="javascript hljs">import { render, Component } from 'preact'
+import fetch from 'unfetch'
+import './style.css'
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      data: null,
+      /** @type {_nodetools.User} */
+      user: null,
+    }
+  }
+  render() {
+    const { error, loading, user } = this.state
+    if (loading) return (&lt;div&gt;Loading...&lt;/div&gt;)
+    if (error) return (&lt;div className="Error"&gt;Error: {error}&lt;/div&gt;)
+    return (&lt;div&gt;
+      Hello From Preact Component
+      {user &amp;&amp; ', '}
+      {user &amp;&amp; &lt;span className="UserName"&gt;{user.name}&lt;/span&gt;}
+    &lt;/div&gt;)
+  }
+  componentDidMount() {
+    this.fetch()
+  }
+  async fetch() {
+    this.setState({ loading: true })
+    try {
+      const res = await fetch('/api')
+      const { error, user } =
+        /** @type {!_nodetools.ServerResponse} */ (await res.json())
+      if (error) return this.setState({ error })
+      this.setState({ user })
+    } catch(err) {
+      let error = err
+      if (err instanceof Event) {
+        error = { message: 'Network error' }
+      }
+      this.setState({ error })
+    } finally {
+      this.setState({ loading: false })
+    }
+  }
+}
+
+render(&lt;App /&gt;, window['app'])
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').ServerResponse} _nodetools.ServerResponse
+ */
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('../types').User} _nodetools.User
+ */</code></pre>
+            
+            <p>We'll render the app on the <span class="tm">window.app</span> element (it's available on <span class="tm">window</span> since we gave the div the <span class="tm2">app</span> id). I prefer to make use of <span class="tm">unfetch</span> package as <span class="tm2">fetch</span> API is not supported by older browsers, and <em>Closure</em> doesn't provide a polyfill for it.</p>
+            
+            <p>As soon as the main component mounts, it will attempt to fetch data from the server. It then can be in 3 states:</p>
+            
+            <ul>
+              <li><strong>loading</strong>, when a request has been sent, but the response not received yet.</li>
+              <li><strong>error</strong>, if there was a server error, or an error during the request. We need to check if the caught error is an event, because in the <span class="tm">fetch</span> library, it could be the case.</li>
+              <li><strong>data</strong>, when data is received.</li>
+            </ul>
+            
+            <p>In our render method, we therefore extract the current state, and display the appropriate information. Because we used the <span class="tm">setState</span> method, the application will be re-rendered automatically whenever the state changes.</p>
+            
+            <p>We also used an external type, called <span class="tm">_nodetools.ServerResponse</span>. We used casting since the assignments were made via the destructuring, so we couldn't just annotate it above the function.</p>
+            
+            <pre id="ccdbf1"><code class="javascript hljs">const { error, user } =
+  /** @type {!_nodetools.ServerResponse} */ (await res.json())`</code></pre>
+            
+            <p>This is when <em>NodeTools</em> with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the <span class="tm">types.xml</span> file.</p>
+            
+            <pre id="c16f7"><code class="xml hljs">&lt;types ns="_nodetools"&gt;
+  &lt;record name="ServerResponse"&gt;
+    &lt;prop type="!_nodetools.User" name="user" opt&gt;
+      The user object.
+    &lt;/prop&gt;
+    &lt;prop string name="error"&gt;
+      The server-side error.
+    &lt;/prop&gt;
+  &lt;/record&gt;
+  &lt;record name="User"&gt;
+    &lt;prop string name="name"&gt;
+      The name of the user.
+    &lt;/prop&gt;
+    &lt;prop string name="login"&gt;
+      The unique login of the user.
+    &lt;/prop&gt;
+  &lt;/record&gt;
+&lt;/types&gt;</code></pre>
+            
+            <p>We define a generic <span class="tm">ServerResponse</span> type that contains either an error, or some data, according to the route. Doing it this way, allows to implement a fetch function in a single place, and then access the required property, such as <span class="tm">user</span> from within any component.</p>
+            
+            <div data-section id="css-loader">
+            <h3>CSS Loader</h3>
+            
+            <p>Importing styles is also supported via <span class="tm">frontend</span> middleware. It will serve the CSS file as a JavaScript function, that adds the style to DOM dynamically.</p>
+            
+            </div>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/3.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            
+            <div data-section id="universal-types">
+            <h2>Universal Types</h2>
+            
+            <p>The types that we're using are applicable both for server-side an client-side, therefore we can reuse them by importing from both places. In code that's going to be compiled with <em>Closure</em> though, we need to add the <span class="tm">@suppress</span> annotation, otherwise the compiler will print a warning. Although the compiler won't discover those types from source code, we'll pass it to it via externs. For back-end, we use simple <span class="tm">import</span>. Below is our API route.</p>
+            
+            <pre id="ccdbf13"><code class="javascript hljs">export default function API (ctx) {
+  /** @type {_nodetools.User} */
+  const user = {
+    login: 'test',
+    name: 'user',
+  }
+  // if error: ctx.body = { error }
+  ctx.body = { user }
+}
+
+/**
+ * @typedef {import('../types').User} _nodetools.User
+ */</code></pre>
+            
+            <p>The fact that we import types, provides us with the desired experience: we can invoke auto-completions on the created object:</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="name auto-completion" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='405'/%3E" data-io>
+              <noscript><img class="b-t b-bk b-vk" alt="name auto-completion" src="/nodetools/pages/web/img/name.gif"></noscript>
+            </p>
+            
+            <p>For frontend, it is the same, as we annotate the <span class="tm">state.user</span> object with the user type. This not only prevents the compiler from mangling destructured property names of the received object, but also allows us to access the hints.</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="user type hint in front-end" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='270'/%3E" data-io>
+              <noscript>
+                <img class="b-t b-bk b-vk" alt="user type hint in front-end" src="/nodetools/pages/web/img/user.gif">
+              </noscript>
+            </p>
+            
+            <p><em>TypeScript</em> is said to be JavaScript that scales, that is great for large-scale app development, exactly because it provides convenient way to work with types for back-end and front-end. But I don't believe that using a new language and a proprietary typings infrastructure, is a solution. <em>NodeTools</em> is a stack for pure JS development, and we've achieved the same result with JSDoc annotations. Keeping types in a separate place and then compiling them, and importing from places we need, works just as well and allows to stay <strong>independent</strong>.</p>
+            
+            <p>The types for <em>VSCode</em> are generated into the <span class="tm">types/index.js</span> file:</p>
+            
+            <pre id="ccdbf14"><code class="javascript hljs">export {}
+
+/* typal types/index.xml namespace */
+/**
+ * @typedef {_nodetools.ServerResponse} ServerResponse `＠record`
+ * @typedef {Object} _nodetools.ServerResponse `＠record`
+ * @prop {!_nodetools.User} [user] The user object.
+ * @prop {string} error The server-side error.
+ * @typedef {_nodetools.User} User `＠record`
+ * @typedef {Object} _nodetools.User `＠record`
+ * @prop {string} name The name of the user.
+ * @prop {string} login The unique login of the user.
+ */
+</code></pre>
+            
+            <p>We added <span class="tm">export {}</span> at the top to make it possible to import types from other files, which is otherwise impossible. The <span class="tm">namespace</span> argument in the <span class="tm2">typal</span> marker is needed to preserve namespaces, which a convention in <em>NodeTools</em> since we need to match the externs' namespace. You can omit namespace altogether for simple applications but it's just how I do things.</p>
+            
+            <pre id="ccdbf15"><code class="javascript hljs">/**
+ * @fileoverview
+ * @externs
+ */
+
+/* typal types/index.xml externs */
+/** @const */
+var _nodetools = {}
+/**
+ * @record
+ */
+_nodetools.ServerResponse
+/**
+ * The user object.
+ * @type {(!_nodetools.User)|undefined}
+ */
+_nodetools.ServerResponse.prototype.user
+/**
+ * The server-side error.
+ * @type {string}
+ */
+_nodetools.ServerResponse.prototype.error
+/**
+ * @record
+ */
+_nodetools.User
+/**
+ * The name of the user.
+ * @type {string}
+ */
+_nodetools.User.prototype.name
+/**
+ * The unique login of the user.
+ * @type {string}
+ */
+_nodetools.User.prototype.login
+</code></pre>
+            
+            <p>Any time we updates types.xml file, we'll run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span></span> command to recompile types and externs. By the time <em>Node Tools 2</em> is released, we'll have a watch mode also, but for now we need to make use of scripts manually:</p>
+            
+            <pre id="cb9de1"><code class="json hljs">{
+  "name": "nodetools-web",
+  "scripts": {
+    "start": "alanode index.jsx",
+    "closure": "CLOSURE=1 yarn start",
+    "web": "depack frontend -o docs -a -H -E -i --externs types/externs.js",
+    "d": "yarn-s d1 externs",
+    "d1": "typal types/index.js -u",
+    "externs": "typal types/externs.js -e"
+  },
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "@externs/preact": "^1.2.9",
+    "depack": "^1.1.1",
+    "preact": "8.5.3",
+    "unfetch": "^4.1.0",
+    "yarn-s": "^1.2.3"
+  }
+}
+</code></pre>
+            
+            <p>The server is then started with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>start</span></span></span> command.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/4.svg"></noscript></a>
+            </p>
+            </div>
+            
+            
+            
+            <div data-section id="accessing-server">
+            <h2>Accessing Server</h2>
+            
+            <p>We now can access our app from the browser:</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="preview of the app" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='375'/%3E" data-io>
+              <noscript><img class="b-t b-bk b-vk" alt="preview of the app" src="/nodetools/pages/web/img/chrome.gif"></noscript>
+            </p>
+            
+            <p>The component rendered correctly, and displayed the data received from the server. If we check the network requests, we can see how the frontend middleware has transformed the <span class="tm">index.jsx</span> file:</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="devtools shows transpilation" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='770' height='528'/%3E" data-io>
+              <noscript>
+                <img class="b-t b-bk b-vk" alt="devtools shows transpilation" src="/nodetools/pages/web/img/devtools.gif">
+              </noscript>
+            </p>
+            
+            <p>The imports have been updated to point to the <span class="tm">/node_modules/</span> path, rather than simple <span class="tm">package-name</span> notation. Moreover, the JSX syntax has been updated to invoke the <span class="tm2">h</span> pragma function from <em>Preact</em>. <em>Preact</em> is the default choice for frontend, but if you wanted to use <em>React</em>, you'd have to specify the <strong>pragma</strong> property in the <span class="tm">frontend</span> config.</p>
+            
+            <p>The style has been updated into a JS file that calls <span class="tm">__$styleInject</span> when imported:</p>
+            
+            <pre id="ccdbf2"><code class="javascript hljs">function __$styleInject(css = '') {
+  const head = document.head
+  const style = document.createElement('style')
+  style.type = 'text/css'
+  if (style.styleSheet){
+    style.styleSheet.cssText = css
+  } else {
+    style.appendChild(document.createTextNode(css))
+  }
+  head.appendChild(style)
+}
+const style = `.Error {
+  color: red;
+}
+.UserName {
+  color: darkcyan;
+}`
+__$styleInject(style)</code></pre>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="compilation">
+            <h2>Compilation</h2>
+            
+            <p>After we made sure that the app is working correctly, I want to compile it with <em>Closure</em>. <em>Depack</em> supports JSX apps, and will transpile them prior to compilation into the <strong>depack-temp</strong> folder.</p>
+            
+            <p>I'll call the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>web</span></span></span> script from <strong>package.json</strong> &mdash; <span class="tm2">depack frontend -o docs -a -H -E -i --externs types/externs.js</span>. The arguments mean:</p>
+            
+            <ul>
+              <li><strong>frontend</strong>, the path to the entry file, short for <strong>frontend/index.jsx</strong>;</li>
+              <li><strong>-o docs</strong>, the output path (either full file, or just dir, in which case the basename of the input will be used);</li>
+              <li><strong>-a</strong>, advanced compilation, one of the best features of the compiler that minifies the source.</li>
+              <li><strong>-H</strong>, tells <em>Depack</em> to add Preact's pragma.</li>
+              <li><strong>-E</strong>, instructs <em>Depack</em> to use <span class="tm2">preact</span> from externs, treating it as a library that is already given in the scope. During the process, <em>Depack</em> will monkey-patch <span class="tm">node_modules/preact</span> and restore it at the end. This is needed since some 3rd party packages may reference <span class="tm2">preact</span> and we don't transpile those.</li>
+              <li><strong>-i</strong>, produces an IIFE function, to prevent polluting and conflicts with the global scope.</li>
+              <li><strong>--externs types/externs.js</strong>*, those are the generated externs to notify the compiler of the types information.</li>
+            </ul>
+            
+            <p>The bundle and its source maps will be written to the <span class="tm">docs</span> folder.</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="compilation process" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='827' height='649'/%3E" data-io>
+              <noscript><img class="b-t b-bk b-vk" alt="compilation process" src="/nodetools/pages/web/img/2.gif"></noscript>
+            </p>
+            
+            <p>If there were some problems with types that <em>Closure</em> could pick up, they will be shown in the output. We saved our temp files in the <span class="tm">depack-temp</span>, so it won't be possible to jump to the error since the <strong>temp</strong> folder is deleted by the end of the process (we'll update <em>Depack</em> to point to the real src in the next version). For example, the warning we get here, is that the second argument to fetch is compulsory, which is not true and it's a problem with how <span class="tm2">unfetch</span> was annotated rather than our code.</p>
+            
+            <p>To test whether bundling was successful, we will start the server with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>closure</span></span></span> command that sets the <span class="tm">CLOSURE=1</span> environment variable, which is then read by the server so that the our app can be served from <strong>docs/index.js</strong> rather than <strong>frontend/index.jsx</strong> which was used only for development.</p>
+            
+            <p>When we access the server again, we are served with the compiled JS bundle, that also includes our CSS as a string.</p>
+            
+            <p>
+              <img class="b-t b-bk b-vk" alt="compiled js is served" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='770' height='528'/%3E" data-io>
+              <noscript>
+                <img class="b-t b-bk b-vk" alt="compiled js is served" src="/nodetools/pages/web/img/dev-index.gif">
+              </noscript>
+            </p>
+            
+            <p>That's all folks we just created a simple <em>Preact</em> application using a front-end middleware from <em>Idio</em> and compiled it using <em>Closure Compiler</em>. We also typed both front-end and back-end with JSDoc so that we could use pure JavaScript. In addition, types that we produced, could be embedded into documentation of our package using <em>Documentary</em> from <em>NodeTools</em>, however I'll skip talking about it here.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/6.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="additional-points">
+            <h2>Additional Points</h2>
+            
+            <p>There are a few things worth mentioning at the end.</p>
+            
+            <div data-section id="external-jsx">
+            <h3>External JSX</h3>
+            
+            <p><em>Depack</em> doesn't transpile JSX in published packages, therefore they need to make sure their published code is transpiled into standard JavaScript with <span class="tm">h</span> pragma calls. This can be done with <em>ÀLaMode</em>. For example, the <span class="tm2">@depack/form</span> package is a library to create Bootstrap forms that was written in JSX, e.g.,</p>
+            
+            <pre id="ccdbf3"><code class="javascript hljs">import { Component } from 'preact'
+
+export default class Form extends Component {
+  // ... component code
+  render(props) {
+    const { children, formRef, onSubmit, onChange, ...prop } =
+      /** @type {!_depackForm.FormProps} */ (props)
+    return &lt;form ref={formRef} onSubmit={onSubmit} {...prop}&gt;
+      {children}
+    &lt;/form&gt;
+  }
+}</code></pre>
+            
+            <p>It is then transpiled into the <strong>build</strong> folder, however <span class="tm2">imports</span> stay as imports, and don't become <span class="tm">require</span> calls. If we were publishing back-end components, we'd also transpile <span class="tm2">imports</span> but since Closure can understand them, we keep it.</p>
+            
+            <pre id="ccdbf4"><code class="javascript hljs">import { h } from 'preact'
+import { Component } from 'preact'
+
+export default class Form extends Component {
+  // ... component code
+  render(props) {
+    const { children, formRef, onSubmit, onChange, ...prop } =
+      /** @type {!_depackForm.FormProps} */ (props)
+    return    h('form',{...prop,'ref':formRef, 'onSubmit':onSubmit},
+      children,
+    )
+  }
+}</code></pre>
+            
+            <p>However, because we want <em>Closure</em> to read the transpiled code, our <span class="tm2">module</span> field should really point to the <strong>build</strong> dir (module takes precedence over main in <em>Depack</em>):</p>
+            
+            <pre id="cb9de"><code class="json hljs">{
+  "main": "src/index.jsx",
+  "module": "build/index.js"
+}</code></pre>
+            
+            <p>And the <span class="tm2">main</span> will point to the source code, which is not really necessary, but I think <span class="tm">frontend</span> at the moment still reads the <span class="tm">main</span> field, and will be able to transpile the source code (I now realise this is redundant, and <span class="tm">main</span> should probably become require-transpiled code for server-side rendering 👍).</p>
+            
+            <p>Another question is how to test front-ends with <em>NodeTools</em>. As I said, I'm only working on the next version right now, but there is are a few strategies for testing, that is, server-side rendering of components, and also using headless chrome to render components in Chrome, and then get the snapshot of the DOM and send it back to the server for comparison against snapshots.</p>
+            
+            </div>
+            
+            <div data-section id="ssr-testing">
+            <h3>SSR Testing</h3>
+            
+            <p>For basic testing of components written in <em>Preact</em>, you can take advantage of the <a href="https://github.com/dpck/context"><em>JSXContext</em></a> that can transform an input string into a JSX VNode, that can then be rendered. Using this method, you can declare your components using simple HTML from masks, and compare rendered result to the expected output.</p>
+            
+            <pre id="ccdbf5"><code class="javascript hljs">// test/mask/default.js
+
+import makeTestSuite from '@zoroaster/mask'
+import JSXContext from '@depack/context'
+import Form, * as Form2 from '../../src'
+
+export default makeTestSuite('test/result/default', {
+  /**
+   * @param {JSXContext} context
+   */
+  getResults({ getVNode, render }) {
+    const vnode = getVNode(this.input, {
+      Form, ...Form2,
+    })
+    const res = render(vnode, {
+      pretty: true,
+    })
+    return `(${res})`
+  }
+})</code></pre>
+            
+            <p>The mask result in JSX format will then use a preamble to import components for syntax highlighting and auto-completions, and define inputs as JSX methods and outputs as HTML code. I've surrounded each block with <span class="tm">()</span> so that there's no syntax errors underlined with red in the file. Mask results are used only to define inputs/outputs, so despite the fact that the format of this file is JSX, it's only so to enable syntax highlighting.</p>
+            
+            <pre id="ccdbf6"><code class="javascript hljs">// test/result/default/form-group.jsx
+
+import { TextArea, Select, Form, FormGroup, Input } from '../../src'
+
+// default FormGroup
+(&lt;FormGroup label="test" help="ok"&gt;
+  &lt;Input placeholder="test"/&gt;
+&lt;/FormGroup&gt;)
+
+/* expected */
+(&lt;div class="form-group"&gt;
+  &lt;label for="i70984"&gt;test&lt;/label&gt;
+  &lt;input placeholder="test"
+    class="form-control" type="text"
+    aria-describedby="hi70984" id="i70984" /&gt;
+  &lt;small id="hi70984"
+    class="form-text text-muted"&gt;ok
+  &lt;/small&gt;
+&lt;/div&gt;)
+/**/
+
+// details FormGroup
+(&lt;FormGroup label="test" help="ok" details&gt;
+  &lt;Input placeholder="test"/&gt;
+&lt;/FormGroup&gt;)
+
+/* expected */
+(&lt;details class="form-group"&gt;
+  &lt;summary&gt;
+    &lt;label for="i70984"&gt;test&lt;/label&gt;
+  &lt;/summary&gt;
+  &lt;input placeholder="test"
+    class="form-control" type="text"
+    aria-describedby="hi70984" id="i70984" /&gt;
+  &lt;small id="hi70984"
+    class="form-text text-muted"&gt;ok
+  &lt;/small&gt;
+&lt;/details&gt;)
+/**/</code></pre>
+            
+            </div>
+            
+            <div data-section id="headless-chrome">
+            <h3>Headless Chrome</h3>
+            
+            <p>The second strategy, is to spawn a headless browser as a background process, setup a server that will return some HTML with script tags that invoke JavaScript to render certain components on elements. Each test will open a new page, with slightly different setup routine, wait for JS to execute, and send the element's outer HTML back to the server. We'll use a <em>RemoteChrome</em> context to connect to the browser:</p>
+            
+            <pre id="ccdbf7"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
+import { c, b } from 'erte'
+
+export default class RemoteChrome {
+  async _init() {
+    let client
+    client = await CDP({
+      host: '127.0.0.1',
+      port: '9222',
+    })
+    const { Network, Page, Runtime } = client
+    await Network.enable()
+    await Page.enable()
+    this.client = client
+    this._Page = Page
+    this._Runtime = Runtime
+    this.Network = Network
+    console.log('[%s]: %s', c('RemoteChrome', 'red'), b('Page enabled', 'green'))
+  }
+  static get _timeout() {
+    return 10000
+  }
+  /**
+   * The enabled page, write types for that
+   */
+  get Page() {
+    return this._Page
+  }
+  /**
+   * The runtime.
+   */
+  get Runtime() {
+    return this._Runtime
+  }
+  async _destroy() {
+    if (this.client) {
+      await this.client.close()
+    }
+  }
+}</code></pre>
+            
+            <p>We'll also need the <em>Idio</em> context that will start a server to return HTML code.</p>
+            
+            <pre id="ccdbf8"><code class="javascript hljs">import idio from '@idio/idio'
+import frontend from '@idio/frontend'
+import render from '@depack/render'
+import jsx from '@a-la/jsx'
+
+export default class IdioContext {
+  /**
+   * The context will start a server and serve the code given
+   * @param {import('@idio/idio').MiddlewareConfig} config
+   */
+  async start(config = {}, port = null) {
+    const { input, pre = '', ...conf } = config
+    const inv = jsx(input, {
+      quoteProps: 'dom',
+    })
+    const pree = jsx(pre, {
+      quoteProps: 'dom',
+    })
+    const { app, url } = await idio({
+      frontend: {
+        async middlewareConstructor() {
+          const f = await frontend({
+            directory: ['src', 'test/context/idio', 'build'],
+          })
+          return f
+        },
+        use: true,
+      },
+      async serveJSX(ctx) {
+        ctx.body = render(&lt;html&gt;
+          &lt;head&gt;
+            &lt;meta charset="utf-8"/&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/&gt;
+
+            &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"/&gt;
+            &lt;title&gt;Hello, world!&lt;/title&gt;
+          &lt;/head&gt;
+          &lt;script type="module" src="test/context/idio/math-random.js" /&gt;
+          &lt;script type="module" src="test/context/idio/format.js" /&gt;
+          &lt;script type="module" dangerouslySetInnerHTML={{
+            __html: `import { h, render, Component } from '/node_modules/preact/src/preact.js'
+/**/ import Form, { FormGroup, Input, TextArea, Select } from '/${process.env.ALAMODE_ENV=='test-build' ? 'build' : 'src'}/'
+${pree}
+const inv = ${inv}
+render(inv, document.body)
+`,
+          }}&gt;
+          &lt;/script&gt;
+        &lt;/html&gt;, { addDoctype: 1, pretty: 1 })
+      },
+      ...conf,
+
+    }, { port })
+    this.app = app
+    this.url = url
+    return this.url
+  }
+  async _destroy() {
+    if (this.app)
+      await this.app.destroy()
+  }
+}</code></pre>
+            
+            <p>This context includes some utilities on the page, for example, <a
+              href="https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/idio/format.js">
+              for formatting</a>, and calls Preact's render method on the invocation passed from tests. The mask setup is then the following:</p>
+            
+            <pre id="ccdbf9"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+import { equal } from '@zoroaster/assert'
+import IdioContext from '../context/Idio'
+import RemoteChrome from '../context/RemoteChrome'
+
+export const Chrome = makeTestSuite('test/result/chrome.jsx', {
+  /**
+   * @param {RemoteChrome} i
+   * @param {IdioContext} i
+   */
+  async getResults({ Page, Runtime, client }, { start }) {
+    const { action, pre } = this
+    const url = await start({
+      pre,
+      input: this.input,
+    })
+
+    await Page.navigate({ url })
+    await Page.loadEventFired()
+    let actionValue
+    if (action) {
+      const s = await Runtime.evaluate({ expression: action,
+        awaitPromise: true })
+      handleError(s)
+      if (s.result) actionValue = s.result.value
+    }
+    const res = await Runtime.evaluate({ expression: 'window.idio.format(document.querySelector(\'html body\'), 0).innerHTML.trim()' })
+    // IF A TEST IS TIMING OUT, DEBUG MANUALLY:
+    // console.log('', url)
+    // await new Promise((r) =&gt; setTimeout(r, 1000000))
+    const { result: { value } } = res
+    const v = value.replace(/(&lt;input[\s\S]*?)&gt;/g, (m, i) =&gt; {
+      return `${i} /&gt;`
+    })
+    return { actionValue, actual: `(${v})` }
+  },
+  mapActual({ actual }) {
+    return actual
+  },
+  assertResults({ actionValue }, { actionValue: av }) {
+    if (av) equal(`'${actionValue}'`, av)
+  },
+  context: IdioContext,
+  persistentContext: [RemoteChrome],
+})</code></pre>
+            
+            <p>The <span class="tm2">action</span> and <span class="tm2">pre</span> are properties of the mask result which wil be shown next. We start a server by passing these properties, and make the browser navigate to that prepared page, waiting until it's fully loaded. We then evaluate some JS from <span class="tm2">action</span> if it was passed, and grab the <span class="tm">body</span> element from the DOM, while also formatting it using the <span class="tm2">format</span> utility. We then return the result of the action (if it was given), and the HTML. The HTML is compared against the expected output using simple string comparison via mask result, while the action value is asserted on using the standard <span class="tm">equal</span> method from the assertion library in the mask itself.</p>
+            
+            <p>Example mask result:</p>
+            
+            <pre id="ccdbf10"><code class="javascript hljs">/* eslint-env browser */
+import { Component } from 'preact'
+import { TextArea, Select, Form, FormGroup, Input } from '../../src'
+
+// Form
+(&lt;Form&gt;&lt;/Form&gt;)
+
+/* expected */
+(&lt;form&gt;&lt;/form&gt;)
+/**/
+
+// Reset
+(&lt;Form&gt;&lt;App /&gt;&lt;/Form&gt;)
+
+/* pre */
+class App extends Component {
+  constructor() {
+    super()
+    this.state = { value: 'hello-world' }
+  }
+  render() {
+    const { value } = this.state
+    return (&lt;Input required type="text" value={value} onClick={() =&gt; {
+      this.setState({ value: 'new value' })
+    }}/&gt;)
+  }
+}
+async function clickInput() {
+  const input = document.querySelector('input')
+  input.click()
+  await new Promise(r =&gt; setTimeout(r, 1))
+  return input.value
+}
+window.clickInput = clickInput
+/**/
+
+/* action */
+clickInput()
+/**/
+/* actionValue */
+'new value'
+/**/
+
+/* expected */
+(&lt;form&gt;
+  &lt;input required="" class="form-control" type="text" /&gt;
+&lt;/form&gt;)
+/**/</code></pre>
+            
+            <p>The first test is pretty simple rendering of an empty form element. The second test creates a component, and makes the <span class="tm">clickInput</span> method available to the window scope. When the page is loaded, via the action we click the input, which changes the state of the Form component, triggering and update of the input value because of internal logic. Because this process is async, we had to wait 1ms in the <span class="tm">clickInput</span> method, which then grabs the new value of the input, and returns it for assertion in the mask. This way, we've tested interaction with the component from a real browser. The rendered code is also compared to the expected one.</p>
+            
+            <p>There are a few more examples that you can use for reference:</p>
+            
+            <ul>
+              <li><span class="tm2">Exif</span> <a href="https://github.com/demimonde/exif/tree/master/test">package</a> that reads metadata of files from a headless browser (the testing API is available via <span class="tm2">@contexts/chrome</span> now). It will also start the server, prepare test pages from the mask, navigate to them, execute <span class="tm">window.test</span> method and return the result.</li>
+              <li><span class="tm2">exif2css</span> <a href="https://github.com/demimonde/exif2css/tree/master/test">package</a> that puts an image on a page, and uses its metadata EXIF information to rotate into correct position with CSS. Then, a screenshot of the page is taken using the same <span class="tm2">@contexts/chrome</span> context, and compared against the gold standard from fixtures using <span class="tm2">node-resemble-js</span> package that highlights the differences. The threshold for passing tests is 99%, so that if the library became broken, the similarity measure would fall below that.<p><img class="b-vk b-t" alt="image difference testing" data-io>
+            <noscript><img class="b-vk b-t" alt="image difference testing" src="/nodetools/pages/web/img/1_diff.png"></noscript></p></li>
+            </ul>
+            
+            <p>I hope these examples can provide starting points for implementing your own testing routines. <em>NodeTools 2</em> will definitely standardise browser testing.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='53' height='12'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/7.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="comments">
+            <h2>Comments</h2>
+            
+              <div id="c8b27">Loading comments...</div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="b-ns">
+      &copy; <a href="https://www.artd.eco">Art Deco™</a>, 2020
+    </footer>
+    <script>(function(){function b(){if(0<c.length){var a=c.shift();a.src=a.getAttribute("data-src");a.removeAttribute("data-src");a.onload=b;a.onerror=function(){console.warn("Could not load script %s",a.src)}}}var c=Array.prototype.slice.call(document.querySelectorAll("script[data-src]"));b()})()</script>
+  </body>
+</html>
