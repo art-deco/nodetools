@@ -2,19 +2,19 @@
 
 We now can access our app from the browser:
 
-<p>
+<p text-center>
   <img placeholder-auto img-fluid border rounded src="./img/chrome.gif" alt="preview of the app" />
 </p>
 
-The component rendered correctly, and displayed the data received from the server. If we check the network requests, we can see how the frontend middleware has transformed the `index.jsx` file:
+The component rendered correctly, and displayed data received from the server. If we check network requests, we can see how the `frontend` middleware has transformed our *index.jsx* file:
 
 <p>
   <img placeholder-auto img-fluid border rounded src="./img/devtools.gif" alt="devtools shows transpilation" />
 </p>
 
-The imports have been updated to point to the `/node_modules/` path, rather than simple `package-name` notation. Moreover, the JSX syntax has been updated to invoke the ``h`` pragma function from _Preact_. _Preact_ is the default choice for frontend, but if you wanted to use _React_, you'd have to specify the *pragma* property in the `frontend` config.
+The imports have been updated to point to the `/node_modules/` path, rather than simple ``package-name`` notation. Moreover, the JSX syntax has been updated to invoke the `h` pragma function from _Preact_. _Preact_ is the default choice for frontend, but if you wanted to use _React_, you'd have to specify the *pragma* property in the `frontend` config. There's no sourcemaps, but line numbers have been preserved so you can still step through in the debugger.
 
-The style has been updated into a JS file that calls `__$styleInject` when imported:
+The style has been updated into a JS file that calls ``__$styleInject`` when imported:
 
 ```js
 function __$styleInject(css = '') {

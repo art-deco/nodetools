@@ -2,7 +2,7 @@
 
 The types that we're using are applicable both for server-side an client-side, therefore we can reuse them by importing from both places. In code that's going to be compiled with _Closure_ though, we need to add the `@suppress` annotation, otherwise the compiler will print a warning. Although the compiler won't discover those types from source code, we'll pass it to it via externs. For back-end, we use simple `import`. Below is our API route.
 
-<highlightjs src="../../web/routes/api.js" />
+<highlight src="web/routes/api.js" />
 
 The fact that we import types, provides us with the desired experience: we can invoke auto-completions on the created object:
 
@@ -20,17 +20,17 @@ _TypeScript_ is said to be JavaScript that scales, that is great for large-scale
 
 The types for _VSCode_ are generated into the `types/index.js` file:
 
-<highlightjs src="../../web/types/index.js" />
+<highlight src="web/types/index.js" />
 
 We added `export {}` at the top to make it possible to import types from other files, which is otherwise impossible. The `namespace` argument in the ``typal`` marker is needed to preserve namespaces, which a convention in _NodeTools_ since we need to match the externs' namespace. You can omit namespace altogether for simple applications but it's just how I do things.
 
-<highlightjs src="../../web/types/externs.js" />
+<highlight src="web/types/externs.js" />
 
 Any time we updates types.xml file, we'll run <yarn d /> command to recompile types and externs. By the time _Node Tools 2_ is released, we'll have a watch mode also, but for now we need to make use of scripts manually:
 
-<highlightjs src="../../web/package.json" />
+<highlight src="web/package.json" />
 
-The server is then started with <yarn start /> command.
+_Idio_'s frontend and server-side rendering only work with _Preact_ 8 at the moment, without fragments support since that requires a small change to the parser. I've not had a reason to upgrade to _Preact_ 10, but when there's time, I will do. The server is then started with <yarn start /> command.
 
 <section-break />
 

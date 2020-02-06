@@ -174,7 +174,12 @@ hr {
 .right-column {
   -moz-hyphens: auto;
 }
-.tm, .tm2, .hljs {
+.tm, .tm2 {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -moz-hyphens: none;
+}
+.hljs {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -moz-hyphens: none;
@@ -183,6 +188,10 @@ hr {
   -moz-hyphens: none;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
+}
+:not(pre)>code[class*="language-"] {
+  -webkit-border-radius: .3em;
+  -moz-border-radius: .3em;
 }
 #BandcampBabylon:hover div {
   display: -webkit-box !important;

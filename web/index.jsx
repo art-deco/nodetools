@@ -2,7 +2,10 @@ import idio from '@idio/idio'
 import render from '@depack/render'
 import api from './routes/api'
 
-(async () => {
+const PREACT = 'https://cdnjs.cloudflare.com/ajax/libs/' +
+               'preact/8.5.3/preact.umd.js'
+
+;(async () => {
   const PROD = process.env.CLOSURE
   const { app, url, router } = await idio({
     static: {
@@ -21,7 +24,7 @@ import api from './routes/api'
     ctx.body = render(<div>
       <h1>Hello World</h1>
       <div id="app" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/preact/8.5.3/preact.umd.js"/>
+      <script src={PREACT}/>
       {script}
     </div>, {
       addDoctype: true,
