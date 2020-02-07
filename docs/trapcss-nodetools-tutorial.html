@@ -354,7 +354,7 @@ const { LOGGING } = require('./env');</code></pre>
             
             <pre id="c724c"><code class="shell hljs">MacBook:trapcss zavr$ yarn alamode src -r</code></pre>
             
-            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node＿modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within <strong>node＿modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.</p>
+            <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node&lowbar;modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within <strong>node&lowbar;modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.</p>
             
             <p>When trying to simply check that all imports are updated correctly by running <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode</span> <span>src/dropcss</span></span></span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
             
@@ -478,7 +478,7 @@ export default class Application extends EventEmitter {
             
             <pre id="c16f71"><code class="xml hljs">&lt;types namespace="_trapcss"&gt;
   &lt;method name="trapcss" return="!_trapcss.Return"&gt;
-    &lt;arg name="opts" type="!_trapcss.Config"&gt;
+    &lt;arg name="config" type="!_trapcss.Config"&gt;
       The options for _TrapCSS_.
     &lt;/arg&gt;
     Parses the supplied HTML and CSS and removes
@@ -680,10 +680,10 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
             
             <p>On the screenshot above, you can see how the IDE provides me with autocompletion hint when I'm trying to get access to the <span class="tm">.length</span> property, for example to check that HTML is not empty. This is essential for developer experience of the person who's coding the package, so by simply importing the type, we were able to achieve this productivity without full <em>JSDoc</em> with <span class="tm">@param {Object}</span> comments. Sadly, <em>VSCode</em> does not show the description of the property, otherwise it'd be really perfect, but maybe they can do it in the next version.</p>
             
-            <p>So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, so we remove it.</p>
+            <p>So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, but we'll remove it in the second part.</p>
             
             <pre id="ccdbf10"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
-   const H = parseHTML(html)
+   const H = parseHTML(html, !keepText)
 
 // const shouldDrop = opts.shouldDrop || drop =&gt;
 // default is now assigned via destructuing

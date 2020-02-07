@@ -58,6 +58,7 @@ export const trapcss2 = {
   },
   links: {
     'depack-bugs': 'https://github.com/dpck/depack/wiki/Bugs',
+    clojure: 'https://insights.stackoverflow.com/survey/2019#technology-_-what-languages-are-associated-with-the-highest-salaries-worldwide',
   },
 }
 

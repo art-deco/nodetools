@@ -33,7 +33,13 @@ _NodeTools_ is a new, *indie* replacement to all these methods that allows to le
 
 _Closure Compiler_ is developed by Google. It's used for mission-critical internal projects, that are not based on TypeScript. It's a Java program of the size of 10MB that can be installed once on the system, and using advanced optimisations, can put the source code, as well as all liked dependencies into a single executable file. In other words, it provides static linking for libraries into our generated code. Type checking now becomes the final stage of the development process that provides insight into small inaccuracies in our types, instead of forcing us to think in terms of types, like in _TypeScript_.
 
-To use the compiler, you'll need Java on your machine. Then we're going to install `google-closure-compiler-java` into the home folder:
+To use the compiler, you'll need Java on your machine. If you're working on Windows, you can just install it from the official website and it'll be working fine. On a Mac, I had to add the following line to my ``~/.bash_profile``.
+
+```bash
+export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home
+```
+
+If you're using *zsh*, also add ``source ~/.bash_profile`` to your *~/.zshrc*. Then we're going to install `google-closure-compiler-java` into the home folder:
 
 ```bash
 cd ~
@@ -97,7 +103,7 @@ Some might say that we're still tied up to the compiler, but it's much better th
   - You can keep the source code of your larger packages non-compiled, but instead compile only its dependencies into a file called _StdLib_.
 </ul>
 
-Additionally, another reason to learn about compiler and externs, is because the highest paid Software Engineering positions are for ``Clojure`` language, around $140k per year. When you're working on Clojure projects, you'll be writing your front-end in ClojureScript, that produces JavaScript compatible with _Closure Compiler_, so you'll need to understand how externs work. If you learn it via _NodeTools_ today, you'll be able to become one of the highest-paid developers in the world if you decide to specialise in _Clojure_ at some point.
+Additionally, another reason to learn about compiler and externs, is because the highest paid Software Engineering positions are for ``Clojure`` language, around $140k per year [in the US](clojure). When you're working on _Clojure_ projects, you'll be writing your front-end in _ClojureScript_, that produces JavaScript compatible with _Closure Compiler_, so you'll need to understand how externs work. If you learn it via _NodeTools_ today, you'll be prepared to become one of the highest-paid developers in the world if you decide to specialise in _Clojure_ at some point.
 
 <!-- end advantages -->
 </div>
@@ -107,6 +113,8 @@ Additionally, another reason to learn about compiler and externs, is because the
 _NodeTools_ is a holistic package development methodology. The compiler works together with all other tools, such as Typal, that allows to maintain a single source of truth for your types and generate externs for the compiler, Documentary that can embed and interlink such type information in documentation of packages including wikis, and _Zoroaster_ that provides API to test forks as well as letting you test your target compiled code, instead of only source code, which is an absolute must when taking advantage of the advanced compilation mode.
 
 The primary realm of our stack is Node.JS package development, however with _Depack_ you can also develop and compile [web-bundles](https://github.com/art-deco/akashic.page), as there's also support for JSX syntax in _ÀLaMode_. It's based on regexes, but we've managed to create many nice widgets for the web with it. We'll be advertising the web stack features later on. We hope that the tools that we provide in only 10 `node_modules` folders, will really allow to have a breath of fresh air in this stale-air environment where people adapt to paradigms, instead of using such powerful language as JavaScript to their maximum advantage.
+
+You can read about compiling front-end JavaScript code in the <a href="web"/> article.
 
 <!-- end web -->
 </div>

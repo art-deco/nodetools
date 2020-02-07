@@ -21,7 +21,7 @@ This can be achieved easily by running the transpiler in `-r` mode:
 MacBook:trapcss zavr$ yarn alamode src -r
 ```
 
-It will scan the *src* dir recursively, updating all files in there. Only *yarn* supports running binaries from local node＿modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within *node＿modules/.bin* (which is why we prefer it), but for *npm*, the `alanode` script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.
+It will scan the *src* dir recursively, updating all files in there. Only *yarn* supports running binaries from local node&lowbar;modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within *node&lowbar;modules/.bin* (which is why we prefer it), but for *npm*, the `alanode` script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.
 
 When trying to simply check that all imports are updated correctly by running <yarn alanode>src/dropcss </yarn> that only executes all require calls without actually running the program, I see an error to do with the following:
 

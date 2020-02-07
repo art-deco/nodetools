@@ -1,6 +1,6 @@
 <types namespace="_trapcss">
   <method name="trapcss" return="!_trapcss.Return">
-    <arg name="opts" type="!_trapcss.Config">
+    <arg name="config" type="!_trapcss.Config">
       The options for _TrapCSS_.
     </arg>
     Parses the supplied HTML and CSS and removes

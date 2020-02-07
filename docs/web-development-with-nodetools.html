@@ -251,7 +251,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <li>There are no source maps for debugging.</li>
               <li>There's no hot module reload.</li>
               <li>JSX does not support block comments.
-            <pre id="ccdbf"><code class="javascript hljs">render(&lt;div&gt;
+            <pre id="ccdbf10"><code class="javascript hljs">render(&lt;div&gt;
   {/* hello world */}
 &lt;/div&gt;)</code></pre>
               </li>
@@ -407,7 +407,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>We also used an external type, called <span class="tm">_nodetools.ServerResponse</span>. We used <strong>casting</strong> since the assignments were made via destructuring, so we couldn't just annotate it above the function.</p>
             
-            <pre id="ccdbf1"><code class="javascript hljs">const { error, user } =
+            <pre id="ccdbf"><code class="javascript hljs">const { error, user } =
   /** @type {!_nodetools.ServerResponse} */ (await res.json())</code></pre>
             
             <p>This is when <em>NodeTools</em> with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the <span class="tm">types.xml</span> file.</p>
@@ -602,7 +602,7 @@ _nodetools.User.prototype.login
             
             <p>The style has been updated into a JS file that calls <span class="tm2">__$styleInject</span> when imported:</p>
             
-            <pre id="ccdbf2"><code class="javascript hljs">function __$styleInject(css = '') {
+            <pre id="ccdbf1"><code class="javascript hljs">function __$styleInject(css = '') {
   const head = document.head
   const style = document.createElement('style')
   style.type = 'text/css'
@@ -686,7 +686,7 @@ __$styleInject(style)</code></pre>
             
             <p><em>Depack</em> doesn't transpile JSX in published packages, therefore they need to make sure their published code is transpiled into standard JavaScript with <span class="tm">h</span> pragma calls. This can be done with <em>ÀLaMode</em>. For example, the <span class="tm2">@depack/form</span> package is a library to create Bootstrap forms that was written in JSX, e.g.,</p>
             
-            <pre id="ccdbf3"><code class="javascript hljs">import { Component } from 'preact'
+            <pre id="ccdbf2"><code class="javascript hljs">import { Component } from 'preact'
 
 export default class Form extends Component {
   // ... component code
@@ -701,7 +701,7 @@ export default class Form extends Component {
             
             <p>It is then transpiled into the <strong>build</strong> folder, however <span class="tm2">imports</span> stay as imports, and don't become <span class="tm">require</span> calls. If we were publishing back-end components, we'd also transpile <span class="tm2">imports</span> but since Closure can understand them, we keep it.</p>
             
-            <pre id="ccdbf4"><code class="javascript hljs">import { h } from 'preact'
+            <pre id="ccdbf3"><code class="javascript hljs">import { h } from 'preact'
 import { Component } from 'preact'
 
 export default class Form extends Component {
@@ -733,7 +733,7 @@ export default class Form extends Component {
             
             <p>For basic testing of components written in <em>Preact</em>, you can take advantage of the <a href="https://github.com/dpck/context"><em>JSXContext</em></a> that can transform an input string into a JSX VNode, that can then be rendered. Using this method, you can declare your components using simple HTML from masks, and compare rendered result to the expected output.</p>
             
-            <pre id="ccdbf5"><code class="javascript hljs">// test/mask/default.js
+            <pre id="ccdbf4"><code class="javascript hljs">// test/mask/default.js
 
 import makeTestSuite from '@zoroaster/mask'
 import JSXContext from '@depack/context'
@@ -756,7 +756,7 @@ export default makeTestSuite('test/result/default', {
             
             <p>The mask result in JSX format will then use a preamble to import components for syntax highlighting and auto-completions, and define inputs as JSX methods and outputs as HTML code. I've surrounded each block with <span class="tm">()</span> so that there's no syntax errors underlined with red in the file. Mask results are used only to define inputs/outputs, so despite the fact that the format of this file is JSX, it's only so to enable syntax highlighting.</p>
             
-            <pre id="ccdbf6"><code class="javascript hljs">// test/result/default/form-group.jsx
+            <pre id="ccdbf5"><code class="javascript hljs">// test/result/default/form-group.jsx
 
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
@@ -803,7 +803,7 @@ import { TextArea, Select, Form, FormGroup, Input } from '../../src'
             
             <p>The second strategy, is to spawn a headless browser as a background process, setup a server that will return some HTML with script tags that invoke JavaScript to render certain components on elements. Each test will open a new page, with slightly different setup routine, wait for JS to execute, and send the element's outer HTML back to the server. We'll use a <em>RemoteChrome</em> context to connect to the browser:</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
+            <pre id="ccdbf6"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
 import { c, b } from 'erte'
 
 export default class RemoteChrome {
@@ -846,7 +846,7 @@ export default class RemoteChrome {
             
             <p>We'll also need the <em>Idio</em> context that will start a server to return HTML code.</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">import idio from '@idio/idio'
+            <pre id="ccdbf7"><code class="javascript hljs">import idio from '@idio/idio'
 import frontend from '@idio/frontend'
 import render from '@depack/render'
 import jsx from '@a-la/jsx'
@@ -913,7 +913,7 @@ render(inv, document.body)
               href="https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/idio/format.js">
               for formatting</a>, and calls Preact's render method on the invocation passed from tests. The mask setup is then the following:</p>
             
-            <pre id="ccdbf9"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf8"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import { equal } from '@zoroaster/assert'
 import IdioContext from '../context/Idio'
 import RemoteChrome from '../context/RemoteChrome'
@@ -963,7 +963,7 @@ export const Chrome = makeTestSuite('test/result/chrome.jsx', {
             
             <p>Example mask result:</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">/* eslint-env browser */
+            <pre id="ccdbf9"><code class="javascript hljs">/* eslint-env browser */
 import { Component } from 'preact'
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
