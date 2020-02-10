@@ -193,12 +193,11 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     </li>
                                     <li data-heading="binary-executable">
                                       <a href="#binary-executable">Binary Executable</a>
+                                      <ul><li data-heading="cli-arguments"><a href="#cli-arguments">CLI Arguments</a></li><li data-heading="implementation"><a href="#implementation">Implementation</a></li><li data-heading="fork-testing"><a href="#fork-testing">Fork Testing</a></li><li data-heading="bin-compile"><a href="#bin-compile">Bin Compile</a></li><li data-heading="cli-documentation"><a href="#cli-documentation">CLI Documentation</a></li></ul>
+                                    </li>
+                                    <li data-heading="wiki">
+                                      <a href="#wiki">Wiki</a>
                                       <ul>
-                                        <li data-heading="cli-arguments"><a href="#cli-arguments">CLI Arguments</a></li>
-                                        <li data-heading="implementation"><a href="#implementation">Implementation</a></li>
-                                        <li data-heading="fork-testing"><a href="#fork-testing">Fork Testing</a></li>
-                                        <li data-heading="bin-compile"><a href="#bin-compile">Bin Compile</a></li>
-                                        <li data-heading="cli-documentation"><a href="#cli-documentation">CLI Documentation</a></li>
                                         <li data-heading="features"><a href="#features">Features</a></li>
                                         <li data-heading="performance"><a href="#performance">Performance</a></li>
                                         <li data-heading="javascript-execution"><a href="#javascript-execution">JavaScript Execution</a></li>
@@ -294,11 +293,11 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>To use the compiler, you'll need Java on your machine. If you're working on Windows, you can just install it from the official website and it'll be working fine. On a Mac, I had to add the following line to my <span class="tm2">~/.bash_profile</span>.</p>
             
-            <pre id="c414d"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
+            <pre id="c414d3"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
             
             <p>If you're using <strong>zsh</strong>, also add <span class="tm2">source ~/.bash_profile</span> to your <strong>~/.zshrc</strong>. Then we're going to install <span class="tm">google-closure-compiler-java</span> into the home folder:</p>
             
-            <pre id="c414d1"><code class="bash hljs">cd ~
+            <pre id="c414d"><code class="bash hljs">cd ~
 yarn|npm init # we want to save deps in package.json
 yarn add google-closure-compiler-java</code></pre>
             
@@ -650,7 +649,7 @@ module.exports.Context = $Context</code></pre>
             
             <p>Now every time we require <span class="tm">../../src</span> from test, the transpiler will update it to <span class="tm">../../compile</span> on the fly (the <span class="tm2">$</span> is needed in cases when we import methods from other files in the lib for unit testing, which would break testing as paths like <strong>compile/html.js</strong> don't exist). We can also set it to just <span class="tm">../..</span> since it will resolve to our <strong>package.json</strong> and read the <span class="tm2">main</span> field from there. To ensure that the remapping actually happens, we can add a simple <span class="tm">throw new Error(1)</span> in the <strong>compile/index.js</strong> file and try to run this command.</p>
             
-            <pre id="c414d2"><code class="bash hljs">Testing compile bin
+            <pre id="c414d1"><code class="bash hljs">Testing compile bin
 Error: 1
 Could not require test/spec
     at Object.&lt;anonymous&gt; (/Users/zavr/adc/trapcss/compile/index.js:2:7)
@@ -890,7 +889,7 @@ if (_output) {
             
             <p>We can see what the usage looks like by calling the <strong>dev</strong> script: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>dev</span> <span class="npm-cmd">--</span> <span>-h</span></span></span>:</p>
             
-            <pre id="c414d3"><code class="bash hljs">Remove unused CSS
+            <pre id="c414d2"><code class="bash hljs">Remove unused CSS
 
   trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]
 
@@ -1307,7 +1306,8 @@ The help can be accessed with the `-h` command:
             </p>
             </div>
             
-            <h2 id="wiki">Wiki</h2>
+            <div data-section id="wiki">
+            <h2>Wiki</h2>
             
             <p>Putting documentation on <em>GitHub</em> wikis is a great way to organise help to our package. README files can be used to provide initial information about package usage, whereas Wikis can be used to described advanced use cases and intricacies of working with our software. Moreover, unlike website, especially if based on custom domains, Wikis will always remain attached to the package on <em>GitHub</em>. Unfortunately, Wikis have not been that popular, since it wasn't easy to maintain them. <em>Documentary</em> fixes this as it supports automatic compilation of docs into <em>Wikis</em>.</p>
             
@@ -1327,7 +1327,7 @@ The help can be accessed with the `-h` command:
             <pre id="c10fc"><code class="md hljs">- Deep resolution of composite CSS variables, e.g:
   %EXAMPLE: ./example.css%</code></pre>
             
-            <p>Mind the indentation that is used with example market &mdash; it's needed so that <em>GitHub</em> recognises it as part of the list item.</p>
+            <p>Mind the indentation that is used with the example marker &mdash; it's needed so that <em>GitHub</em> recognises it as part of the list item.</p>
             
             <p>
               <img class="b-bk b-vk b-t" alt="features wiki page" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='515' height='551'/%3E" data-io>
@@ -1352,9 +1352,71 @@ The help can be accessed with the `-h` command:
             
             <pre id="c10fc1"><code class="md hljs">%EXAMPLE: ./execution, ../.. =&gt; trapcss%
 
-%FORK-js wiki/example/execution%</code></pre>
+%FORK-js ./execution%</code></pre>
             
             <p>The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.</p>
+            
+            <pre id="ccdbf25"><code class="javascript hljs">import idio from '@idio/idio'
+import CDP from 'chrome-remote-interface'
+import { spawn } from 'child_process'
+import rqt from 'rqt'
+import trapcss from '../..'
+
+(async () =&gt; {
+  const { app, url } = await idio({
+    static: {
+      use: true,
+      root: 'example/www',
+    },
+  })
+  const chrome = await new Promise((r) =&gt; {
+    const p = spawn('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      ['--remote-debugging-port=9222', '--headless'])
+    p.stderr.on('data', (d) =&gt; {
+      d = `${d}`
+      if (/listening/.test(d)) setTimeout(() =&gt; r(p), 1000)
+    })
+  })
+  try {
+    const client = await CDP()
+    const { Network, Page, Runtime } = client
+    await Network.enable()
+    await Page.enable()
+    await Page.navigate({ url })
+    await Page.loadEventFired()
+    const { result: { value: html } } = await Runtime.evaluate({
+      expression: 'document.documentElement.outerHTML',
+    })
+    const { result: { value: links } } = await Runtime.evaluate({
+      expression: `[...document.querySelectorAll("link[rel=stylesheet]")]
+        .map((el) =&gt; el.href)`,
+      returnByValue: true,
+    })
+    await client.close()
+
+    await Promise.all(links.map(async href =&gt; {
+      const css = await rqt(href)
+      let start = +new Date()
+
+      const clean = trapcss({
+        css,
+        html,
+      })
+
+      console.log({
+        stylesheet: href,
+        cleanCss: clean.css,
+        elapsed: +new Date() - start,
+      })
+    }))
+  } catch (err) {
+    console.log(err)
+  } finally {
+    await app.destroy()
+    chrome.kill()
+  }
+})()
+</code></pre>
             
             <p>I can also start <em>Documentary</em> in watch mode for Wikis also: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>wiki</span> <span class="npm-cmd">--</span> <span>-p 'wiki pages'</span></span></span>. Now it will watch for changes in both project and submodule directories, and force-push updates as necessary.</p>
             

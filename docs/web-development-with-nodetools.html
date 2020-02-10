@@ -252,7 +252,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <li>There are no source maps for debugging.</li>
               <li>There's no hot module reload.</li>
               <li>JSX does not support block comments.
-            <pre id="ccdbf13"><code class="javascript hljs">render(&lt;div&gt;
+            <pre id="ccdbf10"><code class="javascript hljs">render(&lt;div&gt;
   {/* hello world */}
 &lt;/div&gt;)</code></pre>
               </li>
@@ -456,7 +456,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>The types that we're using are applicable both for server-side an client-side, therefore we can reuse them by importing from both places. In code that's going to be compiled with <em>Closure</em> though, we need to add the <span class="tm">@suppress</span> annotation, otherwise the compiler will print a warning. Although the compiler won't discover those types from source code, we'll pass it to it via externs. For back-end, we use simple <span class="tm">import</span>. Below is our API route.</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">export default function API (ctx) {
+            <pre id="ccdbf11"><code class="javascript hljs">export default function API (ctx) {
   /** @type {_nodetools.User} */
   const user = {
     login: 'test',
@@ -490,7 +490,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>The types for <em>VSCode</em> are generated into the <span class="tm">types/index.js</span> file:</p>
             
-            <pre id="ccdbf11"><code class="javascript hljs">export {}
+            <pre id="ccdbf13"><code class="javascript hljs">export {}
 
 /* typal types/index.xml namespace */
 /**

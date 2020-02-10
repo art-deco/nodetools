@@ -11,10 +11,12 @@ This page is about opening a webpage in a headless browser to execute any dynami
 ```md
 %EXAMPLE: ./execution, ../.. => trapcss%
 
-%FORK-js wiki/example/execution%
+%FORK-js ./execution%
 ```
 
 The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.
+
+<highlightjs src="../example/execution.mjs" />
 
 I can also start _Documentary_ in watch mode for Wikis also: <yarn wiki>-p 'wiki pages'</yarn>. Now it will watch for changes in both project and submodule directories, and force-push updates as necessary.
 
