@@ -32,6 +32,13 @@ const io = makeIo()
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
   key: 'highlightjs',
+  id: 'c10fc,c10fc1,c10fc2,c10fc3,c10fc4,c10fc5,c10fc6',
+  props: {
+    lang: 'md',
+  },
+},
+{
+  key: 'highlightjs',
   id: 'c724c,c724c1',
   props: {
     lang: 'shell',
@@ -39,7 +46,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c16f7,c16f71',
+  id: 'c16f7,c16f71,c16f72',
   props: {
     lang: 'xml',
   },
@@ -69,7 +76,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'cb9de,cb9de1',
+  id: 'cb9de,cb9de1,cb9de2,cb9de3',
   props: {
     lang: 'json',
   },
@@ -84,7 +91,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },

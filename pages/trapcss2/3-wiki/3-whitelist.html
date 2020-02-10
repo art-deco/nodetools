@@ -1,0 +1,52 @@
+###! Accumulating Whitelist
+
+There are some instructions on how to gather HTML selectors from multiple files, if CSS is reused across web pages. I'll copy the instructors and create an example also. When naming Wiki pages like `Accumulating-a-Whitelist`, hyphens become whitespace in titles.
+
+```md
+-= INSTRUCTIONS =-
+
+%EXAMPLE: ./whitelist, ../.. => trapcss%
+%FORK-css ./whitelist%
+```
+
+In watch mode, new examples will automatically be added to git tree also. Notice how I've imported the package from `../..` rather than from source. This is because I want to build documentation against the compiled code, so that I can be sure it's working. It's up to you whether you use source and compile target for documentation since ideally you'll be running `test-compile` so that they should produce identical results.
+
+</div>
+
+###! Special / Escaped Sequences
+
+This page describes the problems with special characters in class names. I'll copy the description and give examples of how to overcome this difficulty. We can't have ``/`` in the page name, so we'll just call it _Special AND Escaped Sequences_. We'll want to place an example with HTML into the wiki folder, but to prevent _Documentary_ from reading it, we'll make it hidden by adding a dot: `.index.html`.
+
+Our example will also be cropped by using ``/* start/end example */`` marker:
+
+```js
+import { join } from 'path'
+import { readFileSync } from 'fs'
+import trapcss from '../..'
+
+const html = readFileSync(join(__dirname, 'index.html'), 'utf8')
+const css = readFileSync(join(__dirname, 'index.css'), 'utf8')
+
+/* start example */
+// remap
+let css2 = css
+  .replace(/\\:/gm, '__0')
+  .replace(/\\\//gm, '__1')
+  .replace(/\\\?/gm, '__2')
+  .replace(/\\\(/gm, '__3')
+  .replace(/\\\)/gm, '__4')
+// more code
+/* end example */
+```
+
+This is so that we don't have to include admin set up of reading files in the example itself. Also despite me using import statements, and the file being a module, I can still use `__dirname`. This is perfect as there's absolutely no reason for Node to make everyone's life really difficult by removing this feature in .mjs files... We're here to make programs not worship standards.
+
+In the end, there's another way to embed a fork:
+
+```html
+<fork lang="css">./</fork>
+```
+
+This is equivalent to ``%FORK-css ./%`` and is a preferred method as _Documentary_ is switching to components now.
+
+</div>

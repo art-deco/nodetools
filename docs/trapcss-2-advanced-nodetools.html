@@ -160,7 +160,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.35.13</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.36.1</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
@@ -169,7 +169,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.16.15</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.16.16</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -193,8 +193,27 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                     </li>
                                     <li data-heading="binary-executable">
                                       <a href="#binary-executable">Binary Executable</a>
-                                      <ul><li data-heading="cli-arguments"><a href="#cli-arguments">CLI Arguments</a></li><li data-heading="implementation"><a href="#implementation">Implementation</a></li><li data-heading="fork-testing"><a href="#fork-testing">Fork Testing</a></li><li data-heading="bin-compile"><a href="#bin-compile">Bin Compile</a></li><li data-heading="cli-documentation"><a href="#cli-documentation">CLI Documentation</a></li></ul>
+                                      <ul>
+                                        <li data-heading="cli-arguments"><a href="#cli-arguments">CLI Arguments</a></li>
+                                        <li data-heading="implementation"><a href="#implementation">Implementation</a></li>
+                                        <li data-heading="fork-testing"><a href="#fork-testing">Fork Testing</a></li>
+                                        <li data-heading="bin-compile"><a href="#bin-compile">Bin Compile</a></li>
+                                        <li data-heading="cli-documentation"><a href="#cli-documentation">CLI Documentation</a></li>
+                                        <li data-heading="features"><a href="#features">Features</a></li>
+                                        <li data-heading="performance"><a href="#performance">Performance</a></li>
+                                        <li data-heading="javascript-execution"><a href="#javascript-execution">JavaScript Execution</a></li>
+                                        <li data-heading="accumulating-whitelist">
+                                          <a href="#accumulating-whitelist">Accumulating Whitelist</a>
+                                        </li>
+                                        <li data-heading="special--escaped-sequences">
+                                          <a href="#special--escaped-sequences">Special / Escaped Sequences</a>
+                                        </li>
+                                        <li data-heading="caveats--acknowledgements">
+                                          <a href="#caveats--acknowledgements">Caveats & Acknowledgements</a>
+                                        </li>
+                                      </ul>
                                     </li>
+                                    <li data-heading="license"><a href="#license">License</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="ce0df"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
@@ -387,7 +406,7 @@ export const {
             
             <p>The entry point for the compiler is <strong>src/depack.js</strong>, which imports the method from the source code and exports it via CommonJS standard. It also imports externs so that <em>Closure</em> will understand our types:</p>
             
-            <pre id="ccdbf16"><code class="javascript hljs">import '../types/externs'
+            <pre id="ccdbf18"><code class="javascript hljs">import '../types/externs'
 import trapcss from './'
 
 /*!
@@ -422,7 +441,7 @@ module.exports = {
             
             <p>We'll need to create a second file, called <span class="tm2">template</span> in <strong>compile/template.js</strong>:</p>
             
-            <pre id="ccdbf17"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf19"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * @methodType {_trapcss.trapcss}
@@ -454,7 +473,7 @@ module.exports = trapcss
             
             <p>After the two commands are run, we'll have a production-ready entry file. Let's have a look at what is being produced as the <span class="tm">main</span>:</p>
             
-            <pre id="ccdbf18"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf20"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * Parses the supplied HTML and CSS and removes
@@ -696,7 +715,7 @@ require('./trapcss')</code></pre>
             
             <p>The key requirement for such scripts is to read arguments from the <span class="tm">process.argv</span> array, to parse input flags and options to the program. There are packages that allow to do that, but in <em>NodeTools</em>, we take a different approach. We'll keep our arguments definitions in the <strong>types/arguments.xml</strong> file:</p>
             
-            <pre id="c16f71"><code class="xml hljs">&lt;arguments&gt;
+            <pre id="c16f72"><code class="xml hljs">&lt;arguments&gt;
   &lt;arg command multiple name="input"&gt;
     The HTML files to read.
   &lt;/arg&gt;
@@ -717,7 +736,7 @@ require('./trapcss')</code></pre>
             
             <p>Using XML schema, we can maintain the argument specification, and then create a special file called <strong>get-args.js</strong>, using the <span class="tm">argufy</span> package. The script is defined as the <em>args</em> job in <strong>package.json</strong> &mdash; <span class="tm2">argufy -o src/bin/get-args.js</span>. The default location of arguments is <strong>types/arguments.xml</strong>, so we don't need to specify any input. The output, on the other hand, is to be written to <strong>src/bin/get-args.js</strong>. From the specification that we drew, this is the output that is produced:</p>
             
-            <pre id="ccdbf19"><code class="javascript hljs">import argufy from 'argufy'
+            <pre id="ccdbf21"><code class="javascript hljs">import argufy from 'argufy'
 
 export const argsConfig = {
   'input': {
@@ -798,7 +817,7 @@ export const _argv = /** @type {!Array&lt;string&gt;} */ (args._argv)</code></pr
             
             <p>The template has already come with some binary source code, for example for printing version number and usage information. The usage string is constructed with the <span class="tm">usually</span> package, that accepts a description, example, line and usage itself. The usage is made using the <span class="tm2">reduceUsage</span> method from <span class="tm">argufy</span>, based on the arguments config that was also exported from the <strong>get-args.js</strong> file. It will create a 2-column table with full and short arguments' names and their descriptions.</p>
             
-            <pre id="ccdbf20"><code class="javascript hljs">import usually from 'usually'
+            <pre id="ccdbf22"><code class="javascript hljs">import usually from 'usually'
 import { reduceUsage } from 'argufy'
 import { readFileSync, writeFileSync } from 'fs'
 import { c } from 'erte'
@@ -916,7 +935,7 @@ if (_output) {
             
             <p>We already used some mask testing in <a href="/nodetools/trap"></a>, but one of the best applications of masks is to test forks. A fork is a separate Node process spawned from a script itself. They are completely independent processes with separate PIDs, but the fork will by default exit with its parent. Since our binary is a Node program, to test it properly, we need to spawn it via the <span class="tm">child_process</span> module. <em>Zoroaster</em> provides an abstraction over fork testing, if you pass <span class="tm2">fork</span> property to the mask constructor.</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf23"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
 
@@ -1009,33 +1028,9 @@ if (process.env.ALAMODE_ENV == 'test-compile') {
             
             <p>We only do a couple of tests to make sure that the binary doesn't throw any errors and processes arguments correctly. Most of the unit tests were done on the API, therefore it'd be redundant to test the same functionality twice. However, we could potentially construct a mask that would use input from mask results to the API to adapt them to pass to the CLI, but I won't do it here. Since mask results are just text files, they can be reused according to your imagination.</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf24"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
-
-// export const stress = makeTestSuite('test/result/bin/stress', {
-//   fork: Context.BIN,
-// })
-
-export default makeTestSuite('test/result/bin/default', {
-  context: TempContext,
-  fork: {
-    /**
-     * @param {string[]} args
-     * @param {TempContext} t
-     */
-    async getArgs(_, { write }) {
-      const html = await write('index.html', this.input)
-      const [, css] = /&lt;style&gt;([\s\S]+?)&lt;\/style&gt;/.exec(this.css)
-      const style = await write('style.css', css)
-      return [html, '-c', style]
-    },
-    module: Context.BIN,
-    preprocess: {
-      stdout: Context.wrap,
-    },
-  },
-})
 
 export const output = makeTestSuite('test/result/bin/output', {
   context: TempContext,
@@ -1114,7 +1109,9 @@ Please pass CSS path
             
             <p>In the first test, like before, we passed paths to HTML and CSS, but we didn't need to use the temp context since the output is printed to stdout. In the second test we added the <span class="tm">code</span> property to test that the fork will exit with code <em>1</em> when a path to the CSS file is not passed, and that <strong>stderr</strong> contains the error message.</p>
             
-            <p>As you can see, testing forks is very simple with <em>Zoroaster</em> that provides means to setup tests to run parallel processes, and assert on outputs. Even if a program required interaction from <strong>stdin</strong>, such as entering answers, we could still test it by either providing the <span class="tm">[stderr]Inputs</span> property of the mask, or via the <span class="tm">inputs</span> <a
+            <p>As you can see, testing forks is very simple with <em>Zoroaster</em> that provides means to setup tests to run parallel processes, and assert on outputs. The tests themselves are not run in parallel, but there's no point to it anyway, as running them in parallel will slow down the CPU and consume more memory, so that there's no difference between running 5 tests in parallel that take 1 second each, or 5 tests in series that take 0.2 seconds each, so don't listen to anyone who advertises parallel testing as an advantage, unless it's IO time that is being parallelised, and not CPU time.</p>
+            
+            <p>Even if a program required interaction from <strong>stdin</strong>, such as entering answers, we could still test it by either providing the <span class="tm">[stderr]Inputs</span> property of the mask, or via the <span class="tm">inputs</span> <a
               href="https://raw.githubusercontent.com/artdecocode/expensive/885e62298c05b75eedb2dbb298e8544823d1a0c2/test/result/fork/register.md">
               property</a> in the mask result.</p>
             
@@ -1300,11 +1297,193 @@ The help can be accessed with the `-h` command:
             
             
             
+            <p>Now that we have a 0-dependency binary for <em>TrapCSS</em>, let's add add some more documentation.</p>
+            
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
                 <img alt="section break"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/3.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <h2 id="wiki">Wiki</h2>
+            
+            <p>Putting documentation on <em>GitHub</em> wikis is a great way to organise help to our package. README files can be used to provide initial information about package usage, whereas Wikis can be used to described advanced use cases and intricacies of working with our software. Moreover, unlike website, especially if based on custom domains, Wikis will always remain attached to the package on <em>GitHub</em>. Unfortunately, Wikis have not been that popular, since it wasn't easy to maintain them. <em>Documentary</em> fixes this as it supports automatic compilation of docs into <em>Wikis</em>.</p>
+            
+            <p>When I was creating a new package from the template, I was asked if I wanted to set up a wiki page, to which I said yes, and had to navigate to <em>GitHub</em> to create the first page. This is because <em>GitHub</em> API doesn't provide a method to automate this, however it's not a problem as it only takes a few clicks. Wikis are represented as separate git trees, so for ease of maintenance, <em>MNP</em> initialised a git <strong>submodule</strong> called <strong>wiki.git</strong> in our project, and cloned the tree in there. Now pages from <strong>wiki</strong> will be compiled into <strong>wiki.git</strong> and we'll need to push changes to the submodule separately from the main project.</p>
+            
+            <p>The template came with <strong>wiki/Developing</strong> page, but it can be removed. I'm going to place original documentation from <em>DropCSS</em> into separate pages. The pages could be either directories, or simple MD files. Additionally, special files include <span class="tm">_Sidebar.md</span> and <span class="tm">_Footer.md</span>, for example our footer uses a component from <strong>.documentary/index.jsx</strong>:</p>
+            
+            <pre id="ccdbf16"><code class="javascript hljs">&lt;footer /&gt;</code></pre>
+            
+            We already described how to use the package in README, so let's add the features page.
+            
+            <div data-section id="features">
+            <h3>Features</h3>
+            
+            <p>This page contains description of supported features. I've simply copied the table from the source. A cool thing we can do, though, is to create an example file right in the <em>Features</em> directory itself, as it won't be read by <em>Documentary</em> that scans for <span class="tm">md</span>, <span class="tm">markdown</span> and <span class="tm">htm[l]</span> files only. We can then simply pass the relative path to the example:</p>
+            
+            <pre id="c10fc"><code class="md hljs">- Deep resolution of composite CSS variables, e.g:
+  %EXAMPLE: ./example.css%</code></pre>
+            
+            <p>Mind the indentation that is used with example market &mdash; it's needed so that <em>GitHub</em> recognises it as part of the list item.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="features wiki page" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='515' height='551'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="features wiki page" src="/nodetools/pages/trapcss2/3-wiki/img/features.png">
+              </noscript>
+            </p>
+            
+            </div>
+            
+            <div data-section id="performance">
+            <h3>Performance</h3>
+            
+            <p>This page contains some benchmark data for <em>DropCSS</em>. I'll keep it the same.</p>
+            
+            </div>
+            
+            <div data-section id="javascript-execution">
+            <h3>JavaScript Execution</h3>
+            
+            <p>This page is about opening a webpage in a headless browser to execute any dynamic JavaScript, which might manipulate DOM, so that the list of selectors is gathered after scripts are executed. I want to use the example, but the original depends on <span class="tm">puppeteer</span> which I think is redundant because if you have Chrome installed on your system, you can already open it. I don't want to download 80MB of a browser just for a simple script to be executed, so we'll simply install <span class="tm">chrome-remote-interface</span> and launch Chrome by hand. There's also <span class="tm">chrome-launcher</span> package however it's got 5 dependencies so until I've made a 0-dep fork, I'm not going to use it.</p>
+            
+            <pre id="c10fc1"><code class="md hljs">%EXAMPLE: ./execution, ../.. =&gt; trapcss%
+
+%FORK-js wiki/example/execution%</code></pre>
+            
+            <p>The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.</p>
+            
+            <p>I can also start <em>Documentary</em> in watch mode for Wikis also: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>wiki</span> <span class="npm-cmd">--</span> <span>-p 'wiki pages'</span></span></span>. Now it will watch for changes in both project and submodule directories, and force-push updates as necessary.</p>
+            
+            </div>
+            
+            <div data-section id="accumulating-whitelist">
+            <h3>Accumulating Whitelist</h3>
+            
+            <p>There are some instructions on how to gather HTML selectors from multiple files, if CSS is reused across web pages. I'll copy the instructors and create an example also. When naming Wiki pages like <span class="tm">Accumulating-a-Whitelist</span>, hyphens become whitespace in titles.</p>
+            
+            <pre id="c10fc2"><code class="md hljs">-= INSTRUCTIONS =-
+
+%EXAMPLE: ./whitelist, ../.. =&gt; trapcss%
+%FORK-css ./whitelist%</code></pre>
+            
+            <p>In watch mode, new examples will automatically be added to git tree also. Notice how I've imported the package from <span class="tm">../..</span> rather than from source. This is because I want to build documentation against the compiled code, so that I can be sure it's working. It's up to you whether you use source and compile target for documentation since ideally you'll be running <span class="tm">test-compile</span> so that they should produce identical results.</p>
+            
+            </div>
+            
+            <div data-section id="special--escaped-sequences">
+            <h3>Special / Escaped Sequences</h3>
+            
+            <p>This page describes the problems with special characters in class names. I'll copy the description and give examples of how to overcome this difficulty. We can't have <span class="tm2">/</span> in the page name, so we'll just call it <em>Special AND Escaped Sequences</em>. We'll want to place an example with HTML into the wiki folder, but to prevent <em>Documentary</em> from reading it, we'll make it hidden by adding a dot: <span class="tm">.index.html</span>.</p>
+            
+            <p>Our example will also be cropped by using <span class="tm2">/* start/end example */</span> marker:</p>
+            
+            <pre id="ccdbf17"><code class="javascript hljs">import { join } from 'path'
+import { readFileSync } from 'fs'
+import trapcss from '../..'
+
+const html = readFileSync(join(__dirname, 'index.html'), 'utf8')
+const css = readFileSync(join(__dirname, 'index.css'), 'utf8')
+
+/* start example */
+// remap
+let css2 = css
+  .replace(/\\:/gm, '__0')
+  .replace(/\\\//gm, '__1')
+  .replace(/\\\?/gm, '__2')
+  .replace(/\\\(/gm, '__3')
+  .replace(/\\\)/gm, '__4')
+// more code
+/* end example */</code></pre>
+            
+            <p>This is so that we don't have to include admin set up of reading files in the example itself. Also despite me using import statements, and the file being a module, I can still use <span class="tm">__dirname</span>. This is perfect as there's absolutely no reason for Node to make everyone's life really difficult by removing this feature in .mjs files... We're here to make programs not worship standards.</p>
+            
+            <p>In the end, there's another way to embed a fork:</p>
+            
+            <pre id="c16f71"><code class="xml hljs">&lt;fork lang="css"&gt;./&lt;/fork&gt;</code></pre>
+            
+            <p>This is equivalent to <span class="tm2">%FORK-css ./%</span> and is a preferred method as <em>Documentary</em> is switching to components now.</p>
+            
+            </div>
+            
+            <div data-section id="caveats--acknowledgements">
+            <h3>Caveats & Acknowledgements</h3>
+            
+            <p>We'll keep those pages as is, since there are no examples.</p>
+            
+            <pre id="c10fc3"><code class="md hljs">- Not tested against or designed to handle malformed HTML or CSS
+- Excessive escaping or reserved characters in your HTML or CSS can break TrapCSS's parsers</code></pre>
+            
+            <pre id="c10fc4"><code class="md hljs">- Felix Böhm's [nth-check](https://github.com/fb55/nth-check) - it's not much code, but getting `An+B` expression testing exactly right is frustrating. I got part-way there before discovering this tiny solution.
+- Vadim Kiryukhin's [vkbeautify](https://github.com/vkiryukhin/vkBeautify) - the benchmark and test code uses this tiny formatter to make it easier to spot differences in output diffs.</code></pre>
+            
+            </div>
+            
+            <p>This should be it for Wiki. Now it's attached to our project and will always be available on <em>GitHub</em>.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/4.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="license">
+            <h2>License</h2>
+            
+            <p>I'd like to update our footer to include the information about the original license. I've chosen Affero for this project, so the footer at the moment looks like the following:</p>
+            
+            <pre id="c10fc5"><code class="md hljs">## Copyright &amp; License
+
+GNU Affero General Public License v3.0</code></pre>
+            
+            <p>Let's include the original license:</p>
+            
+            <pre id="c10fc6"><code class="md hljs">## Copyright &amp; License
+
+GNU Affero General Public License v3.0
+
+Original work on [_DropCSS_](https://github.com/leeoniya/dropcss) package
+by [Leon Sorokin](https://github.com/leeoniya) under MIT license found in [COPYING](COPYING).</code></pre>
+            
+            <p>There are 2 standard files for a license, either <span class="tm2">LICENSE</span> or <span class="tm2">COPYING</span>. Since our AGPL is found in the former, we can include the original one in the latter. This is the convention I use for forked packages. I'll also update <strong>package.json</strong> to include the original license in the <span class="tm">files</span> field:</p>
+            
+            <pre id="cb9de2"><code class="json hljs">"files": [
+  "src",
+  "compile",
+  "types/externs.js",
+  "typedefs.json",
+  "COPYING"
+]</code></pre>
+            
+            <p>The <span class="tm2">LICENSE</span> is always included by npm / yarn, so we don't need to specify it in there. We also want to publish the source code, so that the package can be compiled into other packages. If you're not publishing source code, remember to still include <strong>src/bin/index.js</strong> since it's defined in the <span class="tm">bin</span> field, and <em>npm</em> will not let you install the package if the file is missing (unlike <em>yarn</em>). <strong>typedefs.json</strong> will contain meta-information for package's types so that they can be linked to from other packages:</p>
+            
+            <pre id="cb9de3"><code class="json hljs">{
+  "_trapcss.trapcss": {
+    "link": "https://github.com/artdecocode/trapcss#trapcssconfig-config-return",
+    "description": "Parses the supplied HTML and CSS and removes\nunused selectors. Also removes empty CSS rules."
+  },
+  "_trapcss.Config": {
+    "link": "https://github.com/artdecocode/trapcss#type-config",
+    "description": "Options for the program."
+  },
+  "_trapcss.Return": {
+    "link": "https://github.com/artdecocode/trapcss#type-return",
+    "description": "Return Type."
+  }
+}</code></pre>
+            
+            <p>We'll come back to it in a second.</p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
             </p>
             </div>
           </div>

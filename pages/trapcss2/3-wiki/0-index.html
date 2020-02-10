@@ -1,0 +1,13 @@
+## Wiki
+
+Putting documentation on _GitHub_ wikis is a great way to organise help to our package. README files can be used to provide initial information about package usage, whereas Wikis can be used to described advanced use cases and intricacies of working with our software. Moreover, unlike website, especially if based on custom domains, Wikis will always remain attached to the package on _GitHub_. Unfortunately, Wikis have not been that popular, since it wasn't easy to maintain them. _Documentary_ fixes this as it supports automatic compilation of docs into _Wikis_.
+
+When I was creating a new package from the template, I was asked if I wanted to set up a wiki page, to which I said yes, and had to navigate to _GitHub_ to create the first page. This is because _GitHub_ API doesn't provide a method to automate this, however it's not a problem as it only takes a few clicks. Wikis are represented as separate git trees, so for ease of maintenance, _MNP_ initialised a git *submodule* called *wiki.git* in our project, and cloned the tree in there. Now pages from *wiki* will be compiled into *wiki.git* and we'll need to push changes to the submodule separately from the main project.
+
+The template came with *wiki/Developing* page, but it can be removed. I'm going to place original documentation from _DropCSS_ into separate pages. The pages could be either directories, or simple MD files. Additionally, special files include `_Sidebar.md` and `_Footer.md`, for example our footer uses a component from *.documentary/index.jsx*:
+
+```jsx
+<footer />
+```
+
+We already described how to use the package in README, so let's add the features page.

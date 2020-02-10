@@ -1,0 +1,21 @@
+###! Performance
+
+This page contains some benchmark data for _DropCSS_. I'll keep it the same.
+
+</div>
+
+###! JavaScript Execution
+
+This page is about opening a webpage in a headless browser to execute any dynamic JavaScript, which might manipulate DOM, so that the list of selectors is gathered after scripts are executed. I want to use the example, but the original depends on `puppeteer` which I think is redundant because if you have Chrome installed on your system, you can already open it. I don't want to download 80MB of a browser just for a simple script to be executed, so we'll simply install `chrome-remote-interface` and launch Chrome by hand. There's also `chrome-launcher` package however it's got 5 dependencies so until I've made a 0-dep fork, I'm not going to use it.
+
+```md
+%EXAMPLE: ./execution, ../.. => trapcss%
+
+%FORK-js wiki/example/execution%
+```
+
+The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.
+
+I can also start _Documentary_ in watch mode for Wikis also: <yarn wiki>-p 'wiki pages'</yarn>. Now it will watch for changes in both project and submodule directories, and force-push updates as necessary.
+
+</div>

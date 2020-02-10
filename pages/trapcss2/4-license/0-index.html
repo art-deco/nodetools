@@ -1,0 +1,55 @@
+##! License
+
+I'd like to update our footer to include the information about the original license. I've chosen Affero for this project, so the footer at the moment looks like the following:
+
+```md
+## Copyright & License
+
+GNU Affero General Public License v3.0
+```
+
+Let's include the original license:
+
+```md
+## Copyright & License
+
+GNU Affero General Public License v3.0
+
+Original work on [_DropCSS_](https://github.com/leeoniya/dropcss) package
+by [Leon Sorokin](https://github.com/leeoniya) under MIT license found in [COPYING](COPYING).
+```
+
+There are 2 standard files for a license, either ``LICENSE`` or ``COPYING``. Since our AGPL is found in the former, we can include the original one in the latter. This is the convention I use for forked packages. I'll also update *package.json* to include the original license in the `files` field:
+
+```json
+"files": [
+  "src",
+  "compile",
+  "types/externs.js",
+  "typedefs.json",
+  "COPYING"
+]
+```
+
+The ``LICENSE`` is always included by npm / yarn, so we don't need to specify it in there. We also want to publish the source code, so that the package can be compiled into other packages. If you're not publishing source code, remember to still include *src/bin/index.js* since it's defined in the `bin` field, and _npm_ will not let you install the package if the file is missing (unlike _yarn_). *typedefs.json* will contain meta-information for package's types so that they can be linked to from other packages:
+
+```json
+{
+  "_trapcss.trapcss": {
+    "link": "https://github.com/artdecocode/trapcss#trapcssconfig-config-return",
+    "description": "Parses the supplied HTML and CSS and removes\nunused selectors. Also removes empty CSS rules."
+  },
+  "_trapcss.Config": {
+    "link": "https://github.com/artdecocode/trapcss#type-config",
+    "description": "Options for the program."
+  },
+  "_trapcss.Return": {
+    "link": "https://github.com/artdecocode/trapcss#type-return",
+    "description": "Return Type."
+  }
+}
+```
+
+We'll come back to it in a second.
+
+<section-break />
