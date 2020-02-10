@@ -25,7 +25,7 @@ const { error, user } =
 
 This is when _NodeTools_ with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the `types.xml` file.
 
-<highlight src="web/types/index.xml" />
+<highlightjs src="../../web/types/index.xml" />
 
 We define a generic _ServerResponse_ type that contains either an error, or some data, according to the route. Doing it this way, allows to implement a fetch function in a single place, and then access the required property, such as `user` from within any component.
 

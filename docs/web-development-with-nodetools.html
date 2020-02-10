@@ -252,7 +252,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <li>There are no source maps for debugging.</li>
               <li>There's no hot module reload.</li>
               <li>JSX does not support block comments.
-            <pre id="ccdbf10"><code class="javascript hljs">render(&lt;div&gt;
+            <pre id="ccdbf"><code class="javascript hljs">render(&lt;div&gt;
   {/* hello world */}
 &lt;/div&gt;)</code></pre>
               </li>
@@ -408,29 +408,29 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>We also used an external type, called <span class="tm">_nodetools.ServerResponse</span>. We used <strong>casting</strong> since the assignments were made via destructuring, so we couldn't just annotate it above the function.</p>
             
-            <pre id="ccdbf"><code class="javascript hljs">const { error, user } =
+            <pre id="ccdbf1"><code class="javascript hljs">const { error, user } =
   /** @type {!_nodetools.ServerResponse} */ (await res.json())</code></pre>
             
             <p>This is when <em>NodeTools</em> with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the <span class="tm">types.xml</span> file.</p>
             
-            <pre><code class="xml hljs"><span class="hljs-tag">&lt;<span class="hljs-name">types</span> <span class="hljs-attr">ns</span>=<span class="hljs-string">"_nodetools"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">record</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"ServerResponse"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"!_nodetools.User"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">opt</span>&gt;</span>
+            <pre id="c16f7"><code class="xml hljs">&lt;types ns="_nodetools"&gt;
+  &lt;record name="ServerResponse"&gt;
+    &lt;prop type="!_nodetools.User" name="user" opt&gt;
       The user object.
-    <span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"error"</span>&gt;</span>
+    &lt;/prop&gt;
+    &lt;prop string name="error"&gt;
       The server-side error.
-    <span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">record</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">record</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"User"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>&gt;</span>
+    &lt;/prop&gt;
+  &lt;/record&gt;
+  &lt;record name="User"&gt;
+    &lt;prop string name="name"&gt;
       The name of the user.
-    <span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">prop</span> <span class="hljs-attr">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"login"</span>&gt;</span>
+    &lt;/prop&gt;
+    &lt;prop string name="login"&gt;
       The unique login of the user.
-    <span class="hljs-tag">&lt;/<span class="hljs-name">prop</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">record</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">types</span>&gt;</span></code></pre>
+    &lt;/prop&gt;
+  &lt;/record&gt;
+&lt;/types&gt;</code></pre>
             
             <p>We define a generic <em>ServerResponse</em> type that contains either an error, or some data, according to the route. Doing it this way, allows to implement a fetch function in a single place, and then access the required property, such as <span class="tm">user</span> from within any component.</p>
             
@@ -456,19 +456,19 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>The types that we're using are applicable both for server-side an client-side, therefore we can reuse them by importing from both places. In code that's going to be compiled with <em>Closure</em> though, we need to add the <span class="tm">@suppress</span> annotation, otherwise the compiler will print a warning. Although the compiler won't discover those types from source code, we'll pass it to it via externs. For back-end, we use simple <span class="tm">import</span>. Below is our API route.</p>
             
-            <pre><code class="js hljs"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">API</span> (<span class="hljs-params">ctx</span>) </span>{
-  <span class="hljs-comment">/** <span class="hljs-doctag">@type <span class="hljs-type">{_nodetools.User}</span> </span>*/</span>
-  <span class="hljs-keyword">const</span> user = {
-    <span class="hljs-attr">login</span>: <span class="hljs-string">'test'</span>,
-    <span class="hljs-attr">name</span>: <span class="hljs-string">'user'</span>,
+            <pre id="ccdbf11"><code class="javascript hljs">export default function API (ctx) {
+  /** @type {_nodetools.User} */
+  const user = {
+    login: 'test',
+    name: 'user',
   }
-  <span class="hljs-comment">// if error: ctx.body = { error }</span>
+  // if error: ctx.body = { error }
   ctx.body = { user }
 }
 
-<span class="hljs-comment">/**
- * <span class="hljs-doctag">@typedef <span class="hljs-type">{import('../types').User}</span> </span>_nodetools.User
- */</span></code></pre>
+/**
+ * @typedef {import('../types').User} _nodetools.User
+ */</code></pre>
             
             <p>The fact that we import types, provides us with the desired experience: we can invoke auto-completions on the created object:</p>
             
@@ -490,80 +490,80 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>The types for <em>VSCode</em> are generated into the <span class="tm">types/index.js</span> file:</p>
             
-            <pre><code class="js hljs"><span class="hljs-keyword">export</span> {}
+            <pre id="ccdbf12"><code class="javascript hljs">export {}
 
-<span class="hljs-comment">/* typal types/index.xml namespace */</span>
-<span class="hljs-comment">/**
- * <span class="hljs-doctag">@typedef <span class="hljs-type">{_nodetools.ServerResponse}</span> </span>ServerResponse `＠record`
- * <span class="hljs-doctag">@typedef <span class="hljs-type">{Object}</span> </span>_nodetools.ServerResponse `＠record`
- * <span class="hljs-doctag">@prop <span class="hljs-type">{!_nodetools.User}</span> </span>[user] The user object.
- * <span class="hljs-doctag">@prop <span class="hljs-type">{string}</span> </span>error The server-side error.
- * <span class="hljs-doctag">@typedef <span class="hljs-type">{_nodetools.User}</span> </span>User `＠record`
- * <span class="hljs-doctag">@typedef <span class="hljs-type">{Object}</span> </span>_nodetools.User `＠record`
- * <span class="hljs-doctag">@prop <span class="hljs-type">{string}</span> </span>name The name of the user.
- * <span class="hljs-doctag">@prop <span class="hljs-type">{string}</span> </span>login The unique login of the user.
- */</span>
+/* typal types/index.xml namespace */
+/**
+ * @typedef {_nodetools.ServerResponse} ServerResponse `＠record`
+ * @typedef {Object} _nodetools.ServerResponse `＠record`
+ * @prop {!_nodetools.User} [user] The user object.
+ * @prop {string} error The server-side error.
+ * @typedef {_nodetools.User} User `＠record`
+ * @typedef {Object} _nodetools.User `＠record`
+ * @prop {string} name The name of the user.
+ * @prop {string} login The unique login of the user.
+ */
 </code></pre>
             
             <p>We added <span class="tm">export {}</span> at the top to make it possible to import types from other files, which is otherwise impossible. The <span class="tm">namespace</span> argument in the <span class="tm2">typal</span> marker is needed to preserve namespaces, which a convention in <em>NodeTools</em> since we need to match the externs' namespace. You can omit namespace altogether for simple applications but it's just how I do things.</p>
             
-            <pre><code class="js hljs"><span class="hljs-comment">/**
- * <span class="hljs-doctag">@fileoverview</span>
- * <span class="hljs-doctag">@externs</span>
- */</span>
+            <pre id="ccdbf13"><code class="javascript hljs">/**
+ * @fileoverview
+ * @externs
+ */
 
-<span class="hljs-comment">/* typal types/index.xml externs */</span>
-<span class="hljs-comment">/** <span class="hljs-doctag">@const </span>*/</span>
-<span class="hljs-keyword">var</span> _nodetools = {}
-<span class="hljs-comment">/**
- * <span class="hljs-doctag">@record</span>
- */</span>
+/* typal types/index.xml externs */
+/** @const */
+var _nodetools = {}
+/**
+ * @record
+ */
 _nodetools.ServerResponse
-<span class="hljs-comment">/**
+/**
  * The user object.
- * <span class="hljs-doctag">@type <span class="hljs-type">{(!_nodetools.User)|undefined}</span></span>
- */</span>
+ * @type {(!_nodetools.User)|undefined}
+ */
 _nodetools.ServerResponse.prototype.user
-<span class="hljs-comment">/**
+/**
  * The server-side error.
- * <span class="hljs-doctag">@type <span class="hljs-type">{string}</span></span>
- */</span>
+ * @type {string}
+ */
 _nodetools.ServerResponse.prototype.error
-<span class="hljs-comment">/**
- * <span class="hljs-doctag">@record</span>
- */</span>
+/**
+ * @record
+ */
 _nodetools.User
-<span class="hljs-comment">/**
+/**
  * The name of the user.
- * <span class="hljs-doctag">@type <span class="hljs-type">{string}</span></span>
- */</span>
+ * @type {string}
+ */
 _nodetools.User.prototype.name
-<span class="hljs-comment">/**
+/**
  * The unique login of the user.
- * <span class="hljs-doctag">@type <span class="hljs-type">{string}</span></span>
- */</span>
+ * @type {string}
+ */
 _nodetools.User.prototype.login
 </code></pre>
             
             <p>Any time we updates types.xml file, we'll run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>d</span></span></span> command to recompile types and externs. By the time <em>Node Tools 2</em> is released, we'll have a watch mode also, but for now we need to make use of scripts manually:</p>
             
-            <pre><code class="json hljs">{
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"nodetools-web"</span>,
-  <span class="hljs-attr">"scripts"</span>: {
-    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"alanode index.jsx"</span>,
-    <span class="hljs-attr">"closure"</span>: <span class="hljs-string">"CLOSURE=1 yarn start"</span>,
-    <span class="hljs-attr">"web"</span>: <span class="hljs-string">"depack frontend -o docs -a -H -E -i --externs types/externs.js"</span>,
-    <span class="hljs-attr">"d"</span>: <span class="hljs-string">"yarn-s d1 externs"</span>,
-    <span class="hljs-attr">"d1"</span>: <span class="hljs-string">"typal types/index.js -u"</span>,
-    <span class="hljs-attr">"externs"</span>: <span class="hljs-string">"typal types/externs.js -e"</span>
+            <pre id="cb9de1"><code class="json hljs">{
+  "name": "nodetools-web",
+  "scripts": {
+    "start": "alanode index.jsx",
+    "closure": "CLOSURE=1 yarn start",
+    "web": "depack frontend -o docs -a -H -E -i --externs types/externs.js",
+    "d": "yarn-s d1 externs",
+    "d1": "typal types/index.js -u",
+    "externs": "typal types/externs.js -e"
   },
-  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"AGPL-3.0"</span>,
-  <span class="hljs-attr">"devDependencies"</span>: {
-    <span class="hljs-attr">"@externs/preact"</span>: <span class="hljs-string">"^1.2.9"</span>,
-    <span class="hljs-attr">"depack"</span>: <span class="hljs-string">"^1.1.1"</span>,
-    <span class="hljs-attr">"preact"</span>: <span class="hljs-string">"8.5.3"</span>,
-    <span class="hljs-attr">"unfetch"</span>: <span class="hljs-string">"^4.1.0"</span>,
-    <span class="hljs-attr">"yarn-s"</span>: <span class="hljs-string">"^1.2.3"</span>
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "@externs/preact": "^1.2.9",
+    "depack": "^1.1.1",
+    "preact": "8.5.3",
+    "unfetch": "^4.1.0",
+    "yarn-s": "^1.2.3"
   }
 }
 </code></pre>
@@ -603,7 +603,7 @@ _nodetools.User.prototype.login
             
             <p>The style has been updated into a JS file that calls <span class="tm2">__$styleInject</span> when imported:</p>
             
-            <pre id="ccdbf1"><code class="javascript hljs">function __$styleInject(css = '') {
+            <pre id="ccdbf2"><code class="javascript hljs">function __$styleInject(css = '') {
   const head = document.head
   const style = document.createElement('style')
   style.type = 'text/css'
@@ -687,7 +687,7 @@ __$styleInject(style)</code></pre>
             
             <p><em>Depack</em> doesn't transpile JSX in published packages, therefore they need to make sure their published code is transpiled into standard JavaScript with <span class="tm">h</span> pragma calls. This can be done with <em>ÀLaMode</em>. For example, the <span class="tm2">@depack/form</span> package is a library to create Bootstrap forms that was written in JSX, e.g.,</p>
             
-            <pre id="ccdbf2"><code class="javascript hljs">import { Component } from 'preact'
+            <pre id="ccdbf3"><code class="javascript hljs">import { Component } from 'preact'
 
 export default class Form extends Component {
   // ... component code
@@ -702,7 +702,7 @@ export default class Form extends Component {
             
             <p>It is then transpiled into the <strong>build</strong> folder, however <span class="tm2">imports</span> stay as imports, and don't become <span class="tm">require</span> calls. If we were publishing back-end components, we'd also transpile <span class="tm2">imports</span> but since Closure can understand them, we keep it.</p>
             
-            <pre id="ccdbf3"><code class="javascript hljs">import { h } from 'preact'
+            <pre id="ccdbf4"><code class="javascript hljs">import { h } from 'preact'
 import { Component } from 'preact'
 
 export default class Form extends Component {
@@ -734,7 +734,7 @@ export default class Form extends Component {
             
             <p>For basic testing of components written in <em>Preact</em>, you can take advantage of the <a href="https://github.com/dpck/context"><em>JSXContext</em></a> that can transform an input string into a JSX VNode, that can then be rendered. Using this method, you can declare your components using simple HTML from masks, and compare rendered result to the expected output.</p>
             
-            <pre id="ccdbf4"><code class="javascript hljs">// test/mask/default.js
+            <pre id="ccdbf5"><code class="javascript hljs">// test/mask/default.js
 
 import makeTestSuite from '@zoroaster/mask'
 import JSXContext from '@depack/context'
@@ -757,7 +757,7 @@ export default makeTestSuite('test/result/default', {
             
             <p>The mask result in JSX format will then use a preamble to import components for syntax highlighting and auto-completions, and define inputs as JSX methods and outputs as HTML code. I've surrounded each block with <span class="tm">()</span> so that there's no syntax errors underlined with red in the file. Mask results are used only to define inputs/outputs, so despite the fact that the format of this file is JSX, it's only so to enable syntax highlighting.</p>
             
-            <pre id="ccdbf5"><code class="javascript hljs">// test/result/default/form-group.jsx
+            <pre id="ccdbf6"><code class="javascript hljs">// test/result/default/form-group.jsx
 
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
@@ -804,7 +804,7 @@ import { TextArea, Select, Form, FormGroup, Input } from '../../src'
             
             <p>The second strategy, is to spawn a headless browser as a background process, setup a server that will return some HTML with script tags that invoke JavaScript to render certain components on elements. Each test will open a new page, with slightly different setup routine, wait for JS to execute, and send the element's outer HTML back to the server. We'll use a <em>RemoteChrome</em> context to connect to the browser:</p>
             
-            <pre id="ccdbf6"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
+            <pre id="ccdbf7"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
 import { c, b } from 'erte'
 
 export default class RemoteChrome {
@@ -847,7 +847,7 @@ export default class RemoteChrome {
             
             <p>We'll also need the <em>Idio</em> context that will start a server to return HTML code.</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">import idio from '@idio/idio'
+            <pre id="ccdbf8"><code class="javascript hljs">import idio from '@idio/idio'
 import frontend from '@idio/frontend'
 import render from '@depack/render'
 import jsx from '@a-la/jsx'
@@ -914,7 +914,7 @@ render(inv, document.body)
               href="https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/idio/format.js">
               for formatting</a>, and calls Preact's render method on the invocation passed from tests. The mask setup is then the following:</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf9"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import { equal } from '@zoroaster/assert'
 import IdioContext from '../context/Idio'
 import RemoteChrome from '../context/RemoteChrome'
@@ -964,7 +964,7 @@ export const Chrome = makeTestSuite('test/result/chrome.jsx', {
             
             <p>Example mask result:</p>
             
-            <pre id="ccdbf9"><code class="javascript hljs">/* eslint-env browser */
+            <pre id="ccdbf10"><code class="javascript hljs">/* eslint-env browser */
 import { Component } from 'preact'
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
