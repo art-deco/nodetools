@@ -127,7 +127,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a>
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.0</span></a>
                 <a
                   title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
@@ -643,7 +643,7 @@ console.log(a({ 'configItem': 'test' }))</code></pre>
             
             <p>Instead of transpiling packages, it's possible to just build them, which means renaming imports and exports into require calls and <strong>module.export</strong> assignments. This is a simpler strategy but it's rarely used. The main time when we want to build packages, is for larger projects that also might include JSX components and more complex structures. For example, if we use <span class="tm">__dirname</span> in source code a lot, this variable will be different when compiled, therefore we might want to avoid having to worry about paths being the same. Our transpiler is regex-based and simply looks for <span class="tm">import .../ export ...</span> statements without building ASTs which is faster, but might be less reliable. Refer to <a
                title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-               <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
+               <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.0</span></a> documentation to find out about some edge cases when the transpiler might fail. If it happens, try rearranging exported functions' positions, or placing them in separate files.</p>
             
             <h3 id="-lamode-modules"> ÀLaMode Modules</h3>
             

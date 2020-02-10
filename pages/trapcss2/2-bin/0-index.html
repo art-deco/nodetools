@@ -1,0 +1,21 @@
+##! Binary Executable
+
+Many packages come with a binary &mdash; a Node script that can be run from the CLI. There are many usages of such scripts, including on CI, or to perform any routine operation from the command line. Binaries need to be defined in *package.json*:
+
+```json
+"bin": {
+  "trapcss": "compile/bin/trapcss.js",
+  "trapcss-dev": "src/bin/index.js"
+}
+```
+
+The main bin is pointing to the compiled version, whereas we also add the `dev` version, for when we link the package using <yarn link />. This will make its source code executable system-wide without having to recompile it every time for changes. The *index.js* file is the entry point to the development version:
+
+```js
+#!/usr/bin/env node
+require('alamode')()
+require('./trapcss')
+```
+
+It simply instantiates the _ÀLaMode_ hook that will transpile modules on the file. It is not used when the binary is built/compiled. We also have a `dev` script ``"dev": "node src/bin"`` so that we can run <yarn dev /> from the project folder when testing.
+

@@ -1,0 +1,20 @@
+###! CLI Arguments
+
+The key requirement for such scripts is to read arguments from the `process.argv` array, to parse input flags and options to the program. There are packages that allow to do that, but in _NodeTools_, we take a different approach. We'll keep our arguments definitions in the *types/arguments.xml* file:
+
+<highlightjs src="../example/arguments.xml" />
+
+Using XML schema, we can maintain the argument specification, and then create a special file called *get-args.js*, using the `argufy` package. The script is defined as the _args_ job in *package.json* &mdash; ``argufy -o src/bin/get-args.js``. The default location of arguments is *types/arguments.xml*, so we don't need to specify any input. The output, on the other hand, is to be written to *src/bin/get-args.js*. From the specification that we drew, this is the output that is produced:
+
+<highlightjs src="../example/get-args.mjs" />
+
+The program generated the config, that will be passed to `argufy` at runtime, to create the ``args`` object. Then, each of arguments is actually casted into its correct type, annotated with description and declared as a named export. This will allow to statically import those arguments from the binary. Such approach enables type checking using _Closure Compiler_, as arguments are constructed statically. `argufy` doesn't have any dependencies, but if we compile the binary, it will also be merged into it meaning there's absolutely no overhead into using it. Because _input_ is specified as *multiple command*, it will be an array of strings, so that we can pass multiple paths to HTML files.
+
+<ul>
+  - Read more about [argufy](https://github.com/artdecocode/argufy);
+  <li>Multiple arguments.xml files can be kept, for different [semantic functionality](https://github.com/artdecocode/logarithm/tree/14ce888bec311c4febdf591e98eaedb00efdee47/types/args);</li>
+  <li>Short aliases can be reused between commands, check out [logarithm](https://github.com/artdecocode/logarithm/blob/14ce888bec311c4febdf591e98eaedb00efdee47/src/bin/logarithm.js#L110);</li>
+  - At the moment, an argument cannot be both flag (boolean) and standard argument, e.g., `trapcss -c` AND `trapcss -c path.css` are not possible at the same time. I'll be adding this later on.
+</ul>
+
+</div>

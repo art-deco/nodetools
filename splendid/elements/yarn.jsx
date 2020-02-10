@@ -23,7 +23,7 @@ export default function yarn({ splendid, log, debug, logError, setChildContext, 
     else args.push(a)
   })
   const hasArgs = Boolean(args.length)
-  const t = ['add', 'info', 'test', 'i', 'install']
+  const t = ['add', 'info', 'test', 'i', 'install', 'link']
   const [firstArg, ...Args] = arg
 
   if (!firstArg) return (<span className="Manager">

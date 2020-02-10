@@ -83,7 +83,7 @@ The template has already been prepared so now we actually have our package ready
 }
 ```
 
-Now every time we require `../../src` from test, the transpiler will update it to `../../compile` on the fly. We can also set it to just `../..` since it will resolve to our *package.json* and read the ``main`` field from there. To ensure that the remapping actually happens, we can add a simple `throw new Error(1)` in the *compile/index.js* file and try to run this command.
+Now every time we require `../../src` from test, the transpiler will update it to `../../compile` on the fly (the ``$`` is needed in cases when we import methods from other files in the lib for unit testing, which would break testing as paths like *compile/html.js* don't exist). We can also set it to just `../..` since it will resolve to our *package.json* and read the ``main`` field from there. To ensure that the remapping actually happens, we can add a simple `throw new Error(1)` in the *compile/index.js* file and try to run this command.
 
 ```bash
 Testing compile bin

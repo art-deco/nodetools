@@ -153,7 +153,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.4.1</span></a>
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.0</span></a>
                 <a
                   title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
@@ -186,9 +186,13 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                       <a href="#welcome-closure">Welcome Closure</a>
                                       <ul><li data-heading="installation"><a href="#installation">Installation</a></li><li data-heading="advantages"><a href="#advantages">Advantages</a></li><li data-heading="web-bundling"><a href="#web-bundling">Web Bundling</a></li></ul>
                                     </li>
-                                    <li data-heading="compiling-packages">
-                                      <a href="#compiling-packages">Compiling Packages</a>
+                                    <li data-heading="compiling-libraries">
+                                      <a href="#compiling-libraries">Compiling Libraries</a>
                                       <ul><li data-heading="templates"><a href="#templates">Templates</a></li><li data-heading="running-compiler"><a href="#running-compiler">Running Compiler</a></li></ul>
+                                    </li>
+                                    <li data-heading="binary-executable">
+                                      <a href="#binary-executable">Binary Executable</a>
+                                      <ul><li data-heading="cli-arguments"><a href="#cli-arguments">CLI Arguments</a></li><li data-heading="implementation"><a href="#implementation">Implementation</a></li><li data-heading="fork-testing"><a href="#fork-testing">Fork Testing</a></li><li data-heading="bin-compile"><a href="#bin-compile">Bin Compile</a></li><li data-heading="cli-documentation"><a href="#cli-documentation">CLI Documentation</a></li></ul>
                                     </li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
@@ -234,6 +238,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               </noscript>
             </p>
             
+            <p>At the end, we'll also look how to incorporate <em>TrapCSS</em> into another package with <em>StdLib</em> strategy: we'll compile a file called <strong>stdlib.js</strong> for a static website generator <em>Splendid</em> that will statically link to <span class="tm">trapcss</span>, meaning that they will be distributed together. This will allow to reduce the total number of dependencies in the target package and make it more appealing to users.</p>
+            
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
                 <img alt="section break"
@@ -268,11 +274,11 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>To use the compiler, you'll need Java on your machine. If you're working on Windows, you can just install it from the official website and it'll be working fine. On a Mac, I had to add the following line to my <span class="tm2">~/.bash_profile</span>.</p>
             
-            <pre id="c414d2"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
+            <pre id="c414d"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
             
             <p>If you're using <strong>zsh</strong>, also add <span class="tm2">source ~/.bash_profile</span> to your <strong>~/.zshrc</strong>. Then we're going to install <span class="tm">google-closure-compiler-java</span> into the home folder:</p>
             
-            <pre id="c414d"><code class="bash hljs">cd ~
+            <pre id="c414d1"><code class="bash hljs">cd ~
 yarn|npm init # we want to save deps in package.json
 yarn add google-closure-compiler-java</code></pre>
             
@@ -357,8 +363,8 @@ export const {
             </div>
             
             
-            <div data-section id="compiling-packages">
-            <h2>Compiling Packages</h2>
+            <div data-section id="compiling-libraries">
+            <h2>Compiling Libraries</h2>
             
             <p>Let's get down to business. Advanced compilation means that our comments are going to be stripped off the source code, so that all type information is lost. It's possible to preserve all comments, however this is a new feature of the compiler, and will keep ALL comments which might be undesirable. We'll be compiling our API, so the strategy is the following:</p>
             
@@ -380,7 +386,7 @@ export const {
             
             <p>The entry point for the compiler is <strong>src/depack.js</strong>, which imports the method from the source code and exports it via CommonJS standard. It also imports externs so that <em>Closure</em> will understand our types:</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">import '../types/externs'
+            <pre id="ccdbf16"><code class="javascript hljs">import '../types/externs'
 import trapcss from './'
 
 /*!
@@ -415,7 +421,7 @@ module.exports = {
             
             <p>We'll need to create a second file, called <span class="tm2">template</span> in <strong>compile/template.js</strong>:</p>
             
-            <pre id="ccdbf9"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf17"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * @methodType {_trapcss.trapcss}
@@ -447,7 +453,7 @@ module.exports = trapcss
             
             <p>After the two commands are run, we'll have a production-ready entry file. Let's have a look at what is being produced as the <span class="tm">main</span>:</p>
             
-            <pre id="ccdbf10"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf18"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * Parses the supplied HTML and CSS and removes
@@ -622,9 +628,9 @@ module.exports.Context = $Context</code></pre>
   }
 }</code></pre>
             
-            <p>Now every time we require <span class="tm">../../src</span> from test, the transpiler will update it to <span class="tm">../../compile</span> on the fly. We can also set it to just <span class="tm">../..</span> since it will resolve to our <strong>package.json</strong> and read the <span class="tm2">main</span> field from there. To ensure that the remapping actually happens, we can add a simple <span class="tm">throw new Error(1)</span> in the <strong>compile/index.js</strong> file and try to run this command.</p>
+            <p>Now every time we require <span class="tm">../../src</span> from test, the transpiler will update it to <span class="tm">../../compile</span> on the fly (the <span class="tm2">$</span> is needed in cases when we import methods from other files in the lib for unit testing, which would break testing as paths like <strong>compile/html.js</strong> don't exist). We can also set it to just <span class="tm">../..</span> since it will resolve to our <strong>package.json</strong> and read the <span class="tm2">main</span> field from there. To ensure that the remapping actually happens, we can add a simple <span class="tm">throw new Error(1)</span> in the <strong>compile/index.js</strong> file and try to run this command.</p>
             
-            <pre id="c414d1"><code class="bash hljs">Testing compile bin
+            <pre id="c414d2"><code class="bash hljs">Testing compile bin
 Error: 1
 Could not require test/spec
     at Object.&lt;anonymous&gt; (/Users/zavr/adc/trapcss/compile/index.js:2:7)
@@ -661,6 +667,643 @@ error Command failed with exit code 1.</code></pre>
                 <img alt="section break"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='13'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/2.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="binary-executable">
+            <h2>Binary Executable</h2>
+            
+            <p>Many packages come with a binary &mdash; a Node script that can be run from the CLI. There are many usages of such scripts, including on CI, or to perform any routine operation from the command line. Binaries need to be defined in <strong>package.json</strong>:</p>
+            
+            <pre id="cb9de1"><code class="json hljs">"bin": {
+  "trapcss": "compile/bin/trapcss.js",
+  "trapcss-dev": "src/bin/index.js"
+}</code></pre>
+            
+            <p>The main bin is pointing to the compiled version, whereas we also add the <span class="tm">dev</span> version, for when we link the package using <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>link</span></span></span>. This will make its source code executable system-wide without having to recompile it every time for changes. The <strong>index.js</strong> file is the entry point to the development version:</p>
+            
+            <pre id="ccdbf8"><code class="javascript hljs">#!/usr/bin/env node
+require('alamode')()
+require('./trapcss')</code></pre>
+            
+            <p>It simply instantiates the <em>ÀLaMode</em> hook that will transpile modules on the file. It is not used when the binary is built/compiled. We also have a <span class="tm">dev</span> script <span class="tm2">&quot;dev&quot;: &quot;node src/bin&quot;</span> so that we can run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>dev</span></span></span> from the project folder when testing.</p>
+            
+            
+            
+            <div data-section id="cli-arguments">
+            <h3>CLI Arguments</h3>
+            
+            <p>The key requirement for such scripts is to read arguments from the <span class="tm">process.argv</span> array, to parse input flags and options to the program. There are packages that allow to do that, but in <em>NodeTools</em>, we take a different approach. We'll keep our arguments definitions in the <strong>types/arguments.xml</strong> file:</p>
+            
+            <pre id="c16f71"><code class="xml hljs">&lt;arguments&gt;
+  &lt;arg command multiple name="input"&gt;
+    The HTML files to read.
+  &lt;/arg&gt;
+  &lt;arg name="css" short="c"&gt;
+    The CSS file to drop selectors from.
+  &lt;/arg&gt;
+  &lt;arg name="output" short="o"&gt;
+    The destination where to save output.
+    If not passed, prints to stdout.
+  &lt;/arg&gt;
+  &lt;arg boolean name="help" short="h"&gt;
+    Print the help information and exit.
+  &lt;/arg&gt;
+  &lt;arg boolean name="version" short="v"&gt;
+    Show the version's number and exit.
+  &lt;/arg&gt;
+&lt;/arguments&gt;</code></pre>
+            
+            <p>Using XML schema, we can maintain the argument specification, and then create a special file called <strong>get-args.js</strong>, using the <span class="tm">argufy</span> package. The script is defined as the <em>args</em> job in <strong>package.json</strong> &mdash; <span class="tm2">argufy -o src/bin/get-args.js</span>. The default location of arguments is <strong>types/arguments.xml</strong>, so we don't need to specify any input. The output, on the other hand, is to be written to <strong>src/bin/get-args.js</strong>. From the specification that we drew, this is the output that is produced:</p>
+            
+            <pre id="ccdbf19"><code class="javascript hljs">import argufy from 'argufy'
+
+export const argsConfig = {
+  'input': {
+    description: 'The HTML files to read.',
+    command: true,
+    multiple: true,
+  },
+  'css': {
+    description: 'The CSS file to drop selectors from.',
+    short: 'c',
+  },
+  'output': {
+    description: 'The destination where to save output.\nIf not passed, prints to stdout.',
+    short: 'o',
+  },
+  'help': {
+    description: 'Print the help information and exit.',
+    boolean: true,
+    short: 'h',
+  },
+  'version': {
+    description: 'Show the version\'s number and exit.',
+    boolean: true,
+    short: 'v',
+  },
+}
+
+const args = argufy(argsConfig)
+
+/**
+ * The HTML files to read.
+ */
+export const _input = /** @type {!Array&lt;string&gt;} */ (args['input'])
+
+/**
+ * The CSS file to drop selectors from.
+ */
+export const _css = /** @type {string} */ (args['css'])
+
+/**
+ * The destination where to save output.
+    If not passed, prints to stdout.
+ */
+export const _output = /** @type {string} */ (args['output'])
+
+/**
+ * Print the help information and exit.
+ */
+export const _help = /** @type {boolean} */ (args['help'])
+
+/**
+ * Show the version's number and exit.
+ */
+export const _version = /** @type {boolean} */ (args['version'])
+
+/**
+ * The additional arguments passed to the program.
+ */
+export const _argv = /** @type {!Array&lt;string&gt;} */ (args._argv)</code></pre>
+            
+            <p>The program generated the config, that will be passed to <span class="tm">argufy</span> at runtime, to create the <span class="tm2">args</span> object. Then, each of arguments is actually casted into its correct type, annotated with description and declared as a named export. This will allow to statically import those arguments from the binary. Such approach enables type checking using <em>Closure Compiler</em>, as arguments are constructed statically. <span class="tm">argufy</span> doesn't have any dependencies, but if we compile the binary, it will also be merged into it meaning there's absolutely no overhead into using it. Because <em>input</em> is specified as <strong>multiple command</strong>, it will be an array of strings, so that we can pass multiple paths to HTML files.</p>
+            
+            <ul>
+              <li>Read more about <a href="https://github.com/artdecocode/argufy">argufy</a>;</li>
+              <li>Multiple arguments.xml files can be kept, for different <a
+              href="https://github.com/artdecocode/logarithm/tree/14ce888bec311c4febdf591e98eaedb00efdee47/types/args">
+              semantic functionality</a>;</li>
+              <li>Short aliases can be reused between commands, check out <a
+              href="https://github.com/artdecocode/logarithm/blob/14ce888bec311c4febdf591e98eaedb00efdee47/src/bin/logarithm.js#L110">
+              logarithm</a>;</li>
+              <li>At the moment, an argument cannot be both flag (boolean) and standard argument, e.g., <span class="tm">trapcss -c</span> AND <span class="tm">trapcss -c path.css</span> are not possible at the same time. I'll be adding this later on.</li>
+            </ul>
+            
+            </div>
+            
+            <div data-section id="implementation">
+            <h3>Implementation</h3>
+            
+            <p>The template has already come with some binary source code, for example for printing version number and usage information. The usage string is constructed with the <span class="tm">usually</span> package, that accepts a description, example, line and usage itself. The usage is made using the <span class="tm2">reduceUsage</span> method from <span class="tm">argufy</span>, based on the arguments config that was also exported from the <strong>get-args.js</strong> file. It will create a 2-column table with full and short arguments' names and their descriptions.</p>
+            
+            <pre id="ccdbf20"><code class="javascript hljs">import usually from 'usually'
+import { reduceUsage } from 'argufy'
+import { readFileSync, writeFileSync } from 'fs'
+import { c } from 'erte'
+import { _input, _output, argsConfig, _css, _version, _help } from './get-args'
+import trapcss from '../'
+
+/*!
+ * TrapCSS: Remove unused CSS selectors based on HTML files.
+ *
+ * Copyright (C) 2020 Art Deco Code Limited
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
+ */
+
+if (_help) {
+  const usage = usually({
+    description: 'Remove unused CSS',
+    example: 'trapcss index.html example.html -c style.css -o style-dropped.css',
+    line: 'trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]',
+    usage: reduceUsage(argsConfig),
+  })
+  console.log(usage)
+  process.exit(0)
+} else if (_version) {
+  console.log(require('../../package.json').version)
+  process.exit(0)
+}
+
+if (!_css) {
+  console.error('Please pass CSS path')
+  process.exit(1)
+}
+const css = /** @type {string} */ (readFileSync(_css, 'utf8'))
+
+// whitelist
+let whitelist = new Set()
+
+_input.forEach((input) =&gt; {
+  const html = /** @type {string} */ (readFileSync(input, 'utf8'))
+  const { sels } = trapcss({
+    css,
+    html,
+  })
+  sels.forEach(sel =&gt; whitelist.add(sel))
+})
+
+const cleaned = trapcss({
+  html: '',
+  css,
+  shouldDrop: sel =&gt; !whitelist.has(sel),
+})
+
+if (_output) {
+  writeFileSync(_output, cleaned.css)
+  console.error('Output written to %s', c(_output, 'yellow'))
+} else {
+  console.log(cleaned.css)
+}</code></pre>
+            
+            <p>We can see what the usage looks like by calling the <strong>dev</strong> script: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>dev</span> <span class="npm-cmd">--</span> <span>-h</span></span></span>:</p>
+            
+            <pre id="c414d3"><code class="bash hljs">Remove unused CSS
+
+  trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]
+
+        input           The HTML files to read.
+        --css, -c       The CSS file to drop selectors from.
+        --output, -o    The destination where to save output.
+                        If not passed, prints to stdout.
+        --help, -h      Print the help information and exit.
+        --version, -v   Show the version's number and exit.
+
+  Example:
+
+    trapcss index.html example.html -c style.css -o style-dropped.css</code></pre>
+            
+            <p>This presentation might be different from how you want it to look like, so feel free to implement your own usage function from the args config, or submit a <a href="https://github.com/artdecocode/usually">PR</a> to the <span class="tm">usually</span> package with new options for styling.</p>
+            
+            <p>Moreover, we required <strong>package.json</strong> at runtime, which means that it won't be built into the compiled code, and will remain as <span class="tm">require</span> call. Requires from the entry file don't make it to the dependency list during static analysis, but if we wanted to make dynamic import anywhere else, it'd have to be broken up:</p>
+            
+            <pre id="ccdbf9"><code class="javascript hljs">const pckg = require(/* dpck */ 'dynamic-import')</code></pre>
+            
+            <p><em>version</em> is a recognised option by the compiler, so we don't have to use quoted props, for other fields, we'd have to refer to them like <span class="tm">require('../../package')['main']</span> to avoid renaming.</p>
+            
+            <p>Next, we check if the CSS was supplied via the arguments. If it wasn't we print an error message and exit with status code 1, which means that the program wasn't executed successfully and is a unix convention. Otherwise, we'll read the CSS file, using standard <strong>readFileSync</strong>. Typically, in Node, we're trained to use promises for non-blocking IO, however because we're not running a server, and simply executing a script, it's absolutely appropriate to use sync operations in this case (unless we're reading/writing many files in parallel). We used casting, because if the second argument (encoding) is not passed to <span class="tm2">readFileSync</span>, it will return a buffer, but the compiler does not support overloading, so we have to explicitly cast the return type. This is done by wrapping the value in brackets:</p>
+            
+            <pre id="ccdbf10"><code class="javascript hljs">/** @type {string} */ (readFileSync(input, 'utf8'))</code></pre>
+            
+            <p><em>DropCSS</em> provides a strategy for reading multiple input files. We create a <span class="tm">whitelist</span> set, and then for each HTML file, execute the <span class="tm2">trapcss</span> method against it and CSS, and add selectors to the set. In the end, we simply pass an empty string as HTML, but use <span class="tm">shouldDrop: sel =&gt; !whitelist.has(sel)</span> property of the config that will utilise the accumulated whitelist.</p>
+            
+            <p>Finally, if the <span class="tm">-o</span> argument was passed, we can save the result to a file. If not, we print the output to stdout to the user. We used the <span class="tm2">c</span> method from <span class="tm">erte</span> to print the output location in yellow. It also contains the <span class="tm2">b</span> method to color the background of strings, and the two can be combined. The template came with <span class="tm">indicatrix</span> package also that would print a loading indicator (triple ellipse) however we didn't have any async operations so it could be removed.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="running trapcss from CLI" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='654' height='508'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="running trapcss from CLI" src="/nodetools/pages/trapcss2/2-bin/img/t.gif">
+              </noscript>
+            </p>
+            
+            </div>
+            
+            <div data-section id="fork-testing">
+            <h3>Fork Testing</h3>
+            
+            <p>We already used some mask testing in <a href="/nodetools/trap"></a>, but one of the best applications of masks is to test forks. A fork is a separate Node process spawned from a script itself. They are completely independent processes with separate PIDs, but the fork will by default exit with its parent. Since our binary is a Node program, to test it properly, we need to spawn it via the <span class="tm">child_process</span> module. <em>Zoroaster</em> provides an abstraction over fork testing, if you pass <span class="tm2">fork</span> property to the mask constructor.</p>
+            
+            <pre id="ccdbf21"><code class="javascript hljs">import TempContext from 'temp-context'
+import Context from '../context'
+import makeTestSuite from '@zoroaster/mask'
+
+export default makeTestSuite('test/result/bin/default', {
+  context: TempContext,
+  fork: {
+    /**
+     * @param {string[]} args
+     * @param {TempContext} t
+     */
+    async getArgs(_, { write }) {
+      const html = await write('index.html', this.input)
+      const [, css] = /&lt;style&gt;([\s\S]+?)&lt;\/style&gt;/.exec(this.css)
+      const style = await write('style.css', css)
+      return [html, '-c', style]
+    },
+    module: Context.BIN,
+    preprocess: {
+      stdout: Context.wrap,
+    },
+  },
+})</code></pre>
+            
+            <p>By default, the input from mask result is split by whitespace to provide arguments to fork, but we can provide the <span class="tm">getArgs</span> method to expand, or override the arguments list. We'll use a testing context called <em>TempContext</em> to write the input of the mask into a temp file (<span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-cmd">i</span><span class="yarn-cmd">add</span> <span>temp-context</span></span></span>). For each test, a blank <span class="tm2">test/temp</span> dir will be created, and removed at the end. The <strong>write</strong> method returns the path to the new file, so that we can pass it to the program. We then extract the CSS from within the <span class="tm2">style</span> tag in the mask result (need to wrap it in the style tag for syntax highlighting), and also write it to the temp dir. The new arguments, therefore are: [path-to.html -c path-to.css].</p>
+            
+            <p>As a preprocessor for output, we also want to wrap the <span class="tm">stdout</span> in style tag also, for syntax highlighting. The tag itself has no meaning to tests themselves, it only allows US as developers to work comfortably with mask results. <em>NodeTools</em> is all about usability, and we can even do some cools stuff as folding individual specs in the result file, since they are under <span class="tm">##</span> heading of a markdown file.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="folding mask results from IDE" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='467'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="folding mask results from IDE" src="/nodetools/pages/trapcss2/2-bin/img/wrap.gif">
+              </noscript>
+            </p>
+            
+            <p>Additionally, we had to get the path to the fork from the context's static <span class="tm">BIN</span> property, that accounts for the testing environment:</p>
+            
+            <pre id="ccdbf11"><code class="javascript hljs">// test/context/index.js
+let BIN = 'src/BIN'
+if (process.env.ALAMODE_ENV == 'test-compile') {
+  console.log('Testing compile bin...')
+  BIN = 'compile/bin/trapcss'
+}</code></pre>
+            
+            <p>This will be useful later after we've compiled the binary with <em>Closure</em>.</p>
+            
+            <pre id="c1953"><code class="markdown hljs">## keeps span
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;span&gt;test&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+/* css */
+&lt;style&gt;
+  span {
+    color: green;
+  }
+&lt;/style&gt;
+/**/
+
+/* stdout */
+&lt;style&gt;
+  span{color: green;}
+&lt;/style&gt;
+/**/
+
+## removes div
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;span&gt;test&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+/* css */
+&lt;style&gt;
+  span {
+    color: yellow;
+  }
+  div {
+    color: green;
+  }
+&lt;/style&gt;
+/**/
+
+/* stdout */
+&lt;style&gt;
+  span{color: yellow;}
+&lt;/style&gt;
+/**/</code></pre>
+            
+            <p>We only do a couple of tests to make sure that the binary doesn't throw any errors and processes arguments correctly. Most of the unit tests were done on the API, therefore it'd be redundant to test the same functionality twice. However, we could potentially construct a mask that would use input from mask results to the API to adapt them to pass to the CLI, but I won't do it here. Since mask results are just text files, they can be reused according to your imagination.</p>
+            
+            <pre id="ccdbf22"><code class="javascript hljs">import TempContext from 'temp-context'
+import Context from '../context'
+import makeTestSuite from '@zoroaster/mask'
+
+// export const stress = makeTestSuite('test/result/bin/stress', {
+//   fork: Context.BIN,
+// })
+
+export default makeTestSuite('test/result/bin/default', {
+  context: TempContext,
+  fork: {
+    /**
+     * @param {string[]} args
+     * @param {TempContext} t
+     */
+    async getArgs(_, { write }) {
+      const html = await write('index.html', this.input)
+      const [, css] = /&lt;style&gt;([\s\S]+?)&lt;\/style&gt;/.exec(this.css)
+      const style = await write('style.css', css)
+      return [html, '-c', style]
+    },
+    module: Context.BIN,
+    preprocess: {
+      stdout: Context.wrap,
+    },
+  },
+})
+
+export const output = makeTestSuite('test/result/bin/output', {
+  context: TempContext,
+  fork: {
+    /**
+     * @param {string[]} args
+     * @param {TempContext} t
+     */
+    async getArgs(args, { resolve }) {
+      return [...args, '-o', resolve('style-trap.css')]
+    },
+    module: Context.BIN,
+  },
+  /**
+   * @param {TempContext} t
+   */
+  async getResults({ read }) {
+    const s = await read('style-trap.css')
+    return Context.wrap(s)
+  },
+})
+</code></pre>
+            
+            <p>The second test is almost the same as the first one, except that we add the output argument to the list of arguments from the input, instead of completely overriding the arguments array. The path to the output is generated with the <span class="tm">resolve</span> method from the temp context, which we passed in the <strong>context</strong> property. The question is then how to test the output of the program? To do that, we need to implement the <span class="tm2">getResults</span> method that will also receive the context, so that we can call the <span class="tm2">read</span> method from testing API. As previously, we want to wrap the output for syntax highlighting.</p>
+            
+            <pre id="c19531"><code class="markdown hljs">## writes the output file
+test/fixture/surveillance.html -c test/fixture/bootstrap.min.css
+
+/* stderr */
+Output written to test/temp/style-trap.css
+/**/
+
+/* expected */
+&lt;style&gt;
+  *,::after,::before{box-sizing:border-box}html{...}
+&lt;/style&gt;
+/**/
+</code></pre>
+            
+            <p>The mask result provides 2 properties: <span class="tm">stderr</span> and <span class="tm">expected</span>. We're not testing for <span class="tm">stdout</span> since there's no output on this stream, and we implemented the <span class="tm2">getResults</span> method to read the expected result from a file in the temp folder.</p>
+            
+            <p>As previously, we could leave the mask result values blank, and run tests in interactive mode <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span> <span class="npm-cmd">--</span> <span>-i</span></span></span>, for the testing framework to populate them for us.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="updating mask forks in interactive mode" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='568'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="updating mask forks in interactive mode" src="/nodetools/pages/trapcss2/2-bin/img/i.gif">
+              </noscript>
+            </p>
+            
+            <p>For the final test, we'll make the simplest mask possible, by only passing the path to the binary:</p>
+            
+            <pre id="ccdbf12"><code class="javascript hljs">export const stress = makeTestSuite('test/result/bin/stress', {
+  fork: Context.BIN,
+})</code></pre>
+            
+            <p>When there's no additional configuration, only <strong>stdout</strong>, <strong>stderr</strong> and <strong>code</strong> properties are asserted on.</p>
+            
+            <pre id="c19532"><code class="markdown hljs">## cleans the css
+test/fixture/surveillance.html -c test/fixture/bootstrap.min.css
+
+/* stdout */
+*,::after,::before{box-sizing:border-box}html{...}
+/**/
+
+## gives error when CSS is not passed
+test/fixture/surveillance.html
+
+/* stderr */
+Please pass CSS path
+/**/
+
+/* code */
+1
+/**/</code></pre>
+            
+            <p>In the first test, like before, we passed paths to HTML and CSS, but we didn't need to use the temp context since the output is printed to stdout. In the second test we added the <span class="tm">code</span> property to test that the fork will exit with code <em>1</em> when a path to the CSS file is not passed, and that <strong>stderr</strong> contains the error message.</p>
+            
+            <p>As you can see, testing forks is very simple with <em>Zoroaster</em> that provides means to setup tests to run parallel processes, and assert on outputs. Even if a program required interaction from <strong>stdin</strong>, such as entering answers, we could still test it by either providing the <span class="tm">[stderr]Inputs</span> property of the mask, or via the <span class="tm">inputs</span> <a
+              href="https://raw.githubusercontent.com/artdecocode/expensive/885e62298c05b75eedb2dbb298e8544823d1a0c2/test/result/fork/register.md">
+              property</a> in the mask result.</p>
+            
+            <p>Fork testing is more expensive as it requires time to spawn forks, therefore it's preferable to do as many unit tests as possible, and design binary in such a way as it would be possible to require commands called from binary in tests, instead of spawning forks. That's why the template comes with the <span class="tm">init</span> command, but it could be removed now since our binary is fairly straight-forward.</p>
+            
+            </div>
+            
+            <div data-section id="bin-compile">
+            <h3>Bin Compile</h3>
+            
+            <p>We now want to compile the binary. <em>NodeTools</em> is perfect for this task, as the program produced will have no dependencies at all. The <strong>package.json</strong> file already comes with a command to run <em>Depack</em> on the binary <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>compile</span></span></span> (the <strong>lib</strong> script is to compile library instead, which we've already done). The script evaluates to <span class="tm2">depack src/bin/trapcss -o compile/bin/trapcss.js -a -c -S --externs types/externs.js</span>:</p>
+            
+            <ul>
+              <li><strong>src/bin/trapcss</strong>, the file to compile, from which all dependencies will be statically analyzed.</li>
+              <li><strong>-o compile/bin/trapcss.js</strong>, the path to the output file.</li>
+              <li><strong>-a</strong>, advanced compilation.</li>
+              <li><strong>-c</strong>, compilation flag (needed to enable Node externs).</li>
+              <li><strong>-S</strong>, no source maps, as we're not expecting that our bin will be debugged, unlike library, which might be jumped in.</li>
+              <li><strong>--externs types/externs.js</strong>, in the library, we imported externs from <strong>src/depack.js</strong> file, however we can also pass it via the argument to CLI. Previously, <strong>src/depack.js</strong> that imported externs wasn't ever run and only passed to <em>Closure</em> as entry, but if we used an import in bin, the externs file would be evaluated which is unnecessary.</li>
+            </ul>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="compilation process" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='748' height='483'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="compilation process" src="/nodetools/pages/trapcss2/2-bin/img/bc.gif">
+              </noscript>
+            </p>
+            
+            <p><em>Depack</em> will discover all built-in Node modules, add apply externs for those. Global and Buffer externs are always added (even if <em>Buffer</em> isn't used). You might see a message <em>"Skipping package usually that imports itself in node&lowbar;modules/usually/src/index.js"</em>, because <span class="tm">usually</span> has an example usage where in its JSDoc it gives a snippet with an import:</p>
+            
+            <pre id="ccdbf13"><code class="javascript hljs">/**
+ * Generate a usage string.
+ * @param {!_usually.Config} config The configuration object.
+ * @example
+```
+import usually from 'usually'
+
+const res = usually({
+  description: 'A test command-line application',
+})
+```
+ */
+export default function usually(config = { usage: {} }) {</code></pre>
+            
+            <p>Static analysis is based on regexes, so if you ever encounter any problems with it, e.g., false positive imports detection where your imports are just placed in a string, for example, you should break up the import so it becomes undetectable:</p>
+            
+            <pre id="ccdbf14"><code class="javascript hljs">// false positive
+const myString = `// auto-generated code
+import package from 'package'
+`
+// becomes
+const myString = `// auto-generated code
+i` + `mport package from 'package'
+`</code></pre>
+            
+            <p>I know it's not perfect, but I'd rather keep simple regexes for the analysis of ECMA modules, instead of increasing complexity by building of ASTs <em>etc</em>. The whole purpose of <em>NodeTools</em> is to be really simple yet effective.</p>
+            
+            <p>The result of compilation is saved into the <span class="tm">compile/bin/trapcss.js</span>, and the file is assigned executable rights so that it can be called from shell, as it has got the shebang with the <span class="tm2">node</span> env.</p>
+            
+            <pre id="ccdbf15"><code class="javascript hljs">#!/usr/bin/env node
+'use strict';
+const fs = require('fs');             function q(){var a={description:"Remove unused CSS",example:"trapcss index.html example.html -c style.css -o style-dropped.css",line:"trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]",usage:v()};const {usage:b={},description:c,line:d,example:f}=a;a=Object.keys(b);const g=Object.values(b),[e]=a.reduce(([h=0,m=0],p)=&gt;{const t=b[p].split("\n").reduce((r,n)=&gt;n.length&gt;r?n.length:r,0);t&gt;m&amp;&amp;(m=t);p.length&gt;h&amp;&amp;(h=p.length);return[h,m]},[]),k=(h,m)=&gt;{m=" ".repeat(m-h.length);return`${h}${m}`};
+a=a.reduce((h,m,p)=&gt;{p=g[p].split("\n");m=k(m,e);const [t,...r]=p;m=`${m}\t${t}`;const n=k("",e);p=r.map(u=&gt;`${n}\t${u}`);return[...h,m,...p]},[]).map(h=&gt;`\t${h}`);const l=[c,`  ${d||""}`].filter(h=&gt;h?h.trim():h).join("\n\n");a=`${l?`${l}\n`:""}
+${a.join("\n")}
+`;return f?`${a}
+  Example:
+
+    ${f}
+`:a};const w=(a,b,c,d=!1,f=!1)=&gt;{const g=c?new RegExp(`^-(${c}|-${b})$`):new RegExp(`^--${b}$`);b=a.findIndex(e=&gt;g.test(e));if(-1==b)return{argv:a};if(d)return{value:!0,index:b,length:1};d=a[b+1];if(!d||"string"==typeof d&amp;&amp;d.startsWith("--"))return{argv:a};f&amp;&amp;(d=parseInt(d,10));return{value:d,index:b,length:2}},x=a=&gt;{const b=[];for(let c=0;c&lt;a.length;c++){const d=a[c];if(d.startsWith("-"))break;b.push(d)}return b},v=()=&gt;{var a=z;return Object.keys(a).reduce((b,c)=&gt;{const d=a[c];if("string"==typeof d)return b[`-${d}`]=
+"",b;c=d.command?c:`--${c}`;d.short&amp;&amp;(c=`${c}, -${d.short}`);let f=d.description;d.default&amp;&amp;(f=`${f}\nDefault: ${d.default}.`);b[c]=f;return b},{})};const A=fs.readFileSync,B=fs.writeFileSync;/*
+ diff package https://github.com/kpdecker/jsdiff
+ BSD License
+ Copyright (c) 2009-2015, Kevin Decker &lt;kpdecker@gmail.com&gt;
+*/
+const aa={black:30,/* ... */}</code></pre>
+            
+            <p>You might see the copyright for the <span class="tm">diff</span> package, as there's a script in <em>Erte</em> (string coloring) to diff strings. Although it was dropped by <em>Closure</em>'s tree shaking, the comment is left over anyway as <em>Closure</em> preserves all important comments. <em>Depack</em> will implement its own tree shaking, as much as possible, in future versions, to limit the number of JS files passed to the compiler.</p>
+            
+            <p>To test the package, I call</p>
+            
+            <pre id="c724c"><code class="shell hljs">node compile/bin/trapcss.js test/fixture/surveillance.html \
+     -c test/fixture/bootstrap.min.css</code></pre>
+            
+            <p>and check if the output is printed to <strong>stdout</strong> which it is.</p>
+            
+            <p>We also have to test the produced binary. Our <span class="tm2">test-compile</span> script will set the appropriate environment, and since the path to the <span class="tm">BIN</span> for mask-testing comes from the context, it will equal to <strong>compile/bin/trapcss</strong>, so that the compiled module, and not our source code, that will be forked. You'll be able to verify it as <em>Zoroaster</em> will print the confirmation as the first line in the output:</p>
+            
+            <pre id="c724c1"><code class="shell hljs">Testing compile bin</code></pre>
+            
+            <p>After tests pass, we know that our compiled bin is fully functional.</p>
+            
+            </div>
+            
+            <div data-section id="cli-documentation">
+            <h3>CLI Documentation</h3>
+            
+            <p>I want to let my users know how to use <em>TrapCSS</em> from the <strong>CLI</strong>. Without <em>NodeTools</em>, I'd have to manually execute the binary, and copy-paste the help output into the README file. But we want to automate this process, to</p>
+            
+            <ol>
+              <li>Save time taken to manually copy-paste data between terminal and documentation;</li>
+              <li>Prevent documentation from becoming out-of-date when changes are made;</li>
+              <li>Detect any errors if there were problems with the binary;</li>
+              <li>Turn documentation into specification as our program will now always confirm to the published contract.</li>
+            </ol>
+            
+            <p>The template already included <strong>documentary/2-CLI/index.md</strong> file, but we want to build upon it a little bit, by giving a more precise example. We'll need to create <strong>example/cli/index.html</strong> and <strong>example/cli/style.css</strong> files with some input data:</p>
+            
+            <pre id="c16f7"><code class="xml hljs">&lt;!-- example/cli/index.html --&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;TrapCSS ftw&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;p&gt;Hello World!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+            <pre id="c1d47"><code class="css hljs">/* example/cli/style.css */
+html {
+  background: yellow;
+  /* @alternate */
+  background: green;
+}
+.card {
+  padding: 8px;
+}
+p:hover a:first-child {
+  color: red;
+}</code></pre>
+            
+            <p>The updated CLI section of the documentation is pretty simple and includes a 2-column table that lists the examples, and the output. The table with arguments will also be included automatically by the <span class="tm2">argufy</span> component that comes with <em>Documentary</em>:</p>
+            
+            <pre id="c19533"><code class="markdown hljs">## CLI
+
+The package can also be used from the CLI.
+
+&lt;argufy&gt;types/arguments.xml&lt;/argufy&gt;
+
+For example, having these two files, we can use `trapcss` from the command line:
+
+&lt;table&gt;
+&lt;tr&gt;
+  &lt;th&gt;HTML file&lt;/th&gt;
+  &lt;th&gt;CSS file&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;
+
+  %EXAMPLE: example/cli/index.html%
+  &lt;/td&gt;
+  &lt;td&gt;
+
+  %EXAMPLE: example/cli/style.css%
+  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+```console
+trapcss:~$ trapcss example/cli/index.html -c example/cli/style.css
+```
+
+%FORK-css src/bin/trapcss example/cli/index.html -c example/cli/style.css%
+
+The help can be accessed with the `-h` command:
+
+%FORK src/bin/trapcss -h%
+
+%~%</code></pre>
+            
+            
+            <p>We then give a console line of how to run our binary, and include the <span class="tm2">%FORK-css%</span> marker, which means that the language of the output block will be CSS for syntax-highlighting on <em>GitHub</em>.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="CLI documentation section" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='474' height='608'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="CLI documentation section" src="/nodetools/pages/trapcss2/2-bin/img/bin-doc.png">
+              </noscript>
+            </p>
+            
+            <p>The README section is now compiled in the most automated way possible, leaving us time to work on implementation, testing and new feature design. Remember that we can run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm-cmd">--</span> <span>-p "doc cli"</span></span></span> to keep <em>Documentary</em> running in watch mode, and automatically push any changes upstream.</p>
+            
+            </div>
+            
+            
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='9'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/3.svg"></noscript></a>
             </p>
             </div>
           </div>

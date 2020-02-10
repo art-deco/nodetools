@@ -1,0 +1,91 @@
+###! Bin Compile
+
+We now want to compile the binary. _NodeTools_ is perfect for this task, as the program produced will have no dependencies at all. The *package.json* file already comes with a command to run _Depack_ on the binary <yarn compile /> (the *lib* script is to compile library instead, which we've already done). The script evaluates to ``depack src/bin/trapcss -o compile/bin/trapcss.js -a -c -S --externs types/externs.js``:
+
+<ul>
+  - *src/bin/trapcss*, the file to compile, from which all dependencies will be statically analyzed.
+  - *-o compile/bin/trapcss.js*, the path to the output file.
+  - *-a*, advanced compilation.
+  - *-c*, compilation flag (needed to enable Node externs).
+  - *-S*, no source maps, as we're not expecting that our bin will be debugged, unlike library, which might be jumped in.
+  - *--externs types/externs.js*, in the library, we imported externs from *src/depack.js* file, however we can also pass it via the argument to CLI. Previously, *src/depack.js* that imported externs wasn't ever run and only passed to _Closure_ as entry, but if we used an import in bin, the externs file would be evaluated which is unnecessary.
+</ul>
+
+<p>
+  <img border rounded img-fluid src="./img/bc.gif" alt="compilation process" placeholder-auto />
+</p>
+
+_Depack_ will discover all built-in Node modules, add apply externs for those. Global and Buffer externs are always added (even if _Buffer_ isn't used). You might see a message _"Skipping package usually that imports itself in node&lowbar;modules/usually/src/index.js"_, because `usually` has an example usage where in its JSDoc it gives a snippet with an import:
+
+````js
+/**
+ * Generate a usage string.
+ * @param {!_usually.Config} config The configuration object.
+ * @example
+```
+import usually from 'usually'
+
+const res = usually({
+  description: 'A test command-line application',
+})
+```
+ */
+export default function usually(config = { usage: {} }) {
+````
+
+Static analysis is based on regexes, so if you ever encounter any problems with it, e.g., false positive imports detection where your imports are just placed in a string, for example, you should break up the import so it becomes undetectable:
+
+```js
+// false positive
+const myString = `// auto-generated code
+import package from 'package'
+`
+// becomes
+const myString = `// auto-generated code
+i` + `mport package from 'package'
+`
+```
+
+I know it's not perfect, but I'd rather keep simple regexes for the analysis of ECMA modules, instead of increasing complexity by building of ASTs _etc_. The whole purpose of _NodeTools_ is to be really simple yet effective.
+
+The result of compilation is saved into the `compile/bin/trapcss.js`, and the file is assigned executable rights so that it can be called from shell, as it has got the shebang with the ``node`` env.
+
+```js
+#!/usr/bin/env node
+'use strict';
+const fs = require('fs');             function q(){var a={description:"Remove unused CSS",example:"trapcss index.html example.html -c style.css -o style-dropped.css",line:"trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]",usage:v()};const {usage:b={},description:c,line:d,example:f}=a;a=Object.keys(b);const g=Object.values(b),[e]=a.reduce(([h=0,m=0],p)=>{const t=b[p].split("\n").reduce((r,n)=>n.length>r?n.length:r,0);t>m&&(m=t);p.length>h&&(h=p.length);return[h,m]},[]),k=(h,m)=>{m=" ".repeat(m-h.length);return`${h}${m}`};
+a=a.reduce((h,m,p)=>{p=g[p].split("\n");m=k(m,e);const [t,...r]=p;m=`${m}\t${t}`;const n=k("",e);p=r.map(u=>`${n}\t${u}`);return[...h,m,...p]},[]).map(h=>`\t${h}`);const l=[c,`  ${d||""}`].filter(h=>h?h.trim():h).join("\n\n");a=`${l?`${l}\n`:""}
+${a.join("\n")}
+`;return f?`${a}
+  Example:
+
+    ${f}
+`:a};const w=(a,b,c,d=!1,f=!1)=>{const g=c?new RegExp(`^-(${c}|-${b})$`):new RegExp(`^--${b}$`);b=a.findIndex(e=>g.test(e));if(-1==b)return{argv:a};if(d)return{value:!0,index:b,length:1};d=a[b+1];if(!d||"string"==typeof d&&d.startsWith("--"))return{argv:a};f&&(d=parseInt(d,10));return{value:d,index:b,length:2}},x=a=>{const b=[];for(let c=0;c<a.length;c++){const d=a[c];if(d.startsWith("-"))break;b.push(d)}return b},v=()=>{var a=z;return Object.keys(a).reduce((b,c)=>{const d=a[c];if("string"==typeof d)return b[`-${d}`]=
+"",b;c=d.command?c:`--${c}`;d.short&&(c=`${c}, -${d.short}`);let f=d.description;d.default&&(f=`${f}\nDefault: ${d.default}.`);b[c]=f;return b},{})};const A=fs.readFileSync,B=fs.writeFileSync;/*
+ diff package https://github.com/kpdecker/jsdiff
+ BSD License
+ Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
+*/
+const aa={black:30,/* ... */}
+```
+
+You might see the copyright for the `diff` package, as there's a script in _Erte_ (string coloring) to diff strings. Although it was dropped by _Closure_'s tree shaking, the comment is left over anyway as _Closure_ preserves all important comments. _Depack_ will implement its own tree shaking, as much as possible, in future versions, to limit the number of JS files passed to the compiler.
+
+To test the package, I call
+
+```sh
+node compile/bin/trapcss.js test/fixture/surveillance.html \
+     -c test/fixture/bootstrap.min.css
+```
+
+and check if the output is printed to *stdout* which it is.
+
+We also have to test the produced binary. Our ``test-compile`` script will set the appropriate environment, and since the path to the `BIN` for mask-testing comes from the context, it will equal to *compile/bin/trapcss*, so that the compiled module, and not our source code, that will be forked. You'll be able to verify it as _Zoroaster_ will print the confirmation as the first line in the output:
+
+```sh
+Testing compile bin
+```
+
+After tests pass, we know that our compiled bin is fully functional.
+
+</div>
