@@ -147,11 +147,27 @@ I'm going to install `trapcss` as a dev dependency (since it will be compiled in
 import trapcss from 'trapcss'
 ```
 
+
 I can also validate that there are autocompletion hints.
 
 <p>
   <img border rounded img-fluid src="./hints.gif" alt="autocompletion hints" placeholder-auto />
 </p>
+
+The `src/stdlib` file is the entry point that will be compiled. ``module.exports`` is a known object defined in externs and by assigning properties to it using quotes, we prevent renaming of its properties.
+
+```js
+// src/stdlib.js
+// ... prev imports
+import trapcss from 'trapcss'
+
+module.exports = {
+  'trapcss': trapcss,
+
+  'getOptions': getOptions,
+  // ...
+}
+```
 
 Now update the env:
 

@@ -30,8 +30,8 @@
     "@contexts/chrome": "^1.0.0",
     "@depack/render": "^1.3.4",
     "@idio/idio": "^1.2.3",
-    "documentary": "^1.36.1",
-    "splendid": "^1.16.16",
+    "documentary": "^1.37.0",
+    "splendid": "^1.17.1",
     "unfetch": "^4.1.0",
     "zoroaster": "^4.3.0"
   }

@@ -169,7 +169,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.16.16</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.17.1</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -407,7 +407,7 @@ export const {
             
             <p>The entry point for the compiler is <strong>src/depack.js</strong>, which imports the method from the source code and exports it via CommonJS standard. It also imports externs so that <em>Closure</em> will understand our types:</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">import '../types/externs'
+            <pre id="ccdbf23"><code class="javascript hljs">import '../types/externs'
 import trapcss from './'
 
 /*!
@@ -442,7 +442,7 @@ module.exports = {
             
             <p>We'll need to create a second file, called <span class="tm2">template</span> in <strong>compile/template.js</strong>:</p>
             
-            <pre id="ccdbf23"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf24"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * @methodType {_trapcss.trapcss}
@@ -474,7 +474,7 @@ module.exports = trapcss
             
             <p>After the two commands are run, we'll have a production-ready entry file. Let's have a look at what is being produced as the <span class="tm">main</span>:</p>
             
-            <pre id="ccdbf24"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf25"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * Parses the supplied HTML and CSS and removes
@@ -737,7 +737,7 @@ require('./trapcss')</code></pre>
             
             <p>Using XML schema, we can maintain the argument specification, and then create a special file called <strong>get-args.js</strong>, using the <span class="tm">argufy</span> package. The script is defined as the <em>args</em> job in <strong>package.json</strong> &mdash; <span class="tm2">argufy -o src/bin/get-args.js</span>. The default location of arguments is <strong>types/arguments.xml</strong>, so we don't need to specify any input. The output, on the other hand, is to be written to <strong>src/bin/get-args.js</strong>. From the specification that we drew, this is the output that is produced:</p>
             
-            <pre id="ccdbf25"><code class="javascript hljs">import argufy from 'argufy'
+            <pre id="ccdbf26"><code class="javascript hljs">import argufy from 'argufy'
 
 export const argsConfig = {
   'input': {
@@ -818,7 +818,7 @@ export const _argv = /** @type {!Array&lt;string&gt;} */ (args._argv)</code></pr
             
             <p>The template has already come with some binary source code, for example for printing version number and usage information. The usage string is constructed with the <span class="tm">usually</span> package, that accepts a description, example, line and usage itself. The usage is made using the <span class="tm2">reduceUsage</span> method from <span class="tm">argufy</span>, based on the arguments config that was also exported from the <strong>get-args.js</strong> file. It will create a 2-column table with full and short arguments' names and their descriptions.</p>
             
-            <pre id="ccdbf26"><code class="javascript hljs">import usually from 'usually'
+            <pre id="ccdbf27"><code class="javascript hljs">import usually from 'usually'
 import { reduceUsage } from 'argufy'
 import { readFileSync, writeFileSync } from 'fs'
 import { c } from 'erte'
@@ -936,7 +936,7 @@ if (_output) {
             
             <p>We already used some mask testing in <a href="/nodetools/trap"></a>, but one of the best applications of masks is to test forks. A fork is a separate Node process spawned from a script itself. They are completely independent processes with separate PIDs, but the fork will by default exit with its parent. Since our binary is a Node program, to test it properly, we need to spawn it via the <span class="tm">child_process</span> module. <em>Zoroaster</em> provides an abstraction over fork testing, if you pass <span class="tm2">fork</span> property to the mask constructor.</p>
             
-            <pre id="ccdbf27"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf28"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
 
@@ -1029,7 +1029,7 @@ if (process.env.ALAMODE_ENV == 'test-compile') {
             
             <p>We only do a couple of tests to make sure that the binary doesn't throw any errors and processes arguments correctly. Most of the unit tests were done on the API, therefore it'd be redundant to test the same functionality twice. However, we could potentially construct a mask that would use input from mask results to the API to adapt them to pass to the CLI, but I won't do it here. Since mask results are just text files, they can be reused according to your imagination.</p>
             
-            <pre id="ccdbf28"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf29"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
 
@@ -1358,7 +1358,7 @@ The help can be accessed with the `-h` command:
             
             <p>The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.</p>
             
-            <pre id="ccdbf29"><code class="javascript hljs">import idio from '@idio/idio'
+            <pre id="ccdbf30"><code class="javascript hljs">import idio from '@idio/idio'
 import CDP from 'chrome-remote-interface'
 import { spawn } from 'child_process'
 import rqt from 'rqt'
@@ -1695,6 +1695,7 @@ const { resolveInternal } = require('../');</code></pre>
             <pre id="ccdbf20"><code class="javascript hljs">// src/elements/bootstrap-css/run_template.jsx
 import trapcss from 'trapcss'</code></pre>
             
+            
             <p>I can also validate that there are autocompletion hints.</p>
             
             <p>
@@ -1703,6 +1704,19 @@ import trapcss from 'trapcss'</code></pre>
                 <img class="b-bk b-vk b-t" alt="autocompletion hints" src="/nodetools/pages/trapcss2/5-stdlib/hints.gif">
               </noscript>
             </p>
+            
+            <p>The <span class="tm">src/stdlib</span> file is the entry point that will be compiled. <span class="tm2">module.exports</span> is a known object defined in externs and by assigning properties to it using quotes, we prevent renaming of its properties.</p>
+            
+            <pre id="ccdbf21"><code class="javascript hljs">// src/stdlib.js
+// ... prev imports
+import trapcss from 'trapcss'
+
+module.exports = {
+  'trapcss': trapcss,
+
+  'getOptions': getOptions,
+  // ...
+}</code></pre>
             
             <p>Now update the env:</p>
             
@@ -1730,7 +1744,7 @@ import trapcss from 'trapcss'</code></pre>
             
             <p>After <strong>stdlib</strong> is compiled, I can build the project again, and see the changes:</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">// was
+            <pre id="ccdbf22"><code class="javascript hljs">// was
 let dropcss = require('dropcss'); if (dropcss &amp;&amp; dropcss.__esModule) dropcss = dropcss.default;
 
 // now 🎉

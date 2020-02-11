@@ -64,12 +64,7 @@
   resolved "https://registry.yarnpkg.com/@zoroaster/mask/-/mask-2.5.0.tgz#de128987743d71376485ba9b34977d49e18cde92"
   integrity sha512-GuEHgVneq0MkSHBcF7YgTAuk42/pWJnvMPvbOsUXmq3m2FcSe1v788Bfw896RzZ7p6LWq11xnq48YOkhcy5jLA==
 
-alamode@^3.3.3:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/alamode/-/alamode-3.4.1.tgz#69067860e42c366a539d5461a1657400fd8a0a80"
-  integrity sha512-pQl2V/OwPbXGCgFnCZ1SEHiD2KK2L7Sj0DfX3nVKMpyDv7hBRsZMDz87l/rKtDI6IUBJ0Hjmbcw28jivm4jCTg==
-
-alamode@^3.5.0:
+alamode@^3.3.3, alamode@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/alamode/-/alamode-3.5.0.tgz#c0928b365d892c643335c9b2651ad10e32b47151"
   integrity sha512-kuhhCIqHMwiMGSKqE+F//SLgxffkhtT0QFp+8XahzYVwvsxwg9gbtCGriKawEBxeHpU9v3s0jp9qpYzlDUdKFg==
@@ -111,18 +106,14 @@ diff@4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
   integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
-documentary@^1.36.1:
-  version "1.36.1"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.36.1.tgz#4f59b5abc549091733837967cbb75f5244e2e866"
-  integrity sha512-EXG2Enb1YLx4Pc2Munfn2pMkLV/X8EU+hTA2tv694xrWvOluKE1Q1ierO7KT31w4wq8IjjUGnjyc3FOISNZM1g==
+documentary@^1.37.0:
+  version "1.37.0"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.37.0.tgz#901039214974d6e77c41ea2680ecfec14d82442f"
+  integrity sha512-6ENYPKOY4AW/qPjZdTyQMtDow73IuYGrFBj+PtoUvWB4XRok7OvoqZeDROoLK1158uJEjJCoLOkcjaKnOPdXhQ==
   dependencies:
     alamode "^3.5.0"
     preact "8.5.3"
     typal "^1.26.2"
-
-dropcss@zavr-1/dropcss#743bdc8:
-  version "1.0.16"
-  resolved "https://codeload.github.com/zavr-1/dropcss/tar.gz/743bdc8ea155682a8519a242735cc66ebd760f77"
 
 erte@1.1.6:
   version "1.1.6"
@@ -165,10 +156,10 @@ select@^1.1.2:
   resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
-splendid@^1.16.16:
-  version "1.16.16"
-  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.16.16.tgz#51ca46fb1d2875920518b0c009f10f5772746bc5"
-  integrity sha512-7EAV40xXz/MXpXi18W/vj3PxRr09XJzqIC4bREvCD9ensdxdAJmn9oBuWKnJory+NhHtjDZsTWPVcN3UR47JWA==
+splendid@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/splendid/-/splendid-1.17.1.tgz#6353e50ac398c3d83ab89b3bbe4eba7db5e95e0d"
+  integrity sha512-SMEh58zFOrX8T4HtCQyhlomFdbh2N9N6a5nqodHy9ldj16hJZAJURqZeppkoW2WrldiASUFSDsPxjwWQNrCY0g==
   dependencies:
     "@externs/preact" "^1.2.9"
     "@idio/idio" "^1.2.3"
@@ -178,7 +169,6 @@ splendid@^1.16.16:
     "@lemuria/load-scripts" "^1.2.0"
     "@lemuria/popup" "^1.1.1"
     alamode "^3.5.0"
-    dropcss zavr-1/dropcss#743bdc8
     highlight.js "^9.18.1"
     preact "8.5.3"
     prismjs "1.19.0"
