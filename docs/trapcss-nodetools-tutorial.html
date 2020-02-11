@@ -6,7 +6,7 @@
     <meta content="https://art-deco.github.io/nodetools/trapcss-nodetools-tutorial.html" property="og:url">
     <meta content="TrapCSS: NodeTools Tutorial" property="og:title">
     <meta content="website" property="og:type">
-    <meta content="https://art-deco.github.io/nodetools/pages/trapcss/img/splash.jpg" property="og:image">
+    <meta content="https://art-deco.github.io/nodetools/pages/trapcss/img/splash-og.jpg" property="og:image">
     <meta
       content="A use case of applying NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler." name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -268,9 +268,14 @@ abbr[data-original-title] {
             
             <p>This tutorial walks through the process of upgrading a package to use <em>NodeTools</em> stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the <a href="/nodetools/quick-start-to-nodetools.html">quick start</a> guide first for some details about the standard routine.</p>
             
-            <strong>TrapCSS</strong> on <em>GitHub</em>: <a
+            <p>
+              <strong>TrapCSS</strong> on <em>GitHub</em>: <a
                title="Removes unused selectors from CSS files to achieve maximum optimisation. Can be used as an API function or with CLI." class="GitHubBadge" id="c1dbc" href="https://github.com/artdecocode/trapcss">
-               <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a>
+               <span class="a">GitHub</span><span class="b" data-stargazers>⭐️ 1</span></a><br/>
+              <strong>TrapCSS</strong> on <em>NPM</em>: <a
+               title="Removes unused selectors from CSS files to achieve maximum optimisation. Can be used as an API function or with CLI." class="NPMBadge" href="https://www.npmjs.com/package/trapcss">
+               <span class="a">TrapCSS</span><span class="b">1.2.0</span></a>
+            </p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -1140,7 +1145,7 @@ span {a:b;}
 /**/</code></pre>
             
             <p>These are tests for the ID selector, where we used preamble as HTML input for all tests. We write such html as the <span class="tm">content</span> property of the CSS rule, so that the IDE will provide syntax highlighting for the best pleasant developer experience while testing. There are more tests for attribute selectors which you can <a
-              href="https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
+              href="https://github.com/artdecocode/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
               study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
             
             <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span></span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span></span> after having constructed our first mask tests.</p>

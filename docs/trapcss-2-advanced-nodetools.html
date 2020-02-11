@@ -295,11 +295,11 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>To use the compiler, you'll need Java on your machine. If you're working on Windows, you can just install it from the official website and it'll be working fine. On a Mac, I had to add the following line to my <span class="tm2">~/.bash_profile</span>.</p>
             
-            <pre id="c414d3"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
+            <pre id="c414d"><code class="bash hljs">export JAVA_HOME=/Library/Internet\ Plug-Ins\JavaAppletPlugin.plugin/Contents/Home</code></pre>
             
             <p>If you're using <strong>zsh</strong>, also add <span class="tm2">source ~/.bash_profile</span> to your <strong>~/.zshrc</strong>. Then we're going to install <span class="tm">google-closure-compiler-java</span> into the home folder:</p>
             
-            <pre id="c414d"><code class="bash hljs">cd ~
+            <pre id="c414d1"><code class="bash hljs">cd ~
 yarn|npm init # we want to save deps in package.json
 yarn add google-closure-compiler-java</code></pre>
             
@@ -651,7 +651,7 @@ module.exports.Context = $Context</code></pre>
             
             <p>Now every time we require <span class="tm">../../src</span> from test, the transpiler will update it to <span class="tm">../../compile</span> on the fly (the <span class="tm2">$</span> is needed in cases when we import methods from other files in the lib for unit testing, which would break testing as paths like <strong>compile/html.js</strong> don't exist). We can also set it to just <span class="tm">../..</span> since it will resolve to our <strong>package.json</strong> and read the <span class="tm2">main</span> field from there. To ensure that the remapping actually happens, we can add a simple <span class="tm">throw new Error(1)</span> in the <strong>compile/index.js</strong> file and try to run this command.</p>
             
-            <pre id="c414d1"><code class="bash hljs">Testing compile bin
+            <pre id="c414d2"><code class="bash hljs">Testing compile bin
 Error: 1
 Could not require test/spec
     at Object.&lt;anonymous&gt; (/Users/zavr/adc/trapcss/compile/index.js:2:7)
@@ -891,7 +891,7 @@ if (_output) {
             
             <p>We can see what the usage looks like by calling the <strong>dev</strong> script: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>dev</span> <span class="npm-cmd">--</span> <span>-h</span></span></span>:</p>
             
-            <pre id="c414d2"><code class="bash hljs">Remove unused CSS
+            <pre id="c414d3"><code class="bash hljs">Remove unused CSS
 
   trapcss input.html[,n.html,...] -c style.css [-o output] [-hv]
 

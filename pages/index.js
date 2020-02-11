@@ -35,7 +35,7 @@ export const trapcss = {
   title: 'TrapCSS: NodeTools Tutorial',
   seo: 'A use case of applying NodeTools stack to upgrade an existing Node.JS package called DropCSS into a library and binary compiled with Closure Compiler.',
   og: {
-    image: '../pages/trapcss/img/splash.jpg',
+    image: '../pages/trapcss/img/splash-og.jpg',
   },
   links: {
     dropcss: 'https://github.com/leeoniya/dropcss',
@@ -43,7 +43,7 @@ export const trapcss = {
     'methods': 'https://github.com/artdecocode/documentary/wiki/Custom-Methods',
     'closure-types': 'https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System',
     'implements-example': 'https://github.com/idiocc/goa/blob/4b4534c304870ace80a42245ac0303f85b6eb6d3/src/application.js#L18',
-    attributes: 'https://github.com/kumarikandam/trapcss/tree/master/test/result/0-context-free-unary-sel/attr',
+    attributes: 'https://github.com/artdecocode/trapcss/tree/master/test/result/0-context-free-unary-sel/attr',
   },
 }
 
