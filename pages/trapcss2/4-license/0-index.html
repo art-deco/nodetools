@@ -2,7 +2,7 @@
 
 I'd like to update our footer to include the information about the original license. I've chosen Affero for this project, so the footer at the moment looks like the following:
 
-```md
+```markdown
 ## Copyright & License
 
 GNU Affero General Public License v3.0
@@ -10,13 +10,14 @@ GNU Affero General Public License v3.0
 
 Let's include the original license:
 
-```md
+```markdown
 ## Copyright & License
 
 GNU Affero General Public License v3.0
 
 Original work on [_DropCSS_](https://github.com/leeoniya/dropcss) package
-by [Leon Sorokin](https://github.com/leeoniya) under MIT license found in [COPYING](COPYING).
+by [Leon Sorokin](https://github.com/leeoniya) under MIT license found
+in [COPYING](COPYING).
 ```
 
 There are 2 standard files for a license, either ``LICENSE`` or ``COPYING``. Since our AGPL is found in the former, we can include the original one in the latter. This is the convention I use for forked packages. I'll also update *package.json* to include the original license in the `files` field:

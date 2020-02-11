@@ -8,7 +8,7 @@
     <meta content="website" property="og:type">
     <meta content="https://art-deco.github.io/nodetools/pages/trapcss2/img/trapcss2.jpg" property="og:image">
     <meta
-      content="A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and libarary with Closure Copmiler and generate Wiki pages." name="description">
+      content="A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and library with Closure Compiler and generate Wiki pages." name="description">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link sizes="57x57" rel="apple-touch-icon" href="/nodetools/img/fav-57.png">
     <link sizes="76x76" rel="apple-touch-icon" href="/nodetools/img/fav-76.png">
@@ -55,7 +55,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
     <link rel="stylesheet" href="/nodetools/css/combined.css">
     <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
     <style>
-      .no-js [data-io], .no-js .ImageHolder, .no-js [data-loading] { display: none!important }
+      .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
       .ItWillRunYarn {
           display: none;
         }
@@ -160,7 +160,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.36.1</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.37.0</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
@@ -213,6 +213,8 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                       </ul>
                                     </li>
                                     <li data-heading="license"><a href="#license">License</a></li>
+                                    <li data-heading="stdlib"><a href="#stdlib">StdLib</a></li>
+                                    <li data-heading="comments"><a href="#comments">Comments</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
                                   <span class="b-xq b-Hk" id="ce0df"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
@@ -405,7 +407,7 @@ export const {
             
             <p>The entry point for the compiler is <strong>src/depack.js</strong>, which imports the method from the source code and exports it via CommonJS standard. It also imports externs so that <em>Closure</em> will understand our types:</p>
             
-            <pre id="ccdbf18"><code class="javascript hljs">import '../types/externs'
+            <pre id="ccdbf22"><code class="javascript hljs">import '../types/externs'
 import trapcss from './'
 
 /*!
@@ -440,7 +442,7 @@ module.exports = {
             
             <p>We'll need to create a second file, called <span class="tm2">template</span> in <strong>compile/template.js</strong>:</p>
             
-            <pre id="ccdbf19"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf23"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * @methodType {_trapcss.trapcss}
@@ -472,7 +474,7 @@ module.exports = trapcss
             
             <p>After the two commands are run, we'll have a production-ready entry file. Let's have a look at what is being produced as the <span class="tm">main</span>:</p>
             
-            <pre id="ccdbf20"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
+            <pre id="ccdbf24"><code class="javascript hljs">const { _trapcss } = require('./trapcss')
 
 /**
  * Parses the supplied HTML and CSS and removes
@@ -735,7 +737,7 @@ require('./trapcss')</code></pre>
             
             <p>Using XML schema, we can maintain the argument specification, and then create a special file called <strong>get-args.js</strong>, using the <span class="tm">argufy</span> package. The script is defined as the <em>args</em> job in <strong>package.json</strong> &mdash; <span class="tm2">argufy -o src/bin/get-args.js</span>. The default location of arguments is <strong>types/arguments.xml</strong>, so we don't need to specify any input. The output, on the other hand, is to be written to <strong>src/bin/get-args.js</strong>. From the specification that we drew, this is the output that is produced:</p>
             
-            <pre id="ccdbf21"><code class="javascript hljs">import argufy from 'argufy'
+            <pre id="ccdbf25"><code class="javascript hljs">import argufy from 'argufy'
 
 export const argsConfig = {
   'input': {
@@ -816,7 +818,7 @@ export const _argv = /** @type {!Array&lt;string&gt;} */ (args._argv)</code></pr
             
             <p>The template has already come with some binary source code, for example for printing version number and usage information. The usage string is constructed with the <span class="tm">usually</span> package, that accepts a description, example, line and usage itself. The usage is made using the <span class="tm2">reduceUsage</span> method from <span class="tm">argufy</span>, based on the arguments config that was also exported from the <strong>get-args.js</strong> file. It will create a 2-column table with full and short arguments' names and their descriptions.</p>
             
-            <pre id="ccdbf22"><code class="javascript hljs">import usually from 'usually'
+            <pre id="ccdbf26"><code class="javascript hljs">import usually from 'usually'
 import { reduceUsage } from 'argufy'
 import { readFileSync, writeFileSync } from 'fs'
 import { c } from 'erte'
@@ -934,7 +936,7 @@ if (_output) {
             
             <p>We already used some mask testing in <a href="/nodetools/trap"></a>, but one of the best applications of masks is to test forks. A fork is a separate Node process spawned from a script itself. They are completely independent processes with separate PIDs, but the fork will by default exit with its parent. Since our binary is a Node program, to test it properly, we need to spawn it via the <span class="tm">child_process</span> module. <em>Zoroaster</em> provides an abstraction over fork testing, if you pass <span class="tm2">fork</span> property to the mask constructor.</p>
             
-            <pre id="ccdbf23"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf27"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
 
@@ -980,7 +982,7 @@ if (process.env.ALAMODE_ENV == 'test-compile') {
             
             <p>This will be useful later after we've compiled the binary with <em>Closure</em>.</p>
             
-            <pre id="c1953"><code class="markdown hljs">## keeps span
+            <pre id="c19538"><code class="markdown hljs">## keeps span
 &lt;html&gt;
   &lt;body&gt;
     &lt;span&gt;test&lt;/span&gt;
@@ -1027,7 +1029,7 @@ if (process.env.ALAMODE_ENV == 'test-compile') {
             
             <p>We only do a couple of tests to make sure that the binary doesn't throw any errors and processes arguments correctly. Most of the unit tests were done on the API, therefore it'd be redundant to test the same functionality twice. However, we could potentially construct a mask that would use input from mask results to the API to adapt them to pass to the CLI, but I won't do it here. Since mask results are just text files, they can be reused according to your imagination.</p>
             
-            <pre id="ccdbf24"><code class="javascript hljs">import TempContext from 'temp-context'
+            <pre id="ccdbf28"><code class="javascript hljs">import TempContext from 'temp-context'
 import Context from '../context'
 import makeTestSuite from '@zoroaster/mask'
 
@@ -1055,7 +1057,7 @@ export const output = makeTestSuite('test/result/bin/output', {
             
             <p>The second test is almost the same as the first one, except that we add the output argument to the list of arguments from the input, instead of completely overriding the arguments array. The path to the output is generated with the <span class="tm">resolve</span> method from the temp context, which we passed in the <strong>context</strong> property. The question is then how to test the output of the program? To do that, we need to implement the <span class="tm2">getResults</span> method that will also receive the context, so that we can call the <span class="tm2">read</span> method from testing API. As previously, we want to wrap the output for syntax highlighting.</p>
             
-            <pre id="c19531"><code class="markdown hljs">## writes the output file
+            <pre id="c19539"><code class="markdown hljs">## writes the output file
 test/fixture/surveillance.html -c test/fixture/bootstrap.min.css
 
 /* stderr */
@@ -1088,7 +1090,7 @@ Output written to test/temp/style-trap.css
             
             <p>When there's no additional configuration, only <strong>stdout</strong>, <strong>stderr</strong> and <strong>code</strong> properties are asserted on.</p>
             
-            <pre id="c19532"><code class="markdown hljs">## cleans the css
+            <pre id="c195310"><code class="markdown hljs">## cleans the css
 test/fixture/surveillance.html -c test/fixture/bootstrap.min.css
 
 /* stdout */
@@ -1243,7 +1245,7 @@ p:hover a:first-child {
             
             <p>The updated CLI section of the documentation is pretty simple and includes a 2-column table that lists the examples, and the output. The table with arguments will also be included automatically by the <span class="tm2">argufy</span> component that comes with <em>Documentary</em>:</p>
             
-            <pre id="c19533"><code class="markdown hljs">## CLI
+            <pre id="c195311"><code class="markdown hljs">## CLI
 
 The package can also be used from the CLI.
 
@@ -1324,7 +1326,7 @@ The help can be accessed with the `-h` command:
             
             <p>This page contains description of supported features. I've simply copied the table from the source. A cool thing we can do, though, is to create an example file right in the <em>Features</em> directory itself, as it won't be read by <em>Documentary</em> that scans for <span class="tm">md</span>, <span class="tm">markdown</span> and <span class="tm">htm[l]</span> files only. We can then simply pass the relative path to the example:</p>
             
-            <pre id="c10fc"><code class="md hljs">- Deep resolution of composite CSS variables, e.g:
+            <pre id="c1953"><code class="markdown hljs">- Deep resolution of composite CSS variables, e.g:
   %EXAMPLE: ./example.css%</code></pre>
             
             <p>Mind the indentation that is used with the example marker &mdash; it's needed so that <em>GitHub</em> recognises it as part of the list item.</p>
@@ -1350,13 +1352,13 @@ The help can be accessed with the `-h` command:
             
             <p>This page is about opening a webpage in a headless browser to execute any dynamic JavaScript, which might manipulate DOM, so that the list of selectors is gathered after scripts are executed. I want to use the example, but the original depends on <span class="tm">puppeteer</span> which I think is redundant because if you have Chrome installed on your system, you can already open it. I don't want to download 80MB of a browser just for a simple script to be executed, so we'll simply install <span class="tm">chrome-remote-interface</span> and launch Chrome by hand. There's also <span class="tm">chrome-launcher</span> package however it's got 5 dependencies so until I've made a 0-dep fork, I'm not going to use it.</p>
             
-            <pre id="c10fc1"><code class="md hljs">%EXAMPLE: ./execution, ../.. =&gt; trapcss%
+            <pre id="c19531"><code class="markdown hljs">%EXAMPLE: ./execution, ../.. =&gt; trapcss%
 
 %FORK-js ./execution%</code></pre>
             
             <p>The example fork that spawns Chrome is going to be cached, so unless we make changes to the source code and recompile the package, we won't need to wait again for Chrome to start and load pages.</p>
             
-            <pre id="ccdbf25"><code class="javascript hljs">import idio from '@idio/idio'
+            <pre id="ccdbf29"><code class="javascript hljs">import idio from '@idio/idio'
 import CDP from 'chrome-remote-interface'
 import { spawn } from 'child_process'
 import rqt from 'rqt'
@@ -1427,7 +1429,7 @@ import trapcss from '../..'
             
             <p>There are some instructions on how to gather HTML selectors from multiple files, if CSS is reused across web pages. I'll copy the instructors and create an example also. When naming Wiki pages like <span class="tm">Accumulating-a-Whitelist</span>, hyphens become whitespace in titles.</p>
             
-            <pre id="c10fc2"><code class="md hljs">-= INSTRUCTIONS =-
+            <pre id="c19532"><code class="markdown hljs">-= INSTRUCTIONS =-
 
 %EXAMPLE: ./whitelist, ../.. =&gt; trapcss%
 %FORK-css ./whitelist%</code></pre>
@@ -1476,10 +1478,10 @@ let css2 = css
             
             <p>We'll keep those pages as is, since there are no examples.</p>
             
-            <pre id="c10fc3"><code class="md hljs">- Not tested against or designed to handle malformed HTML or CSS
+            <pre id="c19533"><code class="markdown hljs">- Not tested against or designed to handle malformed HTML or CSS
 - Excessive escaping or reserved characters in your HTML or CSS can break TrapCSS's parsers</code></pre>
             
-            <pre id="c10fc4"><code class="md hljs">- Felix Böhm's [nth-check](https://github.com/fb55/nth-check) - it's not much code, but getting `An+B` expression testing exactly right is frustrating. I got part-way there before discovering this tiny solution.
+            <pre id="c19534"><code class="markdown hljs">- Felix Böhm's [nth-check](https://github.com/fb55/nth-check) - it's not much code, but getting `An+B` expression testing exactly right is frustrating. I got part-way there before discovering this tiny solution.
 - Vadim Kiryukhin's [vkbeautify](https://github.com/vkiryukhin/vkBeautify) - the benchmark and test code uses this tiny formatter to make it easier to spot differences in output diffs.</code></pre>
             
             </div>
@@ -1499,18 +1501,19 @@ let css2 = css
             
             <p>I'd like to update our footer to include the information about the original license. I've chosen Affero for this project, so the footer at the moment looks like the following:</p>
             
-            <pre id="c10fc5"><code class="md hljs">## Copyright &amp; License
+            <pre id="c19535"><code class="markdown hljs">## Copyright &amp; License
 
 GNU Affero General Public License v3.0</code></pre>
             
             <p>Let's include the original license:</p>
             
-            <pre id="c10fc6"><code class="md hljs">## Copyright &amp; License
+            <pre id="c19536"><code class="markdown hljs">## Copyright &amp; License
 
 GNU Affero General Public License v3.0
 
 Original work on [_DropCSS_](https://github.com/leeoniya/dropcss) package
-by [Leon Sorokin](https://github.com/leeoniya) under MIT license found in [COPYING](COPYING).</code></pre>
+by [Leon Sorokin](https://github.com/leeoniya) under MIT license found
+in [COPYING](COPYING).</code></pre>
             
             <p>There are 2 standard files for a license, either <span class="tm2">LICENSE</span> or <span class="tm2">COPYING</span>. Since our AGPL is found in the former, we can include the original one in the latter. This is the convention I use for forked packages. I'll also update <strong>package.json</strong> to include the original license in the <span class="tm">files</span> field:</p>
             
@@ -1547,6 +1550,239 @@ by [Leon Sorokin](https://github.com/leeoniya) under MIT license found in [COPYI
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
                 <noscript><img alt="section break" src="/nodetools/section-breaks/5.svg"></noscript></a>
             </p>
+            </div>
+            
+            <div data-section id="stdlib">
+            <h2>StdLib</h2>
+            
+            <p>We've done good job on implementation of API and CLI, their testing and documentation, and can publish the package now: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>publish</span></span></span>. But before we do it, let's add a changelog line for the new version. <em>Documentary</em> comes with a <span class="tm">cl</span> binary that will ask for a new version of the package: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>cl</span></span></span>, and create an appropriate link to compare versions.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="changelog update" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='684' height='462'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="changelog update" src="/nodetools/pages/trapcss2/5-stdlib/v1.gif">
+              </noscript>
+            </p>
+            
+            <p>After publishing, I'll go ahead and make sure to push git tree with a new tag. The best way to do it is with <span class="tm2">git push --follow-tags</span> command.</p>
+            
+            <p>As I promised at start, we can incorporate <em>TrapCSS</em> into <em>Splendid</em>, a static website generator via its standard library. <em>StdLib</em> is a new concept that allows to place all dependencies into a single file and also compile them at the same time, so that the package receives access to all methods needs from dependencies, but doesn't have to install them. Such static linking is great to create neat packages without forcing your users to pull myriads of new dependencies they have no clue as to the purpose of. This will increase trust to your package and allow to produce great independent <strong>software products</strong> with full type checking, as compared to half-baked <strong>packages</strong> that can't go anywhere without 3rd party code. It also potentially increases security as it means you're reducing the attack scope by eliminating any dependencies that might become sabotaged in future (if their version is not fixed).</p>
+            
+            <p><em>Splendid's</em> stdlib looks a bit like the following:</p>
+            
+            <pre id="ccdbf18"><code class="javascript hljs">import '@externs/preact/types/externs'
+import {
+  read, write, rm, exists, ensurePath, readDirStructure, readBuffer,
+} from '@wrote/wrote'
+import clone from '@wrote/clone'
+import render from '@depack/render'
+import aqt from '@rqt/aqt'
+import cleanStack from '@artdeco/clean-stack'
+import { ensurePathSync } from '@wrote/ensure-path'
+import rexml from 'rexml'
+import differently from 'differently'
+import argufy, { reduceUsage } from 'argufy'
+import Catchment, { collect } from 'catchment'
+import controlStyle from '@lemuria/control-style'
+import competent, { makeComponentsScript, writeAssets } from 'competent'
+import { c, b } from 'erte'
+import makePromise from 'makepromise'
+import usually from 'usually'
+import { confirm } from 'reloquent'
+import spawn, { fork } from 'spawncommand'
+import {
+  SyncReplaceable, Replaceable, makeMarkers, makeCutRule, makePasteRule,
+  replace,
+} from 'restream'
+import Pedantry from 'pedantry'
+import compare from '@depack/cache'
+import {
+  Bundle, getOptions, BundleChunks, getCompilerVersion,
+} from '@depack/depack'
+
+module.exports = {
+  'getOptions': getOptions,
+  'getCompilerVersion': getCompilerVersion,
+  'Bundle': Bundle,
+  'BundleChunks': BundleChunks,
+  // ... and so on
+}</code></pre>
+            
+            <p>I'm deliberately giving the full list of imports so that you can understand the meaning behind STDLIBs. They are literal libraries for your big projects. The fact is that you don't want to fully compile huge projects because it's time consuming and unnecessary actually, since their source code isn't going to be used in other packages. They are standalone pieces of software, so it's ok to just build them. But to eliminate dependencies, we need an stdlib. The trick is then to rename all imports from 3rd party packages that you had in source code, to point to the <strong>stdlib</strong> instead.</p>
+            
+            <pre id="ccdbf19"><code class="javascript hljs">// was
+import { join } from 'path'
+import { read, write, ensurePath, exists } from '@wrote/wrote'
+import { Bundle, getOptions, BundleChunks } from '@depack/depack'
+import { c } from 'erte'
+import compare from '@depack/cache'
+import { deepStrictEqual } from 'assert'
+import { getDates } from '../'
+import { resolveInternal } from '../'
+
+// becomes
+const { join } = require('path');
+const { read, write, ensurePath, exists } = require('../../../stdlib');
+const { Bundle, getOptions, BundleChunks } = require('../../../stdlib');
+const { c } = require('../../../stdlib');
+const { compare } = require('../../../stdlib');
+const { deepStrictEqual } = require('assert');
+const { getDates } = require('../');
+const { resolveInternal } = require('../');</code></pre>
+            
+            <p>This is achieved when we run ÀLaMode on the source code with <span class="tm2">build</span> environment</p>
+            
+            <pre id="cb9de4"><code class="json hljs">{
+  "b": "yarn-s src jsx",
+  "src": "alamode src -o build -s -i bin/.eslintrc,js,components,stdlib.js -j -p -m --env build",
+  "jsx": "alamode src/components -o build/components -s -i .eslintrc -j -E --env build",
+}</code></pre>
+            
+            <p><em>Splendid</em> includes some server-side as well as client-side JSX components, so I need 2 scripts, one for SSR, and second for the browser so that <em>Preact</em> is imported as an extern rather than package (<span class="tm">-E</span> flag). Let's just focus on the <span class="tm2">src</span> script:</p>
+            
+            <ul>
+              <li><strong>src</strong>, the input directory for compilation.</li>
+              <li><strong>-o build</strong>, where to put transpiled files to.</li>
+              <li><strong>-s</strong>, disable source maps (they're not needed at all since the transpiler is really good at preserving the style of code and just renames imports into requires).</li>
+              <li><strong>-i bin/.eslintrc,js,components,stdlib.js</strong>, those files will be ignored. We don't need to build the <strong>stdlib.js</strong> file itself as it's only for Closure.</li>
+              <li><strong>-j</strong>, enables JSX transpilation.</li>
+              <li><strong>-p</strong>, adds Preact pragma for JSX files.</li>
+              <li><strong>-m</strong>, transpiles modules into requires (which is disabled by default for JSX).</li>
+              <li><strong>--env build</strong>, use the build environment, to rename StdLib.</li>
+            </ul>
+            
+            <p>The environment is defined in the <strong>.alamoderc.json</strong> file:</p>
+            
+            <pre id="cb9de5"><code class="json hljs">{
+  "env": {
+    "test-build": {
+      "import": {
+        "replacement": {
+          "from": "^((../)+)src",
+          "to": "$1build"
+        }
+      }
+    },
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "argufy", "catchment", "clearr", "erte",
+            "forkfeed", "makepromise", "mismatch", "rexml", "@wrote/wrote",
+            "@wrote/clone", "@wrote/ensure-path", "pedantry", "@depack/cache",
+            "usually", "resolve-dependency", "spawncommand", "restream",
+            "@depack/render", "@rqt/aqt", "reloquent", "differently",
+            "which-stream", "@wrote/read-dir-structure", "competent",
+            "@lemuria/control-style", "@depack/depack", "@artdeco/clean-stack"
+          ]
+        },
+        "alamodeModules": ["alamode", "@wrote/read", "@wrote/write",
+          "@wrote/clone", "@lemuria/popup", "@depack/render",
+          "@idio/frontend", "@goa/koa", "@idio/websocket", "differently",
+          "@artdeco/clean-stack",
+          "competent", "@idio/idio", "closure-stylesheets-java",
+          "@lemuria/control-style"]
+      }
+    }
+  }
+}</code></pre>
+            
+            <p>It's pretty large as it contains the list of all modules that we want to rename (<span class="tm2">alamodeModules</span> is a separate thing, which disables <em>&lowbar;&lowbar;esModule</em> check when importing default exports). Under <strong>stdlib</strong> property, we specified the <em>path</em> to the library, and all packages that should be renamed. Now it's time to compile stdlib.</p>
+            
+            <p>I'm going to install <span class="tm">trapcss</span> as a dev dependency (since it will be compiled into stdlib statically) and include it in the appropriate places.</p>
+            
+            <pre id="ccdbf20"><code class="javascript hljs">// src/elements/bootstrap-css/run_template.jsx
+import trapcss from 'trapcss'</code></pre>
+            
+            <p>I can also validate that there are autocompletion hints.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="autocompletion hints" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='657' height='484'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="autocompletion hints" src="/nodetools/pages/trapcss2/5-stdlib/hints.gif">
+              </noscript>
+            </p>
+            
+            <p>Now update the env:</p>
+            
+            <pre id="cb9de6"><code class="json hljs">{
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "...all-other-packages", "trapcss"
+          ]
+        }
+      }
+    }
+  }
+}</code></pre>
+            
+            <p>And use the <strong>stdlib</strong> script:</p>
+            
+            <pre id="cb9de7"><code class="json hljs">{
+  "stdlib": "depack src/stdlib -o stdlib/index.js -a -c -p -s --source_map_include_content",
+}</code></pre>
+            
+            <p>It will run <em>Depack</em> with pretty much standard Node.JS compilation configuration, that also includes source code in source maps, so that we can debug it when necessary. It will increase the package size by about 350KB, so it's optional. An alternative for debugging is to clone package locally and link to it from the project which is being debugged.</p>
+            
+            <p>After <strong>stdlib</strong> is compiled, I can build the project again, and see the changes:</p>
+            
+            <pre id="ccdbf21"><code class="javascript hljs">// was
+let dropcss = require('dropcss'); if (dropcss &amp;&amp; dropcss.__esModule) dropcss = dropcss.default;
+
+// now 🎉
+const { trapcss } = require('../../../stdlib');</code></pre>
+            
+            <p>Using this technique, I've reduced the number of dependencies in my project (by 1 with <em>TrapCSS</em>, but by about 50 considering all other packages). This method is really great for modern package development that <em>NodeTools</em> facilitate.</p>
+            
+            <p>As the final step, let me explain the purpose of <span class="tm">typedefs.json</span>. Because we want to link between documentation pages, we want to know where each type is described: it could be either in the main readme file, or somewhere in Wiki. This file remembers the exact location of where the type is described.</p>
+            
+            <p><em>Splendid</em> has got some documentation about dropping types:</p>
+            
+            <pre id="c19537"><code class="markdown hljs">## Dropping Unused Selectors
+
+After a page is compiled, a list of classes will be gathered, and
+_Bootstrap_ CSS will be processed to remove selectors which are not
+present on pages.
+
+&lt;include-typedefs&gt;trapcss&lt;/include-typedefs&gt;
+
+_Splendid_ uses &lt;link type="_trapcss.trapcss"&gt;_TrapCSS_&lt;/link&gt;
+to achieve this purpose.</code></pre>
+            
+            <p>By calling the <span class="tm2">include-typedefs</span> component, we added the information of our types to <em>Documentary</em>. After that, we can use the <span class="tm2">link</span> component to insert a link to this type. Obviously, <span class="tm">_trapcss.trapcss</span> is a method and not a type, but if <em>Splendid</em> at any point was extending any type from <em>TrapCSS</em> (e.g., its config), or used a property from its own config to be of <em>TrapCSS</em> config (e.g., <span class="tm">{ trapcss: {/* trap config */ } }</span>), the correct link would appear in the documentation. This makes the process robust since there's no manual work required and prevents outdated linking.</p>
+            
+            <p>
+              <img class="b-bk b-vk b-t" alt="generated link on Splendid wiki to TrapCSS" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='727' height='235'/%3E" data-io>
+              <noscript>
+                <img class="b-bk b-vk b-t" alt="generated link on Splendid wiki to TrapCSS" src="/nodetools/pages/trapcss2/5-stdlib/sel.png">
+              </noscript>
+            </p>
+            
+            <p>I think that's about it for advanced topics, so please feel free to leave comments and ask questions. Part III will be about creating a website for the project with <em>Splendid</em>, but in due time.</p>
+            
+            
+            
+            <p>
+              <span id="cd192"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+            </p>
+            
+            <p class="SectionBreak">
+              <a title="Back To Top" href="#top">
+                <img alt="section break"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'/%3E" data-io>
+                <noscript><img alt="section break" src="/nodetools/section-breaks/6.svg"></noscript></a>
+            </p>
+            </div>
+            
+            <div data-section id="comments">
+            <h2>Comments</h2>
+            
+            <div id="c8b27">Loading comments...</div>
+            
             </div>
           </div>
         </div>

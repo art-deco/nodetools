@@ -52,7 +52,7 @@ export const trapcss = {
  */
 export const trapcss2 = {
   title: 'TrapCSS 2: Advanced NodeTools',
-  seo: 'A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and libarary with Closure Copmiler and generate Wiki pages.',
+  seo: 'A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and library with Closure Compiler and generate Wiki pages.',
   og: {
     image: '../pages/trapcss2/img/trapcss2.jpg',
   },

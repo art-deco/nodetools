@@ -11,6 +11,7 @@ const renameMaps = { 'styles/yarn.css': __renameMap0,
 __initManager(),__initOnThisPage(),__initSidebar()
 import { Component, render, h } from '@externs/preact'
 import { makeIo, init, start } from './__competent-lib'
+import AkashicComments from '../components/akashic-comments.jsx'
 import AkashicEmails from '../components/akashic-emails.jsx'
 import AkashicUpdates from '../components/akashic-updates.jsx'
 import GithubBadge from '../components/github-badge.jsx'
@@ -19,6 +20,7 @@ import Manager from '../components/manager.jsx'
 import SocialButtons from 'splendid/build/components/social-buttons'
 
 const __components = {
+  'akashic-comments': AkashicComments,
   'akashic-emails': AkashicEmails,
   'akashic-updates': AkashicUpdates,
   'github-badge': GithubBadge,
@@ -31,13 +33,6 @@ const io = makeIo()
 
 /** @type {!Array<!preact.PreactProps>} */
 const meta = [{
-  key: 'highlightjs',
-  id: 'c10fc,c10fc1,c10fc2,c10fc3,c10fc4,c10fc5,c10fc6',
-  props: {
-    lang: 'md',
-  },
-},
-{
   key: 'highlightjs',
   id: 'c724c,c724c1',
   props: {
@@ -69,14 +64,14 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'c1953,c19531,c19532,c19533',
+  id: 'c1953,c19531,c195310,c195311,c19532,c19533,c19534,c19535,c19536,c19537,c19538,c19539',
   props: {
     lang: 'markdown',
   },
 },
 {
   key: 'highlightjs',
-  id: 'cb9de,cb9de1,cb9de2,cb9de3',
+  id: 'cb9de,cb9de1,cb9de2,cb9de3,cb9de4,cb9de5,cb9de6,cb9de7',
   props: {
     lang: 'json',
   },
@@ -91,7 +86,7 @@ const meta = [{
 },
 {
   key: 'highlightjs',
-  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf25,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
+  id: 'ccdbf,ccdbf1,ccdbf10,ccdbf11,ccdbf12,ccdbf13,ccdbf14,ccdbf15,ccdbf16,ccdbf17,ccdbf18,ccdbf19,ccdbf2,ccdbf20,ccdbf21,ccdbf22,ccdbf23,ccdbf24,ccdbf25,ccdbf26,ccdbf27,ccdbf28,ccdbf29,ccdbf3,ccdbf4,ccdbf5,ccdbf6,ccdbf7,ccdbf8,ccdbf9',
   props: {
     lang: 'javascript',
   },
@@ -99,6 +94,22 @@ const meta = [{
 {
   key: 'akashic-emails',
   id: 'emails-div',
+  props: {
+    'api-key': 'akashic',
+  },
+},
+{
+  key: 'social-buttons',
+  id: 'cd192',
+  props: {
+    url: 'https://art-deco.github.io/nodetools/trapcss-2-advanced-nodetools.html',
+    subject: 'TrapCSS 2: Advanced NodeTools',
+    title: 'A continuation of NodeTools tutorial that describes how to create Node.JS binary, compile it and library with Closure Compiler and generate Wiki pages.',
+  },
+},
+{
+  key: 'akashic-comments',
+  id: 'c8b27',
   props: {
     'api-key': 'akashic',
   },

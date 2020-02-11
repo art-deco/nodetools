@@ -1,4 +1,4 @@
-##! Advanced Concepts
+##! Implementation
 
 Now that we've transferred the source code rewritten as ECMA modules, documented it with initial examples, designed the API via types in XML, and unit-tested our library with masks and snapshots, we can move on to discussing more serious concepts such as compilation, wikis and binary functionality in the next part of this tutorial. But first, let's ~take a selfie~ actually implement the logic that we needed for our package, that is, the comment preservation feature.
 
@@ -31,6 +31,10 @@ Whenever the second new attribute, `keepAlternate` is passed, instead of strippi
 If you need a feature, implement it regardless in what way without bothering with performance because our machines are made for computation so give them something to do. A new feature can branch out in unexpected ways and help you explore new ideas. But it's also true for when trying to overcome somebody's resistance to change, or bugs. Keep positive and treat any obstacle as a personal opportunity to create something amazing. Focus on yourself first and foremost, as you're programming for your own pleasure/business goals and don't need anyone else to tell you what is acceptable and not. You're in charge of your programs. _NodeTools_ helps you remain the master of your work.
 
 <a btn btn-large btn-success href="trapcss2"/>
+
+<p>
+  <social-buttons />
+</p>
 
 <section-break />
 

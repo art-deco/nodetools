@@ -55,7 +55,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
     <link rel="stylesheet" href="/nodetools/css/combined.css">
     <link rel="preload" as="style" href="/nodetools/highlight.js/styles/default.css">
     <style>
-      .no-js [data-io], .no-js .ImageHolder, .no-js [data-loading] { display: none!important }
+      .no-js [data-io], .no-js [data-loading], .no-js .ImageHolder { display: none!important }
       .ItWillRunYarn {
           display: none;
         }
@@ -160,7 +160,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.36.1</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.37.0</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
@@ -203,7 +203,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
                                       <a href="#creating-tests">Creating Tests</a>
                                       <ul><li data-heading="mask-testing"><a href="#mask-testing">Mask Testing</a></li><li data-heading="focus-in-masks"><a href="#focus-in-masks">Focus In Masks</a></li><li data-heading="interactive-mode"><a href="#interactive-mode">Interactive Mode</a></li><li data-heading="more-masks"><a href="#more-masks">More Masks</a></li><li data-heading="error-stacks"><a href="#error-stacks">Error Stacks</a></li><li data-heading="context-testing"><a href="#context-testing">Context Testing</a></li></ul>
                                     </li>
-                                    <li data-heading="advanced-concepts"><a href="#advanced-concepts">Advanced Concepts</a></li>
+                                    <li data-heading="implementation"><a href="#implementation">Implementation</a></li>
                                     <li data-heading="comments"><a href="#comments">Comments</a></li>
                                   </ul>
                                   <h3 id="share-nodetools">Share NodeTools</h3>
@@ -1830,8 +1830,8 @@ export default class Context {
             </p>
             </div>
             
-            <div data-section id="advanced-concepts">
-            <h2>Advanced Concepts</h2>
+            <div data-section id="implementation">
+            <h2>Implementation</h2>
             
             <p>Now that we've transferred the source code rewritten as ECMA modules, documented it with initial examples, designed the API via types in XML, and unit-tested our library with masks and snapshots, we can move on to discussing more serious concepts such as compilation, wikis and binary functionality in the next part of this tutorial. But first, let's <strike>take a selfie</strike> actually implement the logic that we needed for our package, that is, the comment preservation feature.</p>
             
@@ -1861,6 +1861,10 @@ function parse(css) {
             
             <a class="b-Af b-If" btn-large href="/nodetools/trapcss-2-advanced-nodetools.html">
               TrapCSS 2: Advanced NodeTools</a>
+            
+            <p>
+              <span id="c35c0"><span class="b-Hk" style="height:32px" data-loading>Loading sharing buttons...</span><noscript>Please enable JavaScript to Share</noscript></span>
+            </p>
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">

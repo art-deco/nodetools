@@ -1,0 +1,220 @@
+##! StdLib
+
+We've done good job on implementation of API and CLI, their testing and documentation, and can publish the package now: <yarn publish />. But before we do it, let's add a changelog line for the new version. _Documentary_ comes with a `cl` binary that will ask for a new version of the package: <yarn cl />, and create an appropriate link to compare versions.
+
+<p>
+  <img border rounded img-fluid src="./v1.gif" alt="changelog update" placeholder-auto />
+</p>
+
+After publishing, I'll go ahead and make sure to push git tree with a new tag. The best way to do it is with ``git push --follow-tags`` command.
+
+As I promised at start, we can incorporate _TrapCSS_ into _Splendid_, a static website generator via its standard library. _StdLib_ is a new concept that allows to place all dependencies into a single file and also compile them at the same time, so that the package receives access to all methods needs from dependencies, but doesn't have to install them. Such static linking is great to create neat packages without forcing your users to pull myriads of new dependencies they have no clue as to the purpose of. This will increase trust to your package and allow to produce great independent *software products* with full type checking, as compared to half-baked *packages* that can't go anywhere without 3rd party code. It also potentially increases security as it means you're reducing the attack scope by eliminating any dependencies that might become sabotaged in future (if their version is not fixed).
+
+_Splendid's_ stdlib looks a bit like the following:
+
+```js
+import '@externs/preact/types/externs'
+import {
+  read, write, rm, exists, ensurePath, readDirStructure, readBuffer,
+} from '@wrote/wrote'
+import clone from '@wrote/clone'
+import render from '@depack/render'
+import aqt from '@rqt/aqt'
+import cleanStack from '@artdeco/clean-stack'
+import { ensurePathSync } from '@wrote/ensure-path'
+import rexml from 'rexml'
+import differently from 'differently'
+import argufy, { reduceUsage } from 'argufy'
+import Catchment, { collect } from 'catchment'
+import controlStyle from '@lemuria/control-style'
+import competent, { makeComponentsScript, writeAssets } from 'competent'
+import { c, b } from 'erte'
+import makePromise from 'makepromise'
+import usually from 'usually'
+import { confirm } from 'reloquent'
+import spawn, { fork } from 'spawncommand'
+import {
+  SyncReplaceable, Replaceable, makeMarkers, makeCutRule, makePasteRule,
+  replace,
+} from 'restream'
+import Pedantry from 'pedantry'
+import compare from '@depack/cache'
+import {
+  Bundle, getOptions, BundleChunks, getCompilerVersion,
+} from '@depack/depack'
+
+module.exports = {
+  'getOptions': getOptions,
+  'getCompilerVersion': getCompilerVersion,
+  'Bundle': Bundle,
+  'BundleChunks': BundleChunks,
+  // ... and so on
+}
+```
+
+I'm deliberately giving the full list of imports so that you can understand the meaning behind STDLIBs. They are literal libraries for your big projects. The fact is that you don't want to fully compile huge projects because it's time consuming and unnecessary actually, since their source code isn't going to be used in other packages. They are standalone pieces of software, so it's ok to just build them. But to eliminate dependencies, we need an stdlib. The trick is then to rename all imports from 3rd party packages that you had in source code, to point to the *stdlib* instead.
+
+```js
+// was
+import { join } from 'path'
+import { read, write, ensurePath, exists } from '@wrote/wrote'
+import { Bundle, getOptions, BundleChunks } from '@depack/depack'
+import { c } from 'erte'
+import compare from '@depack/cache'
+import { deepStrictEqual } from 'assert'
+import { getDates } from '../'
+import { resolveInternal } from '../'
+
+// becomes
+const { join } = require('path');
+const { read, write, ensurePath, exists } = require('../../../stdlib');
+const { Bundle, getOptions, BundleChunks } = require('../../../stdlib');
+const { c } = require('../../../stdlib');
+const { compare } = require('../../../stdlib');
+const { deepStrictEqual } = require('assert');
+const { getDates } = require('../');
+const { resolveInternal } = require('../');
+```
+
+This is achieved when we run ÀLaMode on the source code with ``build`` environment
+
+```json
+{
+  "b": "yarn-s src jsx",
+  "src": "alamode src -o build -s -i bin/.eslintrc,js,components,stdlib.js -j -p -m --env build",
+  "jsx": "alamode src/components -o build/components -s -i .eslintrc -j -E --env build",
+}
+```
+
+_Splendid_ includes some server-side as well as client-side JSX components, so I need 2 scripts, one for SSR, and second for the browser so that _Preact_ is imported as an extern rather than package (`-E` flag). Let's just focus on the ``src`` script:
+
+<ul>
+  - *src*, the input directory for compilation.
+  - *-o build*, where to put transpiled files to.
+  - *-s*, disable source maps (they're not needed at all since the transpiler is really good at preserving the style of code and just renames imports into requires).
+  - *-i bin/.eslintrc,js,components,stdlib.js*, those files will be ignored. We don't need to build the *stdlib.js* file itself as it's only for Closure.
+  - *-j*, enables JSX transpilation.
+  - *-p*, adds Preact pragma for JSX files.
+  - *-m*, transpiles modules into requires (which is disabled by default for JSX).
+  - *--env build*, use the build environment, to rename StdLib.
+</ul>
+
+The environment is defined in the *.alamoderc.json* file:
+
+```json
+{
+  "env": {
+    "test-build": {
+      "import": {
+        "replacement": {
+          "from": "^((../)+)src",
+          "to": "$1build"
+        }
+      }
+    },
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "argufy", "catchment", "clearr", "erte",
+            "forkfeed", "makepromise", "mismatch", "rexml", "@wrote/wrote",
+            "@wrote/clone", "@wrote/ensure-path", "pedantry", "@depack/cache",
+            "usually", "resolve-dependency", "spawncommand", "restream",
+            "@depack/render", "@rqt/aqt", "reloquent", "differently",
+            "which-stream", "@wrote/read-dir-structure", "competent",
+            "@lemuria/control-style", "@depack/depack", "@artdeco/clean-stack"
+          ]
+        },
+        "alamodeModules": ["alamode", "@wrote/read", "@wrote/write",
+          "@wrote/clone", "@lemuria/popup", "@depack/render",
+          "@idio/frontend", "@goa/koa", "@idio/websocket", "differently",
+          "@artdeco/clean-stack",
+          "competent", "@idio/idio", "closure-stylesheets-java",
+          "@lemuria/control-style"]
+      }
+    }
+  }
+}
+```
+
+It's pretty large as it contains the list of all modules that we want to rename (``alamodeModules`` is a separate thing, which disables _&lowbar;&lowbar;esModule_ check when importing default exports). Under *stdlib* property, we specified the _path_ to the library, and all packages that should be renamed. Now it's time to compile stdlib.
+
+I'm going to install `trapcss` as a dev dependency (since it will be compiled into stdlib statically) and include it in the appropriate places.
+
+```js
+// src/elements/bootstrap-css/run_template.jsx
+import trapcss from 'trapcss'
+```
+
+I can also validate that there are autocompletion hints.
+
+<p>
+  <img border rounded img-fluid src="./hints.gif" alt="autocompletion hints" placeholder-auto />
+</p>
+
+Now update the env:
+
+```json
+{
+    "build": {
+      "import": {
+        "stdlib": {
+          "path": "stdlib",
+          "packages": [
+            "...all-other-packages", "trapcss"
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+And use the *stdlib* script:
+
+```json
+{
+  "stdlib": "depack src/stdlib -o stdlib/index.js -a -c -p -s --source_map_include_content",
+}
+```
+
+It will run _Depack_ with pretty much standard Node.JS compilation configuration, that also includes source code in source maps, so that we can debug it when necessary. It will increase the package size by about 350KB, so it's optional. An alternative for debugging is to clone package locally and link to it from the project which is being debugged.
+
+After *stdlib* is compiled, I can build the project again, and see the changes:
+
+```js
+// was
+let dropcss = require('dropcss'); if (dropcss && dropcss.__esModule) dropcss = dropcss.default;
+
+// now 🎉
+const { trapcss } = require('../../../stdlib');
+```
+
+Using this technique, I've reduced the number of dependencies in my project (by 1 with _TrapCSS_, but by about 50 considering all other packages). This method is really great for modern package development that _NodeTools_ facilitate.
+
+As the final step, let me explain the purpose of `typedefs.json`. Because we want to link between documentation pages, we want to know where each type is described: it could be either in the main readme file, or somewhere in Wiki. This file remembers the exact location of where the type is described.
+
+_Splendid_ has got some documentation about dropping types:
+
+```markdown
+## Dropping Unused Selectors
+
+After a page is compiled, a list of classes will be gathered, and
+_Bootstrap_ CSS will be processed to remove selectors which are not
+present on pages.
+
+<include-typedefs>trapcss</include-typedefs>
+
+_Splendid_ uses <link type="_trapcss.trapcss">_TrapCSS_</link>
+to achieve this purpose.
+```
+
+By calling the ``include-typedefs`` component, we added the information of our types to _Documentary_. After that, we can use the ``link`` component to insert a link to this type. Obviously, `_trapcss.trapcss` is a method and not a type, but if _Splendid_ at any point was extending any type from _TrapCSS_ (e.g., its config), or used a property from its own config to be of _TrapCSS_ config (e.g., `{ trapcss: {/* trap config */ } }`), the correct link would appear in the documentation. This makes the process robust since there's no manual work required and prevents outdated linking.
+
+<p>
+  <img border rounded img-fluid src="./sel.png" alt="generated link on Splendid wiki to TrapCSS" placeholder-auto />
+</p>
+
+I think that's about it for advanced topics, so please feel free to leave comments and ask questions. Part III will be about creating a website for the project with _Splendid_, but in due time.
+

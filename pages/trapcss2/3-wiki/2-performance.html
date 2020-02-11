@@ -8,7 +8,7 @@ This page contains some benchmark data for _DropCSS_. I'll keep it the same.
 
 This page is about opening a webpage in a headless browser to execute any dynamic JavaScript, which might manipulate DOM, so that the list of selectors is gathered after scripts are executed. I want to use the example, but the original depends on `puppeteer` which I think is redundant because if you have Chrome installed on your system, you can already open it. I don't want to download 80MB of a browser just for a simple script to be executed, so we'll simply install `chrome-remote-interface` and launch Chrome by hand. There's also `chrome-launcher` package however it's got 5 dependencies so until I've made a 0-dep fork, I'm not going to use it.
 
-```md
+```markdown
 %EXAMPLE: ./execution, ../.. => trapcss%
 
 %FORK-js ./execution%
