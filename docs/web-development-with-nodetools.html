@@ -135,31 +135,31 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <div class="List b-xq b-kC">
                 <a
                   title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
-                  <span class="a"><em>MNP</em></span><span class="b">1.1.7</span></a>
+                  <span class="a"><em>MNP</em></span><span class="b">1.1.8</span></a>
                 <a
                   title="Organises TypeDefs By Placing Them Into Types.Xml File To Be Embedded Into Source Code Compatible With VSCode And Google Closure Compiler, Generates Externs And Allows To Place Documentation In README Markdown." class="NPMBadge" href="https://www.npmjs.com/package/typal">
                   <span class="a"><em>Typal</em></span><span class="b">1.26.2</span></a>
                 <a
                   title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-                  <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
+                  <span class="a"><em>Depack</em></span><span class="b">1.1.2</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.0</span></a>
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.2</span></a>
                 <a
                   title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.37.0</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.37.1</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
                 <a
                   title="2-Dependency Koa Web Server Compiled With Closure Compiler And Bundled With Essential Middleware: Static, Compress, Session, Cors, File Upload, Router And JSX Front End." class="NPMBadge" href="https://www.npmjs.com/package/@idio/idio">
-                  <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
+                  <span class="a"><em>Idio</em></span><span class="b">1.4.1</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.17.1</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.17.4</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -252,7 +252,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <li>There are no source maps for debugging.</li>
               <li>There's no hot module reload.</li>
               <li>JSX does not support block comments.
-            <pre id="ccdbf10"><code class="javascript hljs">render(&lt;div&gt;
+            <pre id="ccdbf"><code class="javascript hljs">render(&lt;div&gt;
   {/* hello world */}
 &lt;/div&gt;)</code></pre>
               </li>
@@ -262,7 +262,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>It's fair enough if those limitations might deter you from using our method. On the other hand, you can literally get going with only 3 new folders in you <span class="tm">node_modules</span> (<em>Idio</em> web server) so if the simplicity of use outweighs these drawbacks, you can give it a go. The complexity of the project doesn't matter, and it's primarily the hot-module reload that might be the missing link, but we'll make it possible ASAP.</p>
             
-            <p>After your JS code is ready, you can compile it into a single file with <em>Closure Compiler</em>. If you used JSX, we'll transpile it with <em>ÀLaMode</em>, and put the intermediary code in the temp folder. The compiler will also add necessary polyfills for the target language (default is ES5) and update newer constructs such as <span class="tm2">async/await</span> and <span class="tm2">{ destructuring }</span> so that it can run in older browsers.</p>
+            After your JS code is ready, you can compile it into a single file with <em>Closure Compiler</em>. If you used JSX, we'll transpile it with <em>ÀLaMode</em>, and put the intermediary code in the temp folder. The compiler will also add necessary polyfills for the target language (default is ES5) and update newer constructs such as <span class="tm2">async/await</span> and <span class="tm2">{ destructuring }</span> so that it can run in older browsers.
             
             <p class="SectionBreak">
               <a title="Back To Top" href="#top">
@@ -277,7 +277,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>There's a more complex <span class="tm2">mnpjs/idio</span> MNP config that is a template for a web-server. However, it's not the purpose of this article to show how to create a full-stack application. I'll leave it for another time. I just wanted to show how to develop and compile a front-end.</p>
             
-            <p>As I mentioned, you'll need the <span class="tm">@idio/idio</span> server (a Koa fork itself, but completely rewritten for Closure). Let's install it with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-cmd">i</span><span class="yarn-cmd">add</span> <span>@idio/idio</span></span></span>. We'll then want to create a basic configuration to start it:</p>
+            As I mentioned, you'll need the <span class="tm">@idio/idio</span> server (a Koa fork itself, but completely rewritten for Closure). Let's install it with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-cmd">i</span><span class="yarn-cmd">add</span> <span>@idio/idio</span></span></span>. We'll then want to create a basic configuration to start it:
             
             <pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> idio <span class="token keyword">from</span> <span class="token string">'@idio/idio'</span>
 <span class="token keyword">import</span> render <span class="token keyword">from</span> <span class="token string">'@depack/render'</span>
@@ -318,7 +318,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>This is a JSX file, meaning that we can render JSX components statically, using <span class="tm2">@depack/render</span> package. It is a fork of <span class="tm2">preact-render-to-html-string</span> with a few improvements, like the ability to add the doctype automatically. <em>Idio</em> is configured from the first argument called <em>MiddlewareConfig</em>. It accepts settings for all supported middleware. We'll only want 2 middleware: <span class="tm">front-end</span> for development, and <span class="tm">static</span>, when it comes to testing the production bundle of our JS code.</p>
             
-            <p><span class="tm">idio</span> method returns a URL and a router instance, that we use to set up the index path, and an api path. The index path will simply display a welcome message, and mount our component. Because we're using Preact, we'll want to make sure the library is available on the window scope, by installing it via a CDN. We could compile Preact into our library itself, however it would produce a lot of warnings as its annotations haven't been adapted to <em>Closure</em> in its source code. For development, we'll serve JavaScript as a module from <span class="tm">frontend/index.jsx</span> file, but after we've built the bundle, we'd want to test if it's working from the <span class="tm">docs</span> folder.</p>
+            <span class="tm">idio</span> method returns a URL and a router instance, that we use to set up the index path, and an api path. The index path will simply display a welcome message, and mount our component. Because we're using Preact, we'll want to make sure the library is available on the window scope, by installing it via a CDN. We could compile Preact into our library itself, however it would produce a lot of warnings as its annotations haven't been adapted to <em>Closure</em> in its source code. For development, we'll serve JavaScript as a module from <span class="tm">frontend/index.jsx</span> file, but after we've built the bundle, we'd want to test if it's working from the <span class="tm">docs</span> folder.
             
             <p>Our API route from <span class="tm">routes/api</span> is used for dynamic requests from the front-end application. We'll come back to it in a second.</p>
             
@@ -396,7 +396,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>We'll render the app on the <span class="tm">window.app</span> element (it's available on <span class="tm">window</span> since we gave the div the <span class="tm2">app</span> id). I prefer to make use of <span class="tm">unfetch</span> package as <span class="tm2">fetch</span> API is not supported by older browsers, and <em>Closure</em> doesn't provide a polyfill for it.</p>
             
-            <p>As soon as the main component mounts, it will attempt to fetch data from the server. It then can be in 3 states:</p>
+            As soon as the main component mounts, it will attempt to fetch data from the server. It then can be in 3 states:
             
             <ul>
               <li><strong>loading</strong>, when a request has been sent, but the response not received yet.</li>
@@ -406,9 +406,9 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>In our render method, we therefore extract the current state, and display the appropriate information. Because we used the <span class="tm">setState</span> method, the application will be re-rendered automatically whenever the state changes.</p>
             
-            <p>We also used an external type, called <span class="tm">_nodetools.ServerResponse</span>. We used <strong>casting</strong> since the assignments were made via destructuring, so we couldn't just annotate it above the function.</p>
+            We also used an external type, called <span class="tm">_nodetools.ServerResponse</span>. We used <strong>casting</strong> since the assignments were made via destructuring, so we couldn't just annotate it above the function.
             
-            <pre id="ccdbf"><code class="javascript hljs">const { error, user } =
+            <pre id="ccdbf1"><code class="javascript hljs">const { error, user } =
   /** @type {!_nodetools.ServerResponse} */ (await res.json())</code></pre>
             
             <p>This is when <em>NodeTools</em> with its typework come in handy again. We need to prepare types for A) our experience in VSCode, including auto-completions, and B) closure externs, so that the compiler doesn't mangle the properties of the received object. The types are defined in the <span class="tm">types.xml</span> file.</p>
@@ -488,7 +488,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p><em>TypeScript</em> is said to be JavaScript that scales, that is great for large-scale app development, exactly because it provides convenient way to work with types for back-end and front-end. But I don't believe that using a new language and a proprietary typings infrastructure, is a solution. <em>NodeTools</em> is a stack for pure JS development, and we've achieved the same result with JSDoc annotations. Keeping types in a separate place and then compiling them, and importing from places we need, works just as well and allows to stay <strong>independent</strong>.</p>
             
-            <p>The types for <em>VSCode</em> are generated into the <span class="tm">types/index.js</span> file:</p>
+            The types for <em>VSCode</em> are generated into the <span class="tm">types/index.js</span> file:
             
             <pre id="ccdbf12"><code class="javascript hljs">export {}
 
@@ -601,9 +601,9 @@ _nodetools.User.prototype.login
             
             <p>The imports have been updated to point to the <span class="tm">/node_modules/</span> path, rather than simple <span class="tm2">package-name</span> notation. Moreover, the JSX syntax has been updated to invoke the <span class="tm">h</span> pragma function from <em>Preact</em>. <em>Preact</em> is the default choice for frontend, but if you wanted to use <em>React</em>, you'd have to specify the <strong>pragma</strong> property in the <span class="tm">frontend</span> config. There's no sourcemaps, but line numbers have been preserved so you can still step through in the debugger.</p>
             
-            <p>The style has been updated into a JS file that calls <span class="tm2">__$styleInject</span> when imported:</p>
+            The style has been updated into a JS file that calls <span class="tm2">__$styleInject</span> when imported:
             
-            <pre id="ccdbf1"><code class="javascript hljs">function __$styleInject(css = '') {
+            <pre id="ccdbf2"><code class="javascript hljs">function __$styleInject(css = '') {
   const head = document.head
   const style = document.createElement('style')
   style.type = 'text/css'
@@ -635,7 +635,7 @@ __$styleInject(style)</code></pre>
             
             <p>After we made sure that the app is working correctly, I want to compile it with <em>Closure</em>. <em>Depack</em> supports JSX apps, and will transpile them prior to compilation into the <strong>depack-temp</strong> folder.</p>
             
-            <p>I'll call the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>web</span></span></span> script from <strong>package.json</strong> &mdash; <span class="tm2">depack frontend -o docs -a -H -E -i --externs types/externs.js</span>. The arguments mean:</p>
+            I'll call the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>web</span></span></span> script from <strong>package.json</strong> &mdash; <span class="tm2">depack frontend -o docs -a -H -E -i --externs types/externs.js</span>. The arguments mean:
             
             <ul>
               <li><strong>frontend</strong>, the path to the entry file, short for <strong>frontend/index.jsx</strong>;</li>
@@ -656,7 +656,7 @@ __$styleInject(style)</code></pre>
             
             <p>If there were some problems with types that <em>Closure</em> could pick up, they will be shown in the output. We saved our temp files in the <span class="tm">depack-temp</span>, so it won't be possible to jump to the error since the <strong>temp</strong> folder is deleted by the end of the process (we'll update <em>Depack</em> to point to the real src in the next version). For example, the warning we get here, is that the second argument to fetch is compulsory, which is not true and it's a problem with how <span class="tm2">unfetch</span> was annotated rather than our code.</p>
             
-            <p>To test whether bundling was successful, we will start the server with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>closure</span></span></span> command that sets the <span class="tm">CLOSURE=1</span> environment variable, which is then read by the server so that the our app can be served from <strong>docs/index.js</strong> rather than <strong>frontend/index.jsx</strong> which was used only for development.</p>
+            To test whether bundling was successful, we will start the server with <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>closure</span></span></span> command that sets the <span class="tm">CLOSURE=1</span> environment variable, which is then read by the server so that the our app can be served from <strong>docs/index.js</strong> rather than <strong>frontend/index.jsx</strong> which was used only for development.
             
             <p>When we access the server again, we are served with the compiled JS bundle, that also includes our CSS as a string.</p>
             
@@ -687,7 +687,7 @@ __$styleInject(style)</code></pre>
             
             <p><em>Depack</em> doesn't transpile JSX in published packages, therefore they need to make sure their published code is transpiled into standard JavaScript with <span class="tm">h</span> pragma calls. This can be done with <em>ÀLaMode</em>. For example, the <span class="tm2">@depack/form</span> package is a library to create Bootstrap forms that was written in JSX, e.g.,</p>
             
-            <pre id="ccdbf2"><code class="javascript hljs">import { Component } from 'preact'
+            <pre id="ccdbf3"><code class="javascript hljs">import { Component } from 'preact'
 
 export default class Form extends Component {
   // ... component code
@@ -702,7 +702,7 @@ export default class Form extends Component {
             
             <p>It is then transpiled into the <strong>build</strong> folder, however <span class="tm2">imports</span> stay as imports, and don't become <span class="tm">require</span> calls. If we were publishing back-end components, we'd also transpile <span class="tm2">imports</span> but since Closure can understand them, we keep it.</p>
             
-            <pre id="ccdbf3"><code class="javascript hljs">import { h } from 'preact'
+            <pre id="ccdbf4"><code class="javascript hljs">import { h } from 'preact'
 import { Component } from 'preact'
 
 export default class Form extends Component {
@@ -725,7 +725,7 @@ export default class Form extends Component {
             
             <p>And the <span class="tm2">main</span> will point to the source code, which is not really necessary, but I think <span class="tm">frontend</span> at the moment still reads the <span class="tm">main</span> field, and will be able to transpile the source code (I now realise this is redundant, and <span class="tm">main</span> should probably become require-transpiled code for server-side rendering 👍).</p>
             
-            <p>Another question is how to test front-ends with <em>NodeTools</em>. As I said, I'm only working on the next version right now, but there is are a few strategies for testing, that is, server-side rendering of components, and also using headless chrome to render components in Chrome, and then get the snapshot of the DOM and send it back to the server for comparison against snapshots.</p>
+            Another question is how to test front-ends with <em>NodeTools</em>. As I said, I'm only working on the next version right now, but there is are a few strategies for testing, that is, server-side rendering of components, and also using headless chrome to render components in Chrome, and then get the snapshot of the DOM and send it back to the server for comparison against snapshots.
             
             </div>
             
@@ -734,7 +734,7 @@ export default class Form extends Component {
             
             <p>For basic testing of components written in <em>Preact</em>, you can take advantage of the <a href="https://github.com/dpck/context"><em>JSXContext</em></a> that can transform an input string into a JSX VNode, that can then be rendered. Using this method, you can declare your components using simple HTML from masks, and compare rendered result to the expected output.</p>
             
-            <pre id="ccdbf4"><code class="javascript hljs">// test/mask/default.js
+            <pre id="ccdbf5"><code class="javascript hljs">// test/mask/default.js
 
 import makeTestSuite from '@zoroaster/mask'
 import JSXContext from '@depack/context'
@@ -757,7 +757,7 @@ export default makeTestSuite('test/result/default', {
             
             <p>The mask result in JSX format will then use a preamble to import components for syntax highlighting and auto-completions, and define inputs as JSX methods and outputs as HTML code. I've surrounded each block with <span class="tm">()</span> so that there's no syntax errors underlined with red in the file. Mask results are used only to define inputs/outputs, so despite the fact that the format of this file is JSX, it's only so to enable syntax highlighting.</p>
             
-            <pre id="ccdbf5"><code class="javascript hljs">// test/result/default/form-group.jsx
+            <pre id="ccdbf6"><code class="javascript hljs">// test/result/default/form-group.jsx
 
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
@@ -804,7 +804,7 @@ import { TextArea, Select, Form, FormGroup, Input } from '../../src'
             
             <p>The second strategy, is to spawn a headless browser as a background process, setup a server that will return some HTML with script tags that invoke JavaScript to render certain components on elements. Each test will open a new page, with slightly different setup routine, wait for JS to execute, and send the element's outer HTML back to the server. We'll use a <em>RemoteChrome</em> context to connect to the browser:</p>
             
-            <pre id="ccdbf6"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
+            <pre id="ccdbf7"><code class="javascript hljs">import CDP from 'chrome-remote-interface'
 import { c, b } from 'erte'
 
 export default class RemoteChrome {
@@ -847,7 +847,7 @@ export default class RemoteChrome {
             
             <p>We'll also need the <em>Idio</em> context that will start a server to return HTML code.</p>
             
-            <pre id="ccdbf7"><code class="javascript hljs">import idio from '@idio/idio'
+            <pre id="ccdbf8"><code class="javascript hljs">import idio from '@idio/idio'
 import frontend from '@idio/frontend'
 import render from '@depack/render'
 import jsx from '@a-la/jsx'
@@ -914,7 +914,7 @@ render(inv, document.body)
               href="https://github.com/dpck/form/blob/aa9d5137ca5535e46d8c71056c03e81ab2ff4da7/test/context/idio/format.js">
               for formatting</a>, and calls Preact's render method on the invocation passed from tests. The mask setup is then the following:</p>
             
-            <pre id="ccdbf8"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
+            <pre id="ccdbf9"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import { equal } from '@zoroaster/assert'
 import IdioContext from '../context/Idio'
 import RemoteChrome from '../context/RemoteChrome'
@@ -962,9 +962,9 @@ export const Chrome = makeTestSuite('test/result/chrome.jsx', {
             
             <p>The <span class="tm2">action</span> and <span class="tm2">pre</span> are properties of the mask result which wil be shown next. We start a server by passing these properties, and make the browser navigate to that prepared page, waiting until it's fully loaded. We then evaluate some JS from <span class="tm2">action</span> if it was passed, and grab the <span class="tm">body</span> element from the DOM, while also formatting it using the <span class="tm2">format</span> utility. We then return the result of the action (if it was given), and the HTML. The HTML is compared against the expected output using simple string comparison via mask result, while the action value is asserted on using the standard <span class="tm">equal</span> method from the assertion library in the mask itself.</p>
             
-            <p>Example mask result:</p>
+            Example mask result:
             
-            <pre id="ccdbf9"><code class="javascript hljs">/* eslint-env browser */
+            <pre id="ccdbf10"><code class="javascript hljs">/* eslint-env browser */
 import { Component } from 'preact'
 import { TextArea, Select, Form, FormGroup, Input } from '../../src'
 
@@ -1015,7 +1015,7 @@ clickInput()
             
             <p>The first test is pretty simple rendering of an empty form element. The second test creates a component, and makes the <span class="tm">clickInput</span> method available to the window scope. When the page is loaded, via the action we click the input, which changes the state of the Form component, triggering and update of the input value because of internal logic. Because this process is async, we had to wait 1ms in the <span class="tm">clickInput</span> method, which then grabs the new value of the input, and returns it for assertion in the mask. This way, we've tested interaction with the component from a real browser. The rendered code is also compared to the expected one.</p>
             
-            <p>There are a few more examples that you can use for reference:</p>
+            There are a few more examples that you can use for reference:
             
             <ul>
               <li><span class="tm2">Exif</span> <a href="https://github.com/demimonde/exif/tree/master/test">package</a> that reads metadata of files from a headless browser (the testing API is available via <span class="tm2">@contexts/chrome</span> now). It will also start the server, prepare test pages from the mask, navigate to them, execute <span class="tm">window.test</span> method and return the result.</li>

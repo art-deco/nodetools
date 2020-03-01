@@ -145,31 +145,31 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
               <div class="List b-xq b-kC">
                 <a
                   title="Create Packages From GitHub Templates. My New Package is an installer of new packages via GitHub templates: create a template and add an automated script to CLI questions, update files, access GitHub API and spawn commands during generation." class="NPMBadge" href="https://www.npmjs.com/package/mnp">
-                  <span class="a"><em>MNP</em></span><span class="b">1.1.7</span></a>
+                  <span class="a"><em>MNP</em></span><span class="b">1.1.8</span></a>
                 <a
                   title="Organises TypeDefs By Placing Them Into Types.Xml File To Be Embedded Into Source Code Compatible With VSCode And Google Closure Compiler, Generates Externs And Allows To Place Documentation In README Markdown." class="NPMBadge" href="https://www.npmjs.com/package/typal">
                   <span class="a"><em>Typal</em></span><span class="b">1.26.2</span></a>
                 <a
                   title="Proper Node.JS Package Compiler (And Front-End Code Bundler) With Closure Compiler. Can create a single executable JS file and merge and optimise all dependencies." class="NPMBadge" href="https://www.npmjs.com/package/depack">
-                  <span class="a"><em>Depack</em></span><span class="b">1.1.1</span></a>
+                  <span class="a"><em>Depack</em></span><span class="b">1.1.2</span></a>
                 <a
                   title="A Regex-Based Transpiler Of Source Code To Allow Writing Import And Export Statements And JSX With 0 Dependencies." class="NPMBadge" href="https://www.npmjs.com/package/alamode">
-                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.0</span></a>
+                  <span class="a"><em>ÀLaMode</em></span><span class="b">3.5.2</span></a>
                 <a
                   title="The 2020 Most Modern Testing Framework For Node.JS With Test Contexts (Reusable BeforeEach / AfterEach Via Separate Files); Masks (Inputs/Outputs In Non-Js Files) And Fork Testing; Interactive Snapshots." class="NPMBadge" href="https://www.npmjs.com/package/zoroaster">
                   <span class="a"><em>Zoroaster</em></span><span class="b">4.3.0</span></a>
                 <a
                   title="Documentation Compiler To Generate The Table Of Contents, Embed Examples With Their Output, Make Markdown Tables, Maintain Typedefs For JavaScript And README, Watch Changes To Push, Use Macros And Prettify API Titles." class="NPMBadge" href="https://www.npmjs.com/package/documentary">
-                  <span class="a"><em>Documentary</em></span><span class="b">1.37.0</span></a>
+                  <span class="a"><em>Documentary</em></span><span class="b">1.37.1</span></a>
               </div>
               <h3 id="web-software">Web Software</h3>
               <div class="List b-xq b-kC">
                 <a
                   title="2-Dependency Koa Web Server Compiled With Closure Compiler And Bundled With Essential Middleware: Static, Compress, Session, Cors, File Upload, Router And JSX Front End." class="NPMBadge" href="https://www.npmjs.com/package/@idio/idio">
-                  <span class="a"><em>Idio</em></span><span class="b">1.2.3</span></a>
+                  <span class="a"><em>Idio</em></span><span class="b">1.4.1</span></a>
                 <a
                   title="Static Web Site Compiler That Uses Closure Compiler For JS Bundling And Closure Stylesheets For CSS optimisations. Supports JSX Syntax To Write Static Elements And Dynamic Preact Components." class="NPMBadge" href="https://www.npmjs.com/package/splendid">
-                  <span class="a"><em>Splendid</em></span><span class="b">1.17.1</span></a>
+                  <span class="a"><em>Splendid</em></span><span class="b">1.17.4</span></a>
               </div>
               <h3 id="misc">Misc</h3>
               <ul>
@@ -253,7 +253,7 @@ a.join("\n "),"but supports alternatives."):console.log("\ud83d\udcbd Browser su
             
             <p>One of the packages that is able to do it quickly is called <a href="https://github.com/leeoniya/dropcss">DropCSS</a>, developed by <a href="https://github.com/leeoniya">Leon Sorokin</a>. It's notable for its speed, simplicity and the amount of bytes that can shaved off the CSS. However, for our use case it was not perfect: it strips comments and does not allow to keep arbitrary annotations, such as <span class="tm">/* alternate */</span> which is needed for <a href="https://github.com/artdecocode/closure-stylesheets-java">Closure Stylesheets</a>. Closure Stylesheets is an optimiser of CSS that can minify and put styles together. Art Deco uses it for Splendid, a static website generator. By collecting selectors across all pages on a generated website, we're able to drop unused Bootstrap rules, and then merge Bootstrap with other styles so that a single, small CSS file is served to visitors quickly, with <em>Bootstrap</em> size reduction of around 95%.</p>
             
-            <p>But Bootstrap contains rules that repeat the CSS properties, e.g.,:</p>
+            But Bootstrap contains rules that repeat the CSS properties, e.g.,:
             
             <pre id="c1d47"><code class="css hljs">abbr[title],
 abbr[data-original-title] {
@@ -266,7 +266,7 @@ abbr[data-original-title] {
             
             <p>We needed to annotate Bootstrap with the <span class="tm">/* alternate */</span> marker so that the CSS compiler doesn't throw an error. A simple proposed solution to prevent stripping such comments was suggested in form of a <a href="https://github.com/leeoniya/dropcss/pull/41">PR</a> to <em>DropCSS</em> package owner, however was rejected as being too narrow of a use case. Therefore, we decided to fork his project and use its source code to create a professional Node.JS package that would also provide JSDoc annotations, could be tested with context testing, and is ready to be compiled into other packages, such as <em>Splendid</em> itself, so that it's linked statically instead of dynamically as permitted by the original MIT license.</p>
             
-            <p>This tutorial walks through the process of upgrading a package to use <em>NodeTools</em> stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the <a href="/nodetools/quick-start-to-nodetools.html">quick start</a> guide first for some details about the standard routine.</p>
+            This tutorial walks through the process of upgrading a package to use <em>NodeTools</em> stack with explanation of advantages of using the tools from the stack in creating modern packages. You might want to read the <a href="/nodetools/quick-start-to-nodetools.html">quick start</a> guide first for some details about the standard routine.
             
             <p>
               <strong>TrapCSS</strong> on <em>GitHub</em>: <a
@@ -345,7 +345,7 @@ Created a new package: trapcss.</code></pre>
             
             <p>As the next step, I'll just download the ZIP archive from <em>DropCSS</em> with the source code, and open finder to copy all files from source into <strong>m</strong>y <strong>n</strong>ew <strong>p</strong>ackage.</p>
             
-            <p>The original source is using <em>CommonJS</em> however <em>NodeTools</em> allow to program using ECMA modules with a 0-dependency regex transpiler, so we want to update the source code from <span class="tm">require</span> into imports.</p>
+            The original source is using <em>CommonJS</em> however <em>NodeTools</em> allow to program using ECMA modules with a 0-dependency regex transpiler, so we want to update the source code from <span class="tm">require</span> into imports.
             
             <pre id="ccdbf"><code class="javascript hljs">"use strict";
 
@@ -362,7 +362,7 @@ const { LOGGING } = require('./env');</code></pre>
             
             <p>It will scan the <strong>src</strong> dir recursively, updating all files in there. Only <strong>yarn</strong> supports running binaries from local node&lowbar;modules with <span class="yarnManager"> <span>yarn bin-alias</span></span> to execute aliases installed in the project folder within <strong>node&lowbar;modules/.bin</strong> (which is why we prefer it), but for <strong>npm</strong>, the <span class="tm">alanode</span> script has also been defined, so you can call <span class="npmManager"> <span>npm run alanode</span></span> too if you want to execute any module that needs transpiling, such as examples.</p>
             
-            <p>When trying to simply check that all imports are updated correctly by running <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode</span> <span>src/dropcss</span></span></span> that only executes all require calls without actually running the program, I see an error to do with the following:</p>
+            When trying to simply check that all imports are updated correctly by running <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>alanode</span> <span>src/dropcss</span></span></span> that only executes all require calls without actually running the program, I see an error to do with the following:
             
             <pre id="ccdbf1"><code class="javascript hljs">// src/find.js
 function some(nodes, m) {
@@ -458,9 +458,9 @@ export const some = (nodes, sel) =&gt; {
             
             <p>We're using the <span class="tm">_trapcss</span> namespace to be able to name our config as <span class="tm">_trapcss.Config</span> and distinguish it from other packages' configs that can be defined with the same name. The namespace is the feature of <em>VSCode</em> that we use to our advantage, and it's not much different from standard typedefs, only that names of types are preceded with the <span class="tm">_ns</span>. We also use <span class="tm2">_</span> underscore as the convention for namespaces' titles, otherwise there might be conflicts between them and some functions in the source code.</p>
             
-            <p>There are 3 main types of types: records, interfaces and constructors. The key point to remember is that records are used for configs and other simple objects passed between programs, while interfaces are used to describe methods and properties on classes, which are then annotated with <span class="tm">/* @implements {_ns.Type} */</span> in the source code. Unfortunately, <em>VSCode</em> doesn't understand the implements notation and will not allow to "put meat" or grow implementation on the interface defined like that while providing hints during implementation process, but this notation is used to enable <em>Closure Compiler</em> type checking. Some examples of <span class="tm">@implements</span> can be found in the <a
+            There are 3 main types of types: records, interfaces and constructors. The key point to remember is that records are used for configs and other simple objects passed between programs, while interfaces are used to describe methods and properties on classes, which are then annotated with <span class="tm">/* @implements {_ns.Type} */</span> in the source code. Unfortunately, <em>VSCode</em> doesn't understand the implements notation and will not allow to "put meat" or grow implementation on the interface defined like that while providing hints during implementation process, but this notation is used to enable <em>Closure Compiler</em> type checking. Some examples of <span class="tm">@implements</span> can be found in the <a
               href="https://github.com/idiocc/goa/blob/4b4534c304870ace80a42245ac0303f85b6eb6d3/src/application.js#L18">
-              Goa server</a>.</p>
+              Goa server</a>.
             
             <pre id="ccdbf4"><code class="javascript hljs">/**
  * @implements {_goa.Application}
@@ -478,7 +478,7 @@ export default class Application extends EventEmitter {
             
             <p>The <span class="tm">&lt;type record&gt;...&lt;/type&gt;</span> block can be simplified to <span class="tm">&lt;record&gt;...&lt;/record&gt;</span>, same with <em>interface</em>. Constructors are used very rarely.</p>
             
-            <p>If a type is defined without record/interface attribute, it becomes the simplest type in the <em>Closure</em> type system called a <strong>structural interface</strong>, for example, <span class="tm">{ prop: string, prop2: (number|undefined) }</span>. An object like that is not nullable &mdash; since Closure tries to make JavaScript similar to Java, type nullability is a thing. More complex types, such as records and interfaces are nullable, whereas structural interfaces are not. Here's some more documentation on <a href="https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System">types</a>. Therefore, when we use a record that is not expected to be nullable, we'll want to add <span class="tm">!</span> in front of it, as shown below.</p>
+            If a type is defined without record/interface attribute, it becomes the simplest type in the <em>Closure</em> type system called a <strong>structural interface</strong>, for example, <span class="tm">{ prop: string, prop2: (number|undefined) }</span>. An object like that is not nullable &mdash; since Closure tries to make JavaScript similar to Java, type nullability is a thing. More complex types, such as records and interfaces are nullable, whereas structural interfaces are not. Here's some more documentation on <a href="https://github.com/google/closure-compiler/wiki/Types-in-the-Closure-Type-System">types</a>. Therefore, when we use a record that is not expected to be nullable, we'll want to add <span class="tm">!</span> in front of it, as shown below.
             
             <p>Not only do we document config and return types in XML, but also the actual API contract of the library, which is placed in the <strong>types/api.xml</strong> file and describes all available methods that can be imported from our Node.JS library.</p>
             
@@ -639,7 +639,7 @@ _trapcss.trapcss
             
             <p>The purpose of externs is to provide type information for Closure Compiler. When using advanced compilation, which we are, property names on objects will get renamed, which is not good when we publish the package with declared config type. By generating an extern, we're making sure that its properties are not renamed. <strong>package.json</strong> file also adds the <span class="tm">&quot;externs&quot;: &quot;types/externs.js&quot;</span> field, so that 3rd party packages that want to compile our package into themselves, will receive access to its types for <em>Closure</em>. This is how <em>NodeTools</em> infrastructure works.</p>
             
-            <p><em>Depack</em> includes externs for <a href="https://github.com/externs/nodejs">Node 8 API</a>. We haven't upgraded them to newer versions, and some namespaces, like <span class="tm">tls</span> might still produce warnings during compilation. You can check out the repository by the link, modify externs, and submit a PR. On the other hand, for any additions to Node externs, you can simply type them in the <span class="tm">types/externs.js</span> file, e.g.,</p>
+            <em>Depack</em> includes externs for <a href="https://github.com/externs/nodejs">Node 8 API</a>. We haven't upgraded them to newer versions, and some namespaces, like <span class="tm">tls</span> might still produce warnings during compilation. You can check out the repository by the link, modify externs, and submit a PR. On the other hand, for any additions to Node externs, you can simply type them in the <span class="tm">types/externs.js</span> file, e.g.,
             
             <pre id="ccdbf8"><code class="javascript hljs">/* typal types/index.xml externs */
 // auto-generated externs
@@ -686,7 +686,7 @@ stream.SuperDuplexNode16.prototype.open = function(ent)</code></pre>
             
             <p>On the screenshot above, you can see how the IDE provides me with autocompletion hint when I'm trying to get access to the <span class="tm">.length</span> property, for example to check that HTML is not empty. This is essential for developer experience of the person who's coding the package, so by simply importing the type, we were able to achieve this productivity without full <em>JSDoc</em> with <span class="tm">@param {Object}</span> comments. Sadly, <em>VSCode</em> does not show the description of the property, otherwise it'd be really perfect, but maybe they can do it in the next version.</p>
             
-            <p>So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, but we'll remove it in the second part.</p>
+            So we just update the source code to pass destructured properties, and the new <span class="tm">keepAlternate</span> additional property to the <span class="tm2">parseCSS</span> method. The <span class="tm">keepText</span> second argument for <em>parseHTML</em> is not even accepted by this function, but we'll remove it in the second part.
             
             <pre id="ccdbf10"><code class="javascript hljs">// const H = parseHTML(opts.html, !opts.keepText) =&gt;
    const H = parseHTML(html, !keepText)
@@ -739,7 +739,7 @@ overhead of handling malformed markup or stylesheets, ...
             
             <p>We'll give a link to wiki which contains some more detailed information, which will be compiled later. We use section breaks like <span class="tm">%~%</span> which insert visual separators between sections.</p>
             
-            <p>The <strong>api/index.md</strong> also contains essential data for generation of the README file:</p>
+            The <strong>api/index.md</strong> also contains essential data for generation of the README file:
             
             <pre id="c19531"><code class="markdown hljs">&lt;typedef method="trapcss"&gt;types/api.xml&lt;/typedef&gt;
 
@@ -750,7 +750,7 @@ overhead of handling malformed markup or stylesheets, ...
             
             <p><em>Documentary</em> uses components and markers. The typedef component allows to place method headings (when the <span class="tm">method=</span> attribute is given) and markdown tables with record descriptions.</p>
             
-            <p>The typedefs will result in the following generated text:</p>
+            The typedefs will result in the following generated text:
             
             <pre id="c19532"><code class="markdown hljs">## &lt;code&gt;&lt;ins&gt;trapcss&lt;/ins&gt;(&lt;/code&gt;&lt;sub&gt;&lt;br/&gt;&amp;nbsp;&amp;nbsp;`opts: Config,`&lt;br/&gt;&lt;/sub&gt;&lt;code&gt;): &lt;i&gt;Return&lt;/i&gt;&lt;/code&gt;
 Parses the supplied HTML and CSS and removes
@@ -802,7 +802,7 @@ __&lt;a name="type-return"&gt;`Return`&lt;/a&gt;__: Return Type.
             
             <p>The default location for input is <strong>documentary</strong> but it can be changed. Method headings can also be <a href="https://github.com/artdecocode/documentary/wiki/Custom-Methods">customised</a> using your own <span class="tm">&lt;method&gt;</span> component put into <strong>.documentary</strong> folder. Once again, the dev process for documentation is fully automated and provides customisation strategies so you can express your own creativity with custom method headings. Custom type tables via JSX components will be supported in future versions also.  Submit <a href="/nodetools/#getting-help">an issue</a> if you run into difficulties during customisation.</p>
             
-            <p><em>Documentary</em> is not a simple JSDoc to HTML generator. It's an advanced piece of software that allows to compile full, quality documentation from examples, markdown and type information. It's there to make you effective at writing READMEs and automate the process as much as possible, but you're in control of how your docs look like.</p>
+            <em>Documentary</em> is not a simple JSDoc to HTML generator. It's an advanced piece of software that allows to compile full, quality documentation from examples, markdown and type information. It's there to make you effective at writing READMEs and automate the process as much as possible, but you're in control of how your docs look like.
             
             
             
@@ -893,7 +893,7 @@ Set { '.card', 'p:hover a:first-child' }</code></pre>
             
             <p>When documenting code, we can keep <em>Documentary</em> running with the <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span> <span class="npm-cmd">--</span> <span>-p "commit message"</span></span></span> command. It will watch for changes in the source folder, as well as any assets such as examples, automatically replace the last commit when changes are detected, and force push the new git tree. So we can work on examples and styling of the docs, and immediately see updates on <em>GitHub</em> (after a page refresh).</p>
             
-            <p>At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute an example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span></span> command).</p>
+            At this point, without having written any tests, we already confirmed that our package is working correctly, because we managed to execute an example and place its output into the README file. This is called using documentation for quality assurance, as it lets us see the expected output. If the output was different from the one we wanted (or there was no output at all), we'd realise that by the time our documentation is uploaded on <em>GitHub</em> (in automatic mode) or in git diffs (when running a single <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>doc</span></span></span> command).
             
             
             </div>
@@ -985,7 +985,7 @@ describe('Context-free, unary selector', () =&gt; {
             
             <p>Tests like the ones shown above are perfect candidates for mask testing &mdash; a new type of tests where using a template called test mask we generate many specs at runtime based on multiple input-to-output mappings that come from a separate file called mask result. If you've ever used a loop to call <strong>describe</strong> and <strong>it</strong> methods by hand, you'll be familiar with the concept of dynamic test suite construction. <em>Zoroaster</em> provides an official standard way to do that, and coins the term <em>mask testing</em> to name this process.</p>
             
-            <p>Each program or method is just a state machine that maps inputs to outputs on a problem space. While testing, we control inputs, and observe outputs, which are then asserted on for correctness of the algorithm. Therefore specs that we write, allow us to mask the problem space using inputs as variables.</p>
+            Each program or method is just a state machine that maps inputs to outputs on a problem space. While testing, we control inputs, and observe outputs, which are then asserted on for correctness of the algorithm. Therefore specs that we write, allow us to mask the problem space using inputs as variables.
             
             <p>Consider the example below (move mouse over the black screen to discover the problem space): one way to interpret the graph is as of a function that accepts 2 variables (<strong>x1</strong> and <strong>x2</strong>) and outputs <strong>y</strong> according to inputs (in real life though, these are just data points in a 3D space). To know this Y position, we need to execute the function and see what output it produces. Such machine learning models as a regression model allow to <em>approximate</em> real-world functions using planes, but the point of this example is that a mask is a collection of specs, where each spec is a data point. The mask is that circle you see on a diagram, that envelops a number of crosses, i.e. exact data points (specs) that we collect by running tests. The more specs we generate, the fuller picture we get. Ideally, we want to test all possible inputs including edge cases, but practically we just want to meet our requirements.</p>
             
@@ -1007,7 +1007,7 @@ describe('Context-free, unary selector', () =&gt; {
             
             <p>Pure functions will always produce the same result, so we want to program mostly in functional style to avoid side effects in script scopes that make mapping non-deterministic. But no need to worry as it's probably what you've been doing with JS anyway. However with <em>Mocha</em>, it's become almost an anti-pattern to keep certain variables in the <strong>describe</strong> scope, which is error-prone. This is why all such scoped variables that can be used in tests are moved into a context in <em>Zoroaster</em>, and test cases become pure, but more on context-testing later.</p>
             
-            <p>So what are we controlling with these first <em>TrapCSS</em> tests? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:</p>
+            So what are we controlling with these first <em>TrapCSS</em> tests? Basically, it's HTML and CSS, and we assert on the output. This means we need 2 input properties, and one output. Masks by default look like the following:
             
             <pre id="c19535"><code class="markdown hljs">[Optional preamble to the whole mask]
 
@@ -1031,7 +1031,7 @@ output 2
             
             <p>This means we give spec names, can add any number of properties, and pass the expected output for comparison also. The testing framework will then execute the test logic that is written only once, and using string assertion (or deep equal for objects), compare the output to expected. In case of an error, it will be shown in the console and the framework will exit with the status code > 0.</p>
             
-            <p>In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.</p>
+            In this case, we can construct the following mask. It's a bit complex for the first ever example of a mask, but bear with me, it's not that complicated.
             
             <pre id="ccdbf27"><code class="javascript hljs">import makeTestSuite from '@zoroaster/mask'
 import trapcss from '../../src'
@@ -1062,7 +1062,7 @@ export default {
             
             <p>To create a mask, we import the <strong>makeTestSuite</strong> method from <span class="tm2">@zoroaster/mask</span> that comes together with <em>Zoroaster</em>. The first argument to this function is a path to the mask result file, or directory with multiple such files, that will be scanned recursively. The second argument is the actual config to the mask, and will include either methods like <span class="tm">getResults</span> (most general use case), <span class="tm">getReadable</span>, <span class="tm">getTransform</span> (if our library returned streams) or <span class="tm">fork</span> configuration (to test Node processes). All properties from the mask are available via the <span class="tm">this</span> keyword: <strong>this.preamble</strong>, <strong>this.input</strong>. We'll organise tests by files, so that a preamble in each file can be used as HTML input, whereas the body of each test will be the CSS string. When we don't write preamble, we'll split the test input by new line to derive HTML and CSS.</p>
             
-            <p>We want to extract HTML using the regex: <span class="tm">[,html] = /content: '(.+?)'/.exec(html)</span>, to be able to receive syntax highlighting in mask results, which will be saved as <span class="tm">.scss</span> files. After HTML and CSS strings are ready, we simply pass them to <span class="tm2">trapcss</span> and return results. Our function is synchronous, but it would also be possible to test async methods by writing <span class="tm">async getResults(){}</span>. Using the mapping function <span class="tm">mapActual</span> we then return the css property of the whole result, so that it can be compared against the expected one from the mask result. If we wanted to assert on other properties from the result too using JavaScript, we could implement another method called <span class="tm">assertResults</span> but we're only interested in testing produced CSS here. This is how our mask results look like:</p>
+            We want to extract HTML using the regex: <span class="tm">[,html] = /content: '(.+?)'/.exec(html)</span>, to be able to receive syntax highlighting in mask results, which will be saved as <span class="tm">.scss</span> files. After HTML and CSS strings are ready, we simply pass them to <span class="tm2">trapcss</span> and return results. Our function is synchronous, but it would also be possible to test async methods by writing <span class="tm">async getResults(){}</span>. Using the mapping function <span class="tm">mapActual</span> we then return the css property of the whole result, so that it can be compared against the expected one from the mask result. If we wanted to assert on other properties from the result too using JavaScript, we could implement another method called <span class="tm">assertResults</span> but we're only interested in testing produced CSS here. This is how our mask results look like:
             
             <pre id="cf5417"><code class="scss hljs">// *: should retain present
 html { content: '&lt;div&gt;&lt;/div&gt;' }
@@ -1148,7 +1148,7 @@ span {a:b;}
               href="https://github.com/artdecocode/trapcss/tree/master/test/result/0-context-free-unary-sel/attr">
               study in the repository</a> but they all follow the same logic so we skip talking about them here.</p>
             
-            <p>To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span></span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span></span> after having constructed our first mask tests.</p>
+            To run our tests, there are a number of <strong>package.json</strong> scripts that can be used: <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>[spec|mask|test]</span></span></span> depending on whether we want to run specs (see later section), masks or all. We'll just run <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span class="npm-run">run </span><span>mask</span></span></span> after having constructed our first mask tests.
             
             <pre id="c414d3"><code class="bash hljs">yarn run v1.13.0
 $ yarn t test/mask
@@ -1302,7 +1302,7 @@ const T = makeTestSuite([
             
             <p>The <strong>makeTestSuite</strong> method accepts an array of paths in addition to paths to files and paths to directories. When passing an array, an object will be created where basenames of files from the array are test suite names within the exported object. Above, we just created a <span class="tm">T</span> variable, which will be exported as <strong>default</strong> later. When a test suite has the name "default", its properties are merged up with its parent test suite, so that <span class="tm">default</span> test suites' names are never shown during reporting.</p>
             
-            <p>The tests for keyframes and font faces have the same structure: they include some page-wide CSS with <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>) rules that is placed in the preamble. The test input is a CSS rule that would reference this <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>)  declaration, so we don't want our library to drop those rules. Therefore, we take the test input and append it to those declarations which are then fed to our <span class="tm2">trapcss</span> method.</p>
+            The tests for keyframes and font faces have the same structure: they include some page-wide CSS with <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>) rules that is placed in the preamble. The test input is a CSS rule that would reference this <span class="tm">@keyframes</span> (or <span class="tm">@font-face</span>)  declaration, so we don't want our library to drop those rules. Therefore, we take the test input and append it to those declarations which are then fed to our <span class="tm2">trapcss</span> method.
             
             
             
@@ -1351,7 +1351,7 @@ export default T</code></pre>
             
             <p>Custom properties means that font faces can be declared with variables. Our root CSS is still taken from preamble, but we add a new property called <strong>doPrepend</strong> that controls whether it should actually be added to the CSS from input. It allows to put tests in the same result file, but tinker the test logic slightly from test cases themselves (by using properties). Properties could also be written as JSON or JS, in which case we'd need to pass another config item called <span class="tm">js[on]Props: ['doPrepend']</span> that would make the testing framework parse those properties into a JS object. By default, we do prepend the preamble to input CSS, and only when the <strong>doPrepend</strong> property is explicitly set to <span class="tm">false</span>, we don't do it.</p>
             
-            <p>Because all test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object <span class="tm">T</span> which is then exported. It's not proper ECMA modules standard since a named export is assigned to a default export which is a function, but behind the scenes exports are transpiled into simple <strong>module.exports</strong> assignments anyway, so there's no problem with hacks like this.</p>
+            Because all test suites generated in this file should be on the same level, but the name of the custom-props test suite had to be written in English with spaces (hence it couldn't be exported as simple variable), we assigned a property to the default object <span class="tm">T</span> which is then exported. It's not proper ECMA modules standard since a named export is assigned to a default export which is a function, but behind the scenes exports are transpiled into simple <strong>module.exports</strong> assignments anyway, so there's no problem with hacks like this.
             
             <pre id="ccdbf14"><code class="javascript hljs">// transpilation example
 const T = makeTestSuite()
@@ -1396,7 +1396,7 @@ false
             
             <p>In the first test, we checked that if a font-face declared as a variable wasn't used, it's declaration and block with declaration of its variable that became empty were dropped. In the second test we verified that the variable block as well as the rule block that uses this variable are kept. Finally, the third test made sure that when the font property references a variable which in turn references another variable, the CSS is retained.</p>
             
-            <p>The next test suite is pretty simply, but reads HTML from its own property rather than from the preamble as it will be changed from test to test.</p>
+            The next test suite is pretty simply, but reads HTML from its own property rather than from the preamble as it will be changed from test to test.
             
             <pre id="ccdbf15"><code class="javascript hljs">export const customProps = makeTestSuite(
   'test/result/custom-props.scss', {
@@ -1543,7 +1543,7 @@ test/mask/default.js &gt; alternate &gt; keeps the alternate comment
             
             <p>The last error is due to the fact that the new functionality has not been implemented. But it's OK since it's in spirit of test-driven development: we added a test first, before the source code. With mask testing, the TDD methodology is easily embraced as test cases are very easy to add by simply providing new data. Instead of wasting our time on setting up test routines in JS, we can try to come up with as many use cases via masks.</p>
             
-            <p><em>DropCSS</em> contains more tests, but for the purposes of the tutorial we don't need to look at them further, except for the integration test.</p>
+            <em>DropCSS</em> contains more tests, but for the purposes of the tutorial we don't need to look at them further, except for the integration test.
             
             <pre id="ccdbf17"><code class="javascript hljs">describe('Bulma-Bootstrap-Surveillance', () =&gt; {
   let html, css;
@@ -1671,7 +1671,7 @@ function escape(html){
             
             <p>Again, those are the simplest examples when the helpers don't take part in set up routines, for example starting a mock server. If they were, each test would be tied up to the test suite file's scope which would force us to place all test in the same file which is not very convenient for navigation and developer freedom. The previous example also adds the <span class="tm">escape</span> function at the bottom of the file, to be used by specs in there. But what if it was needed in other test suites, too? It would have to be put in the <span class="tm">helpers/context</span>, and that's exactly what <strong>Contexts</strong> are in <em>Zoroaster</em> &mdash; an official place for your testing utilities (we didn't see Koa's code before coming up with the name, it's an accident that their context is called in the same fashion as a testing context).</p>
             
-            <p>This is a snippet from Goa's (our compiled Koa fork) context:</p>
+            This is a snippet from Goa's (our compiled Koa fork) context:
             
             <pre id="ccdbf30"><code class="javascript hljs">import Cookies from '@contexts/http/cookies'
 import { Duplex, Readable, Writable } from 'stream'
@@ -1755,7 +1755,7 @@ export default class Context extends Cookies {
             
             <p>Of course, test cases are not 100% pure as we're still importing src within the test suite, but it's OK since we still want to be practical. It would be possible to import src from context, and make it available for access by test cases, in which case they <em>will</em> be 100% pure. This could let us to do cool stuff like hosting spec functions completely independently from the source code (e.g., as lambdas for longer integration testing routines that could then be run in parallel to complete a test suite in a matter of seconds), and even plugging in different versions of source code into tests. But these are more advanced concepts from Quality Assurance theory. For now it's enough to say that context-testing from <em>NodeTools</em> formalises the helper pattern and enables <em>JSDoc</em> access to testing API.</p>
             
-            <p>This is our context for that spec:</p>
+            This is our context for that spec:
             
             <pre id="ccdbf21"><code class="javascript hljs">import { join } from 'path'
 import { readFileSync } from 'fs'
@@ -1792,9 +1792,9 @@ export default class Context {
             
             <p>The testing interface and its implementation provide a method for synchronously reading files, a method to resolve paths to fixtures from the <strong>fixture</strong> directory, as well as the <strong>bootstrap</strong> property that resolves to the bootstrap path. We'll need to place some fixtures, such as <strong>bulma.min.css</strong> and <strong>surveillance.html</strong> into the <strong>fixtures</strong> folder so that they can be used in test. If we ever wanted to reuse bootstrap fixture, we'd simply destructure its path from the context, and read it if necessary. But if our package could, for example, accept a path to a CSS file instead of CSS as string, we'd already have everything we needed to test such feature. This makes us extremely productive and our QA experience very pleasant.</p>
             
-            <p>The <a data-smooth href="#spec">
+            The <a data-smooth href="#spec">
                spec <img alt="hand cursor" data-io>
-             <noscript><img alt="hand cursor" src="/nodetools/pages/trapcss/img/hand.svg"></noscript></a> will read bulma and bootstrap, put them together, and use HTML from the prepared html file to pass to <em>TrapCSS</em>. The result is returned by the test, and when run for the first time, <em>Zoroaster</em> asks us if we want to save the snapshot. After it was saved, all further executions of the test will compare the output to the recorded one.</p>
+             <noscript><img alt="hand cursor" src="/nodetools/pages/trapcss/img/hand.svg"></noscript></a> will read bulma and bootstrap, put them together, and use HTML from the prepared html file to pass to <em>TrapCSS</em>. The result is returned by the test, and when run for the first time, <em>Zoroaster</em> asks us if we want to save the snapshot. After it was saved, all further executions of the test will compare the output to the recorded one.
             
             <p>
               <img class="b-vk b-bk b-t" alt="saving snapshot" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='643' height='666'/%3E" data-io>
@@ -1814,7 +1814,7 @@ export default class Context {
             
             <p>If at some point we changed our source code, and the output of the program changed, we'd be notified of it by <em>Zoroaster</em> with green/red highlighting on string differences too. We could then run tests in interactive mode as <span class="Manager"> <span><span class="yarn-cmd">yarn </span><span class="npm-cmd">npm </span><span>test</span> <span class="npm-cmd">--</span> <span>-i</span></span></span> (same as forks) to update snapshots from the CLI.</p>
             
-            <p>In sum, there are following folders found in the <strong>test</strong> dir:</p>
+            In sum, there are following folders found in the <strong>test</strong> dir:
             
             <ul>
               <li><strong>context</strong>: our helper methods implemented as a class for <em>JSDoc</em> access to methods.</li>
@@ -1840,7 +1840,7 @@ export default class Context {
             
             <p>Now that we've transferred the source code rewritten as ECMA modules, documented it with initial examples, designed the API via types in XML, and unit-tested our library with masks and snapshots, we can move on to discussing more serious concepts such as compilation, wikis and binary functionality in the next part of this tutorial. But first, let's <strike>take a selfie</strike> actually implement the logic that we needed for our package, that is, the comment preservation feature.</p>
             
-            <p>In <em>DropCSS</em> all comments are stripped prior to parsing of the CSS file.</p>
+            In <em>DropCSS</em> all comments are stripped prior to parsing of the CSS file.
             
             <pre id="ccdbf22"><code class="javascript hljs">// src/css.js
 function parse(css) {
@@ -1862,7 +1862,7 @@ function parse(css) {
             
             <p>Whenever the second new attribute, <span class="tm">keepAlternate</span> is passed, instead of stripping all comments that it finds, our method will test if the comment is the <strong>alternate</strong> block comment using a regex, and keep it if required. Although this could potentially break the parser in places, because we had tests, we don't need to be afraid of side effects introduced by this change. The author of the original package mentioned that he doesn't like the fact that such feature would have negative impact on speed, however there's no impact at all if the second argument is actually not truthy. If my advice can be of any value, please don't concern yourself with micro-optimisations and imaginary split millisecond gains at times when humanity is starting to use quantum computers.</p>
             
-            <p>If you need a feature, implement it regardless in what way without bothering with performance because our machines are made for computation so give them something to do. A new feature can branch out in unexpected ways and help you explore new ideas. But it's also true for when trying to overcome somebody's resistance to change, or bugs. Keep positive and treat any obstacle as a personal opportunity to create something amazing. Focus on yourself first and foremost, as you're programming for your own pleasure/business goals and don't need anyone else to tell you what is acceptable and not. You're in charge of your programs. <em>NodeTools</em> helps you remain the master of your work.</p>
+            If you need a feature, implement it regardless in what way without bothering with performance because our machines are made for computation so give them something to do. A new feature can branch out in unexpected ways and help you explore new ideas. But it's also true for when trying to overcome somebody's resistance to change, or bugs. Keep positive and treat any obstacle as a personal opportunity to create something amazing. Focus on yourself first and foremost, as you're programming for your own pleasure/business goals and don't need anyone else to tell you what is acceptable and not. You're in charge of your programs. <em>NodeTools</em> helps you remain the master of your work.
             
             <a class="b-Af b-If" btn-large href="/nodetools/trapcss-2-advanced-nodetools.html">
               TrapCSS 2: Advanced NodeTools</a>
